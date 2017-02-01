@@ -1,1 +1,3 @@
 # richi
+# "intellect" (japanese)
+
