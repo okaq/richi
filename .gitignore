@@ -1,0 +1,3 @@
+# ignore text files containing word data
+*.txt
+

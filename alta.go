@@ -2,10 +2,17 @@
 package main
 
 import (
+    "bufio"
     "fmt"
     "math/rand"
     "net/http"
+    "os"
     "time"
+)
+
+const (
+    // word file, one entry per line
+    BUN = "bun.txt"
 )
 
 var (
@@ -22,6 +29,22 @@ func Cache() {
     // load from txt file
     // one entry per line
     // init rng
+}
+
+func Load() {
+    // load from input bun text file
+    f0, err := os.Open(BUN)
+    if err != nil {
+        fmt.Println(err)
+    }
+    defer f0.Close()
+    // scan line by line
+    i := 0
+    s0 := bufio.NewScanner(f0)
+    for s0.Scan() {
+        i = i + 1
+        fmt.Printf("%d. meme: %s\n", i, s0.Text())
+    }
 }
 
 func Rng() {
@@ -43,7 +66,8 @@ func RichiHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
     fmt.Println("starting richi web server on localhost:8080")
-    Cache()
+    // Cache()
+    Load()
     Rng()
     http.HandleFunc("/", RichiHandler)
     http.ListenAndServe(":8080", nil)
