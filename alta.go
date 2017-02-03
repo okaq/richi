@@ -17,6 +17,8 @@ func Cache() {
     C = make([]string, 1)
     C[0] = "hi"
     C = append(C, "lo")
+    C = append(C, "open")
+    C = append(C, "close")
     // load from txt file
     // one entry per line
     // init rng
@@ -28,7 +30,8 @@ func Rng() {
 }
 
 func Select() string {
-    return C[1]
+    f0 := R.Intn(len(C))
+    return C[f0]
 }
 
 func RichiHandler(w http.ResponseWriter, r *http.Request) {
