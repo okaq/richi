@@ -22,10 +22,10 @@ var (
 
 func Cache() {
     C = make([]string, 1)
-    C[0] = "hi"
-    C = append(C, "lo")
-    C = append(C, "open")
-    C = append(C, "close")
+    C[0] = "cardinale"
+    // C = append(C, "lo")
+    // C = append(C, "open")
+    // C = append(C, "close")
     // load from txt file
     // one entry per line
     // init rng
@@ -39,11 +39,12 @@ func Load() {
     }
     defer f0.Close()
     // scan line by line
-    i := 0
+    // i := 0
     s0 := bufio.NewScanner(f0)
     for s0.Scan() {
-        i = i + 1
-        fmt.Printf("%d. meme: %s\n", i, s0.Text())
+        // i = i + 1
+        // fmt.Printf("%d. meme: %s\n", i, s0.Text())
+        C = append(C, s0.Text())
     }
 }
 
@@ -66,7 +67,7 @@ func RichiHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
     fmt.Println("starting richi web server on localhost:8080")
-    // Cache()
+    Cache()
     Load()
     Rng()
     http.HandleFunc("/", RichiHandler)
