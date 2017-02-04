@@ -13,6 +13,7 @@ import (
 const (
     // word file, one entry per line
     BUN = "bun.txt"
+    INDEX = "ciro.html"
 )
 
 var (
@@ -60,9 +61,15 @@ func Select() string {
 
 func RichiHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r)
-    fmt.Println(Select())
-    w.Write([]byte("ok richi!"))
+    // fmt.Println(Select())
+    // w.Write([]byte("ok richi!"))
     // select from data at random
+    http.ServeFile(w, r, INDEX)
+}
+
+func MemeHandler(w http.ResponseWriter, r *http.Request) {
+    // select and return as json
+    // intended for xhr reqs
 }
 
 func main() {
@@ -71,5 +78,6 @@ func main() {
     Load()
     Rng()
     http.HandleFunc("/", RichiHandler)
+    http.HandleFunc("/a", MemeHandler)
     http.ListenAndServe(":8080", nil)
 }
