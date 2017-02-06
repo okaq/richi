@@ -46,15 +46,31 @@ var sce = {
         // bkgd
         sce.a = [1920,1080,0,0];
         // panes
-        sce.b = [];
-        sce.c = [];
+        sce.b = [730,1080,0,0];
+        sce.c = [1190,1080,730,0];
         // grids
+        // list
+        sce.r = [sce.a,sce.b,sce.c];
+        sce.t = [];
+
+        sce.comp();
+    },
+    "comp": function() {
+        // compile structure
+        for (var i = 0; i < sce.r.length; i++) {
+            var c0 = dom.canvas(sce.r[i]);
+            dom.add(c0);
+            sce.t.push(c0);
+        }
     }
 }
 // render
 var ren = {
     "test": function() {
-
+        for (var i = 0; i < sce.t.length; i++) {
+            sce.t[i].con.fillStyle = rgba.rand();
+            sce.t[i].con.fillRect(0,0,sce.t[i].can.width,sce.t[i].height);
+        }
     }
 }
 // dom

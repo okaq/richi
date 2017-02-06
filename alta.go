@@ -47,6 +47,7 @@ func Load() {
         // fmt.Printf("%d. meme: %s\n", i, s0.Text())
         C = append(C, s0.Text())
     }
+    // report final size
 }
 
 func Rng() {
