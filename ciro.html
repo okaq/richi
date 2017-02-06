@@ -31,9 +31,30 @@ var g = {
 
         // subs
         dom.init();
+        sce.init();
+
+        // test
+        ren.test();
 
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
+    }
+}
+// scene
+var sce = {
+    "init": function() {
+        // bkgd
+        sce.a = [1920,1080,0,0];
+        // panes
+        sce.b = [];
+        sce.c = [];
+        // grids
+    }
+}
+// render
+var ren = {
+    "test": function() {
+
     }
 }
 // dom
@@ -104,4 +125,3 @@ var rgba = {
     <body id="alpha">
     </body>
 </html>
-
