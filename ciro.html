@@ -48,9 +48,33 @@ var sce = {
         // panes
         sce.b = [730,1080,0,0];
         sce.c = [1190,1080,730,0];
+        // add margins
         // grids
+        sce.d = [];
+        for (var i = 0; i < 7884; i++) {
+            var x0 = i % 73;
+            var x1 = (x0 * 10) >>> 0;
+            var y0 = (i / 73) >>> 0;
+            var y1 = (y0 * 10) >>> 0;
+            sce.d[i] = [10,10,x1,y1];
+        }
+        sce.e = [];
+        for (var i = 0; i < 12852; i++) {
+            var x0 = i % 119;
+            var x1 = (x0 * 10) >>> 0;
+            var x2 = (x1 + 730) >>> 0;
+            var y0 = (i / 119) >>> 0;
+            var y1 = (y0 * 10) >>> 0;
+            sce.e[i] = [10,10,x2,y1];
+        }
         // list
         sce.r = [sce.a,sce.b,sce.c];
+        for (var i = 0; i < sce.d.length; i++) {
+            sce.r.push(sce.d[i]);
+        }
+        for (var i = 0; i < sce.e.length; i++) {
+            sce.r.push(sce.e[i]);
+        }
         sce.t = [];
 
         sce.comp();
