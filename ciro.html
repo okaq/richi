@@ -87,13 +87,16 @@ var sce = {
             sce.t.push(c0);
         }
     }
+    // obtain single meme string from server api
+    // display grid block, gen path, randomize
+    // edit distance using touch / mouse input
 }
 // render
 var ren = {
     "test": function() {
         for (var i = 0; i < sce.t.length; i++) {
             sce.t[i].con.fillStyle = rgba.rand();
-            sce.t[i].con.fillRect(0,0,sce.t[i].can.width,sce.t[i].height);
+            sce.t[i].con.fillRect(0,0,sce.t[i].can.width,sce.t[i].can.height);
         }
     }
 }
