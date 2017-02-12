@@ -32,6 +32,10 @@ var g = {
         // subs
         dom.init();
         sce.init();
+        db.init();
+
+        // pop
+        sce.pop();
 
         // test
         ren.test();
@@ -47,6 +51,19 @@ var sce = {
         sce.a = [1920,1080,0,0];
         // grid of glyphs
         sce.b = [];
+        // margins
+        var mx = 448;
+        var my = 28;
+        for (var i = 0; i < 256; i++) {
+            var x0 = i % 16;
+            var x1 = (x0 * 64) >>> 0;
+            var x2 = (x1 + mx) >>> 0;
+            var y0 = (i / 16) >>> 0;
+            var y1 = (y0 * 64) >>> 0;
+            var y2 = (y1 + my) >>> 0;
+            var r0 = [64,64,x2,y2];
+            sce.b[i] = r0;
+        }
         // rect list
         sce.r = [];
         // canv list
