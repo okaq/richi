@@ -46,6 +46,18 @@ var sce = {
         // bkgd
         sce.a = [1920,1080,0,0];
         // grid of glyphs
+        sce.b = [];
+        // rect list
+        sce.r = [];
+        // canv list
+        sce.t = [];
+
+        sce.pop();
+    },
+    "pop": function() {
+            // populate canvas list from rects
+            // all bmp rgba and state data
+            // accessible via db key unique scene id
     },
     "init2": function() {
         // bkgd
@@ -102,6 +114,14 @@ var sce = {
     // 64x64 pixels per bitmap glyph cell
     // 16x16 letter square
     // max length 256 meme
+}
+// data
+var db = {
+    "init": function() {
+        // local key value store
+        db.a = {};
+        // methods to read and write data
+    }
 }
 // render
 var ren = {
