@@ -65,16 +65,37 @@ var sce = {
             sce.b[i] = r0;
         }
         // rect list
-        sce.r = [];
+        sce.r = sce.a.concat(sce.b);
         // canv list
         sce.t = [];
 
-        sce.pop();
+        // sce.pop();
     },
     "pop": function() {
             // populate canvas list from rects
             // all bmp rgba and state data
             // accessible via db key unique scene id
+            for (var i = 0; i < sce.r.length; i++) {
+                sce.t[i] = dom.canvas(sce.r[i]);
+                dom.add(sce.t[i]);
+                sce.t[i].can.dataset.x = i;
+                // console.log(db, db.a);
+                db.a[i] = {};
+                // layout
+                db.a[i].r = sce.r[i];
+                // state
+                db.a[i].s = true;
+            }
+            // index db access methods
+            // add bitmap font decoder
+    },
+    "flip": function() {
+            // revolving checker anim
+            if (!sce.tick) {
+                sce.tick = 0;
+            }
+            db.a[0].b = [200,200,200,1.0];
+            sce.tick = (sce.tick == 0) ? 1 : 0;
     },
     "init2": function() {
         // bkgd
@@ -137,6 +158,7 @@ var db = {
     "init": function() {
         // local key value store
         db.a = {};
+        // console.log(db.a);
         // methods to read and write data
     }
 }
@@ -210,6 +232,16 @@ var rgba = {
     "rmon": function() {
         var c0 = rgba.rb();
         return rgba.mono(c0);
+    }
+}
+// bitwise
+var bit = {
+    "flip": function(d0) {
+        // flip the bits
+        // horizontal vertical
+    },
+    "shift": function(d0) {
+        // bit shifting
     }
 }
         </script>
