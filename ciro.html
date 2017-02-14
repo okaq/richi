@@ -40,8 +40,20 @@ var g = {
         // test
         ren.test();
 
+        // loop
+        g.tick = 0;
+        g.id = window.setInterval(g.skip, 1000);
+
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
+    },
+    "skip": function() {
+        if (g.tick >= 16) {
+            window.clearInterval(g.id)
+        }
+        console.log("tick: " + g.tick);
+        sce.flip();
+        g.tick = g.tick + 1;
     }
 }
 // scene
@@ -88,14 +100,37 @@ var sce = {
             }
             // index db access methods
             // add bitmap font decoder
+
+            // bitmap render as grid
+            // defined as index in sequential db, stride
     },
     "flip": function() {
             // revolving checker anim
-            if (!sce.tick) {
-                sce.tick = 0;
-            }
+            // if (!sce.tick) {
+            //     sce.tick = 0;
+            // }
             db.a[0].b = [200,200,200,1.0];
-            sce.tick = (sce.tick == 0) ? 1 : 0;
+            for (var i = 1; i < sce.t.length; i++) {
+                // quad conditional state
+                // row and tick cardinality
+                var r0 = ((i - 1) / 16) >>> 0;
+                var r1 = (r0 % 2) == 0;
+                var t1 = (g.tick % 2) == 0;
+                if (t1) {
+                    if (r1) {
+
+                    } else {
+
+                    }
+                } else {
+                    if (r1) {
+
+                    } else {
+
+                    }
+                }
+            }
+            // sce.tick = (sce.tick == 0) ? 1 : 0;
     },
     "init2": function() {
         // bkgd
