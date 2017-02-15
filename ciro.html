@@ -53,6 +53,7 @@ var g = {
         }
         console.log("tick: " + g.tick);
         sce.flip();
+        ren.data();
         g.tick = g.tick + 1;
     }
 }
@@ -118,15 +119,15 @@ var sce = {
                 var t1 = (g.tick % 2) == 0;
                 if (t1) {
                     if (r1) {
-
+                        db.a[i].b = [255,255,255,1.0];
                     } else {
-
+                        db.a[i].b = [0,0,0,1.0];
                     }
                 } else {
                     if (r1) {
-
+                        db.a[i].b = [0,0,0,1.0];
                     } else {
-
+                        db.a[i].b = [255,255,255,1.0];
                     }
                 }
             }
@@ -202,6 +203,12 @@ var ren = {
     "test": function() {
         for (var i = 0; i < sce.t.length; i++) {
             sce.t[i].con.fillStyle = rgba.rand();
+            sce.t[i].con.fillRect(0,0,sce.t[i].can.width,sce.t[i].can.height);
+        }
+    },
+    "data": function() {
+        for (var i = 0; i < sce.t.length; i++) {
+            sce.t[i].con.fillStyle = rgba.css(db.a[i].b);
             sce.t[i].con.fillRect(0,0,sce.t[i].can.width,sce.t[i].can.height);
         }
     }
