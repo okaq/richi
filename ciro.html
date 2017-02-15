@@ -53,6 +53,7 @@ var g = {
         }
         console.log("tick: " + g.tick);
         sce.flip();
+        sce.cone();
         ren.data();
         g.tick = g.tick + 1;
     }
@@ -78,7 +79,8 @@ var sce = {
             sce.b[i] = r0;
         }
         // rect list
-        sce.r = sce.a.concat(sce.b);
+        sce.r = [sce.a];
+        sce.r = sce.r.concat(sce.b);
         // canv list
         sce.t = [];
 
@@ -99,6 +101,7 @@ var sce = {
                 // state
                 db.a[i].s = true;
             }
+            console.log(sce.t);
             // index db access methods
             // add bitmap font decoder
 
@@ -147,11 +150,17 @@ var sce = {
                         }
                     }
                 }
+                // console.log(i, db.a[i].b);
             }
             // sce.tick = (sce.tick == 0) ? 1 : 0;
             // higher dimensional state requires map
             // (0,0,1) -> rgba0
             // (0,1,1) -> rgba1
+    },
+    "cone": function() {
+        // random bit
+        var i0 = (Math.random() * (sce.t.length - 1)) >>> 0;
+        db.a[i0].b = [255,0,0,1.0];
     },
     "init2": function() {
         // bkgd
