@@ -117,21 +117,41 @@ var sce = {
                 var r0 = ((i - 1) / 16) >>> 0;
                 var r1 = (r0 % 2) == 0;
                 var t1 = (g.tick % 2) == 0;
+                var i1 = ((i - 1) % 2) == 0
                 if (t1) {
                     if (r1) {
-                        db.a[i].b = [255,255,255,1.0];
+                        if (i1) {
+                            db.a[i].b = [255,255,255,1.0];
+                        } else {
+                            db.a[i].b = [0,0,0,1.0];
+                        }
                     } else {
-                        db.a[i].b = [0,0,0,1.0];
+                        if (i1) {
+                            db.a[i].b = [0,0,0,1.0];
+                        } else {
+                            db.a[i].b = [255,255,255,1.0];
+                        }
                     }
                 } else {
                     if (r1) {
-                        db.a[i].b = [0,0,0,1.0];
+                        if (i1) {
+                            db.a[i].b = [0,0,0,1.0];
+                        } else {
+                            db.a[i].b = [255,255,255,1.0];
+                        }
                     } else {
-                        db.a[i].b = [255,255,255,1.0];
+                        if (i1) {
+                            db.a[i].b = [255,255,255,1.0];
+                        } else {
+                            db.a[i].b = [0,0,0,1.0];
+                        }
                     }
                 }
             }
             // sce.tick = (sce.tick == 0) ? 1 : 0;
+            // higher dimensional state requires map
+            // (0,0,1) -> rgba0
+            // (0,1,1) -> rgba1
     },
     "init2": function() {
         // bkgd
