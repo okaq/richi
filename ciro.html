@@ -233,7 +233,13 @@ var db = {
 // xhr
 var xhr = {
     "word": function() {
-
+        xhr.x = new window.XMLHttpRequest();
+        xhr.x.addEventListener("load", xhr.load);
+        xhr.x.open("GET", "http://localhost:8080/a");
+        xhr.x.send();
+    },
+    "load": function() {
+        console.log(xhr.x.responseText);
     }
 }
 // render
