@@ -71,6 +71,10 @@ func RichiHandler(w http.ResponseWriter, r *http.Request) {
 func MemeHandler(w http.ResponseWriter, r *http.Request) {
     // select and return as json
     // intended for xhr reqs
+    fmt.Println(r)
+    c0 := Select()
+    // plain text
+    w.Write([]byte(c0))
 }
 
 func main() {
