@@ -52,14 +52,20 @@ var g = {
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
     },
     "skip": function() {
-        if (g.tick >= 16) {
+        if (g.tick >= 4) {
             window.clearInterval(g.id)
+            g.tick = 0;
+            g.id = window.setInterval(g.flip, 2000);
         }
         console.log("tick: " + g.tick);
         sce.flip();
         sce.cone();
         ren.data();
         g.tick = g.tick + 1;
+    },
+    "flip": function() {
+        db.flip();
+        // render glyphs in cells
     }
 }
 // scene
@@ -229,6 +235,13 @@ var db = {
         db.a = {};
         // console.log(db.a);
         // methods to read and write data
+    },
+    "flip": function() {
+        // assign rand glyph per cell
+        // db.a[i].c = {}
+        // db.a[i].c.bg == bkgdcolor
+        // db.a[i].c.fg == fore color
+        // db.a[i].c.g = glyph key
     }
 }
 // xhr
