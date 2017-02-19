@@ -57,15 +57,21 @@ var g = {
             g.tick = 0;
             g.id = window.setInterval(g.flip, 2000);
         }
-        console.log("tick: " + g.tick);
+        console.log("skip tick: " + g.tick);
         sce.flip();
         sce.cone();
         ren.data();
         g.tick = g.tick + 1;
     },
     "flip": function() {
+        if (g.tick >= 16) {
+            console.log("done.");
+            window.clearInterval(g.id);
+        }
+        console.log("flip tick: " + g.tick);
         db.flip();
         // render glyphs in cells
+        g.tick = g.tick + 1;
     }
 }
 // scene
