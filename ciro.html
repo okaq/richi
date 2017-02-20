@@ -244,6 +244,14 @@ var db = {
     },
     "flip": function() {
         // assign rand glyph per cell
+        var rgba0 = rgba.rand();
+        var rgba1 = rgba.rand();
+        for (var k0 in db.a) {
+            db.a[i].c = {};
+            db.a[i].c.bg = rgba0;
+            db.a[i].c.fg = rgba1;
+            db.a[i].c.g = (Math.random() * bmp.b.length) >>> 0;
+        }
         // db.a[i].c = {}
         // db.a[i].c.bg == bkgdcolor
         // db.a[i].c.fg == fore color
