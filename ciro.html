@@ -54,8 +54,10 @@ var g = {
     "skip": function() {
         if (g.tick >= 4) {
             window.clearInterval(g.id)
-            g.tick = 0;
+            // g.tick = 0;
+            db.flip();
             g.id = window.setInterval(g.flip, 2000);
+            return;
         }
         console.log("skip tick: " + g.tick);
         sce.flip();
@@ -67,10 +69,12 @@ var g = {
         if (g.tick >= 16) {
             console.log("done.");
             window.clearInterval(g.id);
+            return;
         }
         console.log("flip tick: " + g.tick);
-        db.flip();
+        // db.flip();
         // render glyphs in cells
+        ren.cell();
         g.tick = g.tick + 1;
     }
 }
@@ -247,10 +251,10 @@ var db = {
         var rgba0 = rgba.rand();
         var rgba1 = rgba.rand();
         for (var k0 in db.a) {
-            db.a[i].c = {};
-            db.a[i].c.bg = rgba0;
-            db.a[i].c.fg = rgba1;
-            db.a[i].c.g = (Math.random() * bmp.b.length) >>> 0;
+            db.a[k0].c = {};
+            db.a[k0].c.bg = rgba0;
+            db.a[k0].c.fg = rgba1;
+            db.a[k0].c.g = (Math.random() * bmp.b.length) >>> 0;
         }
         // db.a[i].c = {}
         // db.a[i].c.bg == bkgdcolor
@@ -282,6 +286,13 @@ var ren = {
         for (var i = 0; i < sce.t.length; i++) {
             sce.t[i].con.fillStyle = rgba.css(db.a[i].b);
             sce.t[i].con.fillRect(0,0,sce.t[i].can.width,sce.t[i].can.height);
+        }
+    },
+    "cell": function() {
+        for (var i = 0; i < sce.t.length; i++) {
+            var k0 = db.a[i].c.g;
+            var b0 = bmp.b[k0];
+            console.log(i, k0, b0);
         }
     }
 }
