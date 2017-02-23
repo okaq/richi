@@ -289,10 +289,14 @@ var ren = {
         }
     },
     "cell": function() {
-        for (var i = 0; i < sce.t.length; i++) {
+        for (var i = 1; i < sce.t.length; i++) {
             var k0 = db.a[i].c.g;
             var b0 = bmp.b[k0];
-            console.log(i, k0, b0);
+            // console.log(i, k0, b0);
+            sce.t[i].con.fillStyle = db.a[i].c.bg;
+            sce.t[i].con.fillRect(0,0,sce.t[i].can.width,sce.t[i].can.height);
+            sce.t[i].con.fillStyle = db.a[i].c.fg;
+            sce.t[i].con.fillRect(4,4,sce.t[i].can.width-8,sce.t[i].can.height-8);
         }
     }
 }
