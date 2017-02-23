@@ -292,11 +292,20 @@ var ren = {
         for (var i = 1; i < sce.t.length; i++) {
             var k0 = db.a[i].c.g;
             var b0 = bmp.b[k0];
-            // console.log(i, k0, b0);
+            var b1 = bmp.a[b0];
+            // console.log(i, k0, b1);
             sce.t[i].con.fillStyle = db.a[i].c.bg;
             sce.t[i].con.fillRect(0,0,sce.t[i].can.width,sce.t[i].can.height);
             sce.t[i].con.fillStyle = db.a[i].c.fg;
-            sce.t[i].con.fillRect(4,4,sce.t[i].can.width-8,sce.t[i].can.height-8);
+            // sce.t[i].con.fillRect(4,4,sce.t[i].can.width-8,sce.t[i].can.height-8);
+            for (var j = 0; j < b1.length; j++) {
+                if (b1[j] == 0) {
+                    continue;
+                }
+                var x0 = j % 64;
+                var y0 = (j / 64) >>> 0;
+                sce.t[i].con.fillRect(x0,y0,2,2);
+            }
         }
     }
 }
@@ -389,7 +398,7 @@ var bmp = {
     "exp": function(b0) {
         var r0 = [];
         for (var i = 0; i < b0.length; i++) {
-            var b1 = b0[1];
+            var b1 = b0[i];
             var b2 = binStr(b1);
             for (var j = 0; j < 8; j++) {
                 var b3 = b2.charAt(j);
