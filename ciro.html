@@ -66,9 +66,11 @@ var g = {
         g.tick = g.tick + 1;
     },
     "flip": function() {
-        if (g.tick >= 16) {
-            console.log("done.");
+        if (g.tick >= 6) {
+            console.log("rentest done.");
             window.clearInterval(g.id);
+            // get meme one from server
+            // begin path tracing, data and render
             return;
         }
         console.log("flip tick: " + g.tick);
