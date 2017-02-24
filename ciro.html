@@ -46,7 +46,7 @@ var g = {
         g.id = window.setInterval(g.skip, 1000);
 
         // net
-        xhr.word();
+        // xhr.word();
 
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
@@ -71,6 +71,7 @@ var g = {
             window.clearInterval(g.id);
             // get meme one from server
             // begin path tracing, data and render
+            g.maze();
             return;
         }
         console.log("flip tick: " + g.tick);
@@ -78,6 +79,17 @@ var g = {
         // render glyphs in cells
         ren.cell();
         g.tick = g.tick + 1;
+    },
+    "maze": function() {
+        // retrieve meme
+        xhr.word();
+        // maze.gen();
+    }
+}
+// maze
+var maze = {
+    "gen": function() {
+        // begin path generation using meme
     }
 }
 // scene
@@ -274,6 +286,8 @@ var xhr = {
     },
     "load": function() {
         console.log(xhr.x.responseText);
+        // handle error upon timeout
+        maze.gen();
     }
 }
 // render
