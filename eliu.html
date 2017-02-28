@@ -34,6 +34,9 @@ var g = {
         db.init();
         sce.init();
 
+        // test
+        ren.scene();
+
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
     }
@@ -41,15 +44,16 @@ var g = {
 // data
 var db = {
     "init": function() {
+        // populate from config json
         db.a = {};
 
         db.a["bg"] = {};
         db.a["bg"].r = [1920,1080,0,0];
-        db.a["bg"].b = rgba.rand();
+        db.a["bg"].b = rgba.rc();
 
         db.a["fg"] = {};
         db.a["fg"].r = [1024,1024,448,28];
-        db.a["fg"].b = rgba.rand();
+        db.a["fg"].b = rgba.rc();
 
         // grid
 
@@ -62,12 +66,23 @@ var sce = {
         sce.a = ["bg","fg"];
         // global current scene state
         // set of keys dom page canvas
-        for (var i = 0; i < sce.a.length) {
+        for (var i = 0; i < sce.a.length; i++) {
             var k0 = sce.a[i];
             // canvases created at db init
-            db.a[i].c = dom.canvas(db.a[i].r);
-            dom.add(db.a[i].c);
-            db.a[i].c.can.dataset.x = k0;
+            db.a[k0].c = dom.canvas(db.a[k0].r);
+            dom.add(db.a[k0].c);
+            db.a[k0].c.can.dataset.x = k0;
+        }
+    }
+}
+// render
+var ren = {
+    "scene": function() {
+        for (var i = 0; i < sce.a.length; i++) {
+            var k0 = sce.a[i];
+            var c0 = db.a[k0].c;
+            c0.con.fillStyle = rgba.css(db.a[k0].b);
+            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
         }
     }
 }
