@@ -56,8 +56,23 @@ var db = {
         db.a["fg"].b = rgba.rc();
 
         // grid
+        db.b = {};
 
-        console.log(db.a);
+        // text
+        db.c = {};
+        db.c["okaq"] = [" o k a q "];
+        db.c["hype"] = [" - - - - - - - - - - - - - - - - - - - - "]
+        db.c["subs"] = [" s u b m a r i n e s "];
+        db.c["2017"] = [" 2 0 1 7 "];
+
+        // split
+        for (var k in db.c) {
+            var s0 = db.c[k][0];
+            var s1 = s0.split("");
+            db.c[k] = s1;
+        }
+
+        console.log(db);
     }
 }
 // scene
