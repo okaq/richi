@@ -97,6 +97,10 @@ var db = {
                 db.c[k].b[i][1] = rgba.rc();
             }
         }
+        // dom add in scenes to protect z-order
+        // y-distance via key index
+        // ensure 16 char x-limit
+
         // 1920 / 64 = 30
         // 1024 / 64 = 16
         console.log(db);
@@ -112,7 +116,7 @@ var sce = {
             var k0 = sce.a[i];
             // canvases created at db init
             db.a[k0].c = dom.canvas(db.a[k0].r);
-            dom.add(db.a[k0].c);
+            // dom.add(db.a[k0].c);
             db.a[k0].c.can.dataset.x = k0;
         }
     }
@@ -125,6 +129,18 @@ var ren = {
             var c0 = db.a[k0].c;
             c0.con.fillStyle = rgba.css(db.a[k0].b);
             c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+        }
+        for (var k in db.c) {
+            var c0 = db.c[k].c;
+            for (var i = 0; i < c0.length; i++) {
+                console.log(k, i);
+                var rgba0 = rgba.css(db.c[k].b[i][0]);
+                var rgba1 = rgba.css(db.c[k].b[i][1]);
+                c0[i].con.fillStyle = rgba0;
+                c0[i].con.fillRect(0,0,c0[i].can.width,c0[i].can.height);
+                c0[i].con.fillStyle = rgba1;
+                c0[i].con.fillRect(8,8,c0[i].can.width-16,c0[i].can.height-16);
+            }
         }
     }
 }
