@@ -60,16 +60,25 @@ var db = {
 
         // text
         db.c = {};
-        db.c["okaq"] = [" o k a q "];
-        db.c["hype"] = [" - - - - - - - - - - - - - - - - - - - - "]
-        db.c["subs"] = [" s u b m a r i n e s "];
-        db.c["2017"] = [" 2 0 1 7 "];
+        db.c["okaq"] = {};
+        db.c["okaq"].t = [" o k a q "];
+        db.c["hype"] = {};
+        db.c["hype"].t = [" - - - - - - - - - - - - - - - - - - - - "];
+        db.c["subs"] = {};
+        db.c["subs"].t = [" s u b m a r i n e s "];
+        db.c["2017"] = {};
+        db.c["2017"].t = [" m a r c h   2 0 1 7 "];
 
         // split
         for (var k in db.c) {
-            var s0 = db.c[k][0];
+            var s0 = db.c[k].t[0];
             var s1 = s0.split("");
-            db.c[k] = s1;
+            db.c[k].v = s1;
+        }
+
+        // blocks
+        for (var k in db.c) {
+            
         }
 
         console.log(db);
