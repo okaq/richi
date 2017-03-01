@@ -63,7 +63,7 @@ var db = {
         db.c["okaq"] = {};
         db.c["okaq"].t = [" o k a q "];
         db.c["hype"] = {};
-        db.c["hype"].t = [" - - - - - - - - - - - - - - - - - - - - "];
+        db.c["hype"].t = [" - - - - - - - - - - - - "];
         db.c["subs"] = {};
         db.c["subs"].t = [" s u b m a r i n e s "];
         db.c["2017"] = {};
@@ -77,10 +77,26 @@ var db = {
         }
 
         // blocks
+        var y0 = 0;
         for (var k in db.c) {
-            
+            db.c[k].r = [];
+            db.c[k].c = [];
+            db.c[k].b = [];
+            y0 = y0 + 1;
+            var y1 = (y0 * 64) >>> 0;
+            for (var i = 0; i < db.c[k].v.length; i++) {
+                var x1 = (i * 64) >>> 0;
+                db.c[k].r[i] = [64,64,x1,y1];
+                db.c[k].c[i] = dom.canvas(db.c[k].r[i]);
+                dom.add(db.c[k].c[i]);
+                db.c[k].c[i].can.dataset.x = k + "_" + db.c[k].v[i];
+                db.c[k].b[i] = [];
+                db.c[k].b[i][0] = rgba.rc();
+                db.c[k].b[i][1] = rgba.rc();
+            }
         }
-
+        // 1920 / 64 = 30
+        // 1024 / 64 = 16
         console.log(db);
     }
 }
