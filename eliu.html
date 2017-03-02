@@ -90,8 +90,8 @@ var db = {
                 var x1 = (x0 + 448) >>> 0;
                 db.c[k].r[i] = [64,64,x1,y2];
                 db.c[k].c[i] = dom.canvas(db.c[k].r[i]);
-                dom.add(db.c[k].c[i]);
-                db.c[k].c[i].can.dataset.x = k + "_" + db.c[k].v[i];
+                // dom.add(db.c[k].c[i]);
+                // db.c[k].c[i].can.dataset.x = k + "_" + db.c[k].v[i];
                 db.c[k].b[i] = [];
                 db.c[k].b[i][0] = rgba.rc();
                 db.c[k].b[i][1] = rgba.rc();
@@ -118,6 +118,14 @@ var sce = {
             db.a[k0].c = dom.canvas(db.a[k0].r);
             // dom.add(db.a[k0].c);
             db.a[k0].c.can.dataset.x = k0;
+        }
+        sce.c = ["okaq","hype","subs","2017"];
+        for (var i = 0; i < sce.c.length; i++) {
+            var k0 = sce.c[i];
+            var c0 = db.c[k0].c;
+            for (var j = 0; j < c0.length; j++) {
+                
+            }
         }
     }
 }
