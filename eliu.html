@@ -75,7 +75,7 @@ var db = {
             var s1 = s0.split("");
             db.c[k].v = s1;
         }
-
+/*
         // blocks
         var y0 = 0;
         for (var k in db.c) {
@@ -83,7 +83,7 @@ var db = {
             db.c[k].c = [];
             db.c[k].b = [];
             y0 = y0 + 1;
-            var y1 = (y0 * 64) >>> 0;
+            // var y1 = (y0 * 64) >>> 0;
             var y2 = (y1 + 28) >>> 0;
             for (var i = 0; i < db.c[k].v.length; i++) {
                 var x0 = (i * 64) >>> 0;
@@ -97,12 +97,14 @@ var db = {
                 db.c[k].b[i][1] = rgba.rc();
             }
         }
+*/
         // dom add in scenes to protect z-order
         // y-distance via key index
         // ensure 16 char x-limit
 
         // x and y margins
         // equal spacing for all elements
+        // y space 90 pixels
 
         // 1920 / 64 = 30
         // 1024 / 64 = 16
@@ -125,10 +127,23 @@ var sce = {
         sce.c = ["okaq","hype","subs","2017"];
         for (var i = 0; i < sce.c.length; i++) {
             var k0 = sce.c[i];
-            var c0 = db.c[k0].c;
-            for (var j = 0; j < c0.length; j++) {
-                dom.add(c0[j]);
-                c0[j].can.dataset.x = k0 + "_" + j;
+            // var c0 = db.c[k0].c;
+            db.c[k0].r = [];
+            db.c[k0].c = [];
+            db.c[k0].b = [];
+            for (var j = 0; j < db.c[k0].v.length; j++) {
+                var y0 = (i * 64) >>> 0;
+                var y1 = (y0 + 28) >>> 0;
+                var y2 = (y1 + (i * 64) + ((i + 1) * 90)) >>> 0;
+                var x0 = (j * 64) >>> 0;
+                var x1 = (x0 + 448) >>> 0;
+                db.c[k0].r[j] = [64,64,x1,y2];
+                db.c[k0].c[j] = dom.canvas(db.c[k0].r[j]);
+                dom.add(db.c[k0].c[j]);
+                db.c[k0].c[j].can.dataset.x = k0 + "_" + j;
+                db.c[k0].b[j] = [];
+                db.c[k0].b[j][0] = rgba.rc();
+                db.c[k0].b[j][1] = rgba.rc();
             }
         }
     }
@@ -145,7 +160,7 @@ var ren = {
         for (var k in db.c) {
             var c0 = db.c[k].c;
             for (var i = 0; i < c0.length; i++) {
-                console.log(k, i);
+                // console.log(k, i);
                 var rgba0 = rgba.css(db.c[k].b[i][0]);
                 var rgba1 = rgba.css(db.c[k].b[i][1]);
                 c0[i].con.fillStyle = rgba0;
