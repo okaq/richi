@@ -101,6 +101,9 @@ var db = {
         // y-distance via key index
         // ensure 16 char x-limit
 
+        // x and y margins
+        // equal spacing for all elements
+
         // 1920 / 64 = 30
         // 1024 / 64 = 16
         console.log(db);
@@ -116,7 +119,7 @@ var sce = {
             var k0 = sce.a[i];
             // canvases created at db init
             db.a[k0].c = dom.canvas(db.a[k0].r);
-            // dom.add(db.a[k0].c);
+            dom.add(db.a[k0].c);
             db.a[k0].c.can.dataset.x = k0;
         }
         sce.c = ["okaq","hype","subs","2017"];
@@ -124,7 +127,8 @@ var sce = {
             var k0 = sce.c[i];
             var c0 = db.c[k0].c;
             for (var j = 0; j < c0.length; j++) {
-                
+                dom.add(c0[j]);
+                c0[j].can.dataset.x = k0 + "_" + j;
             }
         }
     }
