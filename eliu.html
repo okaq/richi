@@ -114,7 +114,7 @@ var db = {
 // scene
 var sce = {
     "init": function() {
-        sce.a = ["bg","fg"];
+        sce.a = ["bg"];
         // global current scene state
         // set of keys dom page canvas
         for (var i = 0; i < sce.a.length; i++) {
@@ -136,7 +136,9 @@ var sce = {
                 var y1 = (y0 + 28) >>> 0;
                 var y2 = (y1 + (i * 64) + ((i + 1) * 90)) >>> 0;
                 var x0 = (j * 64) >>> 0;
-                var x1 = (x0 + 448) >>> 0;
+                var x1 = (x0 + 0) >>> 0;
+                // horizontal space from length
+                // no sub rect, use hd frame
                 db.c[k0].r[j] = [64,64,x1,y2];
                 db.c[k0].c[j] = dom.canvas(db.c[k0].r[j]);
                 dom.add(db.c[k0].c[j]);
