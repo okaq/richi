@@ -33,6 +33,7 @@ var g = {
         dom.init();
         db.init();
         sce.init();
+        // bmp.init();
 
         // test
         ren.scene();
@@ -49,7 +50,7 @@ var db = {
 
         db.a["bg"] = {};
         db.a["bg"].r = [1920,1080,0,0];
-        db.a["bg"].b = rgba.rc();
+        db.a["bg"].b = [0,0,0,1.0]; // rgba.rc();
 
         db.a["fg"] = {};
         db.a["fg"].r = [1024,1024,448,28];
@@ -137,15 +138,19 @@ var sce = {
                 var y2 = (y1 + (i * 64) + ((i + 1) * 90)) >>> 0;
                 var x0 = (j * 64) >>> 0;
                 var x1 = (x0 + 0) >>> 0;
+                var mx1 = (1920 / db.c[k0].v.length) >>> 0;
+                var mx2 = (mx1 - 64) >>> 0;
+                var mx3 = (mx2 / 2) >>> 0;
+                var x2 = ((mx1 * j) + mx3) >>> 0;
                 // horizontal space from length
                 // no sub rect, use hd frame
-                db.c[k0].r[j] = [64,64,x1,y2];
+                db.c[k0].r[j] = [64,64,x2,y2];
                 db.c[k0].c[j] = dom.canvas(db.c[k0].r[j]);
                 dom.add(db.c[k0].c[j]);
                 db.c[k0].c[j].can.dataset.x = k0 + "_" + j;
                 db.c[k0].b[j] = [];
-                db.c[k0].b[j][0] = rgba.rc();
-                db.c[k0].b[j][1] = rgba.rc();
+                db.c[k0].b[j][0] = [255,255,255,1.0]; // rgba.rc();
+                db.c[k0].b[j][1] = [55,55,55,1.0]; // rgba.rc();
             }
         }
     }
