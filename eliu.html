@@ -38,8 +38,8 @@ var g = {
         // optimize by removing uneeded chars
 
         // test
-        ren.scene();
-        // ren.data();
+        // ren.scene();
+        ren.data();
 
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
@@ -65,13 +65,13 @@ var db = {
         // text
         db.c = {};
         db.c["okaq"] = {};
-        db.c["okaq"].t = [" o k a q "];
+        db.c["okaq"].t = ["   okaq   "];
         db.c["hype"] = {};
-        db.c["hype"].t = [" - - - - - - - - - - - - "];
+        db.c["hype"].t = ["  ---------------------  "];
         db.c["subs"] = {};
-        db.c["subs"].t = [" s u b m a r i n e s "];
+        db.c["subs"].t = ["    submarines    "];
         db.c["2017"] = {};
-        db.c["2017"].t = [" m a r c h   2 0 1 7 "];
+        db.c["2017"].t = ["   march   2017   "];
 
         // split
         for (var k in db.c) {
@@ -195,14 +195,17 @@ var ren = {
     },
     "glyph": function(c0, rgba0, bmp0) {
         // assume 64x64
+        if (!bmp0) {
+            return;
+        }
         c0.con.fillStyle = rgba0;
         for (var i = 0; i < bmp0.length; i++) {
             if (bmp0[i] == 0) {
                 continue;
             }
-            var x0 = ;
-            var y0 = ;
-            c0.con.fillRect(1,1,x0,y0);
+            var x0 = i % 64;
+            var y0 = (i / 64) >>> 0;
+            c0.con.fillRect(x0,y0,1,1);
         }
     }
 }
