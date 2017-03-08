@@ -31,5 +31,7 @@ func main() {
     Load()
     http.HandleFunc("/", FugiHandler)
     http.HandleFunc("/a", KeysHandler)
+    PngServer := http.FileServer(http.Dir("png"))
+    http.Handle("/p/", http.StripPrefix("/p/", PngServer))
     http.ListenAndServe(":8080", nil)
 }
