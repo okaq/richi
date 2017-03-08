@@ -32,10 +32,25 @@ var g = {
         // subs
         dom.init();
         bmp.init();
-        console.log(bmp.b,bmp.a);
+        // console.log(bmp.b,bmp.a);
+        db.init();
+        net.init();
 
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
+    }
+}
+// xhr
+var net = {
+    "init": function() {
+        net.urls = [];
+        net.urls[0] = "http://localhost:/a"
+    }
+}
+// data
+var db = {
+    "init": function() {
+        db.a = [];
     }
 }
 // dom
