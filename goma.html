@@ -45,6 +45,15 @@ var net = {
     "init": function() {
         net.urls = [];
         net.urls[0] = "http://localhost:8080/a"
+
+        net.x = new window.XMLHTTPRequest();
+        net.x.addEventListener("load", net.load);
+        net.x.open("GET", net.urls[0]);
+        net.x.send();
+    },
+    "load": function() {
+        console.log(net.x.responseText);
+        // response json
     }
 }
 // data
