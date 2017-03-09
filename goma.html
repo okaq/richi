@@ -40,6 +40,27 @@ var g = {
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
     }
 }
+var sce = {
+    "init": function() {
+        // pre populate canvas rects for navi
+        // single clickable sample image pane
+        // send name, data to server for encode and save
+    }
+}
+// png
+var img = {
+    "blob": function(b0) {
+        // helper image from net blob
+        var b1 = URL.createObjectURL(b0);
+        var i0 = new window.Image();
+        i0.addEventListener("load", img.draw);
+        i0.setAttribute("src", b1);
+    },
+    "draw": function(c0) {
+        // render to target canvas context
+        c0.con.drawImage(i0, 0, 0);
+    }
+}
 // xhr
 var net = {
     "init": function() {
@@ -59,6 +80,10 @@ var net = {
         for (var k in net.png) {
             net.pool(k);
         }
+        // rand test img
+        // slot for each png, up to 15
+        // thumbnail and name
+        // rendered to clickable canvas
     },
     "pool": function(k0) {
         var y0 = new window.XMLHttpRequest();
