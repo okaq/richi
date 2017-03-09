@@ -46,14 +46,26 @@ var net = {
         net.urls = [];
         net.urls[0] = "http://localhost:8080/a"
 
-        net.x = new window.XMLHTTPRequest();
+        net.x = new window.XMLHttpRequest();
         net.x.addEventListener("load", net.load);
         net.x.open("GET", net.urls[0]);
+        net.x.responseType = "json";
         net.x.send();
     },
     "load": function() {
-        console.log(net.x.responseText);
+        console.log(net.x.response);
         // response json
+        net.png = net.x.response;
+        for (var k in net.png) {
+            net.pool(k);
+        }
+    },
+    "pool": function(k0) {
+        var y0 = new window.XMLHttpRequest();
+        y0.addEventListener("load", function() {console.log(k0,y0.response)});
+        y0.open("GET", net.png[k0]);
+        y0.responseType = "blob";
+        y0.send();
     }
 }
 // data
