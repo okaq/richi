@@ -37,6 +37,9 @@ var g = {
         db.init();
         net.init();
 
+        // render
+        ren.test();
+
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
     }
@@ -55,14 +58,40 @@ var sce = {
             sce.a[k0] = {};
             sce.a[k0].r = [384,64,x0,y0];
             sce.a[k0].c = dom.canvas(sce.a[k0].r);
-            dom.add(sce.a[k0].c);
+            sce.b.push(k0);
         }
         sce.a["img"] = {};
         sce.a["img"].r = [1024,1024,512,28];
+        sce.a["img"].c = dom.canvas(sce.a["img"].r);
+        sce.b.push("img");
+
         // scene state is enumeration of all canvas states
         // can.dataset.x holds key
         // db[key] holds data, state
 
+        // curr list
+        sce.c = [];
+
+        sce.pop();
+    },
+    "pop": function() {
+        // populate entire set
+        for (var i = 0; i < sce.b.length; i++) {
+            var k0 = sce.b[i];
+            sce.c.push(k0);
+            dom.add(sce.a[k0].c);
+            sce.a[k0].c.can.dataset.x = k0;
+            sce.a[k0].c.addEventListener("click", sce.click, false);
+        }
+    },
+    "click": function(e) {
+        console.log(e);
+    }
+}
+// render
+var ren = {
+    "test": function() {
+        
     }
 }
 // png
