@@ -30,6 +30,12 @@ func KeysHandler(w http.ResponseWriter, r *http.Request) {
     w.Write(J)
 }
 
+func SaveHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r)
+    // json from req body
+    // png name, sample bit array data
+}
+
 func Load() {
     // read files from directory
     // populate list object / json
@@ -66,5 +72,6 @@ func main() {
     http.HandleFunc("/a", KeysHandler)
     PngServer := http.FileServer(http.Dir("png"))
     http.Handle("/p/", http.StripPrefix("/p/", PngServer))
+    http.HandleFunc("/b", SaveHandler)
     http.ListenAndServe(":8080", nil)
 }
