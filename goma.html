@@ -35,6 +35,7 @@ var g = {
         // console.log(bmp.b,bmp.a);
         sce.init();
         db.init();
+        img.init();
         net.init();
 
         // render
@@ -101,16 +102,33 @@ var ren = {
 }
 // png
 var img = {
-    "blob": function(b0) {
+    "init": function() {
+        // DOM Image objects
+        img.a = {};
+        // size of list
+        img.s = 0;
+        // wait counter
+        img.t = 0;
+    },
+    "blob": function(k0, b0) {
         // helper image from net blob
         var b1 = URL.createObjectURL(b0);
         var i0 = new window.Image();
         i0.addEventListener("load", img.draw);
         i0.setAttribute("src", b1);
+        // wait group
+        // obtain length of images to be sampled
+        // increment counter upon each load
+        // when finished, render navi
     },
     "draw": function(c0) {
         // render to target canvas context
-        c0.con.drawImage(i0, 0, 0);
+        // c0.con.drawImage(i0, 0, 0);
+        img.t = img.t + 1;
+        if (img.t >= img.s) {
+            console.log("all images done loading!");
+            console.log("total = " + img.t);
+        }
     }
 }
 // xhr
@@ -129,6 +147,14 @@ var net = {
         console.log(net.x.response);
         // response json
         net.png = net.x.response;
+        // count
+        // can include as field from server
+        var i0 = 0;
+        for (var k in net.png) {
+            // net.pool(k);
+            i0 = i0 + 1;
+        }
+        img.s = i0;
         for (var k in net.png) {
             net.pool(k);
         }
@@ -139,7 +165,10 @@ var net = {
     },
     "pool": function(k0) {
         var y0 = new window.XMLHttpRequest();
-        y0.addEventListener("load", function() {console.log(k0,y0.response)});
+        y0.addEventListener("load", function() {
+            console.log(k0,y0.response)
+            img.blob(k0, y0.response);
+        });
         y0.open("GET", net.png[k0]);
         y0.responseType = "blob";
         y0.send();
