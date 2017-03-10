@@ -81,7 +81,7 @@ var sce = {
             sce.c.push(k0);
             dom.add(sce.a[k0].c);
             sce.a[k0].c.can.dataset.x = k0;
-            sce.a[k0].c.addEventListener("click", sce.click, false);
+            sce.a[k0].c.can.addEventListener("click", sce.click, false);
         }
     },
     "click": function(e) {
@@ -91,7 +91,12 @@ var sce = {
 // render
 var ren = {
     "test": function() {
-        
+        for (var i = 0; i < sce.c.length; i++) {
+            var k0 = sce.c[i];
+            var c0 = sce.a[k0].c;
+            c0.con.fillStyle = rgba.rand();
+            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+        }
     }
 }
 // png
