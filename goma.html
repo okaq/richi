@@ -33,6 +33,7 @@ var g = {
         dom.init();
         bmp.init();
         // console.log(bmp.b,bmp.a);
+        sce.init();
         db.init();
         net.init();
 
@@ -45,6 +46,20 @@ var sce = {
         // pre populate canvas rects for navi
         // single clickable sample image pane
         // send name, data to server for encode and save
+        sce.a = {};
+        sce.b = [];
+        for (var i = 0; i < 16; i++) {
+            var x0 = 0;
+            var y0 = (i * 64) >>> 0;
+            var k0 = "navi_" + i;
+            sce.a[k0] = {};
+            sce.a[k0].r = [384,64,x0,y0];
+            sce.a[k0].c = dom.canvas(sce.a[k0].r);
+            dom.add(sce.a[k0].c);
+        }
+        sce.a["img"] = {};
+        sce.a["img"].r = [1024,1024,512,28];
+
     }
 }
 // png
