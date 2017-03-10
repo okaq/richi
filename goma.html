@@ -98,6 +98,13 @@ var ren = {
             c0.con.fillStyle = rgba.rand();
             c0.con.fillRect(0,0,c0.can.width,c0.can.height);
         }
+    },
+    "img": function() {
+        // test draw image
+        var f0 = (Math.random() * img.b.length) >>> 0;
+        var k0 = img.b[f0];
+        var p0 = img.a[k0];
+        sce.a["img"].c.con.drawImage(p0,0,0);
     }
 }
 // png
@@ -105,6 +112,8 @@ var img = {
     "init": function() {
         // DOM Image objects
         img.a = {};
+        // keys list
+        img.b = [];
         // size of list
         img.s = 0;
         // wait counter
@@ -120,6 +129,8 @@ var img = {
         // obtain length of images to be sampled
         // increment counter upon each load
         // when finished, render navi
+        img.a[k0] = i0;
+        img.b.push(k0);
     },
     "draw": function(c0) {
         // render to target canvas context
@@ -128,6 +139,8 @@ var img = {
         if (img.t >= img.s) {
             console.log("all images done loading!");
             console.log("total = " + img.t);
+            // test draw img from dom object
+            ren.img();
         }
     }
 }
