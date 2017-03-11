@@ -44,6 +44,15 @@ var g = {
 
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
+    },
+    "start": function() {
+        // create nav panel
+        // clear img pane
+        // sampled set is empty
+        // nav states: unsampled, sampled, live
+
+        // app should intellginetly recall all samples
+        // for now can manually save and copy in batches
     }
 }
 var sce = {
@@ -177,6 +186,7 @@ var img = {
             console.log("total = " + img.t);
             // test draw img from dom object
             // ren.img();
+            g.start();
         }
     }
 }
