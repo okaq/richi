@@ -39,7 +39,8 @@ var g = {
         net.init();
 
         // render
-        ren.test();
+        // ren.test();
+        ren.color();
 
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
@@ -54,7 +55,7 @@ var sce = {
         sce.b = [];
         for (var i = 0; i < 16; i++) {
             var x0 = 0;
-            var y0 = (i * 64) >>> 0;
+            var y0 = (i * 66) >>> 0;
             var k0 = "navi_" + i;
             sce.a[k0] = {};
             sce.a[k0].r = [384,64,x0,y0];
@@ -117,6 +118,29 @@ var ren = {
         // render fg and gb test
         // fill rect bg
         // print id fg
+        ren.bg();
+        ren.fg();
+    },
+    "bg": function() {
+        for (var i = 0; i < sce.c.length; i++) {
+            var k0 = sce.c[i];
+            var c0 = sce.a[k0].c;
+            var b0 = sce.a[k0].b[0];
+            c0.con.fillStyle = rgba.css(b0);
+            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+        }
+    },
+    "fg": function() {
+        for (var i = 0; i < sce.c.length; i++) {
+            var k0 = sce.c[i];
+            var c0 = sce.a[k0].c;
+            var b0 = sce.a[k0].b[1];
+            c0.con.fillStyle = rgba.css(b0);
+            c0.con.font = "24px monospace";
+            // c0.con.fillRect(8,8,c0.can.width-16,c0.can.height-16);
+            var s0 = c0.can.dataset.x;
+            c0.con.fillText(s0,8,8+24);
+        }
     }
 }
 // png
@@ -152,7 +176,7 @@ var img = {
             console.log("all images done loading!");
             console.log("total = " + img.t);
             // test draw img from dom object
-            ren.img();
+            // ren.img();
         }
     }
 }
