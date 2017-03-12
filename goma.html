@@ -129,7 +129,12 @@ var sce = {
     },
     "select": function(e) {
         // update ui selection
-        console.log(e.target.dataset.x);
+        // console.log(e.target.dataset.x);
+        var k0 = e.target.dataset.x;
+        var img0 = db.a[k0].t;
+        console.log("click pane: " + k0 + " image: " + img0);
+        db.c.push(k0);
+        ren.all();
     },
     "save": function(e) {
         // sample data and send to server
@@ -187,8 +192,14 @@ var ren = {
         var n0 = db.navi();
         for (var i = 0; i < n0.length; i++) {
             ren.tiny(n0[i]);
+            ren.name(n0[i]);
+            ren.state(n0[i][0]);
+            ren.sample(n0[i][1]);
         }
         // render image pane with current selection
+    },
+    "name": function(n0) {
+
     },
     "tiny" :function(n0) {
         // render thumbnail in [k0,img0]
@@ -201,6 +212,16 @@ var ren = {
     "state": function(k0) {
         // render state in pane
         // green, yellow, red for saved, current, unsaved
+    },
+    "sample": function() {
+        // render bitmap selection in img pane
+        var c0 = sce.a["img"].c;
+        var len0 = db.c.length;
+        if (len0 == 0) {return;};
+        var k0 = db.c[db.c.length-1];
+        var k1 = db.a[k0].t;
+        var p0 = img.a[k1];
+        c0.con.drawImage(p0,0,0);
     },
     "clear": function() {
         for (var i = 0; i < sce.c.length; i++) {
