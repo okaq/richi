@@ -210,6 +210,13 @@ var ren = {
         c0.con.fillStyle = rgba.css([40,40,40,1.0]);
         c0.con.font = "24px monospace";
         c0.con.fillText(k1,8+64+8,8+24+8);
+
+        // using bitmap font instead of draw text
+        // one block for image
+        // 12 for text key "test_001.png"
+        // one for saved / unsaved flag
+        // 14 * 64 = 896
+        // 896 + 1024 = 1920, full frame width
     },
     "tiny" :function(n0) {
         // render thumbnail in [k0,img0]
@@ -295,6 +302,8 @@ var img = {
         img.s = 0;
         // wait counter
         img.t = 0;
+        // sample data
+        img.m = {};
     },
     "blob": function(k0, b0) {
         // helper image from net blob
@@ -320,6 +329,10 @@ var img = {
             // ren.img();
             g.start();
         }
+    },
+    "sample": function(k0) {
+        // grab image data from img canvas
+        // sample each square black or white
     }
 }
 // xhr
@@ -327,6 +340,7 @@ var net = {
     "init": function() {
         net.urls = [];
         net.urls[0] = "http://localhost:8080/a"
+        net.urls[1] = "http://localhost:8080/b"
 
         net.x = new window.XMLHttpRequest();
         net.x.addEventListener("load", net.load);
