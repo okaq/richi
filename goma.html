@@ -194,12 +194,17 @@ var ren = {
             ren.tiny(n0[i]);
             ren.name(n0[i]);
             ren.state(n0[i][0]);
-            ren.sample(n0[i][1]);
+            ren.sample();
         }
         // render image pane with current selection
     },
     "name": function(n0) {
-
+        var k0 = n0[0];
+        var k1 = n0[1];
+        var c0 = sce.a[k0].c;
+        c0.con.fillStyle = rgba.css([40,40,40,1.0]);
+        c0.con.font = "24px monospace";
+        c0.con.fillText(k1,8+64+8,8+24+8);
     },
     "tiny" :function(n0) {
         // render thumbnail in [k0,img0]
@@ -212,13 +217,33 @@ var ren = {
     "state": function(k0) {
         // render state in pane
         // green, yellow, red for saved, current, unsaved
+        var c0 = sce.a[k0].c;
+        c0.con.fillStyle = rgba.css([0,255,0,1.0]);
+        c0.con.beginPath();
+        c0.con.arc(280,32,8,0,2*Math.PI);
+        c0.con.fill();
+
+        c0.con.fillStyle = rgba.css([255,0,0,1.0]);
+        c0.con.beginPath();
+        c0.con.arc(320,32,8,0,2*Math.PI);
+        c0.con.fill();
+
+        c0.con.fillStyle = rgba.css([0,255,255,1.0]);
+        c0.con.beginPath();
+        c0.con.arc(360,32,8,0,2*Math.PI);
+        c0.con.fill();
     },
     "sample": function() {
         // render bitmap selection in img pane
         var c0 = sce.a["img"].c;
+        /*
         var len0 = db.c.length;
         if (len0 == 0) {return;};
         var k0 = db.c[db.c.length-1];
+        */
+        var k0 = db.now();
+        if (k0 == null) {return;};
+        // console.log("k0: " + k0);
         var k1 = db.a[k0].t;
         var p0 = img.a[k1];
         c0.con.drawImage(p0,0,0);
@@ -353,6 +378,14 @@ var db = {
             }
         }
         return r0;
+    },
+    "now": function() {
+        var len0 = db.c.length;
+        if (len0 == 0) {
+            return null;
+        } else {
+            return db.c[len0-1];
+        }
     }
 }
 // dom
