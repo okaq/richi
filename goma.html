@@ -51,6 +51,9 @@ var g = {
         // sampled set is empty
         // nav states: unsampled, sampled, live
         db.norm();
+        // attach specific click listeners to navi, img
+        // update db selection history on handle
+        sce.thumb();
 
         // app should intellginetly recall all samples
         // for now can manually save and copy in batches
@@ -105,6 +108,24 @@ var sce = {
     },
     "click": function(e) {
         console.log(e);
+    },
+    "thumb": function() {
+        for (var k in db.a) {
+            // console.log(k, db.a[k].t);
+            var img0 = db.a[k].t;
+            if (img0) {
+                sce.a[k].c.can.addEventListener("click", sce.select, false);
+            }
+        }
+        sce.a["img"].c.can.addEventListener("click", sce.save, false);
+    },
+    "select": function(e) {
+        // update ui selection
+        console.log(e.target.dataset.x);
+    },
+    "save": function(e) {
+        // sample data and send to server
+        console.log(e.target.dataset.x);
     }
 }
 // render
@@ -252,7 +273,7 @@ var db = {
         for (var i = 0; i < sce.b.length; i++) {
             var k0 = sce.b[i];
             db.a[k0] = {};
-            db.a[k0].s = [0,0];
+            db.a[k0].s = false;
         }
         // history of selections list
         db.c = [];
@@ -262,7 +283,7 @@ var db = {
             var k1 = sce.b[i];
             db.a[k1].t = k0;
         }
-        console.log(sce.b, db.a);
+        // console.log(sce.b, db.a);
     }
 }
 // dom
