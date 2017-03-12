@@ -50,6 +50,7 @@ var g = {
         // clear img pane
         // sampled set is empty
         // nav states: unsampled, sampled, live
+        db.norm();
 
         // app should intellginetly recall all samples
         // for now can manually save and copy in batches
@@ -236,13 +237,32 @@ var net = {
 // data
 var db = {
     "init": function() {
-        db.a = [];
+        db.a = {};
         // hard nine char limit on png names
         // format test_0001.png
         // bitmap glyph = 64x64
         // total width navi pane = 10*64 = 640
         // max number of sprites = 1024 / 64 = 16
         // console log print status msg
+    },
+    "norm": function() {
+        // initialized to normative state
+        // states = saved, unsaved
+        // current = key of current selection
+        for (var i = 0; i < sce.b.length; i++) {
+            var k0 = sce.b[i];
+            db.a[k0] = {};
+            db.a[k0].s = [0,0];
+        }
+        // history of selections list
+        db.c = [];
+        // map img list to navi pane
+        for (var i = 0; i < img.b.length; i++) {
+            var k0 = img.b[i];
+            var k1 = sce.b[i];
+            db.a[k1].t = k0;
+        }
+        console.log(sce.b, db.a);
     }
 }
 // dom
