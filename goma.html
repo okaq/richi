@@ -54,6 +54,7 @@ var g = {
         // attach specific click listeners to navi, img
         // update db selection history on handle
         sce.thumb();
+        ren.all();
 
         // app should intellginetly recall all samples
         // for now can manually save and copy in batches
@@ -110,12 +111,19 @@ var sce = {
         console.log(e);
     },
     "thumb": function() {
+        /*
         for (var k in db.a) {
             // console.log(k, db.a[k].t);
             var img0 = db.a[k].t;
             if (img0) {
                 sce.a[k].c.can.addEventListener("click", sce.select, false);
             }
+        }
+        */
+        var n0 = db.navi();
+        for (var i = 0; i < n0.length; i++) {
+            var k0 = n0[i][0];
+            sce.a[k0].c.can.addEventListener("click", sce.select, false);
         }
         sce.a["img"].c.can.addEventListener("click", sce.save, false);
     },
@@ -171,6 +179,35 @@ var ren = {
             // c0.con.fillRect(8,8,c0.can.width-16,c0.can.height-16);
             var s0 = c0.can.dataset.x;
             c0.con.fillText(s0,8,8+24);
+        }
+    },
+    "all": function() {
+        ren.clear();
+        // render navi pane and state
+        var n0 = db.navi();
+        for (var i = 0; i < n0.length; i++) {
+            ren.tiny(n0[i]);
+        }
+        // render image pane with current selection
+    },
+    "tiny" :function(n0) {
+        // render thumbnail in [k0,img0]
+        var k0 = n0[0];
+        var k1 = n0[1];
+        var c0 = sce.a[k0].c;
+        var p0 = img.a[k1];
+        c0.con.drawImage(p0, 0, 0, 64, 64);
+    },
+    "state": function(k0) {
+        // render state in pane
+        // green, yellow, red for saved, current, unsaved
+    },
+    "clear": function() {
+        for (var i = 0; i < sce.c.length; i++) {
+            var k0 = sce.c[i];
+            var c0 = sce.a[k0].c;
+            c0.con.fillStyle = rgba.css([255,255,255,1.0]);
+            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
         }
     }
 }
@@ -284,6 +321,17 @@ var db = {
             db.a[k1].t = k0;
         }
         // console.log(sce.b, db.a);
+    },
+    "navi": function() {
+        // return set mapped to images
+        var r0 = [];
+        for (var k in db.a) {
+            var img0 = db.a[k].t;
+            if (img0) {
+                r0.push([k,img0]);
+            }
+        }
+        return r0;
     }
 }
 // dom
