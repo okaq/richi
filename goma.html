@@ -138,7 +138,12 @@ var sce = {
     },
     "save": function(e) {
         // sample data and send to server
-        console.log(e.target.dataset.x);
+        // console.log(e.target.dataset.x);
+        var k0 = e.target.dataset.x;
+        var k1 = db.now();
+        var img0 = db.a[k1].t;
+        console.log("sample pane: " + k0 + " image: " + img0);
+        console.log("sampling pixel data, encoding and sending to server!");
     }
 }
 // render
@@ -218,20 +223,42 @@ var ren = {
         // render state in pane
         // green, yellow, red for saved, current, unsaved
         var c0 = sce.a[k0].c;
+        var s0 = db.a[k0].s;
+        var s1 = db.now();
+        var s2 = k0 == s1;
+        // console.log("saved: " + s0 + " current: " + s1 + " isCurrent: " + s2);
         c0.con.fillStyle = rgba.css([0,255,0,1.0]);
+        c0.con.strokeStyle = rgba.css([0,255,0,1.0]);
+        c0.con.lineWidth = 4;
         c0.con.beginPath();
         c0.con.arc(280,32,8,0,2*Math.PI);
-        c0.con.fill();
+        if (s0) {
+            c0.con.fill();
+        } else {
+            c0.con.stroke();
+        }
 
         c0.con.fillStyle = rgba.css([255,0,0,1.0]);
+        c0.con.strokeStyle = rgba.css([255,0,0,1.0]);
+        c0.con.lineWidth = 4;
         c0.con.beginPath();
         c0.con.arc(320,32,8,0,2*Math.PI);
-        c0.con.fill();
+        if (!s0) {
+            c0.con.fill();
+        } else {
+            c0.con.stroke();
+        }
 
         c0.con.fillStyle = rgba.css([0,255,255,1.0]);
+        c0.con.strokeStyle = rgba.css([0,255,255,1.0]);
+        c0.con.lineWidth = 4;
         c0.con.beginPath();
         c0.con.arc(360,32,8,0,2*Math.PI);
-        c0.con.fill();
+        if (s2) {
+            c0.con.fill();
+        } else {
+            c0.con.stroke();
+        }
     },
     "sample": function() {
         // render bitmap selection in img pane
