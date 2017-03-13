@@ -19,6 +19,11 @@ var (
     J []byte
 )
 
+type Img struct {
+    Name string
+    Data []int
+}
+
 func FugiHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r)
     http.ServeFile(w, r, INDEX)
@@ -34,7 +39,17 @@ func SaveHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r)
     // json from req body
     // png name, sample bit array data
-    w.Write([]byte("ok saved!"))
+    dec := json.NewDecoder(r.Body)
+    var i0 Img
+    err := dec.Decode(&i0)
+    if err != nil {
+        fmt.Println(err)
+    }
+    fmt.Println(i0)
+    s0 := fmt.Sprintf("bytes read: %d\n", len(i0.Data))
+    b0 := []byte(s0)
+    w.Write(b0)
+    // w.Write([]byte("ok saved!"))
 
     // simple cache on server
     // map image name, data

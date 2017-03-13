@@ -419,12 +419,17 @@ var net = {
     "tube": function() {
         var k0 = db.now();
         var k1 = db.a[k0].t;
+        var j0 = {};
+        j0["Name"] = k1;
+        j0["Data"] = img.m[k1];
+        var j1 = JSON.stringify(j0);
         var x0 = new window.XMLHttpRequest();
         x0.addEventListener("load", function() {
             console.log(k0,k1,x0.response);
         });
         x0.open("POST", net.urls[1]);
-        x0.send(img.m[k1]);
+        // x0.send(img.m[k1]);
+        x0.send(j1);
     }
 }
 // data
