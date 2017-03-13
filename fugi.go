@@ -17,6 +17,7 @@ const (
 var (
     P map[string]string
     J []byte
+    I map[string][]int
 )
 
 type Img struct {
@@ -45,7 +46,15 @@ func SaveHandler(w http.ResponseWriter, r *http.Request) {
     if err != nil {
         fmt.Println(err)
     }
-    fmt.Println(i0)
+    // fmt.Println(i0)
+    // check key exists
+    _, ok := I[i0.Name]
+    if ok {
+        w.Write([]byte("already saved!"))
+        return
+    }
+    I[i0.Name] = i0.Data
+    fmt.Println(I)
     s0 := fmt.Sprintf("bytes read: %d\n", len(i0.Data))
     b0 := []byte(s0)
     w.Write(b0)
@@ -86,6 +95,7 @@ func Encode() {
 func main() {
     fmt.Println("start goma bitmap sample on localhost:8080")
     P = make(map[string]string)
+    I = make(map[string][]int)
     Load()
     Encode()
     http.HandleFunc("/", FugiHandler)
