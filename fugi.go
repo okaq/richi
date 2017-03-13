@@ -34,6 +34,7 @@ func SaveHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r)
     // json from req body
     // png name, sample bit array data
+    w.Write([]byte("ok saved!"))
 
     // simple cache on server
     // map image name, data

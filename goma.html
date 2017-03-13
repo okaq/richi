@@ -61,6 +61,7 @@ var g = {
     },
     "save": function() {
         img.sample();
+        net.tube();
     }
 }
 var sce = {
@@ -414,6 +415,16 @@ var net = {
         y0.open("GET", net.png[k0]);
         y0.responseType = "blob";
         y0.send();
+    },
+    "tube": function() {
+        var k0 = db.now();
+        var k1 = db.a[k0].t;
+        var x0 = new window.XMLHttpRequest();
+        x0.addEventListener("load", function() {
+            console.log(k0,k1,x0.response);
+        });
+        x0.open("POST", net.urls[1]);
+        x0.send(img.m[k1]);
     }
 }
 // data
