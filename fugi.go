@@ -41,6 +41,8 @@ func SaveHandler(w http.ResponseWriter, r *http.Request) {
     // json from req body
     // png name, sample bit array data
     dec := json.NewDecoder(r.Body)
+    // terminate the socket
+    defer r.Body.Close()
     var i0 Img
     err := dec.Decode(&i0)
     if err != nil {
