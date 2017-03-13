@@ -58,6 +58,9 @@ var g = {
 
         // app should intellginetly recall all samples
         // for now can manually save and copy in batches
+    },
+    "save": function() {
+        img.sample();
     }
 }
 var sce = {
@@ -144,6 +147,7 @@ var sce = {
         var img0 = db.a[k1].t;
         console.log("sample pane: " + k0 + " image: " + img0);
         console.log("sampling pixel data, encoding and sending to server!");
+        g.save();
     }
 }
 // render
@@ -330,9 +334,42 @@ var img = {
             g.start();
         }
     },
-    "sample": function(k0) {
+    "sample": function() {
         // grab image data from img canvas
         // sample each square black or white
+        var k0 = db.now();
+        var k1 = db.a[k0].t;
+        if (img.m[k1]) {
+            return;
+        }
+        var c0 = sce.a["img"].c;
+        var d0 = c0.con.getImageData(0,0,c0.can.width,c0.can.height);
+        var d1 = d0.data;
+        console.log(d0);
+        var r0 = [];
+        for (var i = 0; i < 1024; i++) {
+            var x0 = i % 32;
+            var y0 = (i / 32) >>> 0;
+            var x1 = (x0 * 32) >>> 0;
+            var y1 = (y0 * 1024 * 32) >>> 0;
+            var x2 = (x1 * 4) >>> 0;
+            var y2 = (y1 * 4) >>> 0;
+            var i0 = (x2 + y2) >>> 0;
+            if (d1[i0] == 0) {
+                r0.push(0);
+            } else {
+                r0.push(1);
+            }
+        }
+        img.m[k1] = r0;
+        console.log(k1, img.m[k1]);
+        // return r0;
+
+        // image dimensions
+        // scaled up 1024*1024 = 1048576
+        // rgba data array size = 4194304
+        // original sprite size = 32*32
+        // pixel block size = 32*32
     }
 }
 // xhr
