@@ -17,12 +17,16 @@ const (
 var (
     P map[string]string
     J []byte
-    I map[string][]int
+    // I map[string][]int
+    // I map[string]string
+    I map[string]Img
 )
 
 type Img struct {
     Name string
-    Data []int
+    // Data []int
+    // Data string
+    Data map[string]byte
 }
 
 func FugiHandler(w http.ResponseWriter, r *http.Request) {
@@ -55,7 +59,9 @@ func SaveHandler(w http.ResponseWriter, r *http.Request) {
         w.Write([]byte("already saved!"))
         return
     }
-    I[i0.Name] = i0.Data
+    I[i0.Name] = i0
+    // I[i0.Name] = i0.Data
+    // I = append(I, i0)
     fmt.Println(I)
     s0 := fmt.Sprintf("bytes read: %d\n", len(i0.Data))
     b0 := []byte(s0)
@@ -97,7 +103,9 @@ func Encode() {
 func main() {
     fmt.Println("start goma bitmap sample on localhost:8080")
     P = make(map[string]string)
-    I = make(map[string][]int)
+    // I = make(map[string][]int)
+    // I = make(map[string]string)
+    I = make(map[string]Img)
     Load()
     Encode()
     http.HandleFunc("/", FugiHandler)

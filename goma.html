@@ -419,10 +419,14 @@ var net = {
     "tube": function() {
         var k0 = db.now();
         var k1 = db.a[k0].t;
+        var d0 = img.m[k1];
+        var d1 = net.pack(d0);
         var j0 = {};
         j0["Name"] = k1;
-        j0["Data"] = img.m[k1];
+        // j0["Data"] = img.m[k1];
+        j0["Data"] = d1;
         var j1 = JSON.stringify(j0);
+        // console.log(j0, j1);
         var x0 = new window.XMLHttpRequest();
         x0.addEventListener("load", function() {
             console.log(k0,k1,x0.response);
@@ -430,6 +434,19 @@ var net = {
         x0.open("POST", net.urls[1]);
         // x0.send(img.m[k1]);
         x0.send(j1);
+    },
+    "pack": function(d0) {
+        var d1 = (d0.length / 8) >>> 0;
+        var ab0 = new ArrayBuffer(d1);
+        var ab1 = new Uint8Array(ab0);
+        for (var i = 0; i < d1; i++) {
+            var i0 = (i * 8) >>> 0;
+            var a0 = d0.slice(i0, i0+8);
+            var a1 = a0.join("");
+            var a2 = parseInt(a1,2);
+            ab1[i] = a2;
+        }
+        return ab1;
     }
 }
 // data
