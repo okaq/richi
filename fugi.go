@@ -71,6 +71,16 @@ func SaveHandler(w http.ResponseWriter, r *http.Request) {
     // simple cache on server
     // map image name, data
     // write to file on initial post
+
+    // raw binary send from browser
+    // arraybuffer encodes as []byte
+    // and golang recognizes as base64 string
+    // but if array buffer is embedded in json object
+    // stringify renders as {0:255,1:255...}
+    // map[string]byte of fixed size
+    // can either reconstruct base64 from server
+    // or send name and dat in two parts
+    // first text string, second binary data
 }
 
 func Load() {
