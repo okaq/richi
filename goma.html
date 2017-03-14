@@ -434,6 +434,8 @@ var net = {
         x0.open("POST", net.urls[1]);
         // x0.send(img.m[k1]);
         x0.send(j1);
+        // split in two, name + data
+        // call and response for multi part upload
     },
     "pack": function(d0) {
         var d1 = (d0.length / 8) >>> 0;
@@ -447,6 +449,13 @@ var net = {
             ab1[i] = a2;
         }
         return ab1;
+    },
+    "auto": function() {
+        // full automation that cycles
+        // through all sample urls
+        // get image, render, sample, post, save
+        // each directory contains a subset type
+        // submarine, starfish, seaanemonie
     }
 }
 // data
