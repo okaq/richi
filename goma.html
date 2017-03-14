@@ -62,6 +62,30 @@ var g = {
     "save": function() {
         img.sample();
         net.tube();
+    },
+    "auto": function() {
+        // automatically render, sample, send, save
+        // img pane, console messages
+        // console.log(img);
+        g.tick = 0;
+        g.id = window.setInterval(g.frame, 1000);
+    },
+    "frame": function() {
+        g.a = img.b[g.tick];
+        ren.mighty();
+        g.tick = g.tick + 1;
+        if (g.tick >= img.b.length) {
+            console.log("done rendering images!");
+            window.clearInterval(g.id);
+        }
+        /*
+        for (var i = 0; i < img.b.length; i++) {
+            var k0 = img.b[i];
+            g.a = k0;
+            console.log("rendering: " + k0);
+
+        }
+        */
     }
 }
 var sce = {
@@ -166,6 +190,12 @@ var ren = {
         var f0 = (Math.random() * img.b.length) >>> 0;
         var k0 = img.b[f0];
         var p0 = img.a[k0];
+        sce.a["img"].c.con.drawImage(p0,0,0);
+    },
+    "mighty": function() {
+        ren.bg();
+        ren.fg();
+        var p0 = img.a[g.a];
         sce.a["img"].c.con.drawImage(p0,0,0);
     },
     "color": function() {
@@ -332,7 +362,8 @@ var img = {
             console.log("total = " + img.t);
             // test draw img from dom object
             // ren.img();
-            g.start();
+            // g.start();
+            g.auto();
         }
     },
     "sample": function() {
@@ -456,6 +487,11 @@ var net = {
         // get image, render, sample, post, save
         // each directory contains a subset type
         // submarine, starfish, seaanemonie
+
+        // indicator
+        // red = retrieved and rendered
+        // yellow = sampled and sent
+        // green = saved, continue
     }
 }
 // data
