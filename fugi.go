@@ -111,6 +111,7 @@ func NameHandler(w http.ResponseWriter, r *http.Request) {
     if err != nil {
         fmt.Println(err)
     }
+    defer r.Body.Close()
     s0 := string(b0)
     N = s0
     fmt.Println(b0,s0,N)
@@ -120,6 +121,13 @@ func NameHandler(w http.ResponseWriter, r *http.Request) {
 
 func DataHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r)
+    b0, err := ioutil.ReadAll(r.Body)
+    if err != nil {
+        fmt.Println(err)
+    }
+    defer r.Body.Close()
+    s0 := fmt.Sprintf("Read %d bytes of image data.", len(b0))
+    w.Write([]byte(s0))
 }
 
 func WrapHandler(w http.ResponseWriter, r *http.Request) {
