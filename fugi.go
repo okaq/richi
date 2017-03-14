@@ -126,8 +126,20 @@ func DataHandler(w http.ResponseWriter, r *http.Request) {
         fmt.Println(err)
     }
     defer r.Body.Close()
-    s0 := fmt.Sprintf("Read %d bytes of image data.", len(b0))
+    j0, err := json.Marshal(b0)
+    if err != nil {
+        fmt.Println(err)
+    }
+    fmt.Println(j0, len(j0))
+    j1 := string(j0)
+    fmt.Println(j1, len(j1))
+    s0 := fmt.Sprintf("Read %d bytes of image data. Base64 encode string length = %d bytes.", len(b0), len(j1))
     w.Write([]byte(s0))
+    // base64 string encoding
+    // close resemblance to Img.Save output
+    // packed bit array size = 128 bytes
+    // base64 json string = 174 bytes
+    // difference 0.359
 }
 
 func WrapHandler(w http.ResponseWriter, r *http.Request) {
