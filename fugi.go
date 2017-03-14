@@ -104,6 +104,18 @@ func SaveHandler(w http.ResponseWriter, r *http.Request) {
     // first text string, second binary data
 }
 
+func NameHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r)
+}
+
+func DataHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r)
+}
+
+func WrapHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r)
+}
+
 func Load() {
     // read files from directory
     // populate list object / json
@@ -144,5 +156,8 @@ func main() {
     PngServer := http.FileServer(http.Dir("png"))
     http.Handle("/p/", http.StripPrefix("/p/", PngServer))
     http.HandleFunc("/b", SaveHandler)
+    http.HandleFUnc("/c", NameHandler)
+    http.HandleFunc("/d", DataHandler)
+    http.HandleFunc("/e", WrapHandler)
     http.ListenAndServe(":8080", nil)
 }

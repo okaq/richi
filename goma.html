@@ -68,11 +68,13 @@ var g = {
         // img pane, console messages
         // console.log(img);
         g.tick = 0;
-        g.id = window.setInterval(g.frame, 1000);
+        g.id = window.setInterval(g.frame, 2000);
     },
     "frame": function() {
         g.a = img.b[g.tick];
         ren.mighty();
+        // post name to server
+        net.name();
         g.tick = g.tick + 1;
         if (g.tick >= img.b.length) {
             console.log("done rendering images!");
@@ -410,6 +412,8 @@ var net = {
         net.urls = [];
         net.urls[0] = "http://localhost:8080/a"
         net.urls[1] = "http://localhost:8080/b"
+        net.urls[0] = "http://localhost:8080/c"
+        net.urls[1] = "http://localhost:8080/d"
 
         net.x = new window.XMLHttpRequest();
         net.x.addEventListener("load", net.load);
@@ -492,6 +496,12 @@ var net = {
         // red = retrieved and rendered
         // yellow = sampled and sent
         // green = saved, continue
+    },
+    "name": function() {
+        // post name g.a
+    },
+    "data": function() {
+        // post data g.b
     }
 }
 // data
