@@ -23,6 +23,7 @@ var (
     // I map[string][]int
     // I map[string]string
     I map[string]Img
+    N string
 )
 
 type Img struct {
@@ -106,6 +107,15 @@ func SaveHandler(w http.ResponseWriter, r *http.Request) {
 
 func NameHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r)
+    b0, err := ioutil.ReadAll(r.Body)
+    if err != nil {
+        fmt.Println(err)
+    }
+    s0 := string(b0)
+    N = s0
+    fmt.Println(b0,s0,N)
+    s1 := fmt.Sprintf("Read name: %s. Byte length: %d.", s0, len(b0))
+    w.Write([]byte(s1))
 }
 
 func DataHandler(w http.ResponseWriter, r *http.Request) {
@@ -156,7 +166,7 @@ func main() {
     PngServer := http.FileServer(http.Dir("png"))
     http.Handle("/p/", http.StripPrefix("/p/", PngServer))
     http.HandleFunc("/b", SaveHandler)
-    http.HandleFUnc("/c", NameHandler)
+    http.HandleFunc("/c", NameHandler)
     http.HandleFunc("/d", DataHandler)
     http.HandleFunc("/e", WrapHandler)
     http.ListenAndServe(":8080", nil)

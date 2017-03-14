@@ -412,8 +412,8 @@ var net = {
         net.urls = [];
         net.urls[0] = "http://localhost:8080/a"
         net.urls[1] = "http://localhost:8080/b"
-        net.urls[0] = "http://localhost:8080/c"
-        net.urls[1] = "http://localhost:8080/d"
+        net.urls[2] = "http://localhost:8080/c"
+        net.urls[3] = "http://localhost:8080/d"
 
         net.x = new window.XMLHttpRequest();
         net.x.addEventListener("load", net.load);
@@ -499,6 +499,12 @@ var net = {
     },
     "name": function() {
         // post name g.a
+        var x0 = new window.XMLHttpRequest();
+        x0.addEventListener("load", function() {
+            console.log(x0.response);
+        });
+        x0.open("POST", net.urls[2]);
+        x0.send(g.a);
     },
     "data": function() {
         // post data g.b
