@@ -4,10 +4,13 @@
 package main
 
 import (
+    "encoding/base64"
     "encoding/json"
     "fmt"
     "io/ioutil"
     "net/http"
+    "os"
+    "strconv"
 )
 
 const (
@@ -27,6 +30,23 @@ type Img struct {
     // Data []int
     // Data string
     Data map[string]byte
+}
+
+func (img *Img)Save() {
+    fmt.Println("saving...")
+    var b0 []byte
+    for i := 0; i < 128; i++ {
+        s0 := strconv.Itoa(i)
+        b0 = append(b0, img.Data[s0])
+    }
+    fmt.Println(b0)
+    enc := base64.NewEncoder(base64.RawStdEncoding, os.Stdout)
+    enc.Write(b0)
+    enc.Close()
+    // neither raw, std, or url look quite right
+    // fall back on dual request save
+    // keep global var of file name key on first trip
+    // then obtain array buffer data on second
 }
 
 func FugiHandler(w http.ResponseWriter, r *http.Request) {
@@ -63,6 +83,7 @@ func SaveHandler(w http.ResponseWriter, r *http.Request) {
     // I[i0.Name] = i0.Data
     // I = append(I, i0)
     fmt.Println(I)
+    i0.Save()
     s0 := fmt.Sprintf("bytes read: %d\n", len(i0.Data))
     b0 := []byte(s0)
     w.Write(b0)
