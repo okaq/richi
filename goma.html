@@ -68,6 +68,7 @@ var g = {
         // img pane, console messages
         // console.log(img);
         g.tick = 0;
+        g.pile = img.b.length;
         g.id = window.setInterval(g.frame, 2000);
     },
     "frame": function() {
@@ -97,6 +98,13 @@ var g = {
         console.log("sampled " + g.b.length + " bits");
         console.log("posting data to server: " + g.a);
         net.data();
+    },
+    "turn": function() {
+        g.pile = g.pile - 1;
+        if (g.pile == 0) {
+            console.log("all image data sent!");
+            net.wrap();
+        }
     }
 }
 var sce = {
@@ -445,6 +453,7 @@ var net = {
         net.urls[1] = "http://localhost:8080/b"
         net.urls[2] = "http://localhost:8080/c"
         net.urls[3] = "http://localhost:8080/d"
+        net.urls[4] = "http://localhost:8080/e"
 
         net.x = new window.XMLHttpRequest();
         net.x.addEventListener("load", net.load);
@@ -543,10 +552,23 @@ var net = {
         var x0 = new window.XMLHttpRequest();
         x0.addEventListener("load", function() {
             console.log(x0.response);
+            // sync wait until all images done
+            // then call net.wrap
+            g.turn();
         })
         var d0 = net.pack(g.b);
         x0.open("POST", net.urls[3]);
         x0.send(d0);
+    },
+    "wrap": function() {
+        // finish
+        var x0 = new window.XMLHttpRequest();
+        x0.addEventListener("load", function() {
+            console.log(x0.response);
+        });
+        x0.open("GET", net.urls[4]);
+        x0.send();
+        // pile counter can also be handled server side
     }
 }
 // data

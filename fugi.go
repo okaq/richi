@@ -147,6 +147,7 @@ func DataHandler(w http.ResponseWriter, r *http.Request) {
 func WrapHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r)
     fmt.Println(K)
+    w.Write([]byte("done. saved to disk!"))
     // json encode object
     // or, pretty format using strings
 }
