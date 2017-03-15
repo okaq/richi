@@ -24,6 +24,7 @@ var (
     // I map[string]string
     I map[string]Img
     N string
+    K map[string]string
 )
 
 type Img struct {
@@ -133,6 +134,7 @@ func DataHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(j0, len(j0))
     j1 := string(j0)
     fmt.Println(j1, len(j1))
+    K[N] = j1
     s0 := fmt.Sprintf("Read %d bytes of image data. Base64 encode string length = %d bytes.", len(b0), len(j1))
     w.Write([]byte(s0))
     // base64 string encoding
@@ -144,6 +146,9 @@ func DataHandler(w http.ResponseWriter, r *http.Request) {
 
 func WrapHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r)
+    fmt.Println(K)
+    // json encode object
+    // or, pretty format using strings
 }
 
 func Load() {
@@ -179,6 +184,7 @@ func main() {
     // I = make(map[string][]int)
     // I = make(map[string]string)
     I = make(map[string]Img)
+    K = make(map[string]string)
     Load()
     Encode()
     http.HandleFunc("/", FugiHandler)
