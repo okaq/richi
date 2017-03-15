@@ -4,6 +4,7 @@
 package main
 
 import (
+    "bytes"
     "encoding/base64"
     "encoding/json"
     "fmt"
@@ -149,12 +150,30 @@ func DataHandler(w http.ResponseWriter, r *http.Request) {
 func WrapHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r)
     fmt.Println(K)
+    /*
     b0, err := json.Marshal(K)
     if err != nil {
         fmt.Println(err)
     }
     f0 := fmt.Sprintf("%s/%s.json", SAMP, SAVE)
     err = ioutil.WriteFile(f0, b0, 0666)
+    if err != nil {
+        fmt.Println(err)
+    }
+    */
+    // pretty print
+    // remove .png file extension
+    // add meta class name
+    var b0 bytes.Buffer
+    s0 := fmt.Sprintf("var %s = {\n", SAVE)
+    b0.WriteString(s0)
+    for k := range K {
+        s1 := fmt.Sprintf("\t\"%.8s\":%s,\n",k,K[k])
+        b0.WriteString(s1)
+    }
+    b0.WriteString("}")
+    f0 := fmt.Sprintf("%s/%s.json", SAMP, SAVE)
+    err := ioutil.WriteFile(f0, b0.Bytes(), 0666)
     if err != nil {
         fmt.Println(err)
     }
