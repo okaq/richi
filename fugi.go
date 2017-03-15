@@ -15,6 +15,8 @@ import (
 
 const (
     INDEX = "goma.html"
+    SAMP = "png"
+    SAVE = "test"
 )
 
 var (
@@ -147,6 +149,15 @@ func DataHandler(w http.ResponseWriter, r *http.Request) {
 func WrapHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r)
     fmt.Println(K)
+    b0, err := json.Marshal(K)
+    if err != nil {
+        fmt.Println(err)
+    }
+    f0 := fmt.Sprintf("%s/%s.json", SAMP, SAVE)
+    err = ioutil.WriteFile(f0, b0, 0666)
+    if err != nil {
+        fmt.Println(err)
+    }
     w.Write([]byte("done. saved to disk!"))
     // json encode object
     // or, pretty format using strings
