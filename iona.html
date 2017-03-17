@@ -74,6 +74,22 @@ var db = {
         // 1920 / 32 = 60
         // 1024 / 32 = 32
         // margin y0 = 28
+        var n0 = "grid_"
+        var nx = (1920 / 32) >>> 0;
+        var ny = (1024 / 32) >>> 0;
+        var nm = 28;
+        var nt = (nx * ny) >>> 0;
+        for (var i = 0; i < nt; i++) {
+            var x0 = i % nx;
+            var x1 = (x0 * 32) >>> 0;
+            var y0 = (i / nx) >>> 0;
+            var y1 = (y0 * 32) >>> 0;
+            var y2 = (y1 + nm) >>> 0;
+            var k0 = n0 + i;
+            db.a[k0] = {};
+            db.a[k0].r = [32,32,x1,y2];
+            db.a[k0].c = dom.canvas(db.a[k0].r);
+        }
     }
 }
 // xhr
