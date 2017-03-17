@@ -32,17 +32,37 @@ var g = {
         // subs
         dom.init();
         db.init();
+        sce.init();
         net.init();
 
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
     }
 }
-// data 
+// scene
+var sce = {
+    "init": function() {
+        // current scene list of keys
+        // in render order, painters algo
+        // methods to add remove from current list
+        sce.a = [];
+    }
+}
+// data
 var db = {
     "init": function() {
+        // grid keys and features
+        // rects, layout, canvas, dataset id
+        // handlers, state, history
         db.a = {};
         console.log(db.a);
+
+        // bitmaps
+        // data, decode, operations
+        // physics, location, speed
+        db.b = {}
+        console.log(db.b);
+
         // create all grid data in db
         // start with scene, layout, ids
         // then more complex game and anim states
