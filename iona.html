@@ -35,8 +35,22 @@ var g = {
         sce.init();
         net.init();
 
+        // test
+        ren.test();
+
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
+    }
+}
+// render
+var ren = {
+    "test": function() {
+        for (var i = 0; i < sce.a.length; i++) {
+            var k0 = sce.a[i];
+            var c0 = db.a[k0].c;
+            c0.con.fillStyle = rgba.rand();
+            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+        }
     }
 }
 // scene
@@ -46,6 +60,12 @@ var sce = {
         // in render order, painters algo
         // methods to add remove from current list
         sce.a = [];
+
+        // add grid elements
+        for (var k in db.a) {
+            sce.a.push(k);
+            dom.add(db.a[k].c);
+        }
     }
 }
 // data
@@ -89,6 +109,7 @@ var db = {
             db.a[k0] = {};
             db.a[k0].r = [32,32,x1,y2];
             db.a[k0].c = dom.canvas(db.a[k0].r);
+            db.a[k0].c.can.dataset.x = k0;
         }
     }
 }
