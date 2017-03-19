@@ -193,6 +193,60 @@ var rgba = {
         return rgba.mono(c0);
     }
 }
+// bitmap
+var bmp = {
+    "init": function() {
+        // decoder functions
+        bmp.a = {};
+        bmp.b = [];
+        for (var k in noto) {
+            var b0 = noto[k];
+            var b1 = base64DecToArr(b0);
+            bmp.a[k] = bmp.exp(b1);
+            bmp.b.push(k);
+        }
+    },
+    "exp": function(b0) {
+        var r0 = [];
+        for (var i = 0; i < b0.length; i++) {
+            var b1 = b0[i];
+            var b2 = binStr(b1);
+            for (var j = 0; j < 8; j++) {
+                var b3 = b2.charAt(j);
+                var b4 = parseInt(b3, 10);
+                r0.push(b4);
+            }
+        }
+        return r0;
+    }
+}
+// bitmap
+var bmp = {
+    "init": function() {
+        // decoder functions
+        bmp.a = {};
+        bmp.b = [];
+        for (var k in noto) {
+            var b0 = noto[k];
+            var b1 = base64DecToArr(b0);
+            bmp.a[k] = bmp.exp(b1);
+            bmp.b.push(k);
+        }
+    },
+    "exp": function(b0) {
+        var r0 = [];
+        for (var i = 0; i < b0.length; i++) {
+            var b1 = b0[i];
+            var b2 = binStr(b1);
+            for (var j = 0; j < 8; j++) {
+                var b3 = b2.charAt(j);
+                var b4 = parseInt(b3, 10);
+                r0.push(b4);
+            }
+        }
+        return r0;
+    }
+}
     </script>
 </head>
 <body id="alpha">
