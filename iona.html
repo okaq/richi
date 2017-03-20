@@ -201,31 +201,12 @@ var rgba = {
         return rgba.mono(c0);
     }
 }
-// bitmap
-var bmp = {
-    "init": function() {
-        // decoder functions
-        bmp.a = {};
-        bmp.b = [];
-        for (var k in noto) {
-            var b0 = noto[k];
-            var b1 = base64DecToArr(b0);
-            bmp.a[k] = bmp.exp(b1);
-            bmp.b.push(k);
-        }
-    },
-    "exp": function(b0) {
-        var r0 = [];
-        for (var i = 0; i < b0.length; i++) {
-            var b1 = b0[i];
-            var b2 = binStr(b1);
-            for (var j = 0; j < 8; j++) {
-                var b3 = b2.charAt(j);
-                var b4 = parseInt(b3, 10);
-                r0.push(b4);
-            }
-        }
-        return r0;
+var bits = {
+    "mirror": function() {
+        // revers the columns
+        // input NxN square
+        // (iona sprites will all be 32x32)
+        // clone, and return copy
     }
 }
 // bitmap
@@ -254,6 +235,53 @@ var bmp = {
         }
         return r0;
     }
+}
+// string view
+/*\
+  |*|
+  |*|  Base64 / binary data / UTF-8 strings utilities
+  |*|
+  |*|  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Base64_encoding_and_decoding
+  |*|
+\*/
+/* Array of bytes to base64 string decoding */
+function b64ToUint6 (nChr) {
+   return nChr > 64 && nChr < 91 ?
+      nChr - 65
+      : nChr > 96 && nChr < 123 ?
+      nChr - 71
+      : nChr > 47 && nChr < 58 ?
+      nChr + 4
+      : nChr === 43 ?
+      62
+      : nChr === 47 ?
+      63
+      :
+      0;
+}
+function base64DecToArr (sBase64, nBlocksSize) {
+   var sB64Enc = sBase64.replace(/[^A-Za-z0-9\+\/]/g, ""), nInLen = sB64Enc.length,
+       nOutLen = nBlocksSize ? Math.ceil((nInLen * 3 + 1 >> 2) / nBlocksSize) * nBlocksSize : nInLen * 3 + 1 >> 2,
+       taBytes = new Uint8Array(nOutLen);
+   for (var nMod3, nMod4, nUint24 = 0, nOutIdx = 0, nInIdx = 0; nInIdx < nInLen; nInIdx++) {
+       nMod4 = nInIdx & 3;
+       nUint24 |= b64ToUint6(sB64Enc.charCodeAt(nInIdx)) << 18 - 6 * nMod4;
+       if (nMod4 === 3 || nInLen - nInIdx === 1) {
+           for (nMod3 = 0; nMod3 < 3 && nOutIdx < nOutLen; nMod3++, nOutIdx++) {
+              taBytes[nOutIdx] = nUint24 >>> (16 >>> nMod3 & 24) & 255;
+           }
+           nUint24 = 0;
+       }
+   }
+   return taBytes;
+}
+// bitwise ops
+// https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators
+var binStr = function(nMask) {
+     // nMask must be between 0 and 255
+     for (var nFlag = 0, nShifted = nMask, sMask = ""; nFlag < 32;
+         nFlag++, sMask += String(nShifted >>> 31), nShifted <<= 1);
+         return sMask.slice(24);
 }
     </script>
 </head>
