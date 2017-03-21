@@ -203,7 +203,7 @@ var rgba = {
 }
 var bits = {
     "mirror": function() {
-        // revers the columns
+        // reverse the columns
         // input NxN square
         // (iona sprites will all be 32x32)
         // clone, and return copy
@@ -219,6 +219,18 @@ var bits = {
     },
     "col": function(n0) {
         // n-th col of NxN bitmap
+    },
+    "scale": function(n0) {
+        // scale by factor
+        // up to page dimension
+    },
+    "shuffle": function() {
+        // randomize bits
+    },
+    "rotate": function() {
+        // turning norms
+        // clockwise, anti-
+        // pi/2, pi, 3*pi/2
     }
 }
 // bitmap
