@@ -17,7 +17,7 @@ import (
 const (
     INDEX = "goma.html"
     SAMP = "png"
-    SAVE = "test"
+    SAVE = "subs"
 )
 
 var (
