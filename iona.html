@@ -43,6 +43,11 @@ var g = {
     },
     "start": function() {
         console.log("starting animations");
+
+        // bitmaps decode
+        // all sets timed individually
+        // bmp.init();
+
         // loop
         // init randomized sprites
         // position, velocity, acceleration vectors
@@ -236,6 +241,20 @@ var bits = {
 // bitmap
 var bmp = {
     "init": function() {
+        // bitmap keys
+        bmp.a = {};
+        bmp.a["noto"] = [];
+        for (var k in noto) {
+            bmp.a["noto"].push(k);
+        }
+        bmp.a["subs"] = [];
+        for (var k in subs) {
+            bmp.a["subs"].push(k);
+        }
+        // bitmap data
+        // timed
+    },
+    "init2": function() {
         // decoder functions
         bmp.a = {};
         bmp.b = [];
