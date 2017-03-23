@@ -48,6 +48,9 @@ var g = {
         // all sets timed individually
         bmp.init();
 
+        // write card
+        g.motd = "OKAQ SUBMARINES 2017";
+
         // loop
         // init randomized sprites
         // position, velocity, acceleration vectors
@@ -98,16 +101,30 @@ var db = {
 
         db.grid();
 
+        db.card();
+
         // create all grid data in db
         // start with scene, layout, ids
         // then more complex game and anim states
+    },
+    "card": function() {
+        var n0 = "card_";
+        var nx = (1920 / 32) >>> 0;
+        for (var i = 0; i < nx; i++) {
+            var x0 = (i * 32) >>> 0;
+            var k0 = n0 + i;
+            db.a[k0] = {};
+            db.a[k0].r = [32,32,x0,0];
+            db.a[k0].c = dom.canvas(db.a[k0].r);
+            db.a[k0].c.can.dataset.x = k0;
+        }
     },
     "grid": function() {
         // 32x32 grid squares
         // 1920 / 32 = 60
         // 1024 / 32 = 32
         // margin y0 = 28
-        var n0 = "grid_"
+        var n0 = "grid_";
         var nx = (1920 / 32) >>> 0;
         var ny = (1024 / 32) >>> 0;
         var nm = 28+28;
