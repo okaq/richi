@@ -251,8 +251,31 @@ var bmp = {
         for (var k in subs) {
             bmp.a["subs"].push(k);
         }
+
         // bitmap data
-        // timed
+        bmp.b = {};
+
+        // timed splits
+        var t0 = window.performnace.now();
+        // decode noto
+        for (var i = 0; i < bmp.a["noto"].length; i++) {
+            var k0 = bmp.a["noto"][i];
+            var b0 = noto[k0];
+            var b1 = base64DecToArr(b0);
+            bmp.b[k0] = bmp.exp(b1);
+        }
+        var t1 = window.performance.now();
+        // decode subs
+        for (var i = 0; i < bmp.a["subs"].length; i++) {
+            var k0 = bmp.a["subs"][i];
+            var b0 = subs[k0];
+            var b1 = base64DecToArr(b0);
+            bmp.b[k0] = bmp.exp(b1);
+        }
+        var t2 = window.performance.now();
+        console.log("noto decode time: " + (t1 - t0));
+        console.log("subs decode time: " + (t2 - t1));
+        console.log("total elapsed: " + (t2 - t0));
     },
     "init2": function() {
         // decoder functions
