@@ -46,7 +46,7 @@ var g = {
 
         // bitmaps decode
         // all sets timed individually
-        // bmp.init();
+        bmp.init();
 
         // loop
         // init randomized sprites
@@ -110,7 +110,7 @@ var db = {
         var n0 = "grid_"
         var nx = (1920 / 32) >>> 0;
         var ny = (1024 / 32) >>> 0;
-        var nm = 28;
+        var nm = 28+28;
         var nt = (nx * ny) >>> 0;
         for (var i = 0; i < nt; i++) {
             var x0 = i % nx;
@@ -138,6 +138,7 @@ var net = {
         net.x = new XMLHttpRequest();
         net.x.addEventListener("load", function() {
             console.log(net.x.response);
+            g.start();
         })
         net.x.open("GET", net.urls[0]);
         net.x.send();
@@ -256,7 +257,7 @@ var bmp = {
         bmp.b = {};
 
         // timed splits
-        var t0 = window.performnace.now();
+        var t0 = window.performance.now();
         // decode noto
         for (var i = 0; i < bmp.a["noto"].length; i++) {
             var k0 = bmp.a["noto"][i];
@@ -276,6 +277,7 @@ var bmp = {
         console.log("noto decode time: " + (t1 - t0));
         console.log("subs decode time: " + (t2 - t1));
         console.log("total elapsed: " + (t2 - t0));
+        // time = 250ms
     },
     "init2": function() {
         // decoder functions
