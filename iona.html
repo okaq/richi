@@ -36,7 +36,7 @@ var g = {
         net.init();
 
         // test
-        ren.test();
+        // ren.test();
 
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
@@ -53,6 +53,7 @@ var g = {
         ren.motd();
 
         // gen subs field
+        sce.gen();
 
         // loop
         // init randomized sprites
@@ -111,6 +112,25 @@ var sce = {
             sce.a.push(k);
             dom.add(db.a[k].c);
         }
+    },
+    "gen": function() {
+        // assign subs key
+        // to each grid cell
+        // console.log(db.a);
+        // grid dimensions
+        // nx = 60
+        // ny = 30
+        // nt = 1800
+        for (var i = 0; i < 1800; i++) {
+            var k0 = "grid_" + i;
+            db.b[k0] = {};
+            var f0 = (Math.random() * bmp.a["subs"].length) >>> 0;
+            var k1 = bmp.a["subs"][f0];
+            db.b[k0].b = k1;
+        }
+        console.log(db.b);
+        // store bitmap state in db.b
+        // stack of bitwise ops
     }
 }
 // data
