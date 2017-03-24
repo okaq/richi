@@ -47,7 +47,7 @@ var g = {
         // bitmaps decode
         // all sets timed individually
         bmp.init();
-
+/*
         // write card
         g.motd = "OKAQ SUBMARINES 2017";
         jik.start("motd split");
@@ -59,6 +59,9 @@ var g = {
         sce.gen();
         ren.grid();
         jik.stop();
+*/
+        // bits test
+        g.shift();
 
         // loop
         // init randomized sprites
@@ -75,6 +78,15 @@ var g = {
         // motd render 10ms
         // grid gen and render 300ms
         // all done in <1s
+    },
+    "shift": function() {
+        // fiddle sequential bits
+        g.s = [];
+        for (var i = 0; i < 4096; i++) {
+            g.s[i] = i;
+        }
+        g.t = bits.row(63, g.s);
+        console.log(g.t);
     }
 }
 // timer
@@ -345,8 +357,25 @@ var bits = {
     "cols": function() {
         // return the columns of an NxN bitmap
     },
-    "row": function(n0) {
+    "row": function(n0, d0) {
         // n-th row of NxN bitmap
+        // calculate stride
+        var n1 = Math.sqrt(d0.length);
+        console.log("stride length: " + n1);
+        if (n0 > n1) {
+            console.log("row index must be within bounds. " + n0 + " is greater than bitmap stride " + n1);
+            return;
+        }
+        // start index of row n0
+        var i0 = (n0 * n1) >>> 0;
+        var d1 = [];
+        for (var i = 0; i < n1; i++) {
+            var i1 = i0 + i;
+            var d2 = d0[i1];
+            d1.push(d2);
+        }
+        return d1;
+        // n.b. n0 is zero-indexed
     },
     "col": function(n0) {
         // n-th col of NxN bitmap
