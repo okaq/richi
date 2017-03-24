@@ -87,6 +87,8 @@ var g = {
         }
         g.t = bits.row(63, g.s);
         console.log(g.t);
+        g.t = bits.rows(g.s);
+        console.log(g.t[0],g.t[2]);
     }
 }
 // timer
@@ -351,8 +353,18 @@ var bits = {
         // (iona sprites will all be 32x32)
         // clone, and return copy
     },
-    "rows": function() {
+    "rows": function(d0) {
         // return the rows of an NxN bitmap
+        // calculate stride
+        var n0 = Math.sqrt(d0.length);
+        // assume square input
+        // otherwise stride must be given
+        var d1 = [];
+        for (var i = 0; i < n0; i++) {
+            var d2 = bits.row(i, d0);
+            d1.push(d2);
+        }
+        return d1;
     },
     "cols": function() {
         // return the columns of an NxN bitmap
@@ -361,7 +373,7 @@ var bits = {
         // n-th row of NxN bitmap
         // calculate stride
         var n1 = Math.sqrt(d0.length);
-        console.log("stride length: " + n1);
+        // console.log("stride length: " + n1);
         if (n0 > n1) {
             console.log("row index must be within bounds. " + n0 + " is greater than bitmap stride " + n1);
             return;
