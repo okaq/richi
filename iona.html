@@ -54,6 +54,7 @@ var g = {
 
         // gen subs field
         sce.gen();
+        ren.grid();
 
         // loop
         // init randomized sprites
@@ -95,6 +96,31 @@ var ren = {
             }
             var x0 = i % 64;
             var y0 = (i / 64) >>> 0;
+            c0.con.fillRect(x0,y0,1,1);
+        }
+    },
+    "grid": function() {
+        for (var i = 0; i < 1800; i++) {
+            var k0 = "grid_" + i;
+            var c0 = db.a[k0].c;
+            var k1 = db.b[k0].b;
+            var b0 = bmp.b["subs"][k1];
+            // console.log(i, b0.length)
+            ren.sub(c0, b0);
+        }
+    },
+    "sub": function(c0, b0) {
+        // console.log(c0.can.dataset.x, b0.length);
+        if (!b0) { return; }
+        // assume equal 64x64 squares
+        // noto = 64x64, subs = 32x32
+        c0.con.fillStyle = rgba.css([0,0,0,1.0]);
+        for (var i = 0; i < b0.length; i++) {
+            if (b0[i] == 1) {
+                continue;
+            }
+            var x0 = i % 32;
+            var y0 = (i / 32) >>> 0;
             c0.con.fillRect(x0,y0,1,1);
         }
     }
