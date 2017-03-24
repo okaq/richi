@@ -50,6 +50,9 @@ var g = {
 
         // write card
         g.motd = "OKAQ SUBMARINES 2017";
+        ren.motd();
+
+        // gen subs field
 
         // loop
         // init randomized sprites
@@ -66,6 +69,32 @@ var ren = {
             var c0 = db.a[k0].c;
             c0.con.fillStyle = rgba.rand();
             c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+        }
+    },
+    "motd": function() {
+        // get char array
+        var a0 = g.motd.split("");
+        console.log(a0);
+        for (var i = 0; i < a0.length; i++) {
+            var b0 = bmp.b["noto"][a0[i]];
+            var k0 = "card_" + i;
+            var c0 = db.a[k0].c;
+            ren.bmp(c0, b0);
+        }
+    },
+    "bmp": function(c0, b0) {
+        // console.log(c0.can.dataset.x, b0.length);
+        if (!b0) { return; }
+        // assume equal 64x64 squares
+        // noto = 64x64, subs = 32x32
+        c0.con.fillStyle = rgba.css([0,0,0,1.0]);
+        for (var i = 0; i < b0.length; i++) {
+            if (b0[i] == 0) {
+                continue;
+            }
+            var x0 = i % 64;
+            var y0 = (i / 64) >>> 0;
+            c0.con.fillRect(x0,y0,1,1);
         }
     }
 }
@@ -109,12 +138,12 @@ var db = {
     },
     "card": function() {
         var n0 = "card_";
-        var nx = (1920 / 32) >>> 0;
+        var nx = (1920 / 64) >>> 0;
         for (var i = 0; i < nx; i++) {
-            var x0 = (i * 32) >>> 0;
+            var x0 = (i * 64) >>> 0;
             var k0 = n0 + i;
             db.a[k0] = {};
-            db.a[k0].r = [32,32,x0,0];
+            db.a[k0].r = [64,64,x0,0];
             db.a[k0].c = dom.canvas(db.a[k0].r);
             db.a[k0].c.can.dataset.x = k0;
         }
@@ -127,7 +156,8 @@ var db = {
         var n0 = "grid_";
         var nx = (1920 / 32) >>> 0;
         var ny = (1024 / 32) >>> 0;
-        var nm = 28+28;
+        ny = ny - 2;
+        var nm = 64+32; // 28+28;
         var nt = (nx * ny) >>> 0;
         for (var i = 0; i < nt; i++) {
             var x0 = i % nx;
@@ -272,6 +302,8 @@ var bmp = {
 
         // bitmap data
         bmp.b = {};
+        bmp.b["noto"] = {};
+        bmp.b["subs"] = {};
 
         // timed splits
         var t0 = window.performance.now();
@@ -280,7 +312,7 @@ var bmp = {
             var k0 = bmp.a["noto"][i];
             var b0 = noto[k0];
             var b1 = base64DecToArr(b0);
-            bmp.b[k0] = bmp.exp(b1);
+            bmp.b["noto"][k0] = bmp.exp(b1);
         }
         var t1 = window.performance.now();
         // decode subs
@@ -288,7 +320,7 @@ var bmp = {
             var k0 = bmp.a["subs"][i];
             var b0 = subs[k0];
             var b1 = base64DecToArr(b0);
-            bmp.b[k0] = bmp.exp(b1);
+            bmp.b["subs"][k0] = bmp.exp(b1);
         }
         var t2 = window.performance.now();
         console.log("noto decode time: " + (t1 - t0));
