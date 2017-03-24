@@ -89,6 +89,10 @@ var g = {
         console.log(g.t);
         g.t = bits.rows(g.s);
         console.log(g.t[0],g.t[2]);
+        g.t = bits.col(0, g.s);
+        console.log(g.t);
+        g.t = bits.cols(g.s);
+        console.log(g.t[1], g.t[63]);
     }
 }
 // timer
@@ -366,8 +370,16 @@ var bits = {
         }
         return d1;
     },
-    "cols": function() {
+    "cols": function(d0) {
         // return the columns of an NxN bitmap
+        // calculate stride
+        var n0 = Math.sqrt(d0.length);
+        var d1 = [];
+        for (var i = 0; i < n0; i++) {
+            var d2 = bits.col(i, d0);
+            d1.push(d2);
+        }
+        return d1;
     },
     "row": function(n0, d0) {
         // n-th row of NxN bitmap
@@ -389,8 +401,22 @@ var bits = {
         return d1;
         // n.b. n0 is zero-indexed
     },
-    "col": function(n0) {
+    "col": function(n0, d0) {
         // n-th col of NxN bitmap
+        var n1 = Math.sqrt(d0.length);
+        if (n0 > n1) {
+            console.log("col index must be within bounds. " + n0 + " is greater than bitmap stride " + n1);
+            return;
+        }
+        // start index of col n0
+        var i0 = n0;
+        var d1 = [];
+        for (var i = 0; i < n1; i++) {
+            var i1 = i0 + (i * n1);
+            var d2 = d0[i1];
+            d1.push(d2);
+        }
+        return d1;
     },
     "scale": function(n0) {
         // scale by factor
