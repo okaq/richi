@@ -50,17 +50,43 @@ var g = {
 
         // write card
         g.motd = "OKAQ SUBMARINES 2017";
+        jik.start("motd split");
         ren.motd();
+        jik.stop();
 
         // gen subs field
+        jik.start("grid split");
         sce.gen();
         ren.grid();
+        jik.stop();
 
         // loop
         // init randomized sprites
         // position, velocity, acceleration vectors
         // animation state
         // all updated per tick
+
+        // dedicated split timer class
+        // remember to call end!
+
+        // total times
+        // page load 200ms
+        // bitmap data decode 300ms
+        // motd render 10ms
+        // grid gen and render 300ms
+        // all done in <1s
+    }
+}
+// timer
+var jik = {
+    "start": function(msg) {
+        jik.m = msg;
+        jik.t = window.performance.now();
+    },
+    "stop": function() {
+        jik.u = window.performance.now();
+        jik.d = jik.u - jik.t;
+        console.log(jik.m + ": " + jik.d);
     }
 }
 // render
