@@ -93,6 +93,11 @@ var g = {
         console.log(g.t);
         g.t = bits.cols(g.s);
         console.log(g.t[1], g.t[63]);
+        // two pane visual test for ops
+        // orig
+        g.u = {};
+        // proc
+        g.v = {};
     }
 }
 // timer
@@ -351,11 +356,40 @@ var rgba = {
     }
 }
 var bits = {
+    "zero": function(n0) {
+        // n0 length array
+        // with all values zero
+        var r0 = [];
+        for (var i = 0; i < n0; i++) {
+            r0.push(0);
+        }
+        return r0;
+    },
     "mirror": function() {
         // reverse the columns
         // input NxN square
         // (iona sprites will all be 32x32)
         // clone, and return copy
+    },
+    "flip": function(d0) {
+        // mirror vertical
+        // calculate stride
+        var n0 = Math.sqrt(d0.length);
+        var d1 = bits.cols(d0);
+        // init bitmap
+        var r0 = bits.zero(d0.length);
+        for (var )
+        for (var i = d1.length-1; i >= 0; i--) {
+            var d2 = d1[i];
+            for (var j = 0; j < d2.length; j++) {
+                var i0 = (j * n0) + i;
+                r0[i0] = d2[j];
+            }
+        }
+        return r0;
+    },
+    "swipe": function(d0) {
+        // mirror horizontal
     },
     "rows": function(d0) {
         // return the rows of an NxN bitmap
