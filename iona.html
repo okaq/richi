@@ -95,6 +95,9 @@ var g = {
         console.log(g.t[1], g.t[63]);
         g.t = bits.shuffle(g.s);
         console.log(g.t);
+        g.t = bits.flip(g.s);
+        console.log(g.t);
+
         // two pane visual test for ops
         // orig
         g.u = {};
@@ -393,6 +396,15 @@ var bits = {
         }
         return r0;
     },
+    "rev": function(d0) {
+        // reverse bits
+        var r0 = [];
+        for (var i = d0.length-1; i >= 0; i--) {
+            var d1 = d0[i];
+            r0.push(d1);
+        }
+        return r0;
+    },
     "mirror": function() {
         // reverse the columns
         // input NxN square
@@ -406,12 +418,17 @@ var bits = {
         var d1 = bits.cols(d0);
         // init bitmap
         var r0 = bits.zero(d0.length);
+        /*
         for (var i = d1.length-1; i >= 0; i--) {
             var d2 = d1[i];
             for (var j = 0; j < d2.length; j++) {
                 var i0 = (j * n0) + i;
                 r0[i0] = d2[j];
             }
+        }
+        */
+        for (var i = 0; i < d1.length; i++) {
+            var r1 = bits.rev(d1[i]);
         }
         return r0;
     },
