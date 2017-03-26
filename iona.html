@@ -95,6 +95,8 @@ var g = {
         console.log(g.t[1], g.t[63]);
         g.t = bits.shuffle(g.s);
         console.log(g.t);
+        g.t = bits.rev(g.s);
+        console.log(g.t);
         g.t = bits.flip(g.s);
         console.log(g.t);
 
@@ -428,7 +430,12 @@ var bits = {
         }
         */
         for (var i = 0; i < d1.length; i++) {
-            var r1 = bits.rev(d1[i]);
+            var d2 = d1[i];
+            var r1 = bits.rev(d2);
+            for (var j = 0; j < d2.length; j++) {
+                var i0 = (j * n0) + i;
+                r0[i0] = r1[j];
+            }
         }
         return r0;
     },
