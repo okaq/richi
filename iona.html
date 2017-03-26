@@ -109,10 +109,23 @@ var g = {
         g.v.c.can.style.zIndex = 3;
         dom.add(g.v.c);
 
+        /*
         g.u.c.con.fillStyle = rgba.rand();
         g.u.c.con.fillRect(0,0,g.u.c.can.width,g.u.c.can.height);
         g.v.c.con.fillStyle = rgba.rand();
         g.v.c.con.fillRect(0,0,g.v.c.can.width,g.v.c.can.height);
+        */
+
+        for (var i = 0; i < g.s.length; i++) {
+            var x0 = i % 64;
+            var y0 = Math.floor(i / 64);
+            var g0 = Math.floor((g.s[i] / 4096) * 255);
+            var g1 = Math.floor((g.t[i] / 4096) * 255);
+            g.u.c.con.fillStyle = rgba.css([g0,g0,g0,1.0]);
+            g.u.c.con.fillRect(x0*4,y0*4,4,4);
+            g.v.c.con.fillStyle = rgba.css([g1,g1,g1,1.0]);
+            g.v.c.con.fillRect(x0*4,y0*4,4,4);
+        }
     }
 }
 // timer
