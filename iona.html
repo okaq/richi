@@ -96,8 +96,21 @@ var g = {
         // two pane visual test for ops
         // orig
         g.u = {};
+        g.u.r = [256,256,128,128];
+        g.u.c = dom.canvas(g.u.r);
+        g.u.c.can.style.zIndex = 3;
+        dom.add(g.u.c);
         // proc
         g.v = {};
+        g.v.r = [256,256,512,128];
+        g.v.c = dom.canvas(g.v.r);
+        g.v.c.can.style.zIndex = 3;
+        dom.add(g.v.c);
+
+        g.u.c.con.fillStyle = rgba.rand();
+        g.u.c.con.fillRect(0,0,g.u.c.can.width,g.u.c.can.height);
+        g.v.c.con.fillStyle = rgba.rand();
+        g.v.c.con.fillRect(0,0,g.v.c.can.width,g.v.c.can.height);
     }
 }
 // timer
@@ -378,7 +391,6 @@ var bits = {
         var d1 = bits.cols(d0);
         // init bitmap
         var r0 = bits.zero(d0.length);
-        for (var )
         for (var i = d1.length-1; i >= 0; i--) {
             var d2 = d1[i];
             for (var j = 0; j < d2.length; j++) {
