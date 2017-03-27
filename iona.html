@@ -101,7 +101,7 @@ var g = {
         console.log(g.t);
         g.t = bits.swipe(g.s);
         console.log(g.t);
-        g.t = bits.rotate(g.s);
+        g.t = bits.rotate(g.s, 1);
         console.log(g.t);
 
         // two pane visual test for ops
@@ -553,35 +553,43 @@ var bits = {
         // compose functions
 
         // code for input n0
-        // 0 = 90' cw
-        // 1 = 180' cw
-        // 2 = 270' cw
-        // 3 = 90' ccw
-        // 4 = 180' ccw
-        // 5 = 270' ccw
+        // 1 = 90' cw
+        // 2 = 180' cw
+        // 3 = 270' cw
+        // 4 = 90' ccw
+        // 5 = 180' ccw
+        // 6 = 270' ccw
+        // start counter at 1
+        // !0 == true in javascript
+
         var n0 = n0;
         if (!n0) {n0 = Math.floor(Math.random() * 6);}
         var r0 = bits.zero(d0.length);
         switch (n0) {
-            case 0:
+            case 1:
+                // calculate stride
+                var n1 = Math.sqrt(d0.length);
                 var r1 = bits.rows(d0);
                 for (var i = 0; i < r1.length; i++) {
                     var d1 = r1[i];
                     for (var j = 0; j < d1.length; j++) {
-                        var i0 = null;
+                        var i0 = n1 - 1 - i;
+                        var i1 = i0 + (j * n1);
+                        var d2 = d1[j];
+                        r0[i1] = d2;
                     }
                 }
                 break;
-            case 1:
-                r0 = bits.rev(d0);
-                break;
             case 2:
+                r0 = bits.rev(d0);
                 break;
             case 3:
                 break;
             case 4:
                 break;
             case 5:
+                break;
+            case 6:
                 break;
         }
         return r0;
