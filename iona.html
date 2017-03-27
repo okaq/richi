@@ -598,10 +598,35 @@ var bits = {
                 }
                 break;
             case 4:
+                // calculate stride
+                var n1 = Math.sqrt(d0.length);
+                var r1 = bits.rows(d0);
+                for (var i = 0; i < r1.length; i++) {
+                    var d1 = r1[i];
+                    for (var j = d1.length; j >= 0; j--) {
+                        var i0 = i;
+                        var i1 = i0 + (j * n1);
+                        var d2 = d1[j];
+                        r0[i1] = d2;
+                    }
+                }
                 break;
             case 5:
+                r0 = bits.rev(d0);
                 break;
             case 6:
+                // calculate stride
+                var n1 = Math.sqrt(d0.length);
+                var r1 = bits.rows(d0);
+                for (var i = 0; i < r1.length; i++) {
+                    var d1 = r1[i];
+                    for (var j = 0; j < d1.length; j++) {
+                        var i0 = n1 - 1 - i;
+                        var i1 = i0 + (j * n1);
+                        var d2 = d1[j];
+                        r0[i1] = d2;
+                    }
+                }
                 break;
         }
         return r0;
