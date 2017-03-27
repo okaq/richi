@@ -47,7 +47,7 @@ var g = {
         // bitmaps decode
         // all sets timed individually
         bmp.init();
-/*
+
         // write card
         g.motd = "OKAQ SUBMARINES 2017";
         jik.start("motd split");
@@ -59,9 +59,11 @@ var g = {
         sce.gen();
         ren.grid();
         jik.stop();
-*/
+
         // bits test
-        g.shift();
+        // g.shift();
+        // complete, all ok
+        // optimize: in-place swaps
 
         // loop
         // init randomized sprites
@@ -238,17 +240,45 @@ var sce = {
             db.b[k0] = {};
             var f0 = (Math.random() * bmp.a["subs"].length) >>> 0;
             var k1 = bmp.a["subs"][f0];
-            db.b[k0].b = k1;
+            var k2 = sce.shift(k1);
+            db.b[k0].b = k2;
+            // slice to clone bitmap
+            // apply random transform
         }
         console.log(db.b);
         // store bitmap state in db.b
         // stack of bitwise ops
+
+        // separate encoding fot bits stack
+        // denotes reveseability
+        // metadata, reflection on bits functions
 
         // timed ops can now have dedicated
         // timer class
         // begin(msg)
         // end() returns string
         // "total time for msg: X ms."
+    },
+    "shift": function(d0) {
+        var f0 = Math.floor(Math.random() * 4);
+        switch (f0) {
+            case 0:
+                var d1 = bits.flip(d0);
+                return d1;
+                break;
+            case 1:
+                var d1 = bits.swipe(d0);
+                return d1;
+                break;
+            case 2:
+                var d1 = bits.rotate(d0, 1);
+                return d1;
+                break;
+            case 3:
+                var d1 = bits.rotate(d0, 3);
+                return d1;
+                break;
+        }
     }
 }
 // data
