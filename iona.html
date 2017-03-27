@@ -191,8 +191,8 @@ var ren = {
         for (var i = 0; i < 1800; i++) {
             var k0 = "grid_" + i;
             var c0 = db.a[k0].c;
-            var k1 = db.b[k0].b;
-            var b0 = bmp.b["subs"][k1];
+            var b0 = db.b[k0].b;
+            // var b0 = bmp.b["subs"][k1];
             // console.log(i, b0.length)
             ren.sub(c0, b0);
         }
@@ -240,7 +240,7 @@ var sce = {
             db.b[k0] = {};
             var f0 = (Math.random() * bmp.a["subs"].length) >>> 0;
             var k1 = bmp.a["subs"][f0];
-            var k2 = sce.shift(k1);
+            var k2 = sce.shift(bmp.b["subs"][k1]);
             db.b[k0].b = k2;
             // slice to clone bitmap
             // apply random transform
