@@ -99,6 +99,10 @@ var g = {
         console.log(g.t);
         g.t = bits.flip(g.s);
         console.log(g.t);
+        g.t = bits.swipe(g.s);
+        console.log(g.t);
+        g.t = bits.rotate(g.s);
+        console.log(g.t);
 
         // two pane visual test for ops
         // orig
@@ -441,6 +445,20 @@ var bits = {
     },
     "swipe": function(d0) {
         // mirror horizontal
+        // calculate stride
+        var n0 = Math.sqrt(d0.length);
+        var d1 = bits.rows(d0);
+        // init bitmap
+        var r0 = bits.zero(d0.length);
+        for (var i = 0; i < d1.length; i++) {
+            var d2 = d1[i];
+            var r1 = bits.rev(d2);
+            for (var j = 0; j < d2.length; j++) {
+                var i0 = (i * n0) + j;
+                r0[i0] = r1[j];
+            }
+        }
+        return r0;
     },
     "rows": function(d0) {
         // return the rows of an NxN bitmap
@@ -527,10 +545,46 @@ var bits = {
         }
         return r0;
     },
-    "rotate": function() {
+    "rotate": function(d0, n0) {
         // turning norms
         // clockwise, anti-
         // pi/2, pi, 3*pi/2
+
+        // compose functions
+
+        // code for input n0
+        // 0 = 90' cw
+        // 1 = 180' cw
+        // 2 = 270' cw
+        // 3 = 90' ccw
+        // 4 = 180' ccw
+        // 5 = 270' ccw
+        var n0 = n0;
+        if (!n0) {n0 = Math.floor(Math.random() * 6);}
+        var r0 = bits.zero(d0.length);
+        switch (n0) {
+            case 0:
+                var r1 = bits.rows(d0);
+                for (var i = 0; i < r1.length; i++) {
+                    var d1 = r1[i];
+                    for (var j = 0; j < d1.length; j++) {
+                        var i0 = null;
+                    }
+                }
+                break;
+            case 1:
+                r0 = bits.rev(d0);
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+        }
+        return r0;
     }
 }
 // bitmap
