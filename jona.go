@@ -20,6 +20,7 @@ func HiwaHandler(w http.ResponseWriter, r *http.Request) {
 
 func ScooHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r)
+    w.Header().Set("Access-Control-Allow-Origin", "*")
     w.Write([]byte("scoobah party!"))
 }
 

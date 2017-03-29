@@ -44,8 +44,9 @@ var g = {
 // xhr
 var net = {
     "init": function() {
+        net.host = "http://192.168.1.2:8080"
         net.urls = [];
-        net.urls[0] = "http://localhost:8080/a";
+        net.urls[0] = net.host + "/a";
 
         net.boc();
     },
@@ -54,7 +55,11 @@ var net = {
         net.x.addEventListener("load", function() {
             console.log(net.x.response);
             g.start();
-        })
+        });
+        net.x.addEventListener("error", function() {
+            console.log(net.x.status);
+            console.log(net.x.response);
+        });
         net.x.open("GET", net.urls[0]);
         net.x.send();
 
@@ -62,6 +67,13 @@ var net = {
         // on the client, post to server
         // server side json to golang
         // object cache, with sync
+
+        // server host domain address
+        // requires global const var
+        // for multi client
+
+        // server also requires CORS
+        //
     }
 }
 // dom
