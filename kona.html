@@ -48,7 +48,7 @@ var net = {
         net.urls = [];
         net.urls[0] = net.host + "/a";
         net.urls[1] = net.host + "/b";
-        
+
         // net.boc();
         net.toc();
     },
@@ -89,8 +89,8 @@ var net = {
         net.x.id = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
         net.x.dt = Date.now();
         net.x.js = {};
-        net.x.js["date"] = net.x.dt;
-        net.x.js["id"] = net.x.id;
+        net.x.js["Date"] = net.x.dt;
+        net.x.js["Id"] = net.x.id;
         net.x.sj = JSON.stringify(net.x.js);
         console.log(net.x.sj);
         net.x.open("POST", net.urls[1]);
