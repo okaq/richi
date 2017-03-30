@@ -47,8 +47,10 @@ var net = {
         net.host = "http://192.168.1.2:8080"
         net.urls = [];
         net.urls[0] = net.host + "/a";
-
-        net.boc();
+        net.urls[1] = net.host + "/b";
+        
+        // net.boc();
+        net.toc();
     },
     "boc": function() {
         net.x = new XMLHttpRequest();
@@ -74,6 +76,25 @@ var net = {
 
         // server also requires CORS
         //
+    },
+    "toc": function() {
+        // send unique id and timestamp
+        net.x = new XMLHttpRequest();
+        net.x.addEventListener("load", function() {
+            console.log(net.x.response);
+        });
+        net.x.addEventListener("error", function() {
+            console.log(net.x.status);
+        });
+        net.x.id = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
+        net.x.dt = Date.now();
+        net.x.js = {};
+        net.x.js["date"] = net.x.dt;
+        net.x.js["id"] = net.x.id;
+        net.x.sj = JSON.stringify(net.x.js);
+        console.log(net.x.sj);
+        net.x.open("POST", net.urls[1]);
+        net.x.send();
     }
 }
 // dom
