@@ -22,6 +22,8 @@ type Uniq struct {
 
 type Bonne struct {
     Top map[string]string
+    // map to game state object
+    // key format: "Id+Date"
     sync.RWMutex
 }
 
@@ -50,6 +52,8 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
         fmt.Println(err)
     }
     fmt.Println(u)
+    w.Header().Set("Access-Control-Allow-Origin", "*")
+    w.Write([]byte("got uniq"))
 }
 
 func main() {

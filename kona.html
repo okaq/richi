@@ -99,12 +99,19 @@ var net = {
         net.x.id = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
         net.x.dt = Date.now();
         net.x.js = {};
-        net.x.js["Date"] = net.x.dt;
-        net.x.js["Id"] = net.x.id;
+        net.x.js["Date"] = net.x.dt.toString();
+        net.x.js["Id"] = net.x.id.toString();
         net.x.sj = JSON.stringify(net.x.js);
         console.log(net.x.sj);
         net.x.open("POST", net.urls[1]);
-        net.x.send();
+        net.x.send(net.x.sj);
+
+        // js Number marshals to float64
+        // toString call preserves precision
+        // future array buffer binary custom encoding
+        // for both client and server
+        // maps to pre-allocated buffer
+        // for entire deterministic game state
     }
 }
 // dom
