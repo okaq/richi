@@ -7,15 +7,28 @@ import (
     "encoding/json"
     "fmt"
     "net/http"
+    "sync"
 )
 
 var (
     INDEX = "kona.html"
+    B *Bonne
 )
 
 type Uniq struct {
     Date string
     Id string
+}
+
+type Bonne struct {
+    Top map[string]string
+    sync.RWMutex
+}
+
+func NewBonne() *Bonne {
+    b := Bonne{}
+    b.Top = make(map[string]string)
+    return &b
 }
 
 func HiwaHandler(w http.ResponseWriter, r *http.Request) {
@@ -41,6 +54,7 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
     fmt.Println("starting server on localhost:8080")
+    B = NewBonne()
     http.HandleFunc("/", HiwaHandler)
     http.HandleFunc("/a", ScooHandler)
     http.HandleFunc("/b", IdHandler)
