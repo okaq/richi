@@ -52,6 +52,13 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
         fmt.Println(err)
     }
     fmt.Println(u)
+    s0 := fmt.Sprintf("%s+%s", u.Id, u.Date)
+    fmt.Println(s0)
+    // grab lock and write to cache
+    // ensure unlocked before flush
+    B.Lock()
+    defer B.Unlock()
+    B[s0] = "live"
     w.Header().Set("Access-Control-Allow-Origin", "*")
     w.Write([]byte("got uniq"))
 }
