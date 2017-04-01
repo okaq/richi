@@ -40,10 +40,21 @@ var g = {
         // commence
         console.log("it is a go!");
 
+        g.tick = 0;
+        g.id = window.setInterval(g.frame, 2000);
+
         // long poll game state from server
         // every 2 seconds per client
         // update local game state every user action
         // update global state upon reciept of data
+    },
+    "frame": function() {
+        g.tick = g.tick + 1;
+        console.log("tick # " + g.tick);
+    },
+    "stop": function() {
+        window.clearInterval(g.id);
+        console.log("finished");
     }
 }
 // xhr
