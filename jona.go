@@ -58,7 +58,8 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
     // ensure unlocked before flush
     B.Lock()
     defer B.Unlock()
-    B[s0] = "live"
+    B.Top[s0] = "live"
+    fmt.Println(B.Top)
     w.Header().Set("Access-Control-Allow-Origin", "*")
     w.Write([]byte("got uniq"))
 }
