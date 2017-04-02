@@ -31,8 +31,10 @@ var g = {
 
         // subs
         dom.init();
-        net.init();
         bmp.init();
+        db.init();
+        sce.init();
+        net.init();
 
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
@@ -56,6 +58,50 @@ var g = {
     "stop": function() {
         window.clearInterval(g.id);
         console.log("finished");
+    }
+}
+// data
+var db = {
+    "inti": function() {
+        db.a = {};
+
+        db.grid();
+        db.bkgd();
+    },
+    "grid": function() {
+        db.a["grid"] = [];
+        // bitmap size = 1024 bits = 32x32
+        // cell size = 64x64
+        // nx = (1920 / 64) = 30
+        // ny = (1024 / 64) = 16
+        // nt = (30*16) = 480
+        // my_top = 32
+        for (var i = 0; i < 480; i++) {
+            db.a["grid"][i] = {};
+            var x0 = i % 30;
+            x0 = (x0 * 64) >>> 0;
+            var y0 = (i / 30) >>> 0;
+            y0 = ((y0 * 64) + 32) >>> 0;
+            db.a["grid"][i].r = [64,64,x0,y0];
+            db.a["grid"][i].c = dom.canvas(db.a["grid"][i].r)
+        }
+    },
+    "bkgd": function() {
+        db.a["bkgd"] = [];
+        db.a["bkgd"][0] = {};
+        db.a["bkgd"][0].r = [1920,1080,0,0];
+        db.a["bkgd"][0].c = dom.canvas(db.a["bkgd"][0].r);
+        // type of renderable
+        // state maps to bitmap for rendering
+    }
+}
+// scene
+var sce = {
+    "init": function() {
+        sce.a = {};
+        sce.a["play"] = ["grid"];
+        // manage canvas groups by key
+        // render histories, anims
     }
 }
 // xhr
