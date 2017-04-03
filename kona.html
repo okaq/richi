@@ -44,6 +44,7 @@ var g = {
         console.log("it is a go!");
 
         ren.scene();
+        ren.ban();
 
         g.tick = 0;
         // g.id = window.setInterval(g.frame, 2000);
@@ -179,6 +180,26 @@ var ren = {
         for (var i = 0; i < c0.length; i++) {
             c0[i].con.fillStyle = rgba.rand();
             c0[i].con.fillRect(0,0,c0[i].can.width,c0[i].can.height);
+        }
+    },
+    "ban": function() {
+        // banana bitmap tester
+        var c0 = db.cans("grid");
+        var f0 = (Math.random() * c0.length) >>> 0;
+        var c1 = c0[f0];
+        var k0 = bmp.b[0];
+        var b0 = bmp.a[k0];
+        for (var i = 0; i < b0.length; i++) {
+            var x0 = i % 32;
+            var y0 = (i / 32) >>> 0;
+            var x1 = (x0 * 2) >>> 0;
+            var y1 = (y0 * 2) >>> 0;
+            if (b0[i] == 0) {
+                c1.con.fillStyle = rgba.css([0,0,0,1.0]);
+            } else {
+                c1.con.fillStyle = rgba.css([255,255,255,1.0]);
+            }
+            c1.con.fillRect(x1,y1,2,2);
         }
     }
 }
