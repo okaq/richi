@@ -43,6 +43,8 @@ var g = {
         // commence
         console.log("it is a go!");
 
+        ren.scene();
+
         g.tick = 0;
         g.id = window.setInterval(g.frame, 2000);
 
@@ -69,6 +71,7 @@ var hop = {
         hop.e[0] = "unexplored";
         hop.e[1] = "empty";
         hop.e[2] = "bana";
+        hop.e[3] = "static";
     }
 }
 // ux
@@ -123,6 +126,15 @@ var db = {
         db.c.push("bkgd_0");
         // type of renderable
         // state maps to bitmap for rendering
+    },
+    "cans": function(k0) {
+        // return canvas objects list
+        // store as index to optimize
+        var r0 = [];
+        for (var i = 0; i < db.a[k0].length; i++) {
+            r0.push(db.a[k0][i].c);
+        }
+        return r0;
     }
 }
 // scene
@@ -130,8 +142,30 @@ var sce = {
     "init": function() {
         sce.a = {};
         sce.a["play"] = ["bkgd","grid"];
+        // current
+        sce.c = "play";
         // manage canvas groups by key
         // render histories, anims
+    },
+    "show": function() {
+        return sce.a[sce.c];
+    }
+}
+// render
+var ren = {
+    "scene": function() {
+        var s0 = sce.show();
+        for (var i = 0; i < s0; i++) {
+            var s1 = s0[i];
+            var c0 = db.cans(s1);
+            ren.rand(c0);
+        }
+    },
+    "rand": function(c0) {
+        for (var i = 0; i < c0.length; i++) {
+            c0[i].con.fillStyle = rgba.rand();
+            c0[i].con.fillRect(0,0,c0[i].can.width,c0[i].can.height);
+        }
     }
 }
 // xhr
