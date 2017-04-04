@@ -46,6 +46,16 @@ var g = {
         ren.scene();
         ren.ban();
 
+        // init state of all elements "static"
+        // render blank grid test
+        // get hidden banana location
+        // change state of all elements to "live"
+        // render "live" grid with attached click handlers
+        xhr.loc();
+    },
+    "loop": function() {
+        // start the game loop
+
         g.tick = 0;
         // g.id = window.setInterval(g.frame, 2000);
 
@@ -210,6 +220,7 @@ var net = {
         net.urls = [];
         net.urls[0] = net.host + "/a";
         net.urls[1] = net.host + "/b";
+        net.urls[1] = net.host + "/c";
 
         // net.boc();
         net.toc();
@@ -275,6 +286,9 @@ var net = {
         // for both client and server
         // maps to pre-allocated buffer
         // for entire deterministic game state
+    },
+    "loc": function() {
+
     }
 }
 // dom

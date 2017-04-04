@@ -16,6 +16,7 @@ var (
     INDEX = "kona.html"
     B *Bonne
     L int
+    M []byte
 )
 
 type Uniq struct {
@@ -72,13 +73,22 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
     w.Write([]byte("got uniq"))
 }
 
+func LocHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r)
+    // xhr response type "text"
+     w.Header().Set("Access-Control-Allow-Origin", "*")
+     w.Write(M)
+}
+
 func main() {
     fmt.Println("starting server on localhost:8080")
     B = NewBonne()
     L = NewLocation()
+    M = []byte(fmt.Sprintf("%d", L))
     http.HandleFunc("/", HiwaHandler)
     http.HandleFunc("/a", ScooHandler)
     http.HandleFunc("/b", IdHandler)
+    http.HandleFunc("/c", LocHandler)
     http.ListenAndServe(":8080", nil)
 }
 
