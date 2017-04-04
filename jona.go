@@ -6,18 +6,26 @@ package main
 import (
     "encoding/json"
     "fmt"
+    "math/rand"
     "net/http"
     "sync"
+    "time"
 )
 
 var (
     INDEX = "kona.html"
     B *Bonne
+    L int
 )
 
 type Uniq struct {
     Date string
     Id string
+}
+
+func NewLocation() int {
+    rng := rand.New(rand.NewSource(time.Now().UnixNano()))
+    return rng.Intn(480)
 }
 
 type Bonne struct {
@@ -67,6 +75,7 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
     fmt.Println("starting server on localhost:8080")
     B = NewBonne()
+    L = NewLocation()
     http.HandleFunc("/", HiwaHandler)
     http.HandleFunc("/a", ScooHandler)
     http.HandleFunc("/b", IdHandler)
@@ -75,3 +84,8 @@ func main() {
 
 // test peer brokerage
 // xhr game state conn
+
+// 480 byte slice describes state of grid
+// each update from clients flips individual bits
+// efficient optimization is to just send deltas
+
