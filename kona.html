@@ -32,6 +32,7 @@ var g = {
         // subs
         dom.init();
         bmp.init();
+        hop.init();
         db.init();
         sce.init();
         net.init();
@@ -51,7 +52,7 @@ var g = {
         // get hidden banana location
         // change state of all elements to "live"
         // render "live" grid with attached click handlers
-        xhr.loc();
+        net.loc();
     },
     "loop": function() {
         // start the game loop
@@ -90,6 +91,10 @@ var clic = {
     "han": function(e) {
         // generic click event handler
         // get target, update state
+
+        // all one functional chain
+        // any change in state dictates
+        // if handlers are attached or no
     }
 }
 // data
@@ -114,6 +119,7 @@ var db = {
         // nt = (30*16) = 480
         // my_top = 32
         for (var i = 0; i < 480; i++) {
+            // canvas
             db.a["grid"][i] = {};
             var x0 = i % 30;
             x0 = (x0 * 64) >>> 0;
@@ -123,17 +129,35 @@ var db = {
             db.a["grid"][i].c = dom.canvas(db.a["grid"][i].r);
             var k0 = "grid_" + i;
             db.a["grid"][i].c.can.dataset.x = k0;
+
+            // state
             db.b[k0] = {};
+            // enum
+            db.b[k0].h = hop.e[3];
+            // colors [bg,fg]
+            db.b[k0].b = [];
+            db.b[k0].b[0] = [32,32,32,1.0];
+            db.b[k0].b[1] = [0,0,0,1.0];
+
+            // add to list
             db.c.push(k0);
         }
     },
     "bkgd": function() {
+        // canvas
         db.a["bkgd"] = [];
         db.a["bkgd"][0] = {};
         db.a["bkgd"][0].r = [1920,1080,0,0];
         db.a["bkgd"][0].c = dom.canvas(db.a["bkgd"][0].r);
         db.a["bkgd"][0].c.can.dataset.x = "bkgd_0";
+
+        // state
         db.b["bkgd_0"] = {};
+        db.b["bkgd_0"].h = hop.e[3];
+        db.b["bkgd_0"].b = [];
+        db.b["bkgd_0"].b[0] = [64,64,64,1.0];
+
+        // list
         db.c.push("bkgd_0");
         // type of renderable
         // state maps to bitmap for rendering
