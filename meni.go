@@ -47,9 +47,26 @@ func (m *Marble) Pop() {
     }
 }
 
+func (m *Marble) Inc() string {
+    if m.Count >= m.Max {
+        return "limit"
+    } else {
+        s0 := m.List[m.Count]
+        m.Count = m.Count + 1
+        return s0
+    }
+}
+
 func MeniHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r)
     http.ServeFile(w, r, INDEX)
+}
+
+func FlushHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r)
+    M.Lock()
+    s0 := M.Inc()
+    defer M.Unlock()
 }
 
 func main() {
@@ -58,6 +75,7 @@ func main() {
     M = NewMarble()
     fmt.Println(M)
     http.HandleFunc("/", MeniHandler)
+    http.HandleFunc("/b", FlushHandler)
     http.ListenAndServe(":8080", nil)
 }
 
