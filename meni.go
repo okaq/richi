@@ -4,8 +4,10 @@ package main
 
 import (
     "fmt"
+    "math/rand"
     "net/http"
     "sync"
+    "time"
 )
 
 const (
@@ -14,6 +16,7 @@ const (
 
 var (
     M *Marble
+    R *rand.Rand
 )
 
 type Marble struct {
@@ -28,7 +31,20 @@ func NewMarble() *Marble {
     m.Count = 0
     m.Max = 64
     m.List = make([]string, m.Max)
+    // populate list
+    m.Pop()
     return &m
+}
+
+func (m *Marble) Pop() {
+    for i := 0; i < m.Max; i++ {
+        // get date time stamp
+        i0 := time.Now().UnixNano()
+        // get unique random id
+        i1 := R.Int()
+        s0 := fmt.Sprintf("%d+%d", i0, i1)
+        m.List[i] = s0
+    }
 }
 
 func MeniHandler(w http.ResponseWriter, r *http.Request) {
@@ -38,6 +54,7 @@ func MeniHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
     fmt.Println("serving on localhost:8080")
+    R = rand.NewRandom(rand.NewSeed(time.Now().UnixNano()))
     M = NewMarble()
     fmt.Println(M)
     http.HandleFunc("/", MeniHandler)
