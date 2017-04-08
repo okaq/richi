@@ -65,8 +65,9 @@ func MeniHandler(w http.ResponseWriter, r *http.Request) {
 func FlushHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r)
     M.Lock()
-    s0 := M.Inc()
     defer M.Unlock()
+    s0 := M.Inc()
+    w.Write([]byte(s0))
 }
 
 func main() {
@@ -75,7 +76,7 @@ func main() {
     M = NewMarble()
     fmt.Println(M)
     http.HandleFunc("/", MeniHandler)
-    http.HandleFunc("/b", FlushHandler)
+    http.HandleFunc("/a", FlushHandler)
     http.ListenAndServe(":8080", nil)
 }
 
