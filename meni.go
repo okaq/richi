@@ -17,6 +17,7 @@ const (
 var (
     M *Marble
     R *rand.Rand
+    T time.Time
 )
 
 type Marble struct {
@@ -38,6 +39,10 @@ func NewMarble() *Marble {
 
 func (m *Marble) Pop() {
     for i := 0; i < m.Max; i++ {
+        // sleep
+        d0 := time.Duration(R.Intn(100))
+        d1 := time.Millisecond * d0
+        time.Sleep(d1)
         // get date time stamp
         i0 := time.Now().UnixNano()
         // get unique random id
@@ -67,12 +72,15 @@ func FlushHandler(w http.ResponseWriter, r *http.Request) {
     M.Lock()
     defer M.Unlock()
     s0 := M.Inc()
+    w.Header().Set("Access-Control-Allow-Origin", "*")
     w.Write([]byte(s0))
 }
 
 func main() {
     fmt.Println("serving on localhost:8080")
-    R = rand.NewRandom(rand.NewSeed(time.Now().UnixNano()))
+    T = time.Now()
+    fmt.Printf("started at %s\n", T.String())
+    R = rand.New(rand.NewSource(time.Now().UnixNano()))
     M = NewMarble()
     fmt.Println(M)
     http.HandleFunc("/", MeniHandler)
