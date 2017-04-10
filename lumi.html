@@ -48,7 +48,8 @@ var g = {
         sce.deck();
 
         // render
-        ren.test();
+        // ren.test();
+        ren.cell();
     }
 }
 // render
@@ -57,6 +58,29 @@ var ren = {
         for (var i = 0; i < sce.a.length; i++) {
             sce.a[i].c.con.fillStyle = sce.a[i].b;
             sce.a[i].c.con.fillRect(0,0,sce.a[i].c.can.width,sce.a[i].c.can.height);
+        }
+    },
+    "cell": function() {
+        // bkgd
+        sce.a[0].c.con.fillStyle = sce.a[0].b;
+        sce.a[0].c.con.fillRect(0,0,sce.a[0].c.can.width,sce.a[0].c.can.height);
+
+        // grid
+        sce.a[1].c.con.fillStyle = sce.a[1].b;
+        sce.a[1].c.con.fillRect(0,0,sce.a[1].c.can.width,sce.a[1].c.can.height);
+
+        // sub
+        sce.a[2].c.con.fillStyle = sce.a[2].b;
+        sce.a[2].c.con.fillRect(0,0,sce.a[2].c.can.width,sce.a[2].c.can.height);
+
+        // txt
+        var t0 = g.txt.split("");
+        console.log(sce.a.length);
+        for (var i = 3; i < sce.a.length; i++) {
+            var i0 = i - 3;
+            var g0 = t0[i0];
+            var b0 = bmp.a[g0];
+            console.log(i,i0,g0,b0);
         }
     }
 }
