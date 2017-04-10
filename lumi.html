@@ -43,7 +43,8 @@ var g = {
         g.id = id0;
 
         // static scene enhance
-        g.txt = ["submarines"];
+        g.txt = "submarines";
+        sce.hand();
     }
 }
 // scene
@@ -63,7 +64,20 @@ var sce = {
 
         // bmp
         sce.a[2] = {};
-        sce.a[2].r = [512,512,832,412]
+        sce.a[2].r = [512,512,832,412];
+
+    },
+    "hand": function() {
+        // text
+        var t0 = g.txt.split("");
+        console.log(t0,t0.length);
+        for (var i = 0; i < t0.length; i++) {
+            var t1 = {};
+            var x0 = i*32+800;
+            var y0 = 924;
+            t1.r = [32,32,x0,y0];
+            sce.a.push(t1);
+        }
     }
 }
 // xhr
