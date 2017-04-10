@@ -52,7 +52,8 @@ var g = {
 
         // render
         // ren.test();
-        ren.cell();
+        // ren.cell();
+        ren.bmp2();
 
         // store random bitmap data
         // unscramble one bit per frame
@@ -124,6 +125,20 @@ var ren = {
         // input is scene object
         // includes bitmap data, colors
 
+    },
+    "bmp2": function() {
+        for (var i = 0; i < sce.a.length; i++) {
+            // element determines rendering
+            var e0 = sce.a[i];
+            if (e0.d == null) {
+                // render solid
+                ren.solid(e0.c, e0.b[0]);
+            }
+        }
+    },
+    "solid": function(c0, rgba0) {
+        c0.con.fillStyle = rgba0;
+        c0.con.fillRect(0,0,c0.can.width,c0.can.height);
     }
 }
 // scene
@@ -224,7 +239,7 @@ var sce = {
             var d0 = bmp.a[k0];
             sce.a[i].d = d0;
         }
-        console.log(sce.a);
+        // console.log(sce.a);
     }
 }
 // xhr
