@@ -133,12 +133,33 @@ var ren = {
             if (e0.d == null) {
                 // render solid
                 ren.solid(e0.c, e0.b[0]);
+            } else {
+                ren.data(e0);
             }
         }
     },
     "solid": function(c0, rgba0) {
         c0.con.fillStyle = rgba0;
         c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+    },
+    "data": function(e0) {
+        var w0 = e0.c.can.width;
+        var nt = e0.d.length;
+        var nx = Math.sqrt(nt) >>> 0;
+        var px = (w0 / nx) >>> 0;
+        console.log(w0,nt,nx,px);
+        for (var i = 0; i < e0.d.length; i++) {
+            if (e0.d[i] == 0) {
+                e0.c.con.fillStyle = e0.b[0];
+            } else {
+                e0.c.con.fillStyle = e0.b[1];
+            }
+            var x0 = i % nx;
+            var y0 = (i / nx) >>> 0;
+            var x1 = (x0 * px) >>> 0;
+            var y1 = (y0 * px) >>> 0;
+            e0.c.con.fillRect(x1,y1,px,px);
+        }
     }
 }
 // scene
