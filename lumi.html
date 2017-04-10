@@ -46,7 +46,8 @@ var g = {
         g.txt = "submarines";
         sce.hand();
         sce.deck();
-        sce.sail();
+        // sce.sail();
+        sce.mast();
         bmp.suba();
 
         // render
@@ -119,6 +120,10 @@ var ren = {
         // render bitmap in canvas
         // sub bmp size 512x512, 32x32 blocks
         // 16-px per block
+
+        // input is scene object
+        // includes bitmap data, colors
+
     }
 }
 // scene
@@ -160,8 +165,10 @@ var sce = {
             dom.add(sce.a[i].c);
             sce.a[i].c.can.dataset.x = i;
             sce.a[i].c.can.addEventListener("click", sce.port, false);
-            // bmp
-            sce.a[i].b = rgba.rand();
+            // colors, monochrome [bg,fg]
+            // in bitmap data,
+            // bg is white is 1
+            sce.a[i].b = [rgba.rand(),rgba.rand()];
         }
     },
     "port": function(e) {
@@ -176,6 +183,9 @@ var sce = {
             sce.a[i].b[0] = rgba.rand();
             sce.a[i].b[1] = rgba.rand();
         }
+        // refactor
+        // every scene element references
+        // bitmap data, two colors
     },
     "blam": function() {
         // 64x64 binary random bitmap
@@ -192,6 +202,29 @@ var sce = {
             }
         }
         return b0;
+    },
+    "blim": function() {
+        var b0 = [];
+        for (var i = 0; i < 4096; i++) {
+            var f0 = Math.random();
+            var f1 = f0 >= 0.5 ? 0 : 1;
+            b0.push(f1);
+        }
+        return b0;
+    },
+    "mast": function() {
+        // assign bitmap data
+        sce.a[0].d = null;
+        sce.a[1].d = null;
+        sce.a[2].d = sce.blim();
+        var g0 = g.txt.split("");
+        for (var i = 3; i < sce.a.length; i++) {
+            var i0 = i - 3;
+            var k0 = g0[i0];
+            var d0 = bmp.a[k0];
+            sce.a[i].d = d0;
+        }
+        console.log(sce.a);
     }
 }
 // xhr
