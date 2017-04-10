@@ -18,7 +18,8 @@ const (
     INDEX = "goma.html"
     SAMP = "png"
     // SAVE = "subs"
-    SAVE = "bana"
+    // SAVE = "bana"
+    SAVE = "suba"
 )
 
 var (
