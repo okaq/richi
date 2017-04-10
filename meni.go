@@ -54,6 +54,7 @@ func (m *Marble) Pop() {
 
 func (m *Marble) Inc() string {
     if m.Count >= m.Max {
+        // trigger session timer
         return "limit"
     } else {
         s0 := m.List[m.Count]
