@@ -50,6 +50,11 @@ var g = {
         // render
         // ren.test();
         ren.cell();
+
+        // store random bitmap data
+        // unscramble one bit per frame
+        // select from set
+        // if matches target continue
     }
 }
 // render
@@ -70,8 +75,9 @@ var ren = {
         sce.a[1].c.con.fillRect(0,0,sce.a[1].c.can.width,sce.a[1].c.can.height);
 
         // sub
-        sce.a[2].c.con.fillStyle = sce.a[2].b;
-        sce.a[2].c.con.fillRect(0,0,sce.a[2].c.can.width,sce.a[2].c.can.height);
+        // sce.a[2].c.con.fillStyle = sce.a[2].b;
+        // sce.a[2].c.con.fillRect(0,0,sce.a[2].c.can.width,sce.a[2].c.can.height);
+        ren.blam(sce.a[2].c);
 
         // txt
         var t0 = g.txt.split("");
@@ -82,6 +88,33 @@ var ren = {
             var b0 = bmp.a[g0];
             console.log(i,i0,g0,b0);
         }
+    },
+    "blam": function(c0) {
+        // random bitmap
+        // assume 64x64
+        var w0 = c0.can.width;
+        var p0 = (w0 / 64) >>> 0; // 8-px
+        var nx = (w0 / p0) >>> 0;
+        var nt = (nx * nx) >>> 0;
+        var rgba0 = [];
+        rgba0[0] = rgba.rand();
+        rgba0[1] = rgba.rand();
+        for (var i = 0; i < nt; i++) {
+            var x0 = i % 64;
+            var y0 = (i / 64) >>> 0;
+            var x1 = (x0 * p0) >>> 0;
+            var y1 = (y0 * p0) >>> 0;
+            var f0 = Math.random();
+            if (f0 >= 0.5) {
+                c0.con.fillStyle = rgba0[0];
+            } else {
+                c0.con.fillStyle = rgba0[1];
+            }
+            c0.con.fillRect(x1,y1,p0,p0);
+        }
+    },
+    "bmp": function(b0, c0) {
+        // render bitmap in canvas
     }
 }
 // scene
