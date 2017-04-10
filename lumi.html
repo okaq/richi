@@ -46,6 +46,18 @@ var g = {
         g.txt = "submarines";
         sce.hand();
         sce.deck();
+
+        // render
+        ren.test();
+    }
+}
+// render
+var ren = {
+    "test": function() {
+        for (var i = 0; i < sce.a.length; i++) {
+            sce.a[i].c.con.fillStyle = sce.a[i].b;
+            sce.a[i].c.con.fillRect(0,0,sce.a[i].c.can.width,sce.a[i].c.can.height);
+        }
     }
 }
 // scene
@@ -87,6 +99,8 @@ var sce = {
             dom.add(sce.a[i].c);
             sce.a[i].c.can.dataset.x = i;
             sce.a[i].c.can.addEventListener("click", sce.port, false);
+            // bmp
+            sce.a[i].b = rgba.rand();
         }
     },
     "port": function(e) {
