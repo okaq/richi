@@ -47,6 +47,7 @@ var g = {
         sce.hand();
         sce.deck();
         sce.sail();
+        bmp.suba();
 
         // render
         // ren.test();
@@ -248,6 +249,14 @@ var bmp = {
             }
         }
         return r0;
+    },
+    "suba": function() {
+        // decode submarine bmp
+        var s0 = suba["suba_001"];
+        var b0 = base64DecToArr(s0);
+        var b1 = bmp.exp(b0);
+        bmp.b = b1;
+        console.log(bmp.b, bmp.b.length, Math.sqrt(bmp.b.length));
     }
 }
 // dom
