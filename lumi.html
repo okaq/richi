@@ -45,6 +45,7 @@ var g = {
         // static scene enhance
         g.txt = "submarines";
         sce.hand();
+        sce.deck();
     }
 }
 // scene
@@ -64,7 +65,7 @@ var sce = {
 
         // bmp
         sce.a[2] = {};
-        sce.a[2].r = [512,512,832,412];
+        sce.a[2].r = [512,512,703,284];
 
     },
     "hand": function() {
@@ -78,6 +79,18 @@ var sce = {
             t1.r = [32,32,x0,y0];
             sce.a.push(t1);
         }
+    },
+    "deck": function() {
+        // add to dom
+        for (var i = 0; i < sce.a.length; i++) {
+            sce.a[i].c = dom.canvas(sce.a[i].r);
+            dom.add(sce.a[i].c);
+            sce.a[i].c.can.dataset.x = i;
+            sce.a[i].c.can.addEventListener("click", sce.port, false);
+        }
+    },
+    "port": function(e) {
+        console.log(e);
     }
 }
 // xhr
