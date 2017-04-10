@@ -31,6 +31,9 @@ var g = {
 
         // subs
         net.init();
+        dom.init();
+        bmp.init();
+        sce.init();
 
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
@@ -40,7 +43,27 @@ var g = {
         g.id = id0;
 
         // static scene enhance
-        g.txt = ["SUBMARINES"];
+        g.txt = ["submarines"];
+    }
+}
+// scene
+var sce = {
+    "init": function() {
+        sce.a = [];
+        // 512x512 submarine bitmap frame anim
+        // margin for bitmap is 256
+
+        // bkgd
+        sce.a[0] = {};
+        sce.a[0].r = [1920,1080,0,0];
+
+        // grid
+        sce.a[1] = {};
+        sce.a[1].r = [768,768,576,156];
+
+        // bmp
+        sce.a[2] = {};
+        sce.a[2].r = [512,512,832,412]
     }
 }
 // xhr
