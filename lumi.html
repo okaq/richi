@@ -30,10 +30,13 @@ var g = {
         console.log("richi started...");
 
         // subs
-        net.init();
+        // net.init();
         dom.init();
         bmp.init();
         sce.init();
+
+        // start
+        g.start2();
 
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
@@ -47,8 +50,8 @@ var g = {
         sce.hand();
         sce.deck();
         // sce.sail();
-        sce.mast();
         bmp.suba();
+        sce.mast();
 
         // render
         // ren.test();
@@ -59,6 +62,36 @@ var g = {
         // unscramble one bit per frame
         // select from set
         // if matches target continue
+    },
+    "start2": function() {
+        // msg
+        g.txt = "submarines";
+
+        // set
+        g.top = [];
+        for (var i = 0; i < 4096; i++) {
+            g.top.push(i);
+        }
+
+        // scene
+        sce.hand();
+        sce.deck();
+        bmp.suba();
+        sce.mast();
+
+        // loop
+        g.tick = 0;
+        g.id = window.setInterval(g.frame, 1000);
+    },
+    "frame": function() {
+        ren.bmp2();
+        if (g.tick >= 4096) {
+            console.log("all done.");
+            window.clearInterval(g.id);
+        }
+        g.tick = g.tick + 1;
+        // choose
+        
     }
 }
 // render
