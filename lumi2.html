@@ -30,7 +30,6 @@ var g = {
         console.log("richi started...");
 
         // subs
-        // net.init();
         dom.init();
         bmp.init();
         sce.init();
@@ -41,27 +40,6 @@ var g = {
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
 
-    },
-    "start": function(id0) {
-        g.id = id0;
-
-        // static scene enhance
-        g.txt = "submarines";
-        sce.hand();
-        sce.deck();
-        // sce.sail();
-        bmp.suba();
-        sce.mast();
-
-        // render
-        // ren.test();
-        // ren.cell();
-        ren.bmp2();
-
-        // store random bitmap data
-        // unscramble one bit per frame
-        // select from set
-        // if matches target continue
     },
     "start2": function() {
         // msg
@@ -103,69 +81,6 @@ var g = {
 }
 // render
 var ren = {
-    "test": function() {
-        for (var i = 0; i < sce.a.length; i++) {
-            sce.a[i].c.con.fillStyle = sce.a[i].b;
-            sce.a[i].c.con.fillRect(0,0,sce.a[i].c.can.width,sce.a[i].c.can.height);
-        }
-    },
-    "cell": function() {
-        // bkgd
-        sce.a[0].c.con.fillStyle = sce.a[0].b;
-        sce.a[0].c.con.fillRect(0,0,sce.a[0].c.can.width,sce.a[0].c.can.height);
-
-        // grid
-        sce.a[1].c.con.fillStyle = sce.a[1].b;
-        sce.a[1].c.con.fillRect(0,0,sce.a[1].c.can.width,sce.a[1].c.can.height);
-
-        // sub
-        // sce.a[2].c.con.fillStyle = sce.a[2].b;
-        // sce.a[2].c.con.fillRect(0,0,sce.a[2].c.can.width,sce.a[2].c.can.height);
-        ren.blam(sce.a[2].c);
-
-        // txt
-        var t0 = g.txt.split("");
-        console.log(sce.a.length);
-        for (var i = 3; i < sce.a.length; i++) {
-            var i0 = i - 3;
-            var g0 = t0[i0];
-            var b0 = bmp.a[g0];
-            console.log(i,i0,g0,b0);
-        }
-    },
-    "blam": function(c0) {
-        // random bitmap
-        // assume 64x64
-        var w0 = c0.can.width;
-        var p0 = (w0 / 64) >>> 0; // 8-px
-        var nx = (w0 / p0) >>> 0;
-        var nt = (nx * nx) >>> 0;
-        var rgba0 = [];
-        rgba0[0] = rgba.rand();
-        rgba0[1] = rgba.rand();
-        for (var i = 0; i < nt; i++) {
-            var x0 = i % 64;
-            var y0 = (i / 64) >>> 0;
-            var x1 = (x0 * p0) >>> 0;
-            var y1 = (y0 * p0) >>> 0;
-            var f0 = Math.random();
-            if (f0 >= 0.5) {
-                c0.con.fillStyle = rgba0[0];
-            } else {
-                c0.con.fillStyle = rgba0[1];
-            }
-            c0.con.fillRect(x1,y1,p0,p0);
-        }
-    },
-    "bmp": function(b0, c0) {
-        // render bitmap in canvas
-        // sub bmp size 512x512, 32x32 blocks
-        // 16-px per block
-
-        // input is scene object
-        // includes bitmap data, colors
-
-    },
     "bmp2": function() {
         for (var i = 0; i < sce.a.length; i++) {
             // element determines rendering
@@ -187,7 +102,6 @@ var ren = {
         var nt = e0.d.length;
         var nx = Math.sqrt(nt) >>> 0;
         var px = (w0 / nx) >>> 0;
-        // console.log(w0,nt,nx,px);
         for (var i = 0; i < e0.d.length; i++) {
             if (e0.d[i] == 0) {
                 e0.c.con.fillStyle = e0.b[0];
@@ -206,8 +120,6 @@ var ren = {
 var sce = {
     "init": function() {
         sce.a = [];
-        // 512x512 submarine bitmap frame anim
-        // margin for bitmap is 256
 
         // bkgd
         sce.a[0] = {};
@@ -225,7 +137,6 @@ var sce = {
     "hand": function() {
         // text
         var t0 = g.txt.split("");
-        console.log(t0,t0.length);
         for (var i = 0; i < t0.length; i++) {
             var t1 = {};
             var x0 = i*32+800;
@@ -241,43 +152,11 @@ var sce = {
             dom.add(sce.a[i].c);
             sce.a[i].c.can.dataset.x = i;
             sce.a[i].c.can.addEventListener("click", sce.port, false);
-            // colors, monochrome [bg,fg]
-            // in bitmap data,
-            // bg is white is 1
             sce.a[i].b = [rgba.rand(),rgba.rand()];
         }
     },
     "port": function(e) {
         console.log(e);
-    },
-    "sail": function() {
-        sce.a[0].b = rgba.rand();
-        sce.a[1].b = rgba.rand();
-        sce.a[2].b = sce.blam();
-        for (var i = 3; i < sce.a.length; i++) {
-            sce.a[i].b = [];
-            sce.a[i].b[0] = rgba.rand();
-            sce.a[i].b[1] = rgba.rand();
-        }
-        // refactor
-        // every scene element references
-        // bitmap data, two colors
-    },
-    "blam": function() {
-        // 64x64 binary random bitmap
-        var b0 = [];
-        var rgba0 = [];
-        rgba0[0] = rgba.rand();
-        rgba0[1] = rgba.rand();
-        for (var i = 0; i < 4096; i++) {
-            var f0 = Math.random();
-            if (f0 >= 0.5) {
-                b0.push(rgba0[1]);
-            } else {
-                b0.push(rgba0[0]);
-            }
-        }
-        return b0;
     },
     "blim": function() {
         var b0 = [];
@@ -300,29 +179,6 @@ var sce = {
             var d0 = bmp.a[k0];
             sce.a[i].d = d0;
         }
-        // console.log(sce.a);
-    }
-}
-// xhr
-var net = {
-    "init": function() {
-        net.host = "http://192.168.1.2:8080"
-        net.urls = [];
-        net.urls[0] = net.host + "/a";
-        net.bop();
-    },
-    "bop": function() {
-        net.x = new XMLHttpRequest();
-        net.x.addEventListener("load", function() {
-            console.log(net.x.response);
-            g.start(net.x.response);
-        });
-        net.x.addEventListener("error", function() {
-            console.log(net.x.status);
-            console.log(net.x.response);
-        });
-        net.x.open("GET", net.urls[0]);
-        net.x.send();
     }
 }
 // bitmap
@@ -338,11 +194,8 @@ var bmp = {
             var b0 = base64DecToArr(s0);
             bmp.a[s1] = bmp.exp(b0);
         }
-        console.log("bmp oxy font decoded: " + x0 + " chars");
-        console.log(bmp);
         var s0 = (bmp.a[0].length);
         var s1 = Math.sqrt(s0);
-        console.log("bmp oxy size: " + s0 + " (" + s1 + "x" + s1 + ")");
     },
     "exp": function(b0) {
         // expansion of uint8array
@@ -365,7 +218,6 @@ var bmp = {
         var b0 = base64DecToArr(s0);
         var b1 = bmp.exp(b0);
         bmp.b = b1;
-        console.log(bmp.b, bmp.b.length, Math.sqrt(bmp.b.length));
     }
 }
 // dom
