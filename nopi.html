@@ -40,12 +40,33 @@ var g = {
 // scene
 var sce = {
     "init": function() {
-        // key
+        // db
         sce.a = {};
-        // list
+        // keys
         sce.b = [];
         // current
         sce.c = [];
+
+        // bg
+        sce.a["bkgd"] = {};
+        sce.a["bkgd"].r = [1920,1080,0,0];
+        // rects
+        sce.a["outer"] = {};
+        sce.a["outer"].r = [786,786,1024,256];
+        sce.a["inner"] = {};
+        sce.a["inner"].r = [384,384,1256,512];
+        // navi
+        sce.a["pane"] = {};
+        sce.a["pane"].r = [786,1080,0,0];
+        // button
+        sce.a["next"] = {};
+        sce.a["next"].r = [256,128,1024,800];
+        sce.a["save"] = {};
+        sce.a["save"].r = [256,128,1424,800];
+
+        for (var k in sce.a) {
+            sce.c.push(k);
+        }
 
         // two concentric rects for
         // random color render
