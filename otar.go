@@ -10,7 +10,17 @@ import (
 
 const (
     INDEX = "nopi.html"
+    // palette save file
+    PAL = "png/pal.json"
 )
+
+func SaveHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r)
+    // data in json array form
+    // list of [r,g,b,a] values
+    // ordered list of equitable pairs
+    // upon click save to disk file
+}
 
 func OtarHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r)
@@ -22,5 +32,6 @@ func main() {
     T = time.Now()
     fmt.Printf("time stamp: %s\n", T.String())
     http.HandleFunc("/", OtarHandler)
+    http.HandleFunc("/a", SaveHandler)
     http.ListenAndServe(":8080", nil)
 }
