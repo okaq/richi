@@ -33,6 +33,9 @@ var g = {
         dom.init();
         sce.init();
 
+        // test
+        ren.test();
+
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
     }
@@ -52,20 +55,25 @@ var sce = {
         sce.a["bkgd"].r = [1920,1080,0,0];
         // rects
         sce.a["outer"] = {};
-        sce.a["outer"].r = [786,786,1024,256];
+        sce.a["outer"].r = [800,800,600,100];
         sce.a["inner"] = {};
-        sce.a["inner"].r = [384,384,1256,512];
+        sce.a["inner"].r = [400,400,800,300];
         // navi
         sce.a["pane"] = {};
-        sce.a["pane"].r = [786,1080,0,0];
+        sce.a["pane"].r = [400,1080,0,0];
         // button
         sce.a["next"] = {};
-        sce.a["next"].r = [256,128,1024,800];
+        sce.a["next"].r = [200,100,1600,200];
         sce.a["save"] = {};
-        sce.a["save"].r = [256,128,1424,800];
+        sce.a["save"].r = [200,100,1600,400];
 
         for (var k in sce.a) {
             sce.c.push(k);
+            sce.a[k].c = dom.canvas(sce.a[k].r);
+            dom.add(sce.a[k].c);
+            sce.a[k].c.can.dataset.x = k;
+            sce.a[k].c.can.addEventListener("click", sce.click, false);
+            sce.a[k].b = rgba.rand();
         }
 
         // two concentric rects for
@@ -73,6 +81,21 @@ var sce = {
         // two buttons, next and add
         // current selections navi pane
         // with color thumbs
+    },
+    "click": function(e) {
+        console.log(e.target.dataset.x);
+    }
+}
+// render
+var ren = {
+    "test": function() {
+        for (var i = 0; i < sce.c.length; i++) {
+            var k0 = sce.c[i];
+            var c0 = sce.a[k0].c;
+            var b0 = sce.a[k0].b;
+            c0.con.fillStyle = b0;
+            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+        }
     }
 }
 // dom

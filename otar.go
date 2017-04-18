@@ -6,12 +6,17 @@ package main
 import (
     "fmt"
     "net/http"
+    "time"
 )
 
 const (
     INDEX = "nopi.html"
     // palette save file
     PAL = "png/pal.json"
+)
+
+var (
+    T time.Time
 )
 
 func SaveHandler(w http.ResponseWriter, r *http.Request) {
