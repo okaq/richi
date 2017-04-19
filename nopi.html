@@ -64,8 +64,10 @@ var sce = {
         // button
         sce.a["next"] = {};
         sce.a["next"].r = [128,128,500,200];
+        sce.a["pool"] = {};
+        sce.a["pool"].r = [128,128,500,400];
         sce.a["save"] = {};
-        sce.a["save"].r = [128,128,500,400];
+        sce.a["save"].r = [128,128,500,600];
 
         for (var k in sce.a) {
             sce.c.push(k);
@@ -76,6 +78,14 @@ var sce = {
             sce.a[k].b = rgba.rand();
         }
 
+        // data collections
+        sce.a["outer"].d = [];
+        sce.a["inner"].d = [];
+        // added list
+        sce.a["pool"].d = [];
+        // save state
+        sce.a["save"].d = false;
+
         // two concentric rects for
         // random color render
         // two buttons, next and add
@@ -84,6 +94,27 @@ var sce = {
     },
     "click": function(e) {
         console.log(e.target.dataset.x);
+        var k0 = e.target.dataset.x;
+        switch (k0) {
+            case "save":
+                sce.save();
+                break
+            case "next":
+                sce.next();
+                break;
+            case "pool":
+                sce.pool();
+                break;
+        }
+    },
+    "save": function() {
+        console.log("sending palette data to server")
+    },
+    "next": function() {
+        console.log("generating next color pair")
+    },
+    "pool": function() {
+        console.log("adding colors to pool")
     }
 }
 // render
