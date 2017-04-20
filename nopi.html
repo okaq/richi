@@ -138,6 +138,7 @@ var sce = {
         sce.a["pool"].d.push(i0);
         console.log("current pool: ");
         console.log(sce.a["pool"].d);
+        ren.pool();
     },
     "pairs": function() {
         // return pairs as json collection
@@ -161,6 +162,19 @@ var ren = {
             var b0 = sce.a[k0].b;
             c0.con.fillStyle = b0;
             c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+        }
+    },
+    "pool": function() {
+        // navi pane
+        var c0 = sce.a["navi"].c;
+        var b0 = sce.a["navi"].b;
+        // clear
+        c0.con.fillStyle = b0;
+        c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+        // pairs
+        var p0 = sce.pairs();
+        for (var i = 0; i < p0.length; i++) {
+            
         }
     }
 }
