@@ -130,6 +130,7 @@ var sce = {
         sce.fresh();
         sce.quick();
         ren.test();
+        ren.pool();
     },
     "pool": function() {
         console.log("adding colors to pool")
@@ -175,14 +176,14 @@ var ren = {
         var p0 = sce.pairs();
         for (var i = 0; i < p0.length; i++) {
             var p1 = p0[i];
-            var w0 = 100;
-            var h0 = 50;
-            var x0 = 0;
-            var y0 = (h0 * 2 * i + 25);
+            var w0 = 32;
+            var h0 = 32;
+            var x0 = 8;
+            var y0 = (h0 * 2 * i + 8 * i);
             c0.con.fillStyle = p1[0];
             c0.con.fillRect(x0,y0,w0,h0);
             c0.con.fillStyle = p1[1];
-            c0.con.fillRect(x0,y0,w0,h0+50);
+            c0.con.fillRect(x0,y0+32,w0,h0);
         }
     }
 }
