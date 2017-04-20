@@ -100,8 +100,8 @@ var sce = {
         sce.a["outer"].b = rgba.rand();
     },
     "quick": function() {
-        sce.a["outer"].d[0] = sce.a["outer"].b;
-        sce.a["inner"].d[0] = sce.a["inner"].b;
+        sce.a["outer"].d.push(sce.a["outer"].b);
+        sce.a["inner"].d.push(sce.a["inner"].b);
     },
     "click": function(e) {
         console.log(e.target.dataset.x);
@@ -129,6 +129,11 @@ var sce = {
     },
     "pool": function() {
         console.log("adding colors to pool")
+        // get index from collection
+        var i0 = sce.a["inner"].d.length - 1;
+        sce.a["pool"].d.push(i0);
+        console.log("current pool: ");
+        console.log(sce.a["pool"].d);
     }
 }
 // render
