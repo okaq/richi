@@ -166,15 +166,23 @@ var ren = {
     },
     "pool": function() {
         // navi pane
-        var c0 = sce.a["navi"].c;
-        var b0 = sce.a["navi"].b;
+        var c0 = sce.a["pane"].c;
+        var b0 = sce.a["pane"].b;
         // clear
         c0.con.fillStyle = b0;
         c0.con.fillRect(0,0,c0.can.width,c0.can.height);
         // pairs
         var p0 = sce.pairs();
         for (var i = 0; i < p0.length; i++) {
-            
+            var p1 = p0[i];
+            var w0 = 100;
+            var h0 = 50;
+            var x0 = 0;
+            var y0 = (h0 * 2 * i + 25);
+            c0.con.fillStyle = p1[0];
+            c0.con.fillRect(x0,y0,w0,h0);
+            c0.con.fillStyle = p1[1];
+            c0.con.fillRect(x0,y0,w0,h0+50);
         }
     }
 }
