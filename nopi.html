@@ -120,6 +120,10 @@ var sce = {
     },
     "save": function() {
         console.log("sending palette data to server")
+        var p0 = sce.pairs();
+        console.log(p0);
+        var j0 = JSON.stringify(p0);
+        console.log(j0);
     },
     "next": function() {
         console.log("generating next color pair")
@@ -134,6 +138,18 @@ var sce = {
         sce.a["pool"].d.push(i0);
         console.log("current pool: ");
         console.log(sce.a["pool"].d);
+    },
+    "pairs": function() {
+        // return pairs as json collection
+        var r0 = [];
+        for (var i = 0; i < sce.a["pool"].d.length; i++) {
+            var i0 = sce.a["pool"].d[i];
+            var c0 = sce.a["inner"].d[i0];
+            var c1 = sce.a["outer"].d[i0];
+            var c2 = [c0,c1];
+            r0.push(c2);
+        }
+        return r0;
     }
 }
 // render
