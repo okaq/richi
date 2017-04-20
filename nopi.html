@@ -86,11 +86,22 @@ var sce = {
         // save state
         sce.a["save"].d = false;
 
+        // first points
+        sce.quick();
+
         // two concentric rects for
         // random color render
         // two buttons, next and add
         // current selections navi pane
         // with color thumbs
+    },
+    "fresh": function() {
+        sce.a["inner"].b = rgba.rand();
+        sce.a["outer"].b = rgba.rand();
+    },
+    "quick": function() {
+        sce.a["outer"].d[0] = sce.a["outer"].b;
+        sce.a["inner"].d[0] = sce.a["inner"].b;
     },
     "click": function(e) {
         console.log(e.target.dataset.x);
@@ -112,6 +123,9 @@ var sce = {
     },
     "next": function() {
         console.log("generating next color pair")
+        sce.fresh();
+        sce.quick();
+        ren.test();
     },
     "pool": function() {
         console.log("adding colors to pool")
