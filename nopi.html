@@ -124,6 +124,7 @@ var sce = {
         console.log(p0);
         var j0 = JSON.stringify(p0);
         console.log(j0);
+        net.save(j0);
     },
     "next": function() {
         console.log("generating next color pair")
@@ -152,6 +153,17 @@ var sce = {
             r0.push(c2);
         }
         return r0;
+    }
+}
+// xhr
+var net = {
+    "save": function(j0) {
+        net.x = new XMLHttpRequest();
+        net.x.addEventListener("load", function() {
+            console.log(net.x.response);
+        });
+        net.x.open("POST", "http://localhost:8080/a");
+        net.x.send(j0);
     }
 }
 // render

@@ -5,6 +5,7 @@ package main
 
 import (
     "fmt"
+    "io/ioutil"
     "net/http"
     "time"
 )
@@ -25,6 +26,16 @@ func SaveHandler(w http.ResponseWriter, r *http.Request) {
     // list of [r,g,b,a] values
     // ordered list of equitable pairs
     // upon click save to disk file
+    b0, err := ioutil.ReadAll(r.Body)
+    if err != nil {
+        fmt.Println(err)
+    }
+    fmt.Println(b0)
+    s0 := string(b0)
+    fmt.Println(s0)
+    s1 := fmt.Sprintf("bytes written %d", len(b0))
+    b1 := []byte(s1)
+    w.Write(b1)
 }
 
 func OtarHandler(w http.ResponseWriter, r *http.Request) {
