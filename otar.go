@@ -35,6 +35,7 @@ func SaveHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(s0)
     s1 := fmt.Sprintf("bytes written %d", len(b0))
     b1 := []byte(s1)
+    ioutil.WriteFile(PAL, b0, 0777)
     w.Write(b1)
 }
 
