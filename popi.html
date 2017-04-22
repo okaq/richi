@@ -34,7 +34,8 @@ var g = {
         sce.init();
 
         // test
-        ren.test();
+        // ren.test();
+        ren.data();
 
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
@@ -66,7 +67,7 @@ var sce = {
             sce.a[i].c.can.addEventListener("click", sce.click, false);
             sce.a[i].b = rgba.rand();
             sce.a[i].d = (Math.random() * pal.length) >>> 0;
-            console.log(i, sce.a[i].d, pal[sce.a[i].d]);
+            // console.log(i, sce.a[i].d, pal[sce.a[i].d]);
         }
     },
     "click": function(e) {
@@ -81,6 +82,18 @@ var ren = {
             var b0 = sce.a[i].b;
             c0.con.fillStyle = b0;
             c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+        }
+    },
+    "data": function() {
+        for (var i = 0; i < sce.a.length; i++) {
+            var c0 = sce.a[i].c;
+            var d0 = pal[sce.a[i].d];
+            // bg
+            c0.con.fillStyle = d0[0];
+            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+            // fg
+            c0.con.fillStyle = d0[1];
+            c0.con.fillRect(6,6,c0.can.width-12,c0.can.height-12);
         }
     }
 }
