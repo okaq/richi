@@ -37,8 +37,25 @@ var g = {
         // ren.test();
         ren.data();
 
+        // loop
+        g.start();
+
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
+    },
+    "start": function() {
+        g.tick = 0;
+        g.id = window.setInterval(g.frame, 1000);
+    },
+    "frame": function() {
+        g.tick = g.tick + 1;
+        console.log("frame count: " + g.tick);
+        if (g.tick >= 32) {
+            window.clearInterval(g.id);
+            console.log("done frames");
+        }
+        sce.shuf();
+        ren.data();
     }
 }
 // scene
@@ -72,6 +89,11 @@ var sce = {
     },
     "click": function(e) {
         console.log(e.target.dataset.x);
+    },
+    "shuf": function() {
+        for (var i = 0; i < sce.a.length; i++) {
+            sce.a[i].d = (Math.random() * pal.length) >>> 0;
+        }
     }
 }
 // render
