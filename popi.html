@@ -470,6 +470,7 @@ var bmp = {
         bmp.b = {};
         bmp.b["noto"] = {};
         bmp.b["subs"] = {};
+        bmp.b["suba"] = {};
 
         // timed splits
         var t0 = window.performance.now();
@@ -489,9 +490,15 @@ var bmp = {
             bmp.b["subs"][k0] = bmp.exp(b1);
         }
         var t2 = window.performance.now();
+        // decode suba
+        var b0 = suba["suba_001"];
+        var b1 = base64DecToArr(b0);
+        bmp.b["suba"]["suba_001"] = bmp.exp(b1);
+        var t3 = window.performance.now();
         console.log("noto decode time: " + (t1 - t0));
         console.log("subs decode time: " + (t2 - t1));
-        console.log("total elapsed: " + (t2 - t0));
+        console.log("suba decode time: " + (t3 - t2));
+        console.log("total elapsed: " + (t3 - t0));
         // time = 250ms
     },
     "init2": function() {
@@ -518,6 +525,10 @@ var bmp = {
         }
         return r0;
     }
+}
+// suba
+var suba = {
+	"suba_001":"////////////////////////j////4////+/////v////7////4////+P////D////wf//4AAH/8AAA/6AADH8A22w/ANtgP6AAAH/wAAD/+AAB///////////////////////////////////////////////////////////8=",
 }
 // submarines
 var subs = {
