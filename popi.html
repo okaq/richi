@@ -54,8 +54,9 @@ var g = {
             window.clearInterval(g.id);
             console.log("done frames");
         }
-        sce.shuf();
-        ren.data();
+        // sce.shuf();
+        // ren.data();
+        ren.grad();
     }
 }
 // scene
@@ -70,6 +71,7 @@ var sce = {
         var ny = (960 / w0) >>> 0;
         var nt = (nx * ny) >>> 0;
         var my = (1080 - 960) >>> 0;
+        var g0 = (Math.random() * pal.length) >>> 0;
         for (var i = 0; i < nt; i++) {
             var x0 = i % nx;
             var y0 = (i / nx) >>> 0;
@@ -85,7 +87,24 @@ var sce = {
             sce.a[i].b = rgba.rand();
             sce.a[i].d = (Math.random() * pal.length) >>> 0;
             // console.log(i, sce.a[i].d, pal[sce.a[i].d]);
+            // gradient
+            var py = y0 / ny;
+            var f0 = Math.random();
+            if (f0 <= py) {
+                sce.a[i].e = pal[g0][0];
+            } else {
+                sce.a[i].e = pal[g0][1];
+            }
         }
+
+        // text
+        sce.b = [];
+        sce.c = "SUBMARINES";
+
+        // gradient oceanic background
+        // pick one high contrast rgba pair
+        // depth y percentage is probability
+        // of one color picked over the other
     },
     "click": function(e) {
         console.log(e.target.dataset.x);
@@ -116,6 +135,14 @@ var ren = {
             // fg
             c0.con.fillStyle = d0[1];
             c0.con.fillRect(6,6,c0.can.width-12,c0.can.height-12);
+        }
+    },
+    "grad": function() {
+        for (var i = 0; i < sce.a.length; i++) {
+            var c0 = sce.a[i].c;
+            var b0 = sce.a[i].e;
+            c0.con.fillStyle = b0;
+            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
         }
     }
 }
