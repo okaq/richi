@@ -54,11 +54,12 @@ var sce = {
         var my = (1080 - 960) >>> 0;
         for (var i = 0; i < nt; i++) {
             var x0 = i % nx;
-            var y0 = (i / nx);
+            var y0 = (i / nx) >>> 0;
             var x1 = (x0 * w0) >>> 0;
             var y1 = (y0 * h0) >>> 0;
+            var y2 = (y1 + my) >>> 0;
             sce.a[i] = {};
-            sce.a[i].r = [w0,h0,x1,y1+my];
+            sce.a[i].r = [w0,h0,x1,y2];
             sce.a[i].c = dom.canvas(sce.a[i].r);
             dom.add(sce.a[i].c);
             sce.a[i].c.can.dataset.x = i;
@@ -68,6 +69,17 @@ var sce = {
     },
     "click": function(e) {
         console.log(e.target.dataset.x);
+    }
+}
+// render
+var ren = {
+    "test": function() {
+        for (var i = 0; i < sce.a.length; i++) {
+            var c0 = sce.a[i].c;
+            var b0 = sce.a[i].b;
+            c0.con.fillStyle = b0;
+            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+        }
     }
 }
 // dom
