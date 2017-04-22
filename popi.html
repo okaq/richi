@@ -57,8 +57,17 @@ var sce = {
             var y0 = (i / nx);
             var x1 = (x0 * w0) >>> 0;
             var y1 = (y0 * h0) >>> 0;
-            sce.a[i].r = [w0,h0,x1,y1];
+            sce.a[i] = {};
+            sce.a[i].r = [w0,h0,x1,y1+my];
+            sce.a[i].c = dom.canvas(sce.a[i].r);
+            dom.add(sce.a[i].c);
+            sce.a[i].c.can.dataset.x = i;
+            sce.a[i].c.can.addEventListener("click", sce.click, false);
+            sce.a[i].b = rgba.rand();
         }
+    },
+    "click": function(e) {
+        console.log(e.target.dataset.x);
     }
 }
 // dom
