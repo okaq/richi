@@ -153,11 +153,31 @@ var ren = {
         // random origin
         var p0 = (Math.random() * pal.length) >>> 0;
         var p1 = pal[p0];
-        var x0 = 0; // (60 * Math.random()) >>> 0;
-        var y0 = 0; // (30 * Math.random()) >>> 0;
+        var x0 = (60 * Math.random()) >>> 0;
+        var y0 = (30 * Math.random()) >>> 0;
         var b0 = bmp.b["suba"]["suba_001"];
+        var b1 = (Math.sqrt(b0.length)) >>> 0;
         for (var i = 0; i < b0.length; i++) {
-            
+            // bitmap coords
+            var x1 = i % b1;
+            var y1 = (i / b1) >>> 0;
+            // grid world
+            var x2 = (x0 + x1) >>> 0;
+            var y2 = (y0 + y1) >>> 0;
+            // overflow
+            x2 = x2 >= 60 ? x2 - 60 : x2;
+            y2 = y2 >= 30 ? y2 - 30 : y2;
+            // index
+            var i0 = (y2 * 60) + x2;
+            // canvas grid
+            var c0 = sce.a[i0].c;
+            if (b0[i] == 0) {
+                c0.con.fillStyle = p1[0];
+            } else {
+                // c0.con.fillStyle = p1[1];
+                continue;
+            }
+            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
         }
     }
 }
