@@ -45,6 +45,14 @@ var g = {
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
     },
     "start": function() {
+        // globals
+        g.pale();
+        // console.log(g.p);
+        // index 0 ocean bg, fg
+        // next values are sub fg
+        g.ocean();
+
+        // begin
         g.tick = 0;
         g.id = window.setInterval(g.frame, 1000);
     },
@@ -59,6 +67,29 @@ var g = {
         // ren.data();
         ren.grad();
         ren.suba();
+    },
+    "pale": function() {
+        // palette index
+        g.p = [];
+        // init
+        for (var i = 0; i < pal.length; i++) {
+            g.p[i] = i;
+        }
+        // shuffle
+        for (var i = pal.length - 1; i >= 0; i--) {
+            var t0 = g.p[i];
+            var i0 = (Math.random() * i) >>> 0;
+            g.p[i] = g.p[i0];
+            g.p[i0] = t0;
+        }
+    },
+    "ocean": function() {
+        // init ocean frame data
+        g.o = [];
+        // eventually want intelligent update
+        // when transition is finished
+        // next grid data set queues automatically
+        // and diff set is re-calculated
     }
 }
 // scene
