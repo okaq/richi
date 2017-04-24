@@ -51,6 +51,7 @@ var g = {
         // index 0 ocean bg, fg
         // next values are sub fg
         g.ocean();
+        console.log(g.o,g.r);
 
         // begin
         g.tick = 0;
@@ -86,6 +87,35 @@ var g = {
     "ocean": function() {
         // init ocean frame data
         g.o = [];
+        for (var i = 0; i < 8; i++) {
+            g.o[i] = [];
+            for (var j = 0; j < 1800; j++) {
+                var y0 = (j / 60) >>> 0;
+                var y1 = y0 / 30;
+                var f0 = Math.random();
+                if (f0 < y1) {
+                    g.o[i][j] = 0;
+                } else {
+                    g.o[i][j] = 1;
+                }
+            }
+        }
+        // diff sets
+        // set of indices at index i
+        // are different than index i+1
+        g.r = [];
+        for (var i = 0; i < 7; i++) {
+            g.r[i] = [];
+            for (var j = 0; j < 1800; j++) {
+                var p0 = g.o[i][j];
+                var p1 = g.o[i+1][j];
+                if (p0 == p1) {
+                    continue;
+                } else {
+                    g.r[i].push(j);
+                }
+            }
+        }
         // eventually want intelligent update
         // when transition is finished
         // next grid data set queues automatically
