@@ -51,7 +51,8 @@ var g = {
         // index 0 ocean bg, fg
         // next values are sub fg
         g.ocean();
-        console.log(g.o,g.r);
+        // console.log(g.o,g.r);
+        g.velo();
 
         // begin
         g.tick = 0;
@@ -120,6 +121,20 @@ var g = {
         // when transition is finished
         // next grid data set queues automatically
         // and diff set is re-calculated
+    },
+    "velo": function() {
+        // position and velocity
+        // of N subs
+        g.v = [];
+        for (var i = 0; i < 3; i++) {
+            g.v[i] = {};
+            g.v[i].p = [];
+            g.v[i].p[0] = (Math.random() * 120) >>> 0;
+            g.v[i].p[1] = (Math.random() * 60) >>> 0;
+            g.v[i].v = [];
+            g.v[i].v[0] = 1; // forward 1px per second constant
+            g.v[i].v[1] = Math.random() >= 0.5 ? 1 : -1;
+        }
     }
 }
 // scene
