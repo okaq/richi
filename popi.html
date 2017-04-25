@@ -69,6 +69,7 @@ var g = {
         // ren.data();
         ren.grad();
         ren.suba();
+        ren.text();
     },
     "pale": function() {
         // palette index
@@ -180,6 +181,7 @@ var sce = {
         sce.c = "SUBMARINES";
         sce.d = sce.c.split("");
         console.log(sce.d);
+        sce.e = (Math.random() * pal.length) >>> 0;
 
         for (var i = 0; i < sce.d.length; i++) {
             sce.b[i] = {};
@@ -288,6 +290,18 @@ var ren = {
         // ocean transition one pixel
         // per frame to another generated
         // vertical probabilistic space
+    },
+    "text": function() {
+        for (var i = 0; i < sce.b.length; i++) {
+            var c0 = sce.b[i].c;
+            var b0 = pal[sce.e][0];
+            var b1 = pal[sce.e][1];
+            var t0 = sce.d[i];
+            c0.con.fillStyle = b0;
+            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+            c0.con.fillStyle = b1;
+            c0.con.fillRect(16,16,c0.can.width-32,c0.can.height-32);
+        }
     }
 }
 // dom
