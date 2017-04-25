@@ -178,6 +178,20 @@ var sce = {
         // text
         sce.b = [];
         sce.c = "SUBMARINES";
+        sce.d = sce.c.split("");
+        console.log(sce.d);
+
+        for (var i = 0; i < sce.d.length; i++) {
+            sce.b[i] = {};
+            var w0 = 64;
+            var h0 = 64;
+            var x0 = (w0 * i) >>> 0;
+            var y0 = 0;
+            sce.b[i].r = [w0,h0,x0,y0];
+            sce.b[i].c = dom.canvas(sce.b[i].r);
+            dom.add(sce.b[i].c);
+            sce.b[i].d = sce.d[i];
+        }
 
         // gradient oceanic background
         // pick one high contrast rgba pair
