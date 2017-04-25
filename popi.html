@@ -297,10 +297,18 @@ var ren = {
             var b0 = pal[sce.e][0];
             var b1 = pal[sce.e][1];
             var t0 = sce.d[i];
-            c0.con.fillStyle = b0;
-            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
-            c0.con.fillStyle = b1;
-            c0.con.fillRect(16,16,c0.can.width-32,c0.can.height-32);
+            var n0 = bmp.b["noto"][t0];
+            // console.log(Math.sqrt(n0.length));
+            for (var j = 0; j < n0.length; j++) {
+                var x0 = j % 64;
+                var y0 = (j / 64) >>> 0;
+                if (n0[j] == 0) {
+                    c0.con.fillStyle = b0;
+                } else {
+                    c0.con.fillStyle = b1;
+                }
+                c0.con.fillRect(x0,y0,1,1);
+            }
         }
     }
 }
