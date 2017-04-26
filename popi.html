@@ -67,13 +67,17 @@ var g = {
         }
         // sce.shuf();
         // ren.data();
-        ren.grad();
-        ren.suba();
+        // ren.grad();
+        // ren.suba();
         ren.text();
         // transition grad one step
+        g.kelp();
         // render grad lerp
+        ren.kelp();
         // update sub positions
+        g.peri();
         // render subs in order
+        ren.peri();
     },
     "pale": function() {
         // palette index
@@ -140,6 +144,15 @@ var g = {
             g.v[i].v[0] = 1; // forward 1px per second constant
             g.v[i].v[1] = Math.random() >= 0.5 ? 1 : -1;
         }
+    },
+    "kelp": function() {
+        // end test
+        if (g.r[0].length == 0) {
+            // advance frame
+        }
+    },
+    "peri": function() {
+        // move periscope one tick
     }
 }
 // scene
@@ -314,6 +327,24 @@ var ren = {
                 c0.con.fillRect(x0,y0,1,1);
             }
         }
+    },
+    "kelp": function() {
+        var f0 = (Math.random() * g.o.length) >>> 0;
+        var d0 = g.o[f0];
+        var b0 = pal[g.p[0]][0];
+        var b1 = pal[g.p[0]][1];
+        for (var i = 0; i < sce.a.length; i++) {
+            var c0 = sce.a[i].c;
+            if (d0[i] == 0) {
+                c0.con.fillStyle = b0;
+            } else {
+                c0.con.fillStyle = b1;
+            }
+            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+        }
+    },
+    "peri": function() {
+
     }
 }
 // dom
