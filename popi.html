@@ -344,7 +344,25 @@ var ren = {
         }
     },
     "peri": function() {
-
+        for (var i = 0; i < g.v.length; i++) {
+            // extended coords
+            var px = g.v[i].p[0];
+            var py = g.v[i].p[1];
+            // bitmap ends
+            var qx = (px + 32) >>> 0;
+            var qy = (py + 32) >>> 0;
+            // start points
+            var sx = (qx - 30) >>> 0;
+            var sy = (qy - 15) >>> 0;
+            console.log(i,px,py,qx,qy,sx,sy);
+            // origin bmp, origin grid, stride, rows
+            var gx = (px - 30);
+            var gy = (py - 15);
+            var bx = (gx + 32);
+            var by = (gy + 32);
+            console.log(i,gx,gy,bx,by);
+            // overflow >>> 0 with negative results
+        }
     }
 }
 // dom
