@@ -366,10 +366,37 @@ var ren = {
         }
     },
     "peri2": function() {
+        for (var i = 0; i < g.v.length; i++) {
+            ren.peri3(g.v[i]);
+        }
+    },
+    "peri3": function(v0) {
         // loop over bitmap 32x32
         // calc extended coords
         // get grid world coords
         // if hit, peek bit, render
+        var px = v0.p[0];
+        var py = v0.p[1];
+        for (var y0 = 0; y0 < 32; y0++) {
+            for (x0 = 0; x0 < 32; x0++) {
+                // extended coords
+                var ex = px + x0;
+                var ey = py + y0;
+                // wrap
+                var wx = ex >= 120 ? ex - 120 : ex;
+                var wy = ey >= 60 ? ey - 60 : ey;
+                // grid world
+                var gx = ex - 30;
+                var gy = ey - 15;
+                // bounds
+                if (gx < 0 || gx >= 60) {
+                    continue;
+                }
+                if (gy < 0 || gy >= 30) {
+                    continue;
+                }
+            }
+        }
     }
 }
 // dom
