@@ -154,6 +154,23 @@ var g = {
     },
     "peri": function() {
         // move periscope one tick
+        for (var i = 0; i < g.v.length; i ++) {
+            // horiz
+            g.v[i].p[0] = g.v[i].p[0] + g.v[i].v[0];
+            g.v[i].p[0] = g.v[i].p[0] >= 120 ? 0 : g.v[i].p[0];
+            g.v[i].p[0] = g.v[i].p[0] < 0 ? 119 : g.v[i].p[0];
+            // vert
+            g.v[i].p[1] = g.v[i].p[1] + g.v[i].v[1];
+            if (g.v[i].p[1] >= 60) {
+                g.v[i].p[1] = 60;
+                g.v[i].v[1] = -1;
+            }
+            if (g.v[i].p[1] < 0) {
+                g.v[i].p[1] = 0;
+                g.v[i].v[1] = 1;
+            }
+            // bounce
+        }
     }
 }
 // scene
@@ -331,7 +348,7 @@ var ren = {
     },
     "kelp": function() {
         var f0 = (Math.random() * g.o.length) >>> 0;
-        var d0 = g.o[f0];
+        var d0 = g.o[0];
         var b0 = pal[g.p[0]][0];
         var b1 = pal[g.p[0]][1];
         for (var i = 0; i < sce.a.length; i++) {
