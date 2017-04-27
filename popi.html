@@ -143,7 +143,10 @@ var g = {
             g.v[i].p[1] = (Math.random() * 60) >>> 0;
             g.v[i].v = [];
             g.v[i].v[0] = 1; // forward 1px per second constant
-            g.v[i].v[1] = Math.random() >= 0.5 ? 1 : -1;
+            // g.v[i].v[1] = Math.random() >= 0.5 ? 1 : -1;
+            var yv = [-4,-3,-2,-1,1,2,3,4];
+            var f0 = (Math.random() * yv.length) >>> 0;
+            g.v[i].v[1] = yv[f0];
         }
     },
     "kelp": function() {
@@ -163,11 +166,11 @@ var g = {
             g.v[i].p[1] = g.v[i].p[1] + g.v[i].v[1];
             if (g.v[i].p[1] >= 60) {
                 g.v[i].p[1] = 60;
-                g.v[i].v[1] = -1;
+                g.v[i].v[1] = -1*g.v[i].v[1];
             }
             if (g.v[i].p[1] < 0) {
                 g.v[i].p[1] = 0;
-                g.v[i].v[1] = 1;
+                g.v[i].v[1] = -1*g.v[i].v[1];
             }
             // bounce
         }
