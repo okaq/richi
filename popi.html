@@ -77,7 +77,8 @@ var g = {
         // update sub positions
         g.peri();
         // render subs in order
-        ren.peri();
+        // ren.peri();
+        ren.peri2();
     },
     "pale": function() {
         // palette index
@@ -363,6 +364,12 @@ var ren = {
             console.log(i,gx,gy,bx,by);
             // overflow >>> 0 with negative results
         }
+    },
+    "peri2": function() {
+        // loop over bitmap 32x32
+        // calc extended coords
+        // get grid world coords
+        // if hit, peek bit, render
     }
 }
 // dom
