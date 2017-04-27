@@ -367,10 +367,10 @@ var ren = {
     },
     "peri2": function() {
         for (var i = 0; i < g.v.length; i++) {
-            ren.peri3(g.v[i]);
+            ren.peri3(g.v[i], i);
         }
     },
-    "peri3": function(v0) {
+    "peri3": function(v0, i2) {
         // loop over bitmap 32x32
         // calc extended coords
         // get grid world coords
@@ -395,6 +395,23 @@ var ren = {
                 if (gy < 0 || gy >= 30) {
                     continue;
                 }
+                // bmp index
+                var i0 = ((y0 * 32) + x0) >>> 0;
+                // grid index
+                var i1 = ((gy * 60) + gx) >>> 0;
+                // canvas
+                var c0 = sce.a[i1].c;
+                var b0 = pal[g.p[i2+1]][0];
+                var b1 = pal[g.p[i2+1]][1];
+                // palette draw
+                if (bmp.b["suba"]["suba_001"][i0] == 0) {
+                    c0.con.fillStyle = b0;
+                    // continue;
+                } else {
+                    // c0.con.fillStyle = b1;
+                    continue;
+                }
+                c0.con.fillRect(0,0,c0.can.width,c0.can.height);
             }
         }
     }
