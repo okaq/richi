@@ -163,13 +163,25 @@ var g = {
             g.r.splice(0,1);
             if (g.r.length == 0) {
                 g.stop();
+                return;
             }
         }
         // pop next diff
+        var n0 = 128;
+        for (var i = 0; i < n0; i++) {
+            if (g.r[0].length == 0) {
+                break;
+            }
+            var f0 = (Math.random() * g.r[0].length) >>> 0;
+            var d0 = g.r[0].splice(f0, 1);
+        }
+        console.log(g.r);
+        /*
         var f0 = (Math.random() * g.r[0].length) >>> 0;
         var d0 = g.r[0].splice(f0, 1);
         console.log(f0, d0[0]);
         console.log(g.o, g.r);
+        */
         // g.stop();
         // avg diff set length ~500
         // total time at 1 pixel per second
