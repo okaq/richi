@@ -61,10 +61,12 @@ var g = {
     "frame": function() {
         g.tick = g.tick + 1;
         console.log("frame count: " + g.tick);
+        /*
         if (g.tick >= 32) {
             window.clearInterval(g.id);
             console.log("done frames");
         }
+        */
         // sce.shuf();
         // ren.data();
         // ren.grad();
@@ -80,6 +82,10 @@ var g = {
         // ren.peri();
         ren.peri2();
     },
+    "stop": function() {
+        window.clearInterval(g.id);
+        console.log("finished!");
+    },
     "pale": function() {
         // palette index
         g.p = [];
@@ -94,6 +100,7 @@ var g = {
             g.p[i] = g.p[i0];
             g.p[i0] = t0;
         }
+        // console.log(g.p);
     },
     "ocean": function() {
         // init ocean frame data
@@ -154,6 +161,8 @@ var g = {
         if (g.r[0].length == 0) {
             // advance frame
         }
+        console.log(g.o, g.r);
+        g.stop();
     },
     "peri": function() {
         // move periscope one tick
@@ -218,7 +227,7 @@ var sce = {
         sce.b = [];
         sce.c = "SUBMARINES";
         sce.d = sce.c.split("");
-        console.log(sce.d);
+        // console.log(sce.d);
         sce.e = (Math.random() * pal.length) >>> 0;
 
         for (var i = 0; i < sce.d.length; i++) {
