@@ -34,10 +34,6 @@ var g = {
         sce.init();
         bmp.init();
 
-        // test
-        // ren.test();
-        ren.data();
-
         // loop
         g.start();
 
@@ -47,11 +43,7 @@ var g = {
     "start": function() {
         // globals
         g.pale();
-        // console.log(g.p);
-        // index 0 ocean bg, fg
-        // next values are sub fg
         g.ocean();
-        // console.log(g.o,g.r);
         g.velo();
 
         // begin
@@ -60,26 +52,10 @@ var g = {
     },
     "frame": function() {
         g.tick = g.tick + 1;
-        console.log("frame count: " + g.tick);
-        /*
-        if (g.tick >= 32) {
-            window.clearInterval(g.id);
-            console.log("done frames");
-        }
-        */
-        // sce.shuf();
-        // ren.data();
-        // ren.grad();
-        // ren.suba();
         ren.text();
-        // transition grad one step
         g.kelp();
-        // render grad lerp
         ren.kelp();
-        // update sub positions
         g.peri();
-        // render subs in order
-        // ren.peri();
         ren.peri2();
     },
     "stop": function() {
@@ -100,7 +76,6 @@ var g = {
             g.p[i] = g.p[i0];
             g.p[i0] = t0;
         }
-        // console.log(g.p);
     },
     "ocean": function() {
         // init ocean frame data
@@ -119,8 +94,6 @@ var g = {
             }
         }
         // diff sets
-        // set of indices at index i
-        // are different than index i+1
         g.r = [];
         for (var i = 0; i < 7; i++) {
             g.r[i] = [];
@@ -134,14 +107,9 @@ var g = {
                 }
             }
         }
-        // eventually want intelligent update
-        // when transition is finished
-        // next grid data set queues automatically
-        // and diff set is re-calculated
     },
     "velo": function() {
         // position and velocity
-        // of N subs
         g.v = [];
         for (var i = 0; i < 3; i++) {
             g.v[i] = {};
@@ -150,7 +118,6 @@ var g = {
             g.v[i].p[1] = (Math.random() * 60) >>> 0;
             g.v[i].v = [];
             g.v[i].v[0] = 1; // forward 1px per second constant
-            // g.v[i].v[1] = Math.random() >= 0.5 ? 1 : -1;
             var yv = [-4,-3,-2,-1,1,2,3,4];
             var f0 = (Math.random() * yv.length) >>> 0;
             g.v[i].v[1] = yv[f0];
@@ -178,21 +145,6 @@ var g = {
             // swap
             g.o[0][d0[0]] = g.o[1][d0[0]];
         }
-        console.log(g.r);
-        /*
-        var f0 = (Math.random() * g.r[0].length) >>> 0;
-        var d0 = g.r[0].splice(f0, 1);
-        console.log(f0, d0[0]);
-        console.log(g.o, g.r);
-        */
-        // g.stop();
-        // avg diff set length ~500
-        // total time at 1 pixel per second
-        // is just under one hour
-        // lets pick N per frame
-
-        // animation scrable
-        // frames should evolve toward structure
     },
     "peri": function() {
         // move periscope one tick
@@ -211,7 +163,6 @@ var g = {
                 g.v[i].p[1] = 0;
                 g.v[i].v[1] = -1*g.v[i].v[1];
             }
-            // bounce
         }
     }
 }
@@ -242,7 +193,6 @@ var sce = {
             sce.a[i].c.can.addEventListener("click", sce.click, false);
             sce.a[i].b = rgba.rand();
             sce.a[i].d = (Math.random() * pal.length) >>> 0;
-            // console.log(i, sce.a[i].d, pal[sce.a[i].d]);
             // gradient
             var py = y0 / ny;
             var f0 = Math.random();
@@ -257,7 +207,6 @@ var sce = {
         sce.b = [];
         sce.c = "SUBMARINES";
         sce.d = sce.c.split("");
-        // console.log(sce.d);
         sce.e = (Math.random() * pal.length) >>> 0;
 
         for (var i = 0; i < sce.d.length; i++) {
@@ -271,14 +220,9 @@ var sce = {
             dom.add(sce.b[i].c);
             sce.b[i].d = sce.d[i];
         }
-
-        // gradient oceanic background
-        // pick one high contrast rgba pair
-        // depth y percentage is probability
-        // of one color picked over the other
     },
     "click": function(e) {
-        console.log(e.target.dataset.x);
+        // console.log(e.target.dataset.x);
     },
     "shuf": function() {
         for (var i = 0; i < sce.a.length; i++) {
@@ -288,86 +232,6 @@ var sce = {
 }
 // render
 var ren = {
-    "test": function() {
-        for (var i = 0; i < sce.a.length; i++) {
-            var c0 = sce.a[i].c;
-            var b0 = sce.a[i].b;
-            c0.con.fillStyle = b0;
-            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
-        }
-    },
-    "data": function() {
-        for (var i = 0; i < sce.a.length; i++) {
-            var c0 = sce.a[i].c;
-            var d0 = pal[sce.a[i].d];
-            // bg
-            c0.con.fillStyle = d0[0];
-            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
-            // fg
-            c0.con.fillStyle = d0[1];
-            c0.con.fillRect(6,6,c0.can.width-12,c0.can.height-12);
-        }
-    },
-    "grad": function() {
-        for (var i = 0; i < sce.a.length; i++) {
-            var c0 = sce.a[i].c;
-            var b0 = sce.a[i].e;
-            c0.con.fillStyle = b0;
-            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
-        }
-    },
-    "suba": function() {
-        // translate small bitmap to grid coords
-        // random color pair
-        // random origin
-        var p0 = (Math.random() * pal.length) >>> 0;
-        var p1 = pal[p0];
-        var x0 = (60 * Math.random()) >>> 0;
-        var y0 = (30 * Math.random()) >>> 0;
-        var b0 = bmp.b["suba"]["suba_001"];
-        var b1 = (Math.sqrt(b0.length)) >>> 0;
-        for (var i = 0; i < b0.length; i++) {
-            // bitmap coords
-            var x1 = i % b1;
-            var y1 = (i / b1) >>> 0;
-            // grid world
-            var x2 = (x0 + x1) >>> 0;
-            var y2 = (y0 + y1) >>> 0;
-            // overflow
-            x2 = x2 >= 60 ? x2 - 60 : x2;
-            y2 = y2 >= 30 ? y2 - 30 : y2;
-            // index
-            var i0 = (y2 * 60) + x2;
-            // canvas grid
-            var c0 = sce.a[i0].c;
-            if (b0[i] == 0) {
-                c0.con.fillStyle = p1[0];
-            } else {
-                // c0.con.fillStyle = p1[1];
-                continue;
-            }
-            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
-        }
-        // bitmap is 32x32 pixels
-        // gridworld is 60x30 blocks
-        // extended sea is 120x60
-        // with visible grid in center
-        // starting at 30,15 to 90,45
-
-        // top and bottom constitute
-        // walls for the sprite to bounce off of
-        // change velocity via flip
-        // left and right is continuous
-        // subs overflow
-        // velocity horizontal
-        // determines bits direction
-
-        // multiple subs moving 1fps
-
-        // ocean transition one pixel
-        // per frame to another generated
-        // vertical probabilistic space
-    },
     "text": function() {
         for (var i = 0; i < sce.b.length; i++) {
             var c0 = sce.b[i].c;
@@ -403,37 +267,12 @@ var ren = {
             c0.con.fillRect(0,0,c0.can.width,c0.can.height);
         }
     },
-    "peri": function() {
-        for (var i = 0; i < g.v.length; i++) {
-            // extended coords
-            var px = g.v[i].p[0];
-            var py = g.v[i].p[1];
-            // bitmap ends
-            var qx = (px + 32) >>> 0;
-            var qy = (py + 32) >>> 0;
-            // start points
-            var sx = (qx - 30) >>> 0;
-            var sy = (qy - 15) >>> 0;
-            console.log(i,px,py,qx,qy,sx,sy);
-            // origin bmp, origin grid, stride, rows
-            var gx = (px - 30);
-            var gy = (py - 15);
-            var bx = (gx + 32);
-            var by = (gy + 32);
-            console.log(i,gx,gy,bx,by);
-            // overflow >>> 0 with negative results
-        }
-    },
     "peri2": function() {
         for (var i = 0; i < g.v.length; i++) {
             ren.peri3(g.v[i], i);
         }
     },
     "peri3": function(v0, i2) {
-        // loop over bitmap 32x32
-        // calc extended coords
-        // get grid world coords
-        // if hit, peek bit, render
         var px = v0.p[0];
         var py = v0.p[1];
         for (var y0 = 0; y0 < 32; y0++) {
@@ -540,246 +379,6 @@ var rgba = {
 }
 // palette
 var pal = [["rgba(58,242,88,1)","rgba(224,139,164,1)"],["rgba(237,50,105,1)","rgba(59,2,184,1)"],["rgba(118,14,11,1)","rgba(71,58,96,1)"],["rgba(242,0,109,1)","rgba(193,139,57,1)"],["rgba(143,126,31,1)","rgba(237,81,23,1)"],["rgba(244,30,206,1)","rgba(14,161,194,1)"],["rgba(186,77,171,1)","rgba(202,247,180,1)"],["rgba(149,21,161,1)","rgba(216,13,227,1)"],["rgba(65,26,87,1)","rgba(168,62,203,1)"],["rgba(207,207,38,1)","rgba(237,47,140,1)"],["rgba(242,137,137,1)","rgba(119,92,99,1)"],["rgba(152,111,72,1)","rgba(13,189,203,1)"],["rgba(180,220,179,1)","rgba(246,69,2,1)"],["rgba(247,42,231,1)","rgba(233,227,68,1)"]];
-var bits = {
-    "zero": function(n0) {
-        // n0 length array
-        // with all values zero
-        var r0 = [];
-        for (var i = 0; i < n0; i++) {
-            r0.push(0);
-        }
-        return r0;
-    },
-    "rev": function(d0) {
-        // reverse bits
-        var r0 = [];
-        for (var i = d0.length-1; i >= 0; i--) {
-            var d1 = d0[i];
-            r0.push(d1);
-        }
-        return r0;
-    },
-    "mirror": function() {
-        // reverse the columns
-        // input NxN square
-        // (iona sprites will all be 32x32)
-        // clone, and return copy
-    },
-    "flip": function(d0) {
-        // mirror vertical
-        // calculate stride
-        var n0 = Math.sqrt(d0.length);
-        var d1 = bits.cols(d0);
-        // init bitmap
-        var r0 = bits.zero(d0.length);
-        /*
-        for (var i = d1.length-1; i >= 0; i--) {
-            var d2 = d1[i];
-            for (var j = 0; j < d2.length; j++) {
-                var i0 = (j * n0) + i;
-                r0[i0] = d2[j];
-            }
-        }
-        */
-        for (var i = 0; i < d1.length; i++) {
-            var d2 = d1[i];
-            var r1 = bits.rev(d2);
-            for (var j = 0; j < d2.length; j++) {
-                var i0 = (j * n0) + i;
-                r0[i0] = r1[j];
-            }
-        }
-        return r0;
-    },
-    "swipe": function(d0) {
-        // mirror horizontal
-        // calculate stride
-        var n0 = Math.sqrt(d0.length);
-        var d1 = bits.rows(d0);
-        // init bitmap
-        var r0 = bits.zero(d0.length);
-        for (var i = 0; i < d1.length; i++) {
-            var d2 = d1[i];
-            var r1 = bits.rev(d2);
-            for (var j = 0; j < d2.length; j++) {
-                var i0 = (i * n0) + j;
-                r0[i0] = r1[j];
-            }
-        }
-        return r0;
-    },
-    "rows": function(d0) {
-        // return the rows of an NxN bitmap
-        // calculate stride
-        var n0 = Math.sqrt(d0.length);
-        // assume square input
-        // otherwise stride must be given
-        var d1 = [];
-        for (var i = 0; i < n0; i++) {
-            var d2 = bits.row(i, d0);
-            d1.push(d2);
-        }
-        return d1;
-    },
-    "cols": function(d0) {
-        // return the columns of an NxN bitmap
-        // calculate stride
-        var n0 = Math.sqrt(d0.length);
-        var d1 = [];
-        for (var i = 0; i < n0; i++) {
-            var d2 = bits.col(i, d0);
-            d1.push(d2);
-        }
-        return d1;
-    },
-    "row": function(n0, d0) {
-        // n-th row of NxN bitmap
-        // calculate stride
-        var n1 = Math.sqrt(d0.length);
-        // console.log("stride length: " + n1);
-        if (n0 > n1) {
-            console.log("row index must be within bounds. " + n0 + " is greater than bitmap stride " + n1);
-            return;
-        }
-        // start index of row n0
-        var i0 = (n0 * n1) >>> 0;
-        var d1 = [];
-        for (var i = 0; i < n1; i++) {
-            var i1 = i0 + i;
-            var d2 = d0[i1];
-            d1.push(d2);
-        }
-        return d1;
-        // n.b. n0 is zero-indexed
-    },
-    "col": function(n0, d0) {
-        // n-th col of NxN bitmap
-        var n1 = Math.sqrt(d0.length);
-        if (n0 > n1) {
-            console.log("col index must be within bounds. " + n0 + " is greater than bitmap stride " + n1);
-            return;
-        }
-        // start index of col n0
-        var i0 = n0;
-        var d1 = [];
-        for (var i = 0; i < n1; i++) {
-            var i1 = i0 + (i * n1);
-            var d2 = d0[i1];
-            d1.push(d2);
-        }
-        return d1;
-    },
-    "scale": function(n0) {
-        // scale by factor
-        // up to page dimension
-    },
-    "shuffle": function(d0) {
-        // randomize bits
-        // clone
-        var r0 = [];
-        for (var i = 0; i < d0.length; i++) {
-            var d1 = d0[i];
-            r0.push(d1);
-        }
-        // swap
-        for (var i = r0.length-1; i >= 0; i--) {
-            var t0 = r0[i];
-            // var i0 = Math.floor(Math.random() * (r0.length - i - 1));
-            // var i1 = i + i0;
-            var i0 = Math.floor(Math.random() * i);
-            var t1 = r0[i0];
-            r0[i0] = t0;
-            r0[i] = t1;
-        }
-        return r0;
-    },
-    "rotate": function(d0, n0) {
-        // turning norms
-        // clockwise, anti-
-        // pi/2, pi, 3*pi/2
-
-        // compose functions
-
-        // code for input n0
-        // 1 = 90' cw
-        // 2 = 180' cw
-        // 3 = 270' cw
-        // 4 = 90' ccw
-        // 5 = 180' ccw
-        // 6 = 270' ccw
-        // start counter at 1
-        // !0 == true in javascript
-
-        var n0 = n0;
-        if (!n0) {n0 = Math.floor(Math.random() * 6);}
-        var r0 = bits.zero(d0.length);
-        switch (n0) {
-            case 1:
-                // calculate stride
-                var n1 = Math.sqrt(d0.length);
-                var r1 = bits.rows(d0);
-                for (var i = 0; i < r1.length; i++) {
-                    var d1 = r1[i];
-                    for (var j = 0; j < d1.length; j++) {
-                        var i0 = n1 - 1 - i;
-                        var i1 = i0 + (j * n1);
-                        var d2 = d1[j];
-                        r0[i1] = d2;
-                    }
-                }
-                break;
-            case 2:
-                r0 = bits.rev(d0);
-                break;
-            case 3:
-                // calculate stride
-                var n1 = Math.sqrt(d0.length);
-                var r1 = bits.rows(d0);
-                for (var i = 0; i < r1.length; i++) {
-                    var d1 = r1[i];
-                    for (var j = d1.length; j >= 0; j--) {
-                        var i0 = i;
-                        var i1 = i0 + (j * n1);
-                        var d2 = d1[j];
-                        r0[i1] = d2;
-                    }
-                }
-                break;
-            case 4:
-                // calculate stride
-                var n1 = Math.sqrt(d0.length);
-                var r1 = bits.rows(d0);
-                for (var i = 0; i < r1.length; i++) {
-                    var d1 = r1[i];
-                    for (var j = d1.length; j >= 0; j--) {
-                        var i0 = i;
-                        var i1 = i0 + (j * n1);
-                        var d2 = d1[j];
-                        r0[i1] = d2;
-                    }
-                }
-                break;
-            case 5:
-                r0 = bits.rev(d0);
-                break;
-            case 6:
-                // calculate stride
-                var n1 = Math.sqrt(d0.length);
-                var r1 = bits.rows(d0);
-                for (var i = 0; i < r1.length; i++) {
-                    var d1 = r1[i];
-                    for (var j = 0; j < d1.length; j++) {
-                        var i0 = n1 - 1 - i;
-                        var i1 = i0 + (j * n1);
-                        var d2 = d1[j];
-                        r0[i1] = d2;
-                    }
-                }
-                break;
-        }
-        return r0;
-    }
-}
 // bitmap
 var bmp = {
     "init": function() {
@@ -789,19 +388,11 @@ var bmp = {
         for (var k in noto) {
             bmp.a["noto"].push(k);
         }
-        bmp.a["subs"] = [];
-        for (var k in subs) {
-            bmp.a["subs"].push(k);
-        }
-
         // bitmap data
         bmp.b = {};
         bmp.b["noto"] = {};
-        bmp.b["subs"] = {};
         bmp.b["suba"] = {};
 
-        // timed splits
-        var t0 = window.performance.now();
         // decode noto
         for (var i = 0; i < bmp.a["noto"].length; i++) {
             var k0 = bmp.a["noto"][i];
@@ -809,36 +400,10 @@ var bmp = {
             var b1 = base64DecToArr(b0);
             bmp.b["noto"][k0] = bmp.exp(b1);
         }
-        var t1 = window.performance.now();
-        // decode subs
-        for (var i = 0; i < bmp.a["subs"].length; i++) {
-            var k0 = bmp.a["subs"][i];
-            var b0 = subs[k0];
-            var b1 = base64DecToArr(b0);
-            bmp.b["subs"][k0] = bmp.exp(b1);
-        }
-        var t2 = window.performance.now();
         // decode suba
         var b0 = suba["suba_001"];
         var b1 = base64DecToArr(b0);
         bmp.b["suba"]["suba_001"] = bmp.exp(b1);
-        var t3 = window.performance.now();
-        console.log("noto decode time: " + (t1 - t0));
-        console.log("subs decode time: " + (t2 - t1));
-        console.log("suba decode time: " + (t3 - t2));
-        console.log("total elapsed: " + (t3 - t0));
-        // time = 250ms
-    },
-    "init2": function() {
-        // decoder functions
-        bmp.a = {};
-        bmp.b = [];
-        for (var k in noto) {
-            var b0 = noto[k];
-            var b1 = base64DecToArr(b0);
-            bmp.a[k] = bmp.exp(b1);
-            bmp.b.push(k);
-        }
     },
     "exp": function(b0) {
         var r0 = [];
@@ -857,25 +422,6 @@ var bmp = {
 // suba
 var suba = {
 	"suba_001":"////////////////////////j////4////+/////v////7////4////+P////D////wf//4AAH/8AAA/6AADH8A22w/ANtgP6AAAH/wAAD/+AAB///////////////////////////////////////////////////////////8=",
-}
-// submarines
-var subs = {
-	"subs_006":"///////////////////////8f///+z///+OYH/8fy9/8f/fv/f/75/n/+fOb//z72///P9PHz8/Xl65v9zOtZ9d7rXf3M4xz14f/+9f///vX///32///59v//+/N///f/D//H/+P8P//4A////////////////////////////8=",
-	"subs_010":"/////////7////4D/P/8+ft//f33f/3D93/93/d//c/3f/7v93//L/c//6/vj/+v7+w/L+/zgW/v+/xP7/v/3+e9/sf3nh1798/G+/fn9/vz8zf7+/rX+/v7N+f5+/fP/Pv3n/77+D//AAP///////////////////////////8=",
-	"subs_002":"/////////////////////////+H////N////3f///9H////X////1////9f////X/P/8F/z/A/f/AP/3+P//88v///vX//87wDgA+/+P//f/4eAH//wP//////////////////////////////////////////////////////8=",
-	"subs_001":"///////////////x////9/////f/+AP3/+P59/+f/Pf/f/5n/v4fT/ng3x/7//+/m///35f//9+2AH/vj/8H77//8C++f//vnz//79+B/2/H/ABv+H//7/8f/9/8n//f/CP/3//4fD///wH///////////////////////////8=",
-	"subs_008":"//////////////////////////////8H////c////1////7D///+v////r/gAAAD1tXdu9t2ttu9uq27zsqzd7dy3u/Yu2Hf71u/P5jswP/X97//6AF////q////6v///+/////f///+P/////////////////////////////8=",
-	"subs_013":"////////////////////4////+/////t////4f///+/////v////7//f/+//3f/v/93/7/wAAG/8AAAP8///7/f/88/P/+3Pz///38///5/P//+f8AQLP/P//P/wAAH///////////////////////////////////////////8=",
-	"subs_016":"////////////////////////////////////////////////////x////9///f+v//3/r//9/6///fAH/8AH9+C//8H/f/+/+L//wefBwJ///h6////+P/////////////////////////////////////////////////////8=",
-	"subs_014":"///////////////////////q////6v4D/+r+//+A/sP+YP7v/fUfb/v/56/7gfgv+7z/7/c/P+/3f7/f93+/v+9/v3/vf79/73+/v/c+f7/3wP/f9///3/v//e+b//HfwP/Hv/9/33/+H8D/4Owf/+/x//+P//////////////8=",
-	"subs_005":"/////////////////////////////////////////////////////////////7////6////+P////d//vAPAD8l///f3hCG3y///77z//+//AAAf//////////////////////////////////////////////////////////8=",
-	"subs_004":"///////////////x////7////+n/+f/j//z/7//+AO//1f8v/8f/v/7w/5f+vj/T/o+vy/4/+Hv/wf9L//x/+/5vxQv/P//7/4D9C//8i/v/v/+L/5//u+/f/SPocJHP7wb/H+H/+H+cf4f/3wB//9X////B////8/////////8=",
-	"subs_011":"//////////////////////////////8P/8//f//3/1//+/hP//3H5//934///pwn/j899//eQQP/7N9n/4EYf/+/Y//OQG//7tmP/+CnP//vj3//4Hz//+/w//+PD///2P///+f///////////////////////////////////8=",
-	"subs_007":"///////////////////////////////////////////////n////2////Tf//77f//2/3//1v7//4JJ/8l9tv+2//9/bf//v//UUl9/K63fgP/vz6r////////////////////////////////////////////////////////8=",
-	"subs_003":"/////////////////////////////////////////////gH///F0f//Pd3//LXef/m13n/jtd4/27Vev7q1Vp+6tVbfKrVW32q1dx9utXRebvV3vi7ldn+AD3AP//ANn////P////4////////////////////////////////8=",
-	"subs_009":"///////////////////////////////////D////3////BP///33///9B////X4f//Ee3/8HxJ+Ef/G/sf//h5////fABAAH3///v8AAAIfP///34EAgB/9fr///H6P///+7////g/////////////////////////////////8=",
-	"subs_012":"//////////+H////9////5f////H/n//1/4f/8f+z//X/u//x/4v/9f/r//X/5f/x//X/9f/x//H/8f/0//X/8v/1//T/8H/y//J/+h/7f/mAAB/4//+H/gEY8//9Wvj//Rje//3/6v/8H/L//48+///gDv///+D//////////8=",
-	"subs_015":"//////////////////////////////////////////////////////////////9P////X/7f/1/+3/9f/t8AB/4Af+fh/+vPn///3////5/mfA5/2YPx//////////////////////////////////////////////////////8="
 }
 // font
 var noto = {
