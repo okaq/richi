@@ -161,6 +161,7 @@ var g = {
         if (g.r[0].length == 0) {
             // advance frame
             g.r.splice(0,1);
+            g.o.splice(0,1);
             if (g.r.length == 0) {
                 g.stop();
                 return;
@@ -174,6 +175,8 @@ var g = {
             }
             var f0 = (Math.random() * g.r[0].length) >>> 0;
             var d0 = g.r[0].splice(f0, 1);
+            // swap
+            g.o[0][d0[0]] = g.o[1][d0[0]];
         }
         console.log(g.r);
         /*
