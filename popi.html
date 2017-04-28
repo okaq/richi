@@ -160,9 +160,21 @@ var g = {
         // end test
         if (g.r[0].length == 0) {
             // advance frame
+            g.r.splice(0,1);
+            if (g.r.length == 0) {
+                g.stop();
+            }
         }
+        // pop next diff
+        var f0 = (Math.random() * g.r[0].length) >>> 0;
+        var d0 = g.r[0].splice(f0, 1);
+        console.log(f0, d0[0]);
         console.log(g.o, g.r);
-        g.stop();
+        // g.stop();
+        // avg diff set length ~500
+        // total time at 1 pixel per second
+        // is just under one hour
+        // lets pick N per frame
     },
     "peri": function() {
         // move periscope one tick
