@@ -19,7 +19,8 @@ const (
     SAMP = "png"
     // SAVE = "subs"
     // SAVE = "bana"
-    SAVE = "suba"
+    // SAVE = "suba"
+    SAVE = "golf"
 )
 
 var (
