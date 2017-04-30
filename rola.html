@@ -45,7 +45,46 @@ var g = {
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
     },
     "start": function() {
-        // globals
+        // logo
+        swan.dive();
+    }
+}
+// intro
+var swan = {
+    "dive": function() {
+        swan.a = {};
+        swan.a.r = [1024,1024,448,28];
+        swan.a.c = dom.canvas(swan.a.r);
+        dom.add(swan.a.c);
+        swan.a.c.con.fillStyle = rgba.css([0,0,0,1.0]);
+        for (var i = 0; i < bmp.a["golf"].length; i++) {
+            if (bmp.a["golf"][i] == 1) {
+                continue;
+            }
+            var x0 = i % 32;
+            var y0 = (i / 32) >>> 0;
+            var x1 = (x0 * 32) >>> 0;
+            var y1 = (y0 * 32) >>> 0;
+            swan.a.c.con.fillRect(x1,y1,32,32);
+        }
+    }
+}
+// grid world
+var grid = {
+    "init": function() {
+
+    }
+}
+// sprites
+var sprite = {
+    "init": function() {
+
+    }
+}
+// render
+var ren = {
+    "data": function() {
+
     }
 }
 // dom
