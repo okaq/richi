@@ -47,6 +47,18 @@ var g = {
     "start": function() {
         // logo
         swan.dive();
+    },
+    "loop": function() {
+        g.tick = 0;
+        g.id = window.setInterval(g.frame, 1000);
+    },
+    "frame": function() {
+        console.log("tick: " + g.tick);
+        g.tick = g.tick + 1;
+        if (g.tick >= 8) {
+            window.clearInterval(g.id);
+            console.log("done.");
+        }
     }
 }
 // intro
@@ -67,6 +79,15 @@ var swan = {
             var y1 = (y0 * 32) >>> 0;
             swan.a.c.con.fillRect(x1,y1,32,32);
         }
+
+        console.log(bmp.a["oxy_a"].length);
+
+        // clear
+        window.setTimeout(swan.clear, 5000);
+    },
+    "clear": function() {
+        dom.remove(swan.a.c);
+        g.loop();
     }
 }
 // grid world
