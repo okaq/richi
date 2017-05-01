@@ -81,12 +81,31 @@ var swan = {
         }
 
         console.log(bmp.a["oxy_a"].length);
+        swan.b = {};
+        swan.b.t = ['o','k','a','q'];
+        swan.b.r = [];
+        swan.b.c = [];
+        for (var i = 0; i < swan.b.t.length; i++) {
+            var x0 = (i * (32 + 298)) >>> 0;
+            var y0 = 992;
+            var x1 = (x0 + 448) >>> 0;
+            var y1 = (y0 + 28) >>> 0;
+            swan.b.r[i] = [32,32,x1,y1];
+            swan.b.c[i] = dom.canvas(swan.b.r[i]);
+            dom.add(swan.b.c[i]);
+            var k0 = "oxy_" + swan.b.t[i];
+            var b0 = bmp.a[k0];
+            console.log(k0, b0);
+        }
 
         // clear
         window.setTimeout(swan.clear, 5000);
     },
     "clear": function() {
         dom.remove(swan.a.c);
+        for (var i = 0; i < swan.b.c.length; i++) {
+            dom.remove(swan.b.c[i]);
+        }
         g.loop();
     }
 }
