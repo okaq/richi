@@ -36,7 +36,7 @@ var g = {
         sprite.init();
 
         // test
-        ren.data();
+        // ren.data();
 
         // loop
         g.start();
@@ -49,6 +49,7 @@ var g = {
         swan.dive();
     },
     "loop": function() {
+        grid.pop();
         g.tick = 0;
         g.id = window.setInterval(g.frame, 1000);
     },
@@ -59,6 +60,8 @@ var g = {
             window.clearInterval(g.id);
             console.log("done.");
         }
+        grid.shuf();
+        ren.data();
     }
 }
 // intro
@@ -108,7 +111,7 @@ var swan = {
         }
 
         // clear
-        // window.setTimeout(swan.clear, 5000);
+        window.setTimeout(swan.clear, 5000);
     },
     "clear": function() {
         dom.remove(swan.a.c);
@@ -141,6 +144,19 @@ var grid = {
             var y1 = (y0 * grid.d.h) >>> 0;
             grid.a[i].r = [grid.d.w,grid.d.h,x1,y1];
             grid.a[i].c = dom.canvas(grid.a[i].r);
+            grid.a[i].b = [];
+        }
+
+    },
+    "shuf": function() {
+        for (var i = 0; i < grid.d.nt; i++) {
+            grid.a[i].b[0] = rgba.rmon();
+            grid.a[i].b[1] = rgba.rmon();
+        }
+    },
+    "pop": function() {
+        for (var i = 0; i < grid.d.nt; i++) {
+            dom.add(grid.a[i].c);
         }
     }
 }
