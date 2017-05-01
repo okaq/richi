@@ -134,15 +134,17 @@ var grid = {
         grid.d.ny = 30;
         grid.d.nt = 1800
         grid.d.mx = 0;
-        grid.d.my = 64;
+        grid.d.my = 120;
 
         for (var i = 0; i < grid.d.nt; i++) {
             grid.a[i] = {};
-            var x0 = i % grid.d.w;
+            var x0 = i % grid.d.nx;
             var x1 = (x0 * grid.d.w) >>> 0;
-            var y0 = (i / grid.d.w) >>> 0;
+            var x2 = (x1 + grid.d.mx) >>> 0;
+            var y0 = (i / grid.d.nx) >>> 0;
             var y1 = (y0 * grid.d.h) >>> 0;
-            grid.a[i].r = [grid.d.w,grid.d.h,x1,y1];
+            var y2 = (y1 + grid.d.my) >>> 0;
+            grid.a[i].r = [grid.d.w,grid.d.h,x2,y2];
             grid.a[i].c = dom.canvas(grid.a[i].r);
             grid.a[i].b = [];
         }
@@ -169,7 +171,12 @@ var sprite = {
 // render
 var ren = {
     "data": function() {
-
+        for (var i = 0; i < grid.d.nt; i++) {
+            grid.a[i].c.con.fillStyle = grid.a[i].b[0];
+            grid.a[i].c.con.fillRect(0,0,grid.a[i].c.can.width,grid.a[i].c.can.height);
+            grid.a[i].c.con.fillStyle = grid.a[i].b[1];
+            grid.a[i].c.con.fillRect(12,12,grid.a[i].c.can.width-24,grid.a[i].c.can.height-24);
+        }
     }
 }
 // dom
