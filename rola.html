@@ -108,7 +108,7 @@ var swan = {
         }
 
         // clear
-        window.setTimeout(swan.clear, 5000);
+        // window.setTimeout(swan.clear, 5000);
     },
     "clear": function() {
         dom.remove(swan.a.c);
@@ -121,7 +121,27 @@ var swan = {
 // grid world
 var grid = {
     "init": function() {
+        // list
+        grid.a = [];
+        // globals
+        grid.d = {};
+        grid.d.w = 32;
+        grid.d.h = 32;
+        grid.d.nx = 60;
+        grid.d.ny = 30;
+        grid.d.nt = 1800
+        grid.d.mx = 0;
+        grid.d.my = 64;
 
+        for (var i = 0; i < grid.d.nt; i++) {
+            grid.a[i] = {};
+            var x0 = i % grid.d.w;
+            var x1 = (x0 * grid.d.w) >>> 0;
+            var y0 = (i / grid.d.w) >>> 0;
+            var y1 = (y0 * grid.d.h) >>> 0;
+            grid.a[i].r = [grid.d.w,grid.d.h,x1,y1];
+            grid.a[i].c = dom.canvas(grid.a[i].r);
+        }
     }
 }
 // sprites
