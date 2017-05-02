@@ -50,6 +50,7 @@ var g = {
     },
     "loop": function() {
         grid.pop();
+        grid.han();
         g.tick = 0;
         g.id = window.setInterval(g.frame, 1000);
     },
@@ -167,6 +168,20 @@ var grid = {
         for (var i = 0; i < grid.d.nt; i++) {
             dom.add(grid.a[i].c);
         }
+    },
+    "han": function() {
+        for (var i = 0; i < grid.d.nt; i++) {
+            grid.a[i].c.can.dataset.x = i;
+            grid.a[i].c.can.addEventListener("click", grid.click, false);
+        }
+    },
+    "click": function(e) {
+        console.log(e);
+        // abstractions build
+        // layout and patterns: grids, text
+        // data, bitmaps and rendering
+        // canvas and ui events
+        // scene change management
     }
 }
 // sprites
