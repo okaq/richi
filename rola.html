@@ -51,7 +51,7 @@ var g = {
     "loop": function() {
         grid.pop();
         g.tick = 0;
-        g.id = window.setInterval(g.frame, 10000);
+        g.id = window.setInterval(g.frame, 1000);
     },
     "frame": function() {
         console.log("tick: " + g.tick);
@@ -61,7 +61,7 @@ var g = {
             console.log("done.");
         }
         grid.shuf();
-        // ren.data();
+        ren.data();
         var t0 = window.performance.now();
         ren.data2();
         console.log("split time: " + (window.performance.now() - t0) + "ms.");
@@ -186,7 +186,13 @@ var ren = {
         }
     },
     "data2": function() {
+        var n0 = 0;
         for (var i = 0; i < grid.d.nt; i++) {
+            var f0 = Math.random();
+            if (f0 > 0.0625) {
+                continue;
+            }
+            n0 = n0 + 1;
             var c0 = grid.a[i].c;
             var b0 = grid.a[i].b[0];
             var b1 = grid.a[i].b[1];
@@ -202,6 +208,7 @@ var ren = {
                 c0.con.fillRect(x0,y0,1,1);
             }
         }
+        console.log(" sprite count: " + n0)
     }
 }
 // dom
