@@ -51,7 +51,7 @@ var g = {
     "loop": function() {
         grid.pop();
         g.tick = 0;
-        g.id = window.setInterval(g.frame, 1000);
+        g.id = window.setInterval(g.frame, 10000);
     },
     "frame": function() {
         console.log("tick: " + g.tick);
@@ -61,7 +61,14 @@ var g = {
             console.log("done.");
         }
         grid.shuf();
-        ren.data();
+        // ren.data();
+        var t0 = window.performance.now();
+        ren.data2();
+        console.log("split time: " + (window.performance.now() - t0) + "ms.");
+        // render 1800 sprites
+        // each 32x32 at 1px draw resolution
+        // render time = 5000ms
+        // requires 2 frames to "sync up"
     }
 }
 // intro
@@ -176,6 +183,24 @@ var ren = {
             grid.a[i].c.con.fillRect(0,0,grid.a[i].c.can.width,grid.a[i].c.can.height);
             grid.a[i].c.con.fillStyle = grid.a[i].b[1];
             grid.a[i].c.con.fillRect(12,12,grid.a[i].c.can.width-24,grid.a[i].c.can.height-24);
+        }
+    },
+    "data2": function() {
+        for (var i = 0; i < grid.d.nt; i++) {
+            var c0 = grid.a[i].c;
+            var b0 = grid.a[i].b[0];
+            var b1 = grid.a[i].b[1];
+            var d0 = bmp.a["suba"];
+            for (var j = 0; j < d0.length; j++) {
+                var x0 = j % 32;
+                var y0 = (j / 32) >>> 0;
+                if (d0[j] == 0) {
+                    c0.con.fillStyle = b0;
+                } else {
+                    c0.con.fillStyle = b1;
+                }
+                c0.con.fillRect(x0,y0,1,1);
+            }
         }
     }
 }
