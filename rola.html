@@ -254,6 +254,9 @@ var bmp = {
         // decode golf man logo
         var b0 = base64DecToArr(golf["golf_001"]);
         bmp.a["golf"] = bmp.exp(b0);
+        // decode submarine sprite
+        var b0 = base64DecToArr(suba["suba_001"]);
+        bmp.a["suba"] = bmp.exp(b0);
     },
     "exp": function(b0) {
         // expansion of uint8array
@@ -270,6 +273,10 @@ var bmp = {
         }
         return r0;
     }
+}
+// suba
+var suba = {
+	"suba_001":"////////////////////////j////4////+/////v////7////4////+P////D////wf//4AAH/8AAA/6AADH8A22w/ANtgP6AAAH/wAAD/+AAB///////////////////////////////////////////////////////////8=",
 }
 // golf man
 var golf = {
