@@ -197,7 +197,19 @@ var grid = {
 // sprites
 var sprite = {
     "init": function() {
-
+        // network
+        sprite.a = [];
+        for (var i = 0; i < grid.d.nt; i++) {
+            var f0 = Math.random();
+            if (f0 < 0.06) {
+                sprite.a.push(1);
+            } else {
+                sprite.a.push(0);
+            }
+        }
+        // use custom int enum encoding
+        // to determine sprite orientation, position
+        // map to bits transform function
     }
 }
 // render
