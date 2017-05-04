@@ -225,7 +225,15 @@ var sprite = {
         // weights of edges is automatic measure of distance
         // play moves: consolidate, pancake, evenly distribute forces
 
-        // statis
+        // six even shades of grey from black to white
+        sprite.b = [];
+        var g0 = (255 / 5) >>> 0;
+        for (var i = 0; i < 6; i++) {
+            var g1 = (i * g0) >>> 0;
+            var g2 = [g1,g1,g1,1.0];
+            sprite.b.push(g2);
+        }
+        console.log(g0, sprite.b);
     }
 }
 // render
