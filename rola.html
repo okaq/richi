@@ -335,6 +335,247 @@ var rgba = {
         return rgba.mono(c0);
     }
 }
+// bit ops
+var bits = {
+    "zero": function(n0) {
+        // n0 length array
+        // with all values zero
+        var r0 = [];
+        for (var i = 0; i < n0; i++) {
+            r0.push(0);
+        }
+        return r0;
+    },
+    "rev": function(d0) {
+        // reverse bits
+        var r0 = [];
+        for (var i = d0.length-1; i >= 0; i--) {
+            var d1 = d0[i];
+            r0.push(d1);
+        }
+        return r0;
+    },
+    "mirror": function() {
+        // reverse the columns
+        // input NxN square
+        // (iona sprites will all be 32x32)
+        // clone, and return copy
+    },
+    "flip": function(d0) {
+        // mirror vertical
+        // calculate stride
+        var n0 = Math.sqrt(d0.length);
+        var d1 = bits.cols(d0);
+        // init bitmap
+        var r0 = bits.zero(d0.length);
+        /*
+        for (var i = d1.length-1; i >= 0; i--) {
+            var d2 = d1[i];
+            for (var j = 0; j < d2.length; j++) {
+                var i0 = (j * n0) + i;
+                r0[i0] = d2[j];
+            }
+        }
+        */
+        for (var i = 0; i < d1.length; i++) {
+            var d2 = d1[i];
+            var r1 = bits.rev(d2);
+            for (var j = 0; j < d2.length; j++) {
+                var i0 = (j * n0) + i;
+                r0[i0] = r1[j];
+            }
+        }
+        return r0;
+    },
+    "swipe": function(d0) {
+        // mirror horizontal
+        // calculate stride
+        var n0 = Math.sqrt(d0.length);
+        var d1 = bits.rows(d0);
+        // init bitmap
+        var r0 = bits.zero(d0.length);
+        for (var i = 0; i < d1.length; i++) {
+            var d2 = d1[i];
+            var r1 = bits.rev(d2);
+            for (var j = 0; j < d2.length; j++) {
+                var i0 = (i * n0) + j;
+                r0[i0] = r1[j];
+            }
+        }
+        return r0;
+    },
+    "rows": function(d0) {
+        // return the rows of an NxN bitmap
+        // calculate stride
+        var n0 = Math.sqrt(d0.length);
+        // assume square input
+        // otherwise stride must be given
+        var d1 = [];
+        for (var i = 0; i < n0; i++) {
+            var d2 = bits.row(i, d0);
+            d1.push(d2);
+        }
+        return d1;
+    },
+    "cols": function(d0) {
+        // return the columns of an NxN bitmap
+        // calculate stride
+        var n0 = Math.sqrt(d0.length);
+        var d1 = [];
+        for (var i = 0; i < n0; i++) {
+            var d2 = bits.col(i, d0);
+            d1.push(d2);
+        }
+        return d1;
+    },
+    "row": function(n0, d0) {
+        // n-th row of NxN bitmap
+        // calculate stride
+        var n1 = Math.sqrt(d0.length);
+        // console.log("stride length: " + n1);
+        if (n0 > n1) {
+            console.log("row index must be within bounds. " + n0 + " is greater than bitmap stride " + n1);
+            return;
+        }
+        // start index of row n0
+        var i0 = (n0 * n1) >>> 0;
+        var d1 = [];
+        for (var i = 0; i < n1; i++) {
+            var i1 = i0 + i;
+            var d2 = d0[i1];
+            d1.push(d2);
+        }
+        return d1;
+        // n.b. n0 is zero-indexed
+    },
+    "col": function(n0, d0) {
+        // n-th col of NxN bitmap
+        var n1 = Math.sqrt(d0.length);
+        if (n0 > n1) {
+            console.log("col index must be within bounds. " + n0 + " is greater than bitmap stride " + n1);
+            return;
+        }
+        // start index of col n0
+        var i0 = n0;
+        var d1 = [];
+        for (var i = 0; i < n1; i++) {
+            var i1 = i0 + (i * n1);
+            var d2 = d0[i1];
+            d1.push(d2);
+        }
+        return d1;
+    },
+    "scale": function(n0) {
+        // scale by factor
+        // up to page dimension
+    },
+    "shuffle": function(d0) {
+        // randomize bits
+        // clone
+        var r0 = [];
+        for (var i = 0; i < d0.length; i++) {
+            var d1 = d0[i];
+            r0.push(d1);
+        }
+        // swap
+        for (var i = r0.length-1; i >= 0; i--) {
+            var t0 = r0[i];
+            // var i0 = Math.floor(Math.random() * (r0.length - i - 1));
+            // var i1 = i + i0;
+            var i0 = Math.floor(Math.random() * i);
+            var t1 = r0[i0];
+            r0[i0] = t0;
+            r0[i] = t1;
+        }
+        return r0;
+    },
+    "rotate": function(d0, n0) {
+        // turning norms
+        // clockwise, anti-
+        // pi/2, pi, 3*pi/2
+
+        // compose functions
+
+        // code for input n0
+        // 1 = 90' cw
+        // 2 = 180' cw
+        // 3 = 270' cw
+        // 4 = 90' ccw
+        // 5 = 180' ccw
+        // 6 = 270' ccw
+        // start counter at 1
+        // !0 == true in javascript
+
+        var n0 = n0;
+        if (!n0) {n0 = Math.floor(Math.random() * 6);}
+        var r0 = bits.zero(d0.length);
+        switch (n0) {
+            case 1:
+                // calculate stride
+                var n1 = Math.sqrt(d0.length);
+                var r1 = bits.rows(d0);
+                for (var i = 0; i < r1.length; i++) {
+                    var d1 = r1[i];
+                    for (var j = 0; j < d1.length; j++) {
+                        var i0 = n1 - 1 - i;
+                        var i1 = i0 + (j * n1);
+                        var d2 = d1[j];
+                        r0[i1] = d2;
+                    }
+                }
+                break;
+            case 2:
+                r0 = bits.rev(d0);
+                break;
+            case 3:
+                // calculate stride
+                var n1 = Math.sqrt(d0.length);
+                var r1 = bits.rows(d0);
+                for (var i = 0; i < r1.length; i++) {
+                    var d1 = r1[i];
+                    for (var j = d1.length; j >= 0; j--) {
+                        var i0 = i;
+                        var i1 = i0 + (j * n1);
+                        var d2 = d1[j];
+                        r0[i1] = d2;
+                    }
+                }
+                break;
+            case 4:
+                // calculate stride
+                var n1 = Math.sqrt(d0.length);
+                var r1 = bits.rows(d0);
+                for (var i = 0; i < r1.length; i++) {
+                    var d1 = r1[i];
+                    for (var j = d1.length; j >= 0; j--) {
+                        var i0 = i;
+                        var i1 = i0 + (j * n1);
+                        var d2 = d1[j];
+                        r0[i1] = d2;
+                    }
+                }
+                break;
+            case 5:
+                r0 = bits.rev(d0);
+                break;
+            case 6:
+                // calculate stride
+                var n1 = Math.sqrt(d0.length);
+                var r1 = bits.rows(d0);
+                for (var i = 0; i < r1.length; i++) {
+                    var d1 = r1[i];
+                    for (var j = 0; j < d1.length; j++) {
+                        var i0 = n1 - 1 - i;
+                        var i1 = i0 + (j * n1);
+                        var d2 = d1[j];
+                        r0[i1] = d2;
+                    }
+                }
+                break;
+        }
+        return r0;
+    }
+}
 // bitmap
 var bmp = {
     "init": function() {
