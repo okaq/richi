@@ -227,12 +227,14 @@ var sprite = {
 
         // six even shades of grey from black to white
         sprite.b = [];
-        var g0 = (255 / 5) >>> 0;
-        for (var i = 0; i < 6; i++) {
+        sprite.b[0] = [0,0,0,1.0];
+        var g0 = (255 / 6) >>> 0;
+        for (var i = 1; i <= 5; i++) {
             var g1 = (i * g0) >>> 0;
             var g2 = [g1,g1,g1,1.0];
             sprite.b.push(g2);
         }
+        sprite.b[6] = [255,255,255,1.0];
         console.log(g0, sprite.b);
     }
 }
