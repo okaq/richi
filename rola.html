@@ -601,6 +601,9 @@ var bmp = {
         // decode submarine sprite
         var b0 = base64DecToArr(suba["suba_001"]);
         bmp.a["suba"] = bmp.exp(b0);
+        // decode whale sprite
+        var b0 = base64DecToArr(suba["wale_001"]);
+        bmp.a["wale"] = bmp.exp(b0);
     },
     "exp": function(b0) {
         // expansion of uint8array
@@ -617,6 +620,10 @@ var bmp = {
         }
         return r0;
     }
+}
+// whale
+var wale = {
+	"wale_001":"////////////4f///4AP//8AA///AAH//gAB//wAAP/4AAA/8AAAH/AAAA/gAAAH4AAAB8AAAAPAAAADwAAAM8AIADHAHAAB4D4AAeB+EAHwfhgB+H8YAfx/CAP4PwgD8B+IB+APyA/gD8w/4Q/n/+OP///33/////////////8=",
 }
 // suba
 var suba = {

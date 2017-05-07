@@ -20,7 +20,8 @@ const (
     // SAVE = "subs"
     // SAVE = "bana"
     // SAVE = "suba"
-    SAVE = "golf"
+    // SAVE = "golf"
+    SAVE = "wale"
 )
 
 var (
