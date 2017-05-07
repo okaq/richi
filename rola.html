@@ -244,6 +244,12 @@ var sprite = {
         // properties of the index set
         // connectivity, sparesness, closeness
         // min number of moves to achieve "non-porosity"
+
+        // diffusion of seed
+        // forms a probability space
+        // re-calculated upon each iteration
+        // the space represents a sonor ping
+        // object's location in the grid world
     }
 }
 // render
@@ -275,6 +281,10 @@ var ren = {
                 d0 = bmp.a["wale"];
             } else {
                 d0 = bmp.a["bell"];
+            }
+            var f2 = Math.random();
+            if (f2 <= 0.5) {
+                d0 = bits.swipe(d0);
             }
             for (var j = 0; j < d0.length; j++) {
                 var x0 = j % 32;
