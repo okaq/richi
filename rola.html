@@ -59,7 +59,8 @@ var g = {
         g.tick = g.tick + 1;
         if (g.tick >= 8) {
             window.clearInterval(g.id);
-            console.log("done.");
+            // console.log("done.");
+            window.setTimeout(g.seed, 1000);
         }
         grid.shuf();
         ren.data();
@@ -70,6 +71,17 @@ var g = {
         // each 32x32 at 1px draw resolution
         // render time = 5000ms
         // requires 2 frames to "sync up"
+    },
+    "seed": function() {
+        // reset the grid
+        // create sets for each type
+        // and an available set of
+        // non-occupied nodes
+        var g0 = [];
+        for (var i = 0; i < grid.d.nt; i++) {
+            g0[i] = i;
+        }
+        var b0 = ["suba","wale","bell"];
     }
 }
 // intro
