@@ -82,6 +82,13 @@ var g = {
             g0[i] = i;
         }
         var b0 = ["suba","wale","bell"];
+        while (g0.length > 0) {
+            var i0 = (Math.random() * g0.length) >>> 0;
+            var b1 = (Math.random() * b0.length) >>> 0;
+            grid.a[i0].d = b0[b1];
+            g0.splice(i0, 1);
+        }
+        console.log(grid.a);
     }
 }
 // intro
