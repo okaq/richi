@@ -96,6 +96,11 @@ var g = {
         // examine each NxN kernel
         // set growth or decay conditions
         // and propagate through grid net
+        var kx = 3;
+        var ky = 3;
+        var kt = (kx*ky) >>> 0;
+        var nt = (grid.d.nt / kt) >>> 0;
+        console.log(kx,ky,kt,nt);
     }
 }
 // intro
