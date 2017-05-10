@@ -99,8 +99,14 @@ var g = {
         var kx = 3;
         var ky = 3;
         var kt = (kx*ky) >>> 0;
+        var nx = (grid.d.nx / kx) >>> 0;
+        var ny = (grid.d.ny / ky) >>> 0;
         var nt = (grid.d.nt / kt) >>> 0;
         console.log(kx,ky,kt,nt);
+        for (var i = 0; i < nt; i++) {
+            // obtain kernel subset
+
+        }
     }
 }
 // intro
