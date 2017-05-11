@@ -103,6 +103,8 @@ var g = {
         var ny = (grid.d.ny / ky) >>> 0;
         var nt = (grid.d.nt / kt) >>> 0;
         console.log(kx,ky,kt,nx,ny,nt);
+        // accumulator
+        var m0 = [];
         for (var i = 0; i < nt; i++) {
             // obtain kernel subset
             var s0 = [];
@@ -145,12 +147,26 @@ var g = {
                 "wale": 0,
                 "bell": 0
             };
+            m0[i] = {};
+            m0[i].s = s0;
             for (var j = 0; j < s0.length; j++) {
                 var j1 = s0[j];
                 var d1 = grid.a[j1].d;
                 d0[d1] = d0[d1] + 1;
             }
-            console.log(d0);
+            // console.log(d0);
+            m0[i].d = d0;
+            m1 = "";
+            m2 = 0;
+            for (var k in m0[i].d) {
+                var d2 = m0[i].d[k];
+                if (d2 >= m2) {
+                    m2 = d2;
+                    m1 = k;
+                }
+            }
+            m0[i].m = m1;
+            console.log(m0);
         }
     }
 }
