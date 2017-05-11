@@ -102,15 +102,17 @@ var g = {
         var nx = (grid.d.nx / kx) >>> 0;
         var ny = (grid.d.ny / ky) >>> 0;
         var nt = (grid.d.nt / kt) >>> 0;
-        console.log(kx,ky,kt,nt);
+        console.log(kx,ky,kt,nx,ny,nt);
         for (var i = 0; i < nt; i++) {
             // obtain kernel subset
             var s0 = [];
             var x0 = i % nx;
-            var y0 = (i / nx);
-            var x1 = (x0 * nx) >>> 0;
-            var y1 = (y0 * nx) >>> 0;
-            var i0 = ((y1 * grid.d.nx) + x1) >>> 0;
+            var y0 = (i / nx) >>> 0;
+            var x1 = (x0 * kx) >>> 0;
+            var y1 = (y0 * kx) >>> 0;
+            var i0 = (y1 * grid.d.nx) >>> 0;
+            i0 = (i0 + x1) >>> 0;
+            // console.log(x0,y0,x1,y1,i0);
             s0[0] = i0+0;
             s0[1] = i0+1;
             s0[2] = i0+2;
@@ -120,6 +122,7 @@ var g = {
             s0[6] = 2*grid.d.nx+i0+0;
             s0[7] = 2*grid.d.nx+i0+1;
             s0[8] = 2*grid.d.nx+i0+2;
+            // console.log(s0);
             // test
             var c0 = rgba.rand();
             for (var j = 0; j < s0.length; j++) {
