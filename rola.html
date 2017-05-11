@@ -124,6 +124,7 @@ var g = {
             s0[8] = 2*grid.d.nx+i0+2;
             // console.log(s0);
             // test
+            /*
             var c0 = rgba.rand();
             for (var j = 0; j < s0.length; j++) {
                 var i1 = s0[j];
@@ -131,7 +132,25 @@ var g = {
                 c1.con.fillStyle = c0;
                 c1.con.fillRect(0,0,c1.can.width,c1.can.height);
             }
+            */
             // majority wins kernel space
+            // colors
+            var c0 = [];
+            c0[0] = rgba.rand();
+            c0[1] = rgba.rand();
+            c0[2] = rgba.rand();
+            // count
+            var d0 = {
+                "suba": 0,
+                "wale": 0,
+                "bell": 0
+            };
+            for (var j = 0; j < s0.length; j++) {
+                var j1 = s0[j];
+                var d1 = grid.a[j1].d;
+                d0[d1] = d0[d1] + 1;
+            }
+            console.log(d0);
         }
     }
 }
