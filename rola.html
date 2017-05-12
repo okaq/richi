@@ -175,9 +175,20 @@ var g = {
             for (var j = 0; j < m0[i].s.length; j++) {
                 var i0 = m0[i].s[j];
                 var c0 = grid.a[i0].c;
-                var f0 = Math.random();
-                c0.con.fillStyle = f0 >= 0.5 ? rgba0 : rgba1;
-                c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+                // var f0 = Math.random();
+                // c0.con.fillStyle = f0 >= 0.5 ? rgba0 : rgba1;
+                // c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+                var b0 = bmp.a[m0[i].m];
+                for (var k = 0; k < b0.length; k++) {
+                    var x0 = k % 32;
+                    var y0 = (k / 32) >>> 0;
+                    if (b0[k] == 1) {
+                        c0.con.fillStyle = rgba1;
+                    } else {
+                        c0.con.fillStyle = rgba0;
+                    }
+                    c0.con.fillRect(x0,y0,1,1);
+                }
             }
         }
     }
