@@ -166,7 +166,19 @@ var g = {
                 }
             }
             m0[i].m = m1;
-            console.log(m0);
+            // console.log(m0);
+        }
+        console.log(m0);
+        for (var i = 0; i < m0.length; i++) {
+            var rgba0 = rgba.rand();
+            var rgba1 = rgba.rand();
+            for (var j = 0; j < m0[i].s.length; j++) {
+                var i0 = m0[i].s[j];
+                var c0 = grid.a[i0].c;
+                var f0 = Math.random();
+                c0.con.fillStyle = f0 >= 0.5 ? rgba0 : rgba1;
+                c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+            }
         }
     }
 }
