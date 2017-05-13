@@ -81,7 +81,7 @@ var g = {
         for (var i = 0; i < grid.d.nt; i++) {
             g0[i] = i;
         }
-        var b0 = ["suba","wale","bell","jely","sqid","shrk"];
+        var b0 = ["suba","wale","bell","jely","sqid","shrk","mray"];
         while (g0.length > 0) {
             var i0 = (Math.random() * g0.length) >>> 0;
             var b1 = (Math.random() * b0.length) >>> 0;
@@ -148,7 +148,8 @@ var g = {
                 "bell": 0,
                 "jely": 0,
                 "sqid": 0,
-                "shrk": 0
+                "shrk": 0,
+                "mray": 0
             };
             m0[i] = {};
             m0[i].s = s0;
@@ -764,6 +765,9 @@ var bmp = {
         // decode shrk sprite
         var b0 = base64DecToArr(shrk["shrk_001"]);
         bmp.a["shrk"] = bmp.exp(b0);
+        // decode ray sprite
+        var b0 = base64DecToArr(mray["mray_001"]);
+        bmp.a["mray"] = bmp.exp(b0);
     },
     "exp": function(b0) {
         // expansion of uint8array
@@ -780,6 +784,10 @@ var bmp = {
         }
         return r0;
     }
+}
+// manta
+var mray = {
+	"mray_001":"//////7//9/8/h/P/fwP7/jAAMf4AAAH+AYYB/gECAf4AAAH+AAAB/AAAAPwAAAD8AAAA/BAAIPwwADD8IAAQ+CAAEHggABB4QMwIeEHOCHhDzwh8A88A/AefgP4fn+H+H8/h///P////n////5/////P////z////5///////8=",
 }
 // shark
 var shrk = {
