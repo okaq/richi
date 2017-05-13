@@ -81,7 +81,7 @@ var g = {
         for (var i = 0; i < grid.d.nt; i++) {
             g0[i] = i;
         }
-        var b0 = ["suba","wale","bell"];
+        var b0 = ["suba","wale","bell","jely"];
         while (g0.length > 0) {
             var i0 = (Math.random() * g0.length) >>> 0;
             var b1 = (Math.random() * b0.length) >>> 0;
@@ -145,7 +145,8 @@ var g = {
             var d0 = {
                 "suba": 0,
                 "wale": 0,
-                "bell": 0
+                "bell": 0,
+                "jely": 0
             };
             m0[i] = {};
             m0[i].s = s0;
@@ -752,6 +753,9 @@ var bmp = {
         // decode bell sprite
         var b0 = base64DecToArr(bell["bell_001"]);
         bmp.a["bell"] = bmp.exp(b0);
+        // decode jely sprite
+        var b0 = base64DecToArr(jely["jely_001"]);
+        bmp.a["jely"] = bmp.exp(b0);
     },
     "exp": function(b0) {
         // expansion of uint8array
@@ -768,6 +772,10 @@ var bmp = {
         }
         return r0;
     }
+}
+// jellyfish
+var jely = {
+	"jely_001":"///////wA///7/3//9/+//+7/3//d/+//27/v/7t/9/+2//f/dv/7/3b/+/9t//v+/f/9/vv//f77//39///++////33///7+AAAB/zMzM/8zMzP/MzMz/mZmZ/5mZmf+ZmZn/mZmZ/zMzM/8zMzP/MzMz/5mZmf+ZmZn/////8=",
 }
 // diving bell
 var bell = {
