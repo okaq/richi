@@ -81,7 +81,7 @@ var g = {
         for (var i = 0; i < grid.d.nt; i++) {
             g0[i] = i;
         }
-        var b0 = ["suba","wale","bell","jely"];
+        var b0 = ["suba","wale","bell","jely","sqid","shrk"];
         while (g0.length > 0) {
             var i0 = (Math.random() * g0.length) >>> 0;
             var b1 = (Math.random() * b0.length) >>> 0;
@@ -146,7 +146,9 @@ var g = {
                 "suba": 0,
                 "wale": 0,
                 "bell": 0,
-                "jely": 0
+                "jely": 0,
+                "sqid": 0,
+                "shrk": 0
             };
             m0[i] = {};
             m0[i].s = s0;
@@ -756,6 +758,12 @@ var bmp = {
         // decode jely sprite
         var b0 = base64DecToArr(jely["jely_001"]);
         bmp.a["jely"] = bmp.exp(b0);
+        // decode sqid sprite
+        var b0 = base64DecToArr(sqid["sqid_001"]);
+        bmp.a["sqid"] = bmp.exp(b0);
+        // decode shrk sprite
+        var b0 = base64DecToArr(shrk["shrk_001"]);
+        bmp.a["shrk"] = bmp.exp(b0);
     },
     "exp": function(b0) {
         // expansion of uint8array
@@ -772,6 +780,14 @@ var bmp = {
         }
         return r0;
     }
+}
+// shark
+var shrk = {
+	"shrk_001":"/////////////g////zn///58///+uv///P5///3/v//5/5//+//f//v/3//3/9//9//v/+//7//f/+//3//v/9+B7//fKHf/vio3/36qt/94qrv/er6d/vL33f739d3+9dVd/vVVXf71VVz+8AAe/f///v3///78AAAA/////8=",
+}
+// squid
+var sqid = {
+	"sqid_001":"///////////////////H////A////gP///wB///wAf//4AD//+Eg///AAH//gAB//4AAP/8AAD//AAB//4AB//zAB//8AAY/8QAAn/OQCJ/yGJzP5nnEz+Zzxs/HN+Znz5PnZ8+T42PfEfMz3hjzM8z+OZPN/zn37/+Z5/////8=",
 }
 // jellyfish
 var jely = {
