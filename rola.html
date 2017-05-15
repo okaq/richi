@@ -82,7 +82,7 @@ var g = {
             g0[i] = i;
         }
         var b0 = ["suba","wale","bell","jely","sqid","shrk","mray",
-        "mahi","kelp"];
+        "mahi","kelp","corl"];
         while (g0.length > 0) {
             var i0 = (Math.random() * g0.length) >>> 0;
             var b1 = (Math.random() * b0.length) >>> 0;
@@ -92,6 +92,11 @@ var g = {
         // console.log(grid.a);
 
         g.grow();
+
+        // populate an ocean bottom
+        // kelp and coral bitmaps
+        // kelp can be mirrored
+        // coral can be flipped or mirrored
     },
     "grow": function() {
         // examine each NxN kernel
@@ -152,7 +157,8 @@ var g = {
                 "shrk": 0,
                 "mray": 0,
                 "mahi": 0,
-                "kelp": 0
+                "kelp": 0,
+                "corl": 0
             };
             m0[i] = {};
             m0[i].s = s0;
@@ -777,6 +783,9 @@ var bmp = {
         // decode kelp sprite
         var b0 = base64DecToArr(kelp["kelp_001"]);
         bmp.a["kelp"] = bmp.exp(b0);
+        // decode corl sprite
+        var b0 = base64DecToArr(corl["corl_001"]);
+        bmp.a["corl"] = bmp.exp(b0);
     },
     "exp": function(b0) {
         // expansion of uint8array
@@ -793,6 +802,10 @@ var bmp = {
         }
         return r0;
     }
+}
+// coral
+var corl = {
+	"corl_001":"//////////////+P///+B////BP//DJ7//iAC//AXln/nZ7d/F2+3eD9uZnr/7sz4Debc+OEGnvZn8iX3ccpB84fbWPHeENzn0PbM5w/mgeX4bj/08e0/8jfsf/Mf4//7+Af/4/if/+TB///mGf//8RP///xH/////////////8=",
 }
 // seaweed
 var kelp = {
