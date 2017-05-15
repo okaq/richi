@@ -81,7 +81,8 @@ var g = {
         for (var i = 0; i < grid.d.nt; i++) {
             g0[i] = i;
         }
-        var b0 = ["suba","wale","bell","jely","sqid","shrk","mray"];
+        var b0 = ["suba","wale","bell","jely","sqid","shrk","mray",
+        "mahi","kelp"];
         while (g0.length > 0) {
             var i0 = (Math.random() * g0.length) >>> 0;
             var b1 = (Math.random() * b0.length) >>> 0;
@@ -149,7 +150,9 @@ var g = {
                 "jely": 0,
                 "sqid": 0,
                 "shrk": 0,
-                "mray": 0
+                "mray": 0,
+                "mahi": 0,
+                "kelp": 0
             };
             m0[i] = {};
             m0[i].s = s0;
@@ -768,6 +771,12 @@ var bmp = {
         // decode ray sprite
         var b0 = base64DecToArr(mray["mray_001"]);
         bmp.a["mray"] = bmp.exp(b0);
+        // decode mahi sprite
+        var b0 = base64DecToArr(mahi["mahi_001"]);
+        bmp.a["mahi"] = bmp.exp(b0);
+        // decode kelp sprite
+        var b0 = base64DecToArr(kelp["kelp_001"]);
+        bmp.a["kelp"] = bmp.exp(b0);
     },
     "exp": function(b0) {
         // expansion of uint8array
@@ -784,6 +793,14 @@ var bmp = {
         }
         return r0;
     }
+}
+// seaweed
+var kelp = {
+	"kelp_001":"///////////85/+f/I/zn/Gf8z/jM8Yz5nPM58xn5M/Ix8aP48/GP/Pnzj/x48x/+fHM//z8mfP4/LHj+fmD5/Pzg8/x8cOP+fnHn/h85x/+fOc//jnOP/8Tzn//E5z//4eY///Hmf//4zP///Mj///xR///+U////wf//////8=",
+}
+// mahi mahi
+var mahi = {
+	"mahi_001":"//////////////////////////////////9////+f/v//H/7//g/8//wP+P/wB/D/4AHA/kAAAPwAAAD5AAAB8AAAA+AAAAH4AAAA/gAAEP8AAHD/MAH4/5wP/P+OP/7/x//+/+P//////////////////////////////////8=",
 }
 // manta
 var mray = {

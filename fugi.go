@@ -26,7 +26,9 @@ const (
     // SAVE = "jely"
     // SAVE = "sqid"
     // SAVE = "shrk"
-    SAVE = "mray"
+    // SAVE = "mray"
+    // SAVE = "mahi"
+    SAVE = "kelp"
 )
 
 var (
