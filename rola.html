@@ -752,6 +752,29 @@ var bits = {
         return r0;
     }
 }
+// blender
+var blend = {
+    "mix": function(bmp0, bmp1) {
+        // bit op for mixing two bitmaps
+        // sample randomly from each
+        if (bmp0.length != bmp1.length) {
+            console.log("inputs must be similar sized!");
+            return;
+        }
+        var r0 = [];
+        for (var i = 0; i < bmp0.length; i++) {
+            var f0 = Math.random();
+            var d0 = 0;
+            if (f0 <= 0.5) {
+                d0 = bmp0[i];
+            } else {
+                d0 = bmp1[i];
+            }
+            r0.push(d0);
+        }
+        return r0;
+    }
+}
 // bitmap
 var bmp = {
     "init": function() {
