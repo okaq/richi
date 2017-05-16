@@ -82,7 +82,7 @@ var g = {
             g0[i] = i;
         }
         var b0 = ["suba","wale","bell","jely","sqid","shrk","mray",
-        "mahi","kelp","corl"];
+        "mahi","kelp","corl","clam"];
         while (g0.length > 0) {
             var i0 = (Math.random() * g0.length) >>> 0;
             var b1 = (Math.random() * b0.length) >>> 0;
@@ -158,7 +158,8 @@ var g = {
                 "mray": 0,
                 "mahi": 0,
                 "kelp": 0,
-                "corl": 0
+                "corl": 0,
+                "clam": 0
             };
             m0[i] = {};
             m0[i].s = s0;
@@ -786,6 +787,9 @@ var bmp = {
         // decode corl sprite
         var b0 = base64DecToArr(corl["corl_001"]);
         bmp.a["corl"] = bmp.exp(b0);
+        // decode clam sprite
+        var b0 = base64DecToArr(clam["clam_001"]);
+        bmp.a["clam"] = bmp.exp(b0);
     },
     "exp": function(b0) {
         // expansion of uint8array
@@ -802,6 +806,10 @@ var bmp = {
         }
         return r0;
     }
+}
+// clam
+var clam = {
+	"clam_001":"//////////////////////////////////////////////////wP///gA///gAD//wAAH/4H/A/4HA+H8PADx+PAAOPHB/Azzg/4H/g8Dg/w4AGH44Pxx+cf+Of0PBw3/HAHH/jAAY/4gADP/MABj/54xx//weH//+Hg//////8=",
 }
 // coral
 var corl = {

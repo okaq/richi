@@ -29,7 +29,8 @@ const (
     // SAVE = "mray"
     // SAVE = "mahi"
     // SAVE = "kelp"
-    SAVE = "corl"
+    // SAVE = "corl"
+    SAVE = "clam"
 )
 
 var (
