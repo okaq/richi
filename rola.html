@@ -224,6 +224,18 @@ var g = {
         // ideally generated from simple math ops
         // set rows or columns by input paramaters
         // and leave the remaining to chance
+
+        // blend.mix test
+        g.tick = 0;
+        g.id = window.setInterval(g.pony, 1000);
+    },
+    "pony": function() {
+        console.log("blend tick: " + g.tick);
+        if (g.tick >= 8) {
+            console.log("blend done");
+            window.clearInterval(g.id);
+        }
+        g.tick = g.tick + 1;
     }
 }
 // intro
