@@ -245,6 +245,9 @@ var g = {
         var i1 = (Math.random() * b0.length) >>> 0;
         var b2 = b0[i1];
         console.log(b1,b2);
+        var d0 = blend.mix(bmp.a[b1],bmp.a[b2]);
+        // render, half scale
+        // 4 bitmap pixels to a grid block
     }
 }
 // intro
@@ -473,6 +476,29 @@ var ren = {
             }
         }
         console.log(" sprite count: " + n0)
+    },
+    "half": function(b0) {
+        // 4 bitmap pixels to a grid block
+        // total size 16x16
+        // center at point (22,2)
+        var w0 = 16;
+        var h0 = 16;
+        var x0 = 22;
+        var y0 = 2;
+        var nt = (w0 * h0) >>> 0;
+        for (var i = 0; i < nt; i++) {
+            var x1 = i % w0;
+            var y1 = (i / w0) >>> 0;
+            var x2 = (x1 * 2) >>> 0;
+            var y2 = (y1 * 2) >>> 0;
+            var i1 = (y2 * 32) >>> 0;
+            i1 = (i1 + x2) >>> 0;
+            var b1 = [];
+            b1[0] = i1;
+            b1[1] = i1+1;
+            b1[2] = i1+32;
+            b1[3] = i1+32+1;
+        }
     }
 }
 // dom
