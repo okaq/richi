@@ -236,6 +236,15 @@ var g = {
             window.clearInterval(g.id);
         }
         g.tick = g.tick + 1;
+
+        var b0 = ["suba","wale","bell","jely","sqid","shrk","mray",
+        "mahi","kelp","corl","clam"];
+        var i0 = (Math.random() * b0.length) >>> 0;
+        var b1 = b0[i0];
+        b0.splice(i0,1);
+        var i1 = (Math.random() * b0.length) >>> 0;
+        var b2 = b0[i1];
+        console.log(b1,b2);
     }
 }
 // intro
