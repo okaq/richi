@@ -248,6 +248,8 @@ var g = {
         var d0 = blend.mix(bmp.a[b1],bmp.a[b2]);
         // render, half scale
         // 4 bitmap pixels to a grid block
+        // clear, all black
+        ren.clear();
     }
 }
 // intro
@@ -486,6 +488,7 @@ var ren = {
         var x0 = 22;
         var y0 = 2;
         var nt = (w0 * h0) >>> 0;
+        var rgba0 = [rgba.rand(),rgba.rand()];
         for (var i = 0; i < nt; i++) {
             var x1 = i % w0;
             var y1 = (i / w0) >>> 0;
@@ -498,6 +501,14 @@ var ren = {
             b1[1] = i1+1;
             b1[2] = i1+32;
             b1[3] = i1+32+1;
+        }
+    },
+    "clear": function() {
+        var c0 = rgba.css([0,0,0,1.0]);
+        for (var i = 0; i < grid.a.length; i++) {
+            var c1 = grid.a[i].c;
+            c1.con.fillStyle = c0;
+            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
         }
     }
 }
