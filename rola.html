@@ -250,7 +250,7 @@ var g = {
         // 4 bitmap pixels to a grid block
         // clear, all black
         ren.clear();
-        renhalf(d0);
+        ren.half(d0);
     }
 }
 // intro
@@ -524,7 +524,7 @@ var ren = {
         for (var i = 0; i < grid.a.length; i++) {
             var c1 = grid.a[i].c;
             c1.con.fillStyle = c0;
-            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+            c1.con.fillRect(0,0,c1.can.width,c1.can.height);
         }
     }
 }
