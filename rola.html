@@ -501,6 +501,18 @@ var ren = {
             b1[1] = i1+1;
             b1[2] = i1+32;
             b1[3] = i1+32+1;
+            // get canvas
+            var i2 = ((y1 + y0) * 60) >>> 0;
+            i2 = (i2 + (x1 + x0)) >>> 0;
+            var c0 = grid.a[i2].c;
+            for (var j = 0; j < b1.length; j++) {
+                var b2 = b0[b1[j]];
+                if (b2 == 0) {
+                    c0.con.fillStyle = rgba0[0];
+                } else {
+                    c0.con.fillStyle = rgba0[1];
+                }
+            }
         }
     },
     "clear": function() {
