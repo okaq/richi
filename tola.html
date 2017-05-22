@@ -31,6 +31,7 @@ var g = {
 
         // subs
         dom.init();
+        db.init();
 
         // begin
         g.start();
@@ -40,6 +41,27 @@ var g = {
     },
     "start": function() {
         console.log("logo render");
+    }
+}
+// data
+var db = {
+    "init": function() {
+        // master
+        db.a = {};
+        // pid
+        db.a["pid"] = net.pid();
+        console.log(db);
+    }
+}
+// xhr
+var net = {
+    "pid": function() {
+        // generate unique player id
+        var p0 = [];
+        p0[0] = Date.now();
+        p0[1] = "+";
+        p0[2] = (Math.random() * Number.MAX_SAFE_INTEGER) >>> 0;
+        return p0.join("");
     }
 }
 // dom
