@@ -24,3 +24,9 @@ func main() {
     http.HandleFunc("/", UbiaHandler)
     http.ListenAndServe(":8080", nil)
 }
+// logging
+// version number maps to directory
+// open files for:
+// metadata (version, start, stats)
+// request logs
+
