@@ -34,13 +34,14 @@ var g = {
         db.init();
 
         // begin
-        g.start();
+        window.setTimeout(g.start, 1000);
 
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
     },
     "start": function() {
-        console.log("logo render");
+        console.log("enter conn");
+        net.conn();
     }
 }
 // data
@@ -62,6 +63,17 @@ var net = {
         p0[1] = "+";
         p0[2] = (Math.random() * Number.MAX_SAFE_INTEGER) >>> 0;
         return p0.join("");
+    },
+    "conn": function() {
+        net.urls = ["http://localhost:8080/a"];
+        net.x = new XMLHttpRequest();
+        net.x.addEventListener("load", net.x.load);
+        net.x.open("POST", net.urls[0]);
+        net.x.setRequestHeader("Content-type","text/plain");
+        net.x.send(db.a["pid"]);
+    },
+    "load": function(e) {
+        console.log(e);
     }
 }
 // dom
