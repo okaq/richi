@@ -17,11 +17,18 @@ func UbiaHandler(w http.ResponseWriter, r *http.Request) {
     http.ServeFile(w, r, INDEX)
 }
 
+func PidHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r)
+    w.Header().Set("Content-type","text/plain")
+    w.Write([]byte("oko"))
+}
+
 func main() {
     fmt.Println("web server started on localhost:8080")
     t0 := time.Now()
     fmt.Printf("begin time: %s\n", t0.String())
     http.HandleFunc("/", UbiaHandler)
+    http.HandleFunc("/a", PidHandler)
     http.ListenAndServe(":8080", nil)
 }
 // logging

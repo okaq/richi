@@ -67,9 +67,11 @@ var net = {
     "conn": function() {
         net.urls = ["http://localhost:8080/a"];
         net.x = new XMLHttpRequest();
-        net.x.addEventListener("load", net.x.load);
+        net.x.addEventListener("load", net.load);
         net.x.open("POST", net.urls[0]);
         net.x.setRequestHeader("Content-type","text/plain");
+        // net.x.responseType = "arraybuffer";
+        net.x.responseType = "text";
         net.x.send(db.a["pid"]);
     },
     "load": function(e) {
