@@ -13,6 +13,10 @@ const (
     INDEX = "tola.html"
 )
 
+var (
+    C *Cache
+)
+
 type Player struct {
     Id string
     Pixels []int
@@ -25,6 +29,12 @@ func NewPlayer() *Player {
 type Cache struct {
     Players map[string]*Player
     sync.Mutex
+}
+
+func NewCache() *Cache {
+    c := Cache{}
+    c.Players = make(map[string]*Player)
+    return &c
 }
 
 func UbiaHandler(w http.ResponseWriter, r *http.Request) {
@@ -42,14 +52,29 @@ func PidHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Printf("Request body data: %s.\n", t0)
     w.Header().Set("Content-type","text/plain")
     w.Write([]byte("oko"))
+    // create chan receiver to lock write to cache
+    // Fprintf format string for output
+}
+
+func Pid2Handler(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r)
+    s0 := bufio.NewScanner(r.Body)
+    defer r.Body.Close()
+    s0.Scan()
+    // send text
+    fmt.Printf("Length (in bytes) of the request body is: %d.\n", len(b0))
+    fmt.Printf("Request body data: %s.\n", t0)
+    w.Header().Set("Content-type","text/plain")
+    fmt.Fprintf("%s+%d", s0.Text(), t0.Now().UnixNano())
 }
 
 func main() {
     fmt.Println("web server started on localhost:8080")
     t0 := time.Now()
     fmt.Printf("begin time: %s\n", t0.String())
+    C = NewCache()
     http.HandleFunc("/", UbiaHandler)
-    http.HandleFunc("/a", PidHandler)
+    http.HandleFunc("/a", Pid2Handler)
     http.ListenAndServe(":8080", nil)
 }
 // logging
