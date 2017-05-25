@@ -74,6 +74,11 @@ func Pid2Handler(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintf("%s+%d", s0.Text(), t0.Now().UnixNano())
 }
 
+func PixHandler(w http.ResposeWriter, r * http.Request) {
+    // process pixel data from typed array
+    // update cache data
+}
+
 func main() {
     fmt.Println("web server started on localhost:8080")
     t0 := time.Now()
@@ -81,6 +86,7 @@ func main() {
     C = NewCache()
     http.HandleFunc("/", UbiaHandler)
     http.HandleFunc("/a", Pid2Handler)
+    http.HandleFunc("/b", PixHandler)
     http.ListenAndServe(":8080", nil)
 }
 // logging
