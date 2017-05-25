@@ -62,6 +62,12 @@ func Pid2Handler(w http.ResponseWriter, r *http.Request) {
     defer r.Body.Close()
     s0.Scan()
     // send text
+    // lock here
+    p0 := NewPlayer()
+    t0 := s0.Text()
+    C.Lock()
+    defer C.Unlock()
+    C[s0] = p0
     fmt.Printf("Length (in bytes) of the request body is: %d.\n", len(b0))
     fmt.Printf("Request body data: %s.\n", t0)
     w.Header().Set("Content-type","text/plain")
