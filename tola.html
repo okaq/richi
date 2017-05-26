@@ -52,6 +52,22 @@ var db = {
         // pid
         db.a["pid"] = net.pid();
         console.log(db);
+        // pixels
+        db.grid();
+    },
+    "grid": function() {
+        // typed array of same size as grid
+        // 16x16 pixel grid cell size
+        // 120x60 with top-margin = 112
+        // total grid size = 7200
+        // total bytes needed = 900
+        var a0 = {};
+        a0.a = new ArrayBuffer(900);
+        a0.b = new Uint8Array(a0.a);
+        db.a["grid"] = a0;
+        // for wire transport
+        // use base64 encoded string
+        // and atob() btoa() calls
     }
 }
 // xhr

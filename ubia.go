@@ -6,6 +6,7 @@ import (
     "bufio"
     "fmt"
     "net/http"
+    "sync"
     "time"
 )
 
@@ -37,6 +38,13 @@ func NewCache() *Cache {
     return &c
 }
 
+func (c *Cache) Print() {
+    for k,v := range c.Players {
+        fmt.Println(k)
+        fmt.Printf("pixels: %d\n", v.Pixels)
+    }
+}
+
 func UbiaHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r)
     http.ServeFile(w, r, INDEX)
@@ -65,16 +73,18 @@ func Pid2Handler(w http.ResponseWriter, r *http.Request) {
     // lock here
     p0 := NewPlayer()
     t0 := s0.Text()
+    b0 := s0.Bytes()
     C.Lock()
     defer C.Unlock()
-    C[s0] = p0
+    C.Players[t0] = p0
     fmt.Printf("Length (in bytes) of the request body is: %d.\n", len(b0))
     fmt.Printf("Request body data: %s.\n", t0)
+    C.Print()
     w.Header().Set("Content-type","text/plain")
-    fmt.Fprintf("%s+%d", s0.Text(), t0.Now().UnixNano())
+    fmt.Fprintf(w, "%s+%d", s0.Text(), time.Now().UnixNano())
 }
 
-func PixHandler(w http.ResposeWriter, r * http.Request) {
+func PixHandler(w http.ResponseWriter, r *http.Request) {
     // process pixel data from typed array
     // update cache data
 }
