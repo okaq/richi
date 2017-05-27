@@ -89,6 +89,21 @@ func PixHandler(w http.ResponseWriter, r *http.Request) {
     // update cache data
 }
 
+func HexHandler(w http.ResponseWriter, r *http.Request) {
+    // hex response test
+    s0 := `have a glorious du jour!`
+    b0 := []byte(s0)
+    e0 := fmt.Sprintf("%x", b0)
+    b1 := []byte(e0)
+    fmt.Println(s0,b0,e0,b1)
+}
+
+func B64Handler(w http.ResponseWriter, r *http.Request) {
+    // base64 response test
+    s0 := `bonne frisson du plaisir`
+    b0 := []byte(s0)
+}
+
 func main() {
     fmt.Println("web server started on localhost:8080")
     t0 := time.Now()
@@ -97,6 +112,8 @@ func main() {
     http.HandleFunc("/", UbiaHandler)
     http.HandleFunc("/a", Pid2Handler)
     http.HandleFunc("/b", PixHandler)
+    http.HandleFunc("/c", HexHandler)
+    http.HandleFunc("/d", B64Handler)
     http.ListenAndServe(":8080", nil)
 }
 // logging
