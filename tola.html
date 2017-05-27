@@ -54,6 +54,8 @@ var db = {
         console.log(db);
         // pixels
         db.grid();
+        // scene
+        db.scene();
     },
     "grid": function() {
         // typed array of same size as grid
@@ -68,6 +70,11 @@ var db = {
         // for wire transport
         // use base64 encoded string
         // and atob() btoa() calls
+    },
+    "scene": function() {
+        // one way data flow
+        // scene config and layout
+        db.a["scene"] = {};
     }
 }
 // xhr
