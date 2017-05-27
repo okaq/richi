@@ -32,6 +32,7 @@ var g = {
         // subs
         dom.init();
         db.init();
+        sce.init();
 
         // begin
         window.setTimeout(g.start, 1000);
@@ -53,9 +54,9 @@ var db = {
         db.a["pid"] = net.pid();
         console.log(db);
         // pixels
-        db.grid();
+        // db.grid();
         // scene
-        db.scene();
+        // db.scene();
     },
     "grid": function() {
         // typed array of same size as grid
@@ -99,6 +100,20 @@ var net = {
     },
     "load": function(e) {
         console.log(e);
+    }
+}
+// scene
+var sce = {
+    "init": function() {
+        sce.a = {};
+        sce.a.w = 1920;
+        sce.a.h = 1080;
+        sce.a.px = 16;
+        sce.a.py = 16;
+        sce.a.nx = (sce.a.w / sce.a.px) >>> 0;
+        sce.a.ny = (sce.a.h / sce.a.py) >>> 0;
+        sce.a.nt = (sce.a.nx * sce.a.ny) >>> 0;
+        console.log(sce.a);
     }
 }
 // dom
