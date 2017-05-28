@@ -97,7 +97,8 @@ var net = {
     "conn": function() {
         net.urls = ["http://localhost:8080/a",
         "http://localhost:8080/b",
-        "http://localhost:8080/c"];
+        "http://localhost:8080/c",
+        "http://localhost:8080/d"];
         net.x = new XMLHttpRequest();
         net.x.addEventListener("load", net.load);
         net.x.open("POST", net.urls[0]);
@@ -118,17 +119,19 @@ var net = {
     },
     "load3": function(e) {
         console.log(e);
+        var t0 = e.target.responseText;
+        console.log(t0);
     },
     "hex": function() {
         var x0 = new XMLHttpRequest();
         x0.addEventListener("load", net.load2);
-        x0.open("GET", net.urls[1]);
+        x0.open("GET", net.urls[2]);
         x0.send();
     },
     "b64": function() {
         var x0 = new XMLHttpRequest();
         x0.addEventListener("load", net.load3);
-        x0.open("GET", net.urls[2]);
+        x0.open("GET", net.urls[3]);
         x0.send();
     }
 }

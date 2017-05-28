@@ -4,6 +4,7 @@ package main
 
 import (
     "bufio"
+    "encoding/base64"
     "fmt"
     "net/http"
     "sync"
@@ -96,7 +97,7 @@ func HexHandler(w http.ResponseWriter, r *http.Request) {
     e0 := fmt.Sprintf("%x", b0)
     b1 := []byte(e0)
     fmt.Println(s0,b0,e0,b1)
-    w.Header()Set("Content-type","text/plain")
+    w.Header().Set("Content-type","text/plain")
     w.Write(b1)
 }
 
@@ -104,7 +105,11 @@ func B64Handler(w http.ResponseWriter, r *http.Request) {
     // base64 response test
     s0 := `bonne frisson du plaisir`
     b0 := []byte(s0)
-    fmt.Println(b0)
+    s1 := base64.StdEncoding.EncodeToString(b0)
+    b1 := []byte(s1)
+    fmt.Println(s0,b0,s1,b1)
+    w.Header().Set("Content-type","text/plain")
+    w.Write(b1)
 }
 
 func main() {
