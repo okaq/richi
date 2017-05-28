@@ -43,6 +43,12 @@ var g = {
     "start": function() {
         console.log("enter conn");
         net.conn();
+    },
+    "breeze": function() {
+        net.hex();
+    },
+    "freeze": function() {
+        net.b64();
     }
 }
 // data
@@ -102,17 +108,25 @@ var net = {
     },
     "load": function(e) {
         console.log(e);
+        window.setTimeout(g.breeze, 1000);
+    },
+    "load2": function(e) {
+        console.log(e);
+        window.setTimeout(g.freeze, 1000);
+    },
+    "load3": function(e) {
+        console.log(e);
     },
     "hex": function() {
         var x0 = new XMLHttpRequest();
-        x0.addEventListener("load", net.load);
+        x0.addEventListener("load", net.load2);
         x0.open("GET", net.urls[1]);
         x0.send();
     },
     "b64": function() {
         var x0 = new XMLHttpRequest();
-        x0.addEventListener("load", net.load);
-        x0.open("GET", net.urls[1]);
+        x0.addEventListener("load", net.load3);
+        x0.open("GET", net.urls[2]);
         x0.send();
     }
 }

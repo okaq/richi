@@ -102,6 +102,7 @@ func B64Handler(w http.ResponseWriter, r *http.Request) {
     // base64 response test
     s0 := `bonne frisson du plaisir`
     b0 := []byte(s0)
+    fmt.Println(b0)
 }
 
 func main() {
