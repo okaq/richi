@@ -115,6 +115,14 @@ var net = {
         console.log(e);
         var t0 = e.target.responseText;
         console.log(t0);
+        console.log(t0.length);
+        for (var i = 0; i < t0.length; i += 2) {
+            // console.log(t0[i]);
+            var s0 = t0.substr(i,2);
+            var s1 = parseInt(s0,16);
+            var s2 = String.fromCharCode(s1);
+            console.log(s0,s1,s2);
+        }
         window.setTimeout(g.freeze, 1000);
     },
     "load3": function(e) {
