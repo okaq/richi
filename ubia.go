@@ -6,6 +6,7 @@ import (
     "bufio"
     "encoding/base64"
     "fmt"
+    "image"
     "net/http"
     "sync"
     "time"
@@ -17,6 +18,7 @@ const (
 
 var (
     C *Cache
+    I *image.RGBA
 )
 
 type Player struct {
@@ -117,6 +119,9 @@ func main() {
     t0 := time.Now()
     fmt.Printf("begin time: %s\n", t0.String())
     C = NewCache()
+    I = image.NewRGBA(image.Rect(0,0,1024,1024))
+    // fmt.Println(I)
+    // prints all image pixel data
     http.HandleFunc("/", UbiaHandler)
     http.HandleFunc("/a", Pid2Handler)
     http.HandleFunc("/b", PixHandler)
