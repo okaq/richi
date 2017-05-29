@@ -129,6 +129,8 @@ var net = {
         console.log(e);
         var t0 = e.target.responseText;
         console.log(t0);
+        var t1 = window.atob(t0);
+        console.log(t1);
     },
     "hex": function() {
         var x0 = new XMLHttpRequest();
