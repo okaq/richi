@@ -114,6 +114,11 @@ func B64Handler(w http.ResponseWriter, r *http.Request) {
     w.Write(b1)
 }
 
+func RgbaHandler(w http.ResponseWriter, r *http.Request) {
+    // get rgb triplet [255,255,255]
+    // in form of byte array
+}
+
 func main() {
     fmt.Println("web server started on localhost:8080")
     t0 := time.Now()
@@ -127,6 +132,7 @@ func main() {
     http.HandleFunc("/b", PixHandler)
     http.HandleFunc("/c", HexHandler)
     http.HandleFunc("/d", B64Handler)
+    http.HandleFunc("/e", RgbaHandler)
     http.ListenAndServe(":8080", nil)
 }
 // logging
