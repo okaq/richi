@@ -7,6 +7,7 @@ import (
     "encoding/base64"
     "fmt"
     "image"
+    "math/rand"
     "net/http"
     "sync"
     "time"
@@ -19,6 +20,7 @@ const (
 var (
     C *Cache
     I *image.RGBA
+    R *rand.Rand
 )
 
 type Player struct {
@@ -87,6 +89,12 @@ func Pid2Handler(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintf(w, "%s+%d", s0.Text(), time.Now().UnixNano())
 }
 
+func Pid3Handler(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r)
+    r0 := R.Uint32()
+    fmt.Println(r0)
+}
+
 func PixHandler(w http.ResponseWriter, r *http.Request) {
     // process pixel data from typed array
     // update cache data
@@ -125,6 +133,7 @@ func main() {
     fmt.Printf("begin time: %s\n", t0.String())
     C = NewCache()
     I = image.NewRGBA(image.Rect(0,0,1024,1024))
+    R = rand.New(rand.NewSource(time.Now().UnixNano()))
     // fmt.Println(I)
     // prints all image pixel data
     http.HandleFunc("/", UbiaHandler)
@@ -133,6 +142,7 @@ func main() {
     http.HandleFunc("/c", HexHandler)
     http.HandleFunc("/d", B64Handler)
     http.HandleFunc("/e", RgbaHandler)
+    http.HandleFunc("/f", Pid3Handler)
     http.ListenAndServe(":8080", nil)
 }
 // logging
