@@ -91,11 +91,17 @@ func Pid2Handler(w http.ResponseWriter, r *http.Request) {
 
 func Pid3Handler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r)
+    s0 := bufio.NewScanner(r.Body)
+    defer r.Body.Close()
+    s0.Scan()
+    t0 := s0.Text()
     r0 := R.Uint32()
     fmt.Println(r0)
     // convert string
-    t0 := time.Now().UnixNano()
-
+    d0 := time.Now().UnixNano()
+    s1 := fmt.Sprintf("%s:%d+%d", t0, r0, d0)
+    b0 := []byte(s1)
+    fmt.Println(s1,b0)
 }
 
 func PixHandler(w http.ResponseWriter, r *http.Request) {

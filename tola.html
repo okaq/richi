@@ -108,6 +108,8 @@ var net = {
         "http://localhost:8080/d"
         "http://localhost:8080/e",
         "http://localhost:8080/f"];
+
+        net.round2();
     },
     "round": function() {
         // round trip for complete pid
@@ -119,8 +121,21 @@ var net = {
         net.x.responseType = "text";
         net.x.send(db.a["pid"]);
     },
+    "round2": function() {
+        // round trip
+        net.x = new XMLHttpRequest();
+        net.x.addEventListener("load", net.load);
+        net.x.open("POST", net.urls[5]);
+        net.x.setRequestHeader("Content-type","text/plain");
+        net.x.responseType = "text";
+        net.x.send(db.a["pid"]);
+    },
     "load": function(e) {
         console.log(e);
+        var t0 = e.target.responseText;
+        console.log(t0);
+        var t1 = window.atob(t0);
+        console.log(t1);
         // window.setTimeout(g.breeze, 1000);
 
         // get pid2 from server and save
