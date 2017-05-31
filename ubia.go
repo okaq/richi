@@ -99,9 +99,13 @@ func Pid3Handler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r0)
     // convert string
     d0 := time.Now().UnixNano()
-    s1 := fmt.Sprintf("%s:%d+%d", t0, r0, d0)
+    s1 := fmt.Sprintf("%s:%d+%d", t0, d0, r0)
     b0 := []byte(s1)
-    fmt.Println(s1,b0)
+    s2 := base64.StdEncoding.EncodeToString(b0)
+    b1 := []byte(s2)
+    fmt.Println(s1,b0,s2,b1)
+    w.Header().Set("Content-type","text/plain")
+    w.Write(b1)
 }
 
 func PixHandler(w http.ResponseWriter, r *http.Request) {
