@@ -105,7 +105,12 @@ var net = {
         net.urls = ["http://localhost:8080/a",
         "http://localhost:8080/b",
         "http://localhost:8080/c",
-        "http://localhost:8080/d"];
+        "http://localhost:8080/d"
+        "http://localhost:8080/e",
+        "http://localhost:8080/f"];
+    },
+    "round": function() {
+        // round trip for complete pid
         net.x = new XMLHttpRequest();
         net.x.addEventListener("load", net.load);
         net.x.open("POST", net.urls[0]);
@@ -116,7 +121,10 @@ var net = {
     },
     "load": function(e) {
         console.log(e);
-        window.setTimeout(g.breeze, 1000);
+        // window.setTimeout(g.breeze, 1000);
+
+        // get pid2 from server and save
+
     },
     "load2": function(e) {
         console.log(e);

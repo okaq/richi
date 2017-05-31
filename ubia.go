@@ -93,6 +93,9 @@ func Pid3Handler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r)
     r0 := R.Uint32()
     fmt.Println(r0)
+    // convert string
+    t0 := time.Now().UnixNano()
+
 }
 
 func PixHandler(w http.ResponseWriter, r *http.Request) {
