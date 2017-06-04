@@ -47,6 +47,11 @@ var g = {
     "start": function() {
         ren.bkgd();
 
+        // g.cube();
+        g.line();
+    },
+    "cube": function() {
+
         // add scene
         var scene = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera(75,1,0.1,1000);
@@ -62,12 +67,40 @@ var g = {
         scene.add(cube)
         camera.position.z = 5.0;
         renderer.render(scene,camera);
-
+/*
         window.setInterval(function(){
             cube.rotation.x += 0.1;
             cube.rotation.y += 0.1;
             renderer.render(scene,camera);
         }, 1000);
+        */
+    },
+    "line": function() {
+        // add scene
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(75,1,0.1,1000);
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize(512,512);
+        renderer.domElement.style.position = "absolute";
+        renderer.domElement.style.top = "284px";
+        renderer.domElement.style.left = "704px";
+        dom.alpha.appendChild(renderer.domElement);
+        // geom
+        // cartesian to polar transforms
+        var c2p = function(x,y,x) {
+            // return r,th,phi
+            var r = Math.sqrt(x*x+y*y+z*z);
+            var th = Math.atan(x/y);
+            var phi = Math.atan(Math.sqrt(x*x+y*y)/z);
+            return [r,th,phi];
+        }
+        var p2c = function(r,th,phi) {
+            // return x,y,z
+            var x = r*Math.cos(th)*Math.sin(phi);
+            var y = r*Math.sin(th)*Math.sin(phi);
+            var z = r*Math.cos(phi);
+            return [x,y,z];
+        }
     }
 }
 // scene
