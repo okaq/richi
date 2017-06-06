@@ -78,7 +78,9 @@ var g = {
     "line": function() {
         // add scene
         var scene = new THREE.Scene();
-        var camera = new THREE.PerspectiveCamera(75,1,0.1,1000);
+        var camera = new THREE.PerspectiveCamera(45,1,1,500);
+        camera.position.set(0,0,100);
+        camera.lookAt(new THREE.Vector3(0,0,0));
         var renderer = new THREE.WebGLRenderer();
         renderer.setSize(512,512);
         renderer.domElement.style.position = "absolute";
@@ -101,6 +103,14 @@ var g = {
             var z = r*Math.cos(phi);
             return [x,y,z];
         }
+        var material = new THREE.LineBasicMaterial({color:0x00ff00});
+        var geometry = new THREE.Geometry();
+        geometry.vertices.push(new THREE.Vector3(-10,0,0));
+        geometry.vertices.push(new THREE.Vector3(0,10,0));
+        geometry.vertices.push(new THREE.Vector3(10,0,0));
+        var line = new THREE.Line(geometry,material);
+        scene.add(line);
+        renderer.render(scene,camera);
     }
 }
 // scene
