@@ -115,16 +115,7 @@ var g = {
     },
     "lines": function() {
         // add scene
-        var scene = new THREE.Scene();
-        var camera = new THREE.PerspectiveCamera(45,1,1,500);
-        camera.position.set(0,0,100);
-        camera.lookAt(new THREE.Vector3(0,0,0));
-        var renderer = new THREE.WebGLRenderer();
-        renderer.setSize(512,512);
-        renderer.domElement.style.position = "absolute";
-        renderer.domElement.style.top = "284px";
-        renderer.domElement.style.left = "704px";
-        dom.alpha.appendChild(renderer.domElement);
+        sce.lines();
     }
 }
 // scene
@@ -133,6 +124,19 @@ var sce = {
         sce.a = dom.canvas([1920,1080,0,0]);
         dom.add(sce.a);
         // scene list (for ren.clear calls)
+    },
+    "lines": function() {
+        sce.b = {};
+        sce.b.s = new THREE.Scene();
+        sce.b.c = new THREE.PerspectiveCamera(45,1,1,500);
+        sce.b.c.position.set(0,0,100);
+        sce.b.c.lookAt(new THREE.Vector3(0,0,0));
+        sce.b.r = new THREE.WebGLRenderer();
+        sce.b.r.setSize(512,512);
+        sce.b.r.domElement.style.position = "absolute";
+        sce.b.r.domElement.style.top = "284px";
+        sce.b.r.domElement.style.left = "704px";
+        dom.alpha.appendChild(sce.b.r.domElement);      
     }
 }
 // render
