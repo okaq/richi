@@ -20,9 +20,15 @@ func BoliHandler(w http.ResponseWriter, r *http.Request) {
     http.ServeFile(w,r,INDEX)
 }
 
+func SaveHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r)
+    // dump save png frame from webgl
+}
+
 func main() {
     fmt.Printf("started web server on localhost:8080\nat time: %s\n", time.Now().String())
     http.HandleFunc("/", BoliHandler)
+    http.HandleFunc("/s", SaveHandler)
     http.ListenAndServe(":8080", nil)
 }
 
