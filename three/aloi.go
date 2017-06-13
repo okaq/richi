@@ -12,7 +12,8 @@ import (
 )
 
 const (
-    INDEX = "boli.html"
+    // INDEX = "boli.html"
+    INDEX = "coli.html"
 )
 
 func BoliHandler(w http.ResponseWriter, r *http.Request) {
