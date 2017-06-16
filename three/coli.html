@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!DOCTYPE html><html lang="en">
+<html lang="en">
     <head id="zeta">
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
         <meta name="viewport" content="width=1920,height=1080,initial-scale=1" />
@@ -34,6 +34,10 @@ var g = {
     },
     "dun": function() {
         console.log("threejs async loaded");
+        
+        // setup threejs scene
+        dom.init();
+        sce.init();
     }
 }
 
