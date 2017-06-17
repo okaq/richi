@@ -40,6 +40,8 @@ var g = {
         sce.init();
         // render scene test
         ren.test();
+        // setup threejs canvas
+        sce.pole();
     }
 }
 // render
@@ -52,10 +54,28 @@ var ren = {
 // scene
 var sce = {
     "init": function() {
+        // dimensions
+        sce.w = 1920;
+        sce.h = 1080;
+        sce.r = sce.w / sce.h;
+        sce.rw = 600;
+        sce.rh = 400;
+        sce.rr = sce.rw / sce.rh;
+        // bkgd canvas
         sce.a = {};
-        sce.a.r = [1920,1080,0,0];
+        sce.a.r = [sce.w,sce.h,0,0];
         sce.a.c = dom.canvas(sce.a.r);
         dom.add(sce.a.c);
+    },
+    "pole": function() {
+        sce.b = {};
+        sce.b.a = new THREE.Scene();
+        sce.b.b = new THREE.PerspectiveCamera(75,sce.rr,0.1,1000);
+        sce.b.c = new THREE.WebGLRenderer();
+        sce.b.c.setSize(sce.rw,sce.rh);
+        sce.b.c.domElement.style.left = "660px";
+        sce.b.c.domElement.style.top = "340px";
+        dom.alpha.appendChild(sce.b.c.domElement);
     }
 }
 // dom
