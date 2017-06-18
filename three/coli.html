@@ -73,6 +73,7 @@ var sce = {
         sce.b.b = new THREE.PerspectiveCamera(75,sce.rr,0.1,1000);
         sce.b.c = new THREE.WebGLRenderer();
         sce.b.c.setSize(sce.rw,sce.rh);
+        sce.b.c.domElement.style.position = "absolute";
         sce.b.c.domElement.style.left = "660px";
         sce.b.c.domElement.style.top = "340px";
         dom.alpha.appendChild(sce.b.c.domElement);
