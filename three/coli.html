@@ -42,6 +42,7 @@ var g = {
         ren.test();
         // setup threejs canvas
         sce.pole();
+        sce.geo();
     }
 }
 // render
@@ -81,6 +82,11 @@ var sce = {
         sce.b.b.lookAt(new THREE.Vector3(0,0,0));
         sce.b.d = new THREE.Scene();
         // add material, geometry
+    },
+    "geo": function() {
+        sce.b.e = new THREE.LineBasicMaterial({color:0x00ff00});
+        sce.b.f = new THREE.Geometry();
+        // push verts, draw lines
     }
 }
 // dom
