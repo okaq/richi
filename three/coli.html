@@ -77,6 +77,10 @@ var sce = {
         sce.b.c.domElement.style.left = "660px";
         sce.b.c.domElement.style.top = "340px";
         dom.alpha.appendChild(sce.b.c.domElement);
+        sce.b.b.position.set(0,0,100);
+        sce.b.b.lookAt(new THREE.Vector3(0,0,0));
+        sce.b.d = new THREE.Scene();
+        // add material, geometry
     }
 }
 // dom
