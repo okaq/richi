@@ -87,6 +87,11 @@ var sce = {
         sce.b.e = new THREE.LineBasicMaterial({color:0x00ff00});
         sce.b.f = new THREE.Geometry();
         // push verts, draw lines
+        sce.b.f.vertices.push(new THREE.Vector3(-10,10,0));
+        sce.b.f.vertices.push(new THREE.Vector3(10,10,0));
+        sce.b.f.vertices.push(new THREE.Vector(10,-10,0));
+        sce.b.f.vertices.push(new THREE.Vector3(-10,-10,0));
+        // draw
     }
 }
 // dom
