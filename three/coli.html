@@ -91,7 +91,11 @@ var sce = {
         sce.b.f.vertices.push(new THREE.Vector3(10,10,0));
         sce.b.f.vertices.push(new THREE.Vector(10,-10,0));
         sce.b.f.vertices.push(new THREE.Vector3(-10,-10,0));
-        // draw
+        // draw line
+        sce.b.g = new THREE.Line(sce.b.f, sce.b.e);
+        sce.b.d.add(sce.b.g);
+        // intelligent management
+        // add remove scene objects
     }
 }
 // dom
