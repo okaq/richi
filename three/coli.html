@@ -99,8 +99,24 @@ var sce = {
         // draw line
         sce.b.g = new THREE.Line(sce.b.f, sce.b.e);
         sce.b.a.add(sce.b.g);
+        sce.cubem();
         // intelligent management
         // add remove scene objects
+    },
+    "cubem": function() {
+        // installation into z-axis infinite
+        var m0 = new THREE.LineBasicMaterial({color:0x00ee00});
+        for (var i = 1; i < 100; i++) {
+            var g0 = new THREE.Geometry();
+            var z0 = -100 * i;
+            g0.vertices.push(new THREE.Vector3(-10,10,z0));
+            g0.vertices.push(new THREE.Vector3(10,10,z0));
+            g0.vertices.push(new THREE.Vector3(10,-10,z0));
+            g0.vertices.push(new THREE.Vector3(-10,-10,z0));
+            g0.vertices.push(new THREE.Vector3(-10,10,z0));
+            var g1 = new THREE.Line(g0, m0);
+            sce.b.a.add(g1);
+        }
     }
 }
 // dom
