@@ -26,10 +26,16 @@ func SaveHandler(w http.ResponseWriter, r *http.Request) {
     // dump save png frame from webgl
 }
 
+func StitchHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r)
+    // button event to begin server side video generation
+}
+
 func main() {
     fmt.Printf("started web server on localhost:8080\nat time: %s\n", time.Now().String())
     http.HandleFunc("/", BoliHandler)
     http.HandleFunc("/s", SaveHandler)
+    http.HandleFunc("/a", StitchHandler)
     http.ListenAndServe(":8080", nil)
 }
 

@@ -43,6 +43,7 @@ var g = {
         // setup threejs canvas
         sce.pole();
         sce.geo();
+        ren.best();
     }
 }
 // render
@@ -50,6 +51,9 @@ var ren = {
     "test": function() {
         sce.a.c.con.fillStyle = rgba.rand();
         sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
+    },
+    "best": function() {
+        sce.b.c.render(sce.b.a,sce.b.b)
     }
 }
 // scene
@@ -80,7 +84,7 @@ var sce = {
         dom.alpha.appendChild(sce.b.c.domElement);
         sce.b.b.position.set(0,0,100);
         sce.b.b.lookAt(new THREE.Vector3(0,0,0));
-        sce.b.d = new THREE.Scene();
+        // sce.b.d = new THREE.Scene();
         // add material, geometry
     },
     "geo": function() {
@@ -89,11 +93,12 @@ var sce = {
         // push verts, draw lines
         sce.b.f.vertices.push(new THREE.Vector3(-10,10,0));
         sce.b.f.vertices.push(new THREE.Vector3(10,10,0));
-        sce.b.f.vertices.push(new THREE.Vector(10,-10,0));
+        sce.b.f.vertices.push(new THREE.Vector3(10,-10,0));
         sce.b.f.vertices.push(new THREE.Vector3(-10,-10,0));
+        sce.b.f.vertices.push(new THREE.Vector3(-10,10,0));
         // draw line
         sce.b.g = new THREE.Line(sce.b.f, sce.b.e);
-        sce.b.d.add(sce.b.g);
+        sce.b.a.add(sce.b.g);
         // intelligent management
         // add remove scene objects
     }
