@@ -24,6 +24,16 @@ func BoliHandler(w http.ResponseWriter, r *http.Request) {
 func SaveHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r)
     // dump save png frame from webgl
+
+    // using toDataURL
+    // get data in form data:image/png;base64,iVBORw0KGgo...
+
+    // send to server as json string
+    // strip prefix upto comma to get png data
+    // b64data := input[strings.IndexByte(input, ',')+1:]
+    // then decode to bytes
+    // data, err := base64.StdEncoding.DecodeString(b64data)
+    // data can then be written to file as png image
 }
 
 func StitchHandler(w http.ResponseWriter, r *http.Request) {
