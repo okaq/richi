@@ -64,6 +64,8 @@ var net = {
     },
     "up": function(img0) {
         // send string base64 png data url
+        net.a.setRequestHeader("Content-type", "text/plain");
+        net.a.send(img0);
     },
     "load": function() {
         // receive file save stats

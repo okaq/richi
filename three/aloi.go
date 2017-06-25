@@ -7,6 +7,7 @@ package main
 
 import (
     "fmt"
+    "io/ioutil"
     "net/http"
     "time"
 )
@@ -34,6 +35,12 @@ func SaveHandler(w http.ResponseWriter, r *http.Request) {
     // then decode to bytes
     // data, err := base64.StdEncoding.DecodeString(b64data)
     // data can then be written to file as png image
+    b, err := ioutil.ReadAll(r.Body)
+    if err != nil {
+        fmt.Println(err)
+    }
+    s := string(b)
+    fmt.Println(b,s)
 }
 
 func StitchHandler(w http.ResponseWriter, r *http.Request) {
