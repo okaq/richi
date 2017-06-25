@@ -6,9 +6,11 @@
 package main
 
 import (
+    "encoding/base64"
     "fmt"
     "io/ioutil"
     "net/http"
+    "strings"
     "time"
 )
 
@@ -41,6 +43,15 @@ func SaveHandler(w http.ResponseWriter, r *http.Request) {
     }
     s := string(b)
     fmt.Println(b,s)
+    a := strings.IndexByte(s, ',')
+    fmt.Println(a)
+    // if its a set byte offset, index without string cast
+    d := s[a+1:]
+    f, err := base64.StdEncoding.DecodeString(d)
+    if err != nil {
+        fmt.Println(err)
+    }
+    fmt.Println(f)
 }
 
 func StitchHandler(w http.ResponseWriter, r *http.Request) {
