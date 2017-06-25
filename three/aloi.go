@@ -44,8 +44,8 @@ func StitchHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
     fmt.Printf("started web server on localhost:8080\nat time: %s\n", time.Now().String())
     http.HandleFunc("/", BoliHandler)
-    http.HandleFunc("/s", SaveHandler)
-    http.HandleFunc("/a", StitchHandler)
+    http.HandleFunc("/a", SaveHandler)
+    http.HandleFunc("/b", StitchHandler)
     http.ListenAndServe(":8080", nil)
 }
 

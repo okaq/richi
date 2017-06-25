@@ -47,6 +47,26 @@ var g = {
         // dump png
         var img0 = sce.b.c.domElement.toDataURL();
         console.log(img0);
+        net.init();
+        net.up(img0);
+    }
+}
+// xhr
+var net = {
+    "init": function() {
+        net.urls = [];
+        net.urls[0] = "http://localhost:8080/a";
+        net.urls[1] = "http://localhost:8080/b";
+
+        net.a = new XMLHttpRequest();
+        net.a.open("POST", net.urls[0]);
+        net.a.addEventListener("load", net.load);
+    },
+    "up": function(img0) {
+        // send string base64 png data url
+    },
+    "load": function() {
+        // receive file save stats
     }
 }
 // render
