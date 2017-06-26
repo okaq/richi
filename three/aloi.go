@@ -53,6 +53,7 @@ func SaveHandler(w http.ResponseWriter, r *http.Request) {
     }
     fmt.Println(f)
     // save bytes to png format file
+    ioutil.WriteFile("vrox_01.png",f,0444)
 }
 
 func StitchHandler(w http.ResponseWriter, r *http.Request) {
