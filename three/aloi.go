@@ -52,6 +52,7 @@ func SaveHandler(w http.ResponseWriter, r *http.Request) {
         fmt.Println(err)
     }
     fmt.Println(f)
+    // save bytes to png format file
 }
 
 func StitchHandler(w http.ResponseWriter, r *http.Request) {
