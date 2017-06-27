@@ -61,11 +61,17 @@ func StitchHandler(w http.ResponseWriter, r *http.Request) {
     // button event to begin server side video generation
 }
 
+func ViewHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r)
+    // let's see if we can view html5 video webm
+}
+
 func main() {
     fmt.Printf("started web server on localhost:8080\nat time: %s\n", time.Now().String())
     http.HandleFunc("/", BoliHandler)
     http.HandleFunc("/a", SaveHandler)
     http.HandleFunc("/b", StitchHandler)
+    http.HandleFUnc("/c", ViewHandler)
     http.ListenAndServe(":8080", nil)
 }
 
