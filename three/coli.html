@@ -49,6 +49,20 @@ var g = {
         console.log(img0);
         net.init();
         net.up(img0);
+        // start clock
+        g.start();
+    },
+    "start": function() {
+        g.tick = 0;
+        g.id = window.setInterval(g.loop, 1000);
+    },
+    "loop": function() {
+        g.tick = g.tick + 1;
+        console.log("ticks: " + g.tick);
+        if (g.tick >= 8) {
+            console.log("done");
+            window.clearInterval(g.id);
+        }
     }
 }
 // xhr
