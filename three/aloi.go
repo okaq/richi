@@ -71,7 +71,7 @@ func main() {
     http.HandleFunc("/", BoliHandler)
     http.HandleFunc("/a", SaveHandler)
     http.HandleFunc("/b", StitchHandler)
-    http.HandleFUnc("/c", ViewHandler)
+    http.HandleFunc("/c", ViewHandler)
     http.ListenAndServe(":8080", nil)
 }
 

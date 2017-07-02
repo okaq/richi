@@ -63,6 +63,11 @@ var g = {
             console.log("done");
             window.clearInterval(g.id);
         }
+        // update frame
+        var f0 = -100.0*Math.random();
+        sce.b.b.position.set(0,0,f0*g.tick);
+        // render frame
+        ren.best();
     }
 }
 // xhr
