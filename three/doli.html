@@ -36,17 +36,31 @@ var g = {
         console.log("threejs async loaded!");
         // dom, sce, ren init
         // after first display, package for net send
+        g.subs();
+        ren.bkgd();
+    },
+    "subs": function() {
+        dom.init();
+        sce.init();
+        ren.init();
     }
 }
 // scene
 var sce = {
     "init": function() {
         // dedicated generators for vertex
+        sce.a = dom.canvas([1920,1080,0,0]);
+        dom.add(sce.a);
     }
 }
 // render
 var ren = {
     "init": function() {
+        ren.a = rgba.css([0,0,0,1.0]);
+    },
+    "bkgd": function() {
+        sce.a.con.fillStyle = ren.a;
+        sce.a.con.fillRect(0,0,sce.a.can.width,sce.a.can.height);
     }
 }
 // graphics
@@ -124,4 +138,3 @@ var rgba = {
     <body id="alpha">
     </body>
 </html>
-
