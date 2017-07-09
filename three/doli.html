@@ -44,6 +44,8 @@ var g = {
         // g.norm();
         // be the ball
         ball.init();
+        // loop
+        window.setTimeout(g.start, 1000);
     },
     "norm": function() {
         var n0 = [];
@@ -77,6 +79,21 @@ var g = {
         dom.init();
         sce.init();
         ren.init();
+    },
+    "start": function() {
+        console.log("how soon we begin");
+        // timer
+        g.tick = 0;
+        g.max = 255;
+        g.id = window.setInterval(g.frame, 1000);
+    },
+    "frame": function() {
+        console.log("frame count: " + g.tick);
+        if (g.tick > g.max) {
+            console.log("done anim");
+            window.clearInterval(g.id);
+        }
+        g.tick = g.tick + 1;
     }
 }
 // particle
