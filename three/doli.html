@@ -41,7 +41,9 @@ var g = {
         // do gl setup
         gl.init();
         // norm test
-        g.norm();
+        // g.norm();
+        // be the ball
+        ball.init();
     },
     "norm": function() {
         var n0 = [];
@@ -75,6 +77,23 @@ var g = {
         dom.init();
         sce.init();
         ren.init();
+    }
+}
+// particle
+var ball = {
+    "init": function() {
+        // particle in 2D box
+        // essentially a point
+        ball.p = {};
+        ball.p.x = 0.0;
+        ball.p.y = 0.0;
+        // jump frequencies
+        ball.f = {};
+        ball.f.vx = 0.0;
+        ball.f.vy = 0.0;
+        // each iteration:
+        // calculate jump probability
+        // update position
     }
 }
 // scene
