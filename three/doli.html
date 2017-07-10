@@ -89,6 +89,8 @@ var g = {
     },
     "frame": function() {
         console.log("frame count: " + g.tick);
+        // update
+        ball.tick();
         if (g.tick > g.max) {
             console.log("done anim");
             window.clearInterval(g.id);
@@ -108,15 +110,28 @@ var ball = {
         ball.f = {};
         ball.f.vx = 0.0;
         ball.f.vy = 0.0;
+        // history
+        ball.h = [];
         // each iteration:
         // calculate jump probability
         // update position
     },
     "tick": function() {
+        // advance
+        
         // history
-        ball.h = [];
+        // ball.h = [];
         // clone point and push
         // render time as alpha channel
+        var b0 = {};
+        b0.p = {};
+        b0.p.x = ball.p.x;
+        b0.p.y = ball.p.y;
+        b0.f = {};
+        b0.f.vx = ball.f.vx;
+        b0.f.vy = ball.f.vy;
+
+        ball.h.push(b0);
     }
 }
 // scene
