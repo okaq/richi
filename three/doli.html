@@ -118,7 +118,10 @@ var ball = {
     },
     "tick": function() {
         // advance
-        
+        ball.f.vx = gauss.rng();
+        ball.f.vy = gauss.rng();
+        ball.p.x = ball.p.x + ball.f.vx;
+        ball.p.y = ball.p.y + ball.f.vy;
         // history
         // ball.h = [];
         // clone point and push
