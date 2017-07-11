@@ -91,8 +91,13 @@ var g = {
         console.log("frame count: " + g.tick);
         // update
         ball.tick();
+        // render
+        ren.bkgd();
+        ren.square();
+        // check
         if (g.tick > g.max) {
             console.log("done anim");
+            console.log(ball.h[255].p.x,ball.h[255].p.y);
             window.clearInterval(g.id);
         }
         g.tick = g.tick + 1;
@@ -153,6 +158,16 @@ var ren = {
     "bkgd": function() {
         sce.a.con.fillStyle = ren.a;
         sce.a.con.fillRect(0,0,sce.a.can.width,sce.a.can.height);
+    },
+    "square": function() {
+        sce.a.con.strokeStyle = rgba.css([16,255,32,0.5]);
+        sce.a.con.lineWidth = 10;
+        var x0 = (Math.random() * (1920 / 4)) >>> 0;
+        var y0 = (Math.random() * (1080 / 4)) >>> 0;
+        var w0 = (Math.random() * (1920 / 2)) >>> 0;
+        var h0 = (Math.random() * (1080 / 2)) >>> 0;
+        console.log("rect: w:" + w0 + " h:" + h0 + " x:" + x0 + " y:" + y0);
+        sce.a.con.strokeRect(x0,y0,w0,h0);
     }
 }
 // graphics
