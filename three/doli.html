@@ -93,7 +93,8 @@ var g = {
         ball.tick();
         // render
         ren.bkgd();
-        ren.square();
+        // ren.square();
+        ren.walk();
         // check
         if (g.tick > g.max) {
             console.log("done anim");
@@ -168,6 +169,13 @@ var ren = {
         var h0 = (Math.random() * (1080 / 2)) >>> 0;
         console.log("rect: w:" + w0 + " h:" + h0 + " x:" + x0 + " y:" + y0);
         sce.a.con.strokeRect(x0,y0,w0,h0);
+    },
+    "walk": function() {
+        var rgb0 = [32,245,16,1.0];
+        for (var i = 0; i < ball.h.length; i++) {
+            var x0 = ball.h[i].p.x;
+            var y0 = ball.h[i].p.y;
+        }
     }
 }
 // graphics
