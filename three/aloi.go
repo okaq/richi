@@ -67,12 +67,19 @@ func ViewHandler(w http.ResponseWriter, r *http.Request) {
     // let's see if we can view html5 video webm
 }
 
+func ChronoHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r)
+    // server clock to sync client time
+    // just in time unix epoch 1.5M
+}
+
 func main() {
     fmt.Printf("started web server on localhost:8080\nat time: %s\n", time.Now().String())
     http.HandleFunc("/", BoliHandler)
     http.HandleFunc("/a", SaveHandler)
     http.HandleFunc("/b", StitchHandler)
     http.HandleFunc("/c", ViewHandler)
+    http.HandleFunc("/d", ChronoHandler)
     http.ListenAndServe(":8080", nil)
 }
 
