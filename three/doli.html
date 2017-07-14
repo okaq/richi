@@ -29,6 +29,9 @@ var g = {
         var t0 = window.performance.now();
         console.log("doli has loaded...");
 
+        // unix epoch +1.5M
+        console.log((new Date()).getTime());
+
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
     },
@@ -171,10 +174,19 @@ var ren = {
         sce.a.con.strokeRect(x0,y0,w0,h0);
     },
     "walk": function() {
-        var rgb0 = [32,245,16,1.0];
+        var rgba0 = [32,245,16,1.0];
+        sce.a.con.strokeStyle = rgba.css(rgba0);
+        sce.a.con.lineWidth = 1.0;
         for (var i = 0; i < ball.h.length; i++) {
             var x0 = ball.h[i].p.x;
             var y0 = ball.h[i].p.y;
+            var x1 = (1920 / 2) + x0;
+            var y1 = (1080 / 2) + y0
+            var w0 = 8;
+            var h0 = 8;
+            console.log("ball: w:" + w0 + " h:" + h0 + " x:" + x1 + " y:" + y1);
+            sce.a.con.strokeRect(x1,y1,w0,h0);
+            // total walk length = 2 pixels
         }
     }
 }
