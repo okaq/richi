@@ -129,8 +129,12 @@ var ball = {
         // advance
         ball.f.vx = gauss.rng();
         ball.f.vy = gauss.rng();
-        ball.p.x = ball.p.x + ball.f.vx;
-        ball.p.y = ball.p.y + ball.f.vy;
+        // ball.p.x = ball.p.x + ball.f.vx;
+        // ball.p.y = ball.p.y + ball.f.vy;
+        var vx1 = ball.f.vx * 16;
+        var vy1 = ball.f.vy * 16;
+        ball.p.x = ball.p.x + vx1;
+        ball.p.y = ball.p.y + vy1;
         // history
         // ball.h = [];
         // clone point and push
@@ -184,9 +188,12 @@ var ren = {
             var y1 = (1080 / 2) + y0
             var w0 = 8;
             var h0 = 8;
-            console.log("ball: w:" + w0 + " h:" + h0 + " x:" + x1 + " y:" + y1);
+            // console.log("ball: w:" + w0 + " h:" + h0 + " x:" + x1 + " y:" + y1);
             sce.a.con.strokeRect(x1,y1,w0,h0);
             // total walk length = 2 pixels
+            if (i == (ball.h.length - 1)) {
+                console.log("ball: w:" + w0 + " h:" + h0 + " x:" + x1 + " y:" + y1);
+            }
         }
     }
 }
