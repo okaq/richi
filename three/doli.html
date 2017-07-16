@@ -131,8 +131,8 @@ var ball = {
         ball.f.vy = gauss.rng();
         // ball.p.x = ball.p.x + ball.f.vx;
         // ball.p.y = ball.p.y + ball.f.vy;
-        var vx1 = ball.f.vx * 64;
-        var vy1 = ball.f.vy * 64;
+        var vx1 = ball.f.vx * 16;
+        var vy1 = ball.f.vy * 16;
         ball.p.x = ball.p.x + vx1;
         ball.p.y = ball.p.y + vy1;
         // clamp
