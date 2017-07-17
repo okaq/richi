@@ -34,7 +34,21 @@ var g = {
     },
     "dun": function() {
         console.log("babylon script loaded!");
-        console.log(BABYLON);
+        // console.log(BABYLON);
+        g.start();
+    },
+    "start": function() {
+        g.tick = 0;
+        g.max = 16;
+        g.id = window.setInterval(g.frame, 1000);
+    },
+    "frame": function() {
+        console.log("tick count: " + g.tick);
+        if (g.tick >= g.max) {
+            console.log("done anim");
+            window.clearInterval(g.id);
+        }
+        g.tick = g.tick + 1;
     }
 }
             </script>
