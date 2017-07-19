@@ -43,6 +43,9 @@ var g = {
         dom.init();
         sce.init();
         ren.bkgd();
+        ren.test();
+        // webgl
+        gl.init();
     },
     "start": function() {
         g.tick = 0;
@@ -58,11 +61,21 @@ var g = {
         g.tick = g.tick + 1;
     }
 }
+// webgl
+var gl = {
+    "init": function() {
+        // engine
+        gl.e = BABYLON.Engine(sce.b.can, true);
+        console.log(gl.e);
+    }
+}
 // scene
 var sce = {
     "init": function() {
         sce.a = dom.canvas([1920,1080,0,0]);
         dom.add(sce.a);
+        sce.b = dom.webgl([1024,1024,448,28]);
+        dom.add(sce.b);
     }
 }
 // render
@@ -70,6 +83,13 @@ var ren = {
     "bkgd": function() {
         sce.a.con.fillStyle = rgba.rand();
         sce.a.con.fillRect(0,0,sce.a.can.width,sce.a.can.height);
+    },
+    "test": function() {
+        var gl = sce.b.con;
+        gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT );
+        gl.clearColor(0, 0, 255, 1.0);
+        // sce.b.con.fillStyle = rgba.rand();
+        // sce.b.con.fillRect(0,0,sce.b.can.width,sce.b.can.height);
     }
 }
 // dom
@@ -82,6 +102,17 @@ var dom = {
         var c0 = {};
         c0.can = document.createElement("canvas");
         c0.con = c0.can.getContext("2d");
+        c0.can.width = r0[0];
+        c0.can.height = r0[1];
+        c0.can.style.position = "absolute";
+        c0.can.style.top = r0[3] + "px";
+        c0.can.style.left = r0[2] + "px";
+        return c0;
+    },
+    "webgl": function(r0) {
+        var c0 = {};
+        c0.can = document.createElement("canvas");
+        c0.con = c0.can.getContext("webgl");
         c0.can.width = r0[0];
         c0.can.height = r0[1];
         c0.can.style.position = "absolute";
