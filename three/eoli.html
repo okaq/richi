@@ -74,10 +74,14 @@ var gl = {
         gl.s.clearColor = new BABYLON.Color3(1,1,0);
         // gl.s.render();
         // define a camera
+        // position at
+        gl.d = new BABYLON.Vector3(0.0,5.0,-10.0);
         // look at
-        gl.d = new BABYLON.Vector3(1.0,1.0,1.0);
+        gl.e = new BABYLON.Vector3(0.0,0.0,0.0);
         // free cam
-        gl.c = new BABYLON.PointCamera(0,0,0);
+        gl.c = new BABYLON.FreeCamera("cam0", gl.d, gl.s);
+        gl.c.setTarget(gl.e);
+        gl.c.attachControl(sce.b.can, false);
         // dynamic sine wave camera
         // random walk add to object graph
         // bitmap - good representation of a graph object
