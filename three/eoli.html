@@ -82,6 +82,11 @@ var gl = {
         gl.c = new BABYLON.FreeCamera("cam0", gl.d, gl.s);
         gl.c.setTarget(gl.e);
         gl.c.attachControl(sce.b.can, false);
+        // lighting
+        gl.g = new BABYLON.Vector3(0.0,1.0,0.0);
+        gl.f = new BABYLON.HemisphericLight("lite0",gl.g,gl.s);
+        gl.f.intensity = 0.5;
+        // sphere
         // dynamic sine wave camera
         // random walk add to object graph
         // bitmap - good representation of a graph object
