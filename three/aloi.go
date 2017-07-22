@@ -74,6 +74,16 @@ func ChronoHandler(w http.ResponseWriter, r *http.Request) {
     // just in time unix epoch 1.5M
 }
 
+func EpochHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r)
+    // like a Buddhabrot forming pixel by pixel
+    // we can run a long server process
+    // that simulates some rendering function
+    // as computations complete, rgba values get updated
+    // the resultant png image can be sampled at intervals
+    // by a browser client xhr request
+}
+
 func main() {
     fmt.Printf("started web server on localhost:8080\nat time: %s\n", time.Now().String())
     http.HandleFunc("/", BoliHandler)
@@ -81,6 +91,7 @@ func main() {
     http.HandleFunc("/b", StitchHandler)
     http.HandleFunc("/c", ViewHandler)
     http.HandleFunc("/d", ChronoHandler)
+    http.HandleFunc("/e", EpochHandler)
     http.ListenAndServe(":8080", nil)
 }
 
