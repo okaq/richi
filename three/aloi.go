@@ -84,6 +84,12 @@ func EpochHandler(w http.ResponseWriter, r *http.Request) {
     // by a browser client xhr request
 }
 
+func Finnish(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r)
+    // hasuka tavata
+    // auxilliary save methods handler
+}
+
 func main() {
     fmt.Printf("started web server on localhost:8080\nat time: %s\n", time.Now().String())
     http.HandleFunc("/", BoliHandler)
@@ -92,6 +98,7 @@ func main() {
     http.HandleFunc("/c", ViewHandler)
     http.HandleFunc("/d", ChronoHandler)
     http.HandleFunc("/e", EpochHandler)
+    http.HandleFunc("/f", FinnishHandler)
     http.ListenAndServe(":8080", nil)
 }
 
