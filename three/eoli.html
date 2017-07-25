@@ -87,6 +87,9 @@ var gl = {
         gl.f = new BABYLON.HemisphericLight("lite0",gl.g,gl.s);
         gl.f.intensity = 0.5;
         // sphere
+        gl.h = new BABYLON.Mesh.CreateSphere("sphere1",16,2,gl.s);
+        gl.h.position.y = 1;
+        gl.j = new BABYLON.Mesh.CreateGround("ground1",6,6,2,gl.s);
         // dynamic sine wave camera
         // random walk add to object graph
         // bitmap - good representation of a graph object
