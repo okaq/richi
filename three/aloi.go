@@ -84,7 +84,7 @@ func EpochHandler(w http.ResponseWriter, r *http.Request) {
     // by a browser client xhr request
 }
 
-func Finnish(w http.ResponseWriter, r *http.Request) {
+func FinnishHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r)
     // hasuka tavata
     // auxilliary save methods handler
