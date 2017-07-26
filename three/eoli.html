@@ -103,8 +103,16 @@ var gl = {
     },
     "frame": function() {
         // update systems
+        gl.h.position.y = 2;
+        var t0 = g.tick % 4;
+        var a0 = Math.PI / 2.0 * t0;
+        var r0 = 3;
+        var x0 = r0 * Math.sin(a0);
+        var z0 = r0 * Math.cos(a0);
+        gl.h.position.x = x0;
+        gl.h.position.z = z0;
         // scene rendition
-        gl.h.position.y = g.tick * 0.25;
+        // gl.h.position.y = g.tick * 0.25;
         gl.s.clearColor = new BABYLON.Color3(1,1,0);
         gl.s.render();
     }
