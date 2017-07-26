@@ -46,6 +46,7 @@ var g = {
         // ren.test();
         // webgl
         gl.init();
+        gl.test();
     },
     "start": function() {
         g.tick = 0;
@@ -58,7 +59,8 @@ var g = {
             console.log("done anim");
             window.clearInterval(g.id);
         }
-        gl.test();
+        // gl.test();
+        gl.frame();
         g.tick = g.tick + 1;
     }
 }
@@ -95,6 +97,16 @@ var gl = {
         // dynamic sine wave camera
         // random walk add to object graph
         // bitmap - good representation of a graph object
+        // gl.e.addEvent("loop", function() {
+            // render loop
+        // });
+    },
+    "frame": function() {
+        // update systems
+        // scene rendition
+        gl.h.position.y = g.tick * 0.25;
+        gl.s.clearColor = new BABYLON.Color3(1,1,0);
+        gl.s.render();
     }
 }
 // scene
