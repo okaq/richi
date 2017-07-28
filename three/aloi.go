@@ -90,6 +90,11 @@ func FinnishHandler(w http.ResponseWriter, r *http.Request) {
     // auxilliary save methods handler
 }
 
+func GerteHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r)
+    // apparatus cache
+}
+
 func main() {
     fmt.Printf("started web server on localhost:8080\nat time: %s\n", time.Now().String())
     http.HandleFunc("/", BoliHandler)
@@ -99,6 +104,7 @@ func main() {
     http.HandleFunc("/d", ChronoHandler)
     http.HandleFunc("/e", EpochHandler)
     http.HandleFunc("/f", FinnishHandler)
+    http.HandleFunc("/g", GerteHandler)
     http.ListenAndServe(":8080", nil)
 }
 
