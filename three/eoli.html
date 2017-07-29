@@ -45,8 +45,11 @@ var g = {
         ren.bkgd();
         // ren.test();
         // webgl
-        gl.init();
-        gl.test();
+        // gl.init();
+        // gl.test();
+        // 100 particles
+        gl.now();
+        gl.fire();
     },
     "start": function() {
         g.tick = 0;
@@ -120,6 +123,13 @@ var gl = {
         // simple particle system
         // stored as a linked list
         gl.p = {};
+    },
+    "now": function() {
+        // setup enine, scene, camera
+        // create lighting, particles, physics
+    },
+    "fire": function() {
+
     }
 }
 // scene
