@@ -132,7 +132,9 @@ var gl = {
         gl.p.s.clearColor = new BABYLON.Color3(1,0,0);
         gl.p.d = new BABYLON.Vector3(5.0,-10.0,0.0);
         gl.p.e = new BABYLON.Vector3(0.0,0.0,0.0);
-        gl.p.c = new BABYLON.FreeCamera("c0",gl.p.d,gl.p.e);
+        gl.p.c = new BABYLON.FreeCamera("c0",gl.p.d,gl.p.s);
+        gl.p.c.setTarget(gl.p.e);
+        gl.p.c.attachControl(sce.b.can,false);
     },
     "fire": function() {
 
