@@ -45,7 +45,7 @@ var g = {
         ren.bkgd();
         // ren.test();
         // webgl
-        // gl.init();
+        gl.init();
         // gl.test();
         // 100 particles
         gl.now();
@@ -127,6 +127,12 @@ var gl = {
     "now": function() {
         // setup enine, scene, camera
         // create lighting, particles, physics
+        gl.p = {};
+        gl.p.s = new BABYLON.Scene(gl.e);
+        gl.p.s.clearColor = new BABYLON.Color3(1,0,0);
+        gl.p.d = new BABYLON.Vector3(5.0,-10.0,0.0);
+        gl.p.e = new BABYLON.Vector3(0.0,0.0,0.0);
+        gl.p.c = new BABYLON.FreeCamera("c0",gl.p.d,gl.p.e);
     },
     "fire": function() {
 
