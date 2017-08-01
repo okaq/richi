@@ -138,6 +138,17 @@ var gl = {
         gl.p.g = new BABYLON.Vector3(0.0,1.0,0.0);
         gl.p.f = new BABYLON.HemisphericLight("l0",gl.p.g,gl.p.s);
         gl.p.f.intensity = 0.5;
+        // particles
+        gl.p.h = [];
+        gl.p.i = 128;
+        for (var i = 0; i < gl.p.i; i++) {
+            var k0 = "sphere_" + i;
+            var s0 = new BABYLON.Mesh.CreateSphere(k0,1,2,gl.p.s);
+            s0.position.y = 0.0;
+            s0.position.x = 0.0;
+            s0.position.z = i / 10.0;
+            gl.p.h.push(s0);
+        }
     },
     "fire": function() {
 
