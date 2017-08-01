@@ -135,6 +135,9 @@ var gl = {
         gl.p.c = new BABYLON.FreeCamera("c0",gl.p.d,gl.p.s);
         gl.p.c.setTarget(gl.p.e);
         gl.p.c.attachControl(sce.b.can,false);
+        gl.p.g = new BABYLON.Vector3(0.0,1.0,0.0);
+        gl.p.f = new BABYLON.HemisphericLight("l0",gl.p.g,gl.p.s);
+        gl.p.f.intensity = 0.5;
     },
     "fire": function() {
 
