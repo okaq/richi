@@ -107,4 +107,8 @@ func main() {
     http.HandleFunc("/g", GerteHandler)
     http.ListenAndServe(":8080", nil)
 }
+// codename for video generator
+// and isomorphic sprite render and save
+// "dovi" sanskrit for number "three"
+
 
