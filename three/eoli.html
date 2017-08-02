@@ -49,7 +49,7 @@ var g = {
         // gl.test();
         // 100 particles
         gl.now();
-        gl.fire();
+        // gl.fire();
     },
     "start": function() {
         g.tick = 0;
@@ -64,6 +64,7 @@ var g = {
         }
         // gl.test();
         // gl.frame();
+        gl.fire();
         g.tick = g.tick + 1;
     }
 }
@@ -153,6 +154,12 @@ var gl = {
         gl.p.j = new BABYLON.Mesh.CreateGround("g0",6,6,2,gl.p.s);
     },
     "fire": function() {
+        // update physics
+        for (var i = 0; i < gl.p.i; i++) {
+            gl.p.h[i].position.z = gl.p.h[i].position.z + 2.0;
+        }
+        // clear
+        gl.p.s.clearColor = new BABYLON.Color3(1,0,0);
         // render particles
         gl.p.s.render();
     }
