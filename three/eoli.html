@@ -149,6 +149,8 @@ var gl = {
             s0.position.z = i / 10.0;
             gl.p.h.push(s0);
         }
+        // floor
+        gl.p.j = new BABYLON.Mesh.CreateGround(6,6,2,gl.p.s);
     },
     "fire": function() {
 
