@@ -63,7 +63,7 @@ var g = {
             window.clearInterval(g.id);
         }
         // gl.test();
-        gl.frame();
+        // gl.frame();
         g.tick = g.tick + 1;
     }
 }
@@ -130,7 +130,7 @@ var gl = {
         gl.p = {};
         gl.p.s = new BABYLON.Scene(gl.e);
         gl.p.s.clearColor = new BABYLON.Color3(1,0,0);
-        gl.p.d = new BABYLON.Vector3(5.0,-10.0,0.0);
+        gl.p.d = new BABYLON.Vector3(0.0,5.0,-10.0);
         gl.p.e = new BABYLON.Vector3(0.0,0.0,0.0);
         gl.p.c = new BABYLON.FreeCamera("c0",gl.p.d,gl.p.s);
         gl.p.c.setTarget(gl.p.e);
@@ -143,17 +143,18 @@ var gl = {
         gl.p.i = 128;
         for (var i = 0; i < gl.p.i; i++) {
             var k0 = "sphere_" + i;
-            var s0 = new BABYLON.Mesh.CreateSphere(k0,1,2,gl.p.s);
-            s0.position.y = 0.0;
-            s0.position.x = 0.0;
-            s0.position.z = i / 10.0;
+            var s0 = new BABYLON.Mesh.CreateSphere(k0,16,0.1,gl.p.s);
+            s0.position.y = i / 20.0;
+            s0.position.x = i / 20.0;
+            s0.position.z = i / 20.0;
             gl.p.h.push(s0);
         }
         // floor
-        gl.p.j = new BABYLON.Mesh.CreateGround(6,6,2,gl.p.s);
+        gl.p.j = new BABYLON.Mesh.CreateGround("g0",6,6,2,gl.p.s);
     },
     "fire": function() {
-
+        // render particles
+        gl.p.s.render();
     }
 }
 // scene
