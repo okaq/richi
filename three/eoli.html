@@ -145,9 +145,12 @@ var gl = {
         for (var i = 0; i < gl.p.i; i++) {
             var k0 = "sphere_" + i;
             var s0 = new BABYLON.Mesh.CreateSphere(k0,16,0.1,gl.p.s);
-            s0.position.y = i / 20.0;
-            s0.position.x = i / 20.0;
-            s0.position.z = i / 20.0;
+            // s0.position.y = i / 20.0;
+            // s0.position.x = i / 20.0;
+            // s0.position.z = i / 20.0;
+            // archimedean spiral
+            var r0 = 3.0;
+            var t0 = Math.PI * 2.0 * (i / gl.p.i);
             gl.p.h.push(s0);
         }
         // floor
@@ -162,6 +165,15 @@ var gl = {
         gl.p.s.clearColor = new BABYLON.Color3(1,0,0);
         // render particles
         gl.p.s.render();
+    },
+    "gourd": function() {
+        // each particle takes the shape
+        // of a randomly selected mesh
+        // polygonal mesh can also be random
+        // path in space begins as a spiral
+        // then radiates out as random walk vector
+        // each particle keeps track of its own path history
+        // which it can then unwind at t_max / 2
     }
 }
 // scene
