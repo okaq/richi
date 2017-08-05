@@ -19,8 +19,16 @@ func ZinHandler(w http.ResponseWriter, r *http.Request) {
     http.ServeFile(w,r,ZIN)
 }
 
+func AbHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r)
+    // good habit
+    // stats page and cache
+    // hold request and data transfered count
+}
+
 func main() {
     fmt.Printf("localhost:8080 zin web start: %s\n", time.Now().String())
     http.HandleFunc("/", ZinHandler)
+    http.HandleFunc("/a", AbHandler)
     http.ListenAndServe(":8080", nil)
 }
