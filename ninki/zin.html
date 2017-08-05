@@ -14,10 +14,27 @@
             // ok
             console.log("okaq gira richi three eoli ok!");
             // async load
+            (funciton() {
+                var a = {
+                    "load": function(e) {
+                        console.log(e);
+                        g.init();
+                    }
+                }
+                document.addEventListener("load", a.load, false);
+            })();
+// game
+var g = {
+    "init": function() {
+        var t0 = window.performance.now();
+        console.log("zin game init...");
+
+        // stats
+        console.log("total render time: " + (window.performance.now() - t0) + "ms.");
+    }
+}
         </script>
     </head>
     <body id="alpha">
     </body>
 </html>
-
-
