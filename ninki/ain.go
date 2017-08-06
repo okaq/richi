@@ -21,6 +21,7 @@ func ZinHandler(w http.ResponseWriter, r *http.Request) {
 
 func AbHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r)
+    w.Write([]byte("greetings from ain!"))
     // good habit
     // stats page and cache
     // hold request and data transfered count
