@@ -72,6 +72,11 @@ var net = {
     },
     "load": function(e) {
         console.log(e);
+        var t0 = e.target.responseText;
+        console.log(t0);
+        var j0 = JSON.parse(t0);
+        console.log(j0);
+        console.log("count: " + j0.count);
     }
 }
 // dom
