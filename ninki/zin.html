@@ -30,11 +30,34 @@ var g = {
         console.log("zin game init...");
 
         // subsystems
-        g.subs = [dom,net];
+        g.subs = [dom,net,sce];
         g.subs.forEach(function(el){el.init();});
 
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
+    }
+}
+// scene
+var sce = {
+    "init": function() {
+        // bkgd
+        sce.a = {};
+        sce.a.a = [1920,1080,0,0];
+        sce.a.b = dom.canvas(sce.a.a);
+        dom.add(sce.a.b);
+        // panes
+        sce.b = {};
+        sce.b.a = [];
+        sce.b.a[0] = [960,540,0,0];
+        sce.b.a[1] = [960,540,960,0];
+        sce.b.a[2] = [960,540,0,540];
+        sce.b.a[3] = [960,540,960,540];
+        sce.b.b = [];
+        sce.b.a.forEach(function(el){
+            var c0 = dom.canvas(el);
+            sce.b.b.push(c0);
+            dom.add(c0);
+        });
     }
 }
 // xhr
