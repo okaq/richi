@@ -43,7 +43,11 @@ func ZinHandler(w http.ResponseWriter, r *http.Request) {
 
 func AbHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r)
-    w.Write([]byte("greetings from ain!"))
+    // w.Write([]byte("greetings from ain!"))
+    C.Increment()
+    s0 := fmt.Sprintf("{count:%d}", C.Count)
+    b0 := []byte(s0)
+    w.Write(b0)
     // good habit
     // stats page and cache
     // hold request and data transfered count
