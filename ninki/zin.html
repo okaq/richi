@@ -33,6 +33,9 @@ var g = {
         g.subs = [dom,net,sce];
         g.subs.forEach(function(el){el.init();});
 
+        // test
+        ren.test();
+
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
     }
@@ -45,6 +48,7 @@ var sce = {
         sce.a.a = [1920,1080,0,0];
         sce.a.b = dom.canvas(sce.a.a);
         dom.add(sce.a.b);
+        sce.a.c = rgba.rc();
         // panes
         sce.b = {};
         sce.b.a = [];
@@ -53,10 +57,13 @@ var sce = {
         sce.b.a[2] = [960,540,0,540];
         sce.b.a[3] = [960,540,960,540];
         sce.b.b = [];
+        sce.b.c = [];
         sce.b.a.forEach(function(el){
             var c0 = dom.canvas(el);
             sce.b.b.push(c0);
             dom.add(c0);
+            var rgb0 = rgba.rc();
+            sce.b.c.push(rgb0);
         });
     }
 }
@@ -77,6 +84,23 @@ var net = {
         var j0 = JSON.parse(t0);
         console.log(j0);
         console.log("count: " + j0.count);
+    }
+}
+// render
+var ren = {
+    "test": function() {
+        // bkgd
+        sce.a.b.con.fillStyle = rgba.css(sce.a.c);
+        sce.a.b.con.fillRect(0,0,sce.a.b.can.width,sce.a.b.can.height);
+        // quad
+        var m0 = 64;
+        var m1 = 2 * m0;
+        for (var i = 0; i < sce.b.b.length; i++) {
+            c0 = sce.b.b[i];
+            rgb0 = sce.b.c[i];
+            c0.con.fillStyle = rgba.css(rgb0);
+            c0.con.fillRect(m0,m0,c0.can.width-m1,c0.can.height-m1);
+        }
     }
 }
 // dom
