@@ -36,8 +36,25 @@ var g = {
         // test
         ren.test();
 
+        // simulator
+        // run manager
+        // stats accumulator
+        exp.set();
+
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
+    }
+}
+// experiment
+var exp = {
+    "set": function() {
+        exp.a = 1;
+        exp.n = 1000;
+        console.log("beginning experiment");
+        console.log("total run count: " + exp.n);
+        for (var i = exp.a; i < exp.n; i++) {
+            console.log("run " + i + ": ");
+        }
     }
 }
 // scene
