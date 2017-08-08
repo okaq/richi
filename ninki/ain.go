@@ -12,7 +12,8 @@ import (
 )
 
 const (
-    ZIN = "zin.html"
+    // ZIN = "zin.html"
+    INDEX = "yin.html"
 )
 
 var (
@@ -48,6 +49,11 @@ func ZinHandler(w http.ResponseWriter, r *http.Request) {
     http.ServeFile(w,r,ZIN)
 }
 
+func IndexHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r)
+    http.ServeFile(w,r,INDEX)
+}
+
 func AbHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r)
     // w.Write([]byte("greetings from ain!"))
@@ -63,7 +69,8 @@ func AbHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
     fmt.Printf("localhost:8080 zin web start: %s\n", time.Now().String())
     C = NewCache()
-    http.HandleFunc("/", ZinHandler)
+    // http.HandleFunc("/", ZinHandler)
+    http.HandleFunc("/", IndexHandler)
     http.HandleFunc("/a", AbHandler)
     http.ListenAndServe(":8080", nil)
 }
