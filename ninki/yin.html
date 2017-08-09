@@ -52,7 +52,14 @@ var exp = {
         // "start cash" equals the initial account cash funding
         // "avg out" is what we call the estimated value
         // of the number of trades until account goes to zero
-        // results = {start cash: avg out }
+        // results = {start cash: avg out}
+        exp.res = {};
+        // cash min and max
+        exp.c0 = 1000;
+        exp.c1 = 1000000;
+        // experiment count
+        exp.d = exp.c1 - exp.c0;
+        console.log("total number of runs: " + exp.d);
     },
     "old": function() {
         exp.a = 1;
