@@ -48,6 +48,9 @@ var g = {
 // experiment
 var exp = {
     "set": function() {
+        console.log("setting up experiment globals");
+    },
+    "old": function() {
         exp.a = 1;
         exp.n = 1000;
         console.log("beginning experiment");
@@ -69,6 +72,9 @@ var exp = {
                 } else {
                     // tails
                 }
+                // actually want to record both series
+                // flips and profit / loss
+                // as well as the number of trades until zero
             }
         }
     }
