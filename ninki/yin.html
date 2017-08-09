@@ -52,8 +52,24 @@ var exp = {
         exp.n = 1000;
         console.log("beginning experiment");
         console.log("total run count: " + exp.n);
-        for (var i = exp.a; i < exp.n; i++) {
+        for (var i = exp.a; i <= exp.n; i++) {
             console.log("run " + i + ": ");
+            // start account
+            exp.b = {};
+            // capital
+            exp.b.a = i * 10000;
+            console.log("capital start: " + exp.b.a);
+            // flip count
+            exp.b.c = 0;
+            while (exp.b.a >= 0) {
+                // fair coin flip
+                var f0 = Math.random();
+                if (f0 > 0.5) {
+                    // heads
+                } else {
+                    // tails
+                }
+            }
         }
     }
 }
@@ -81,7 +97,7 @@ var net = {
     "load": function(e) {
         var t0 = e.target.responseText;
         var j0 = JSON.parse(t0);
-        console.log("count: " + j0.count);
+        console.log("visitor counter: " + j0.count);
     }
 }
 // render
@@ -90,7 +106,6 @@ var ren = {
         // bkgd
         sce.a.b.con.fillStyle = rgba.css(sce.a.c);
         sce.a.b.con.fillRect(0,0,sce.a.b.can.width,sce.a.b.can.height);
-        }
     }
 }
 // dom
