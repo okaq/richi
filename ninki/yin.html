@@ -60,6 +60,27 @@ var exp = {
         // experiment count
         exp.d = exp.c1 - exp.c0;
         console.log("total number of runs: " + exp.d);
+        // runs loop
+        for (var i = exp.c0; i <= exp.c1; i++) {
+            var r0 = exp.runs(i);
+            exp.res[i] = r0;
+        }
+        console.log(exp.res);
+    },
+    "runs": function(c0) {
+        console.log("doing run #: " + c0)
+        // calc avg from N trials
+        var n0 = 10000;
+        // accumulator
+        var x0 = 0;
+        for (var i = 0; i < n0; i++) {
+            var x1 = Math.random();
+            x0 = x0 + x1;
+        }
+        // expected value
+        var x2 = x0 / n0;
+        console.log("result #: " + c0 + "  = " + x2);
+        return x2;
     },
     "old": function() {
         exp.a = 1;
