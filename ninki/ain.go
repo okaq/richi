@@ -13,7 +13,7 @@ import (
 
 const (
     ZIN = "zin.html"
-    INDEX = "yin.html"
+    INDEX = "xin.html"
 )
 
 var (
