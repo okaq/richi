@@ -14,6 +14,7 @@ import (
 const (
     ZIN = "zin.html"
     INDEX = "xin.html"
+    BITMAP = "win.html"
 )
 
 var (
@@ -66,11 +67,17 @@ func AbHandler(w http.ResponseWriter, r *http.Request) {
     // hold request and data transfered count
 }
 
+func BitHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r)
+    http.ServeFile(w,r,BITMAP)
+}
+
 func main() {
     fmt.Printf("localhost:8080 zin web start: %s\n", time.Now().String())
     C = NewCache()
     // http.HandleFunc("/", ZinHandler)
     http.HandleFunc("/", IndexHandler)
     http.HandleFunc("/a", AbHandler)
+    http.HandleFunc("/b", BitHandler)
     http.ListenAndServe(":8080", nil)
 }
