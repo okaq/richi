@@ -30,11 +30,28 @@ var g = {
         console.log("win invader init...");
 
         // subsystems
-        g.subs = [dom];
+        g.subs = [dom,sce];
         g.subs.forEach(function(el){el.init();});
+
+        // bkgd
+        ren.bkgd();
 
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
+    }
+}
+// scene
+var sce = {
+    "init": function() {
+        sce.a = dom.canvas([1920,1080,0,0]);
+        dom.add(sce.a);
+    }
+}
+// render
+var ren = {
+    "bkgd": function() {
+        sce.a.con.fillStyle = rgba.rand();
+        sce.a.con.fillRect(0,0,sce.a.can.width,sce.a.can.height);
     }
 }
 // dom
