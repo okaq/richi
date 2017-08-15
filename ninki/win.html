@@ -36,6 +36,9 @@ var g = {
         // bkgd
         ren.bkgd();
 
+        // carousel
+        sce.car();
+
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
     }
@@ -45,6 +48,21 @@ var sce = {
     "init": function() {
         sce.a = dom.canvas([1920,1080,0,0]);
         dom.add(sce.a);
+    },
+    "car": function() {
+        // carousel
+        // invader bitmap is 7x7 pixels
+        // 3 mirrored rand columns, plus 1 center
+        sce.c = {};
+        // layout
+        sce.c.r = [];
+        // canvas
+        sce.c.c = [];
+        // sizes
+        sce.c.s = [64,32,16,8];
+        // margins
+        sce.c.m = [];
+
     }
 }
 // render
