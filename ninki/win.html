@@ -30,7 +30,7 @@ var g = {
         console.log("win invader init...");
 
         // subsystems
-        g.subs = [dom,sce];
+        g.subs = [dom,sce,bmp];
         g.subs.forEach(function(el){el.init();});
 
         // bkgd
@@ -79,6 +79,37 @@ var sce = {
         for (var i = 0; i < sce.c.r.length; i++) {
             sce.c.c[i] = dom.canvas(sce.c.r[i]);
             dom.add(sce.c.c[i]);
+        }
+    }
+}
+// bitmap
+var bmp = {
+    "init": function() {
+        // 7x7 invaders
+        // binary monochrome
+        bmp.nx = 7;
+        bmp.ny = 7;
+        bmp.nt = (bmp.nx * bmp.ny) >>> 0;
+        // data
+        bmp.a = [];
+        // rand to start
+        for (var i = 0; i < sce.c.c.length; i++) {
+            bmp.a[i] = bmp.rand();
+        }
+    },
+    "rand": function() {
+        var d0 = [];
+        for (var i = 0; i < bmp.nt; i++) {
+            d0[i] = bmp.flip();
+        }
+        return d0;
+    },
+    "flip": function() {
+        f0 = Math.random();
+        if (f0 >= 0.5) {
+            return 1;
+        } else {
+            return 0;
         }
     }
 }
