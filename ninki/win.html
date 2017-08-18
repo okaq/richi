@@ -61,10 +61,25 @@ var sce = {
         // sizes
         sce.c.s = [64,32,16,8];
         // margins
-        sce.c.m = [];
+        sce.c.m = [16];
 
+        // layout
         // center
-        sce.c.r[0] = [sce.c.s[0],sce.c.s[0],928,508];
+        sce.c.r[0] = [448,448,736,316];
+        // sides
+        sce.c.r[1] = [224,224,496,428];
+        sce.c.r[2] = [224,224,976,428];
+        sce.c.r[3] = [112,112,368,484];
+        sce.c.r[4] = [112,112,1216,484];
+        sce.c.r[5] = [56,56,240,512];
+        sce.c.r[6] = [56,56,1344,512];
+        // built from inside out, using previous dimensions
+
+        // canvas
+        for (var i = 0; i < sce.c.r.length; i++) {
+            sce.c.c[i] = dom.canvas(sce.c.r[i]);
+            dom.add(sce.c.c[i]);
+        }
     }
 }
 // render
