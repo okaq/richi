@@ -36,8 +36,8 @@ var g = {
         // bkgd
         ren.bkgd();
 
-        // carousel
-        sce.car();
+        // test
+        ren.test();
 
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
@@ -48,6 +48,8 @@ var sce = {
     "init": function() {
         sce.a = dom.canvas([1920,1080,0,0]);
         dom.add(sce.a);
+
+        sce.car();
     },
     "car": function() {
         // carousel
@@ -68,11 +70,11 @@ var sce = {
         sce.c.r[0] = [448,448,736,316];
         // sides
         sce.c.r[1] = [224,224,496,428];
-        sce.c.r[2] = [224,224,976,428];
+        sce.c.r[2] = [224,224,1200,428];
         sce.c.r[3] = [112,112,368,484];
-        sce.c.r[4] = [112,112,1216,484];
-        sce.c.r[5] = [56,56,240,512];
-        sce.c.r[6] = [56,56,1344,512];
+        sce.c.r[4] = [112,112,1460,484];
+        sce.c.r[5] = [56,56,296,512];
+        sce.c.r[6] = [56,56,1588,512];
         // built from inside out, using previous dimensions
 
         // canvas
@@ -118,6 +120,16 @@ var ren = {
     "bkgd": function() {
         sce.a.con.fillStyle = rgba.rand();
         sce.a.con.fillRect(0,0,sce.a.can.width,sce.a.can.height);
+    },
+    "test": function() {
+        for (var i = 0; i < sce.c.c.length; i++) {
+            var c0 = sce.c.c[i];
+            c0.con.fillStyle = rgba.rand();
+            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+        }
+    },
+    "data": function() {
+
     }
 }
 // dom
