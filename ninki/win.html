@@ -151,13 +151,15 @@ var bmp = {
 // render
 var ren = {
     "bkgd": function() {
-        sce.a.con.fillStyle = rgba.rand();
+        // sce.a.con.fillStyle = rgba.rand();
+        sce.a.con.fillStyle = rgba.css([255,255,255,1.0]);
         sce.a.con.fillRect(0,0,sce.a.can.width,sce.a.can.height);
     },
     "test": function() {
         for (var i = 0; i < sce.c.c.length; i++) {
             var c0 = sce.c.c[i];
-            c0.con.fillStyle = rgba.rand();
+            // c0.con.fillStyle = rgba.rand();
+            c0.con.fillStyle = rgba.css([255,255,255,1.0]);
             c0.con.fillRect(0,0,c0.can.width,c0.can.height);
         }
     },
