@@ -71,6 +71,12 @@ func BitHandler(w http.ResponseWriter, r *http.Request) {
     http.ServeFile(w,r,BITMAP)
 }
 
+func PidHandler(w http.ResponseWriter, r *http.Request) {
+    // per request pid cache
+    // once per browser session
+    fmt.Println(r)
+}
+
 func main() {
     fmt.Printf("localhost:8080 zin web start: %s\n", time.Now().String())
     C = NewCache()
@@ -78,5 +84,6 @@ func main() {
     http.HandleFunc("/", IndexHandler)
     http.HandleFunc("/a", AbHandler)
     http.HandleFunc("/b", BitHandler)
+    http.HandleFunc("/c", PidHandler)
     http.ListenAndServe(":8080", nil)
 }

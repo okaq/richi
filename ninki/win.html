@@ -39,6 +39,8 @@ var g = {
         // test
         ren.test();
 
+        // anim loop
+
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
     }
@@ -104,6 +106,7 @@ var bmp = {
         for (var i = 0; i < sce.c.c.length; i++) {
             bmp.a[i] = bmp.rand();
         }
+        // mirror data around center
     },
     "rand": function() {
         var d0 = [];
@@ -135,7 +138,9 @@ var ren = {
         }
     },
     "data": function() {
-
+        for (var i = 0; i < sce.c.c.length; i++) {
+            // render pixels in canvas
+        }
     }
 }
 // dom
