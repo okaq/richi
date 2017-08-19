@@ -140,6 +140,24 @@ var ren = {
     "data": function() {
         for (var i = 0; i < sce.c.c.length; i++) {
             // render pixels in canvas
+            var c0 = sce.c.c[i];
+            var s0 = sce.c.s[i];
+            var r0 = sce.c.r[i];
+            var w0 = r0[0];
+            var h0 = r0[1];
+            var d0 = bmp.a[i];
+            c0.con.fillStyle = rgba.css([0,0,0,1.0]);
+            for (var j = 0; j < bmp.nt; j++) {
+                if (d0[j] == 0) {
+                    continue;
+                }
+                var x0 = j % bmp.nx;
+                var y0 = (j / bmp.ny) >>> 0;
+                var x1 = (x0 * s0) >>> 0;
+                var y1 = (y0 * s0) >>> 0;
+                c0.con.fillRect(x1,y1,s0,s0);
+            }
+
         }
     }
 }
