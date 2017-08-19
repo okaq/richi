@@ -64,11 +64,13 @@ var sce = {
         // canvas
         sce.c.c = [];
         // sizes
-        sce.c.s = [64,32,16,8,4,2,1];
+        // sce.c.s = [64,32,16,8,4,2,1];
+        sce.c.s = [1,2,4,8,16,32,64,32,16,8,4,2,1];
         // margins
         sce.c.m = [16];
 
         // layout
+        /*
         // center
         sce.c.r[0] = [448,448,736,316];
         // sides
@@ -83,6 +85,22 @@ var sce = {
         sce.c.r[9] = [14,14,222,533];
         sce.c.r[10] = [14,14,1704,533];
         sce.c.r[11] = [7,7,199,536];
+        sce.c.r[12] = [7,7,1734,536];
+        */
+        // center
+        sce.c.r[6] = [448,448,736,316];
+        // sides
+        sce.c.r[5] = [224,224,496,428];
+        sce.c.r[7] = [224,224,1200,428];
+        sce.c.r[4] = [112,112,368,484];
+        sce.c.r[8] = [112,112,1460,484];
+        sce.c.r[3] = [56,56,296,512];
+        sce.c.r[9] = [56,56,1588,512];
+        sce.c.r[2] = [28,28,252,526];
+        sce.c.r[10] = [28,28,1660,526];
+        sce.c.r[1] = [14,14,222,533];
+        sce.c.r[11] = [14,14,1704,533];
+        sce.c.r[0] = [7,7,199,536];
         sce.c.r[12] = [7,7,1734,536];
         // built from inside out, using previous dimensions
 
@@ -147,7 +165,6 @@ var ren = {
         for (var i = 0; i < sce.c.c.length; i++) {
             // render pixels in canvas
             var c0 = sce.c.c[i];
-            var s0 = 0;
             /*
             // not in order
             if (i < (sce.c.c.length / 2)) {
@@ -156,6 +173,7 @@ var ren = {
                 s0 = sce.c.s[i%(sce.c.c.length/2)]
             }
             */
+            /*
             // dist from center
             var i0 = Math.abs(i - (sce.c.c.length / 2));
             if (i < sce.c.c.length) {
@@ -165,6 +183,8 @@ var ren = {
             }
             var s0 = sce.c.s[sce.c.s.length - 1 - i0];
             console.log(i, i0, s0);
+            */
+            var s0 = sce.c.s[i];
             // refactor layout in index order
             // complement full size array
             var r0 = sce.c.r[i];
