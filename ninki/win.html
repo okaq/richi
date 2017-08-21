@@ -41,9 +41,23 @@ var g = {
         ren.data();
 
         // anim loop
+        window.setTimeout(g.start, 1000);
 
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
+    },
+    "start": function() {
+        g.tick = 0;
+        g.id = window.setInterval(g.frame, 1000);
+    },
+    "frame": function() {
+        console.log("frame count: " + g.tick);
+        // inv gen and shift
+        g.tick = g.tick + 1;
+        if (g.tick >= 16) {
+            window.clearInterval(g.id);
+            console.log("loop done");
+        }
     }
 }
 // scene
