@@ -48,12 +48,19 @@ var g = {
     },
     "start": function() {
         g.tick = 0;
+        g.shift = 0; // index into bmp list
         g.id = window.setInterval(g.frame, 1000);
     },
     "frame": function() {
         console.log("frame count: " + g.tick);
         // inv gen and shift
         g.tick = g.tick + 1;
+        g.shift = g.shift + 1;
+        // after we render, update tick
+        // then add a new rand inv at last position
+        if (g.shift >= sce.c.c.length) {
+            g.shift = 0;
+        }
         if (g.tick >= 16) {
             window.clearInterval(g.id);
             console.log("loop done");
