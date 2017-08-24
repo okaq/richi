@@ -61,6 +61,18 @@ var g = {
         // instead: create invader buffer
         // generate new on tick
         // and swap into chain for render
+        ren.bkgd();
+        ren.test();
+        ren.data();
+        console.log("shift: " + g.shift);
+        var c0 = [];
+        for (var i = 0; i < sce.c.c.length; i++) {
+            var c1 = g.shift + i;
+            var c2 = c1 % sce.c.c.length;
+            c0.push(c2);
+        }
+        console.log("order: " + g.shift % sce.c.c.length)
+        console.log(c0);
         if (g.shift >= sce.c.c.length) {
             g.shift = 0;
         }
@@ -177,7 +189,7 @@ var bmp = {
     "cols": function() {
         // return cols as array
     },
-    "flip": function() {
+    "rev": function() {
         // reverse an array
     }
 }
@@ -191,8 +203,8 @@ var ren = {
     "test": function() {
         for (var i = 0; i < sce.c.c.length; i++) {
             var c0 = sce.c.c[i];
-            // c0.con.fillStyle = rgba.rand();
-            c0.con.fillStyle = rgba.css([255,255,255,1.0]);
+            c0.con.fillStyle = rgba.rand();
+            // c0.con.fillStyle = rgba.css([255,255,255,1.0]);
             c0.con.fillRect(0,0,c0.can.width,c0.can.height);
         }
     },
