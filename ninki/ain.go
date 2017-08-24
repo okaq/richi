@@ -38,6 +38,7 @@ func (c *Cache) Json() string {
     s0 := fmt.Sprintf("{\"count\":%d}", c.Count)
     return s0
 }
+
 func NewCache() *Cache {
     c := Cache{}
     c.Count = 0

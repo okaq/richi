@@ -58,6 +58,9 @@ var g = {
         g.shift = g.shift + 1;
         // after we render, update tick
         // then add a new rand inv at last position
+        // instead: create invader buffer
+        // generate new on tick
+        // and swap into chain for render
         if (g.shift >= sce.c.c.length) {
             g.shift = 0;
         }
