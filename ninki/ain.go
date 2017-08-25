@@ -78,6 +78,11 @@ func PidHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r)
 }
 
+func SockHandler(w http.ResponseWriter, r *http.Request) {
+    // web socket test
+    fmt.Println(r)
+}
+
 func main() {
     fmt.Printf("localhost:8080 zin web start: %s\n", time.Now().String())
     C = NewCache()
@@ -86,5 +91,6 @@ func main() {
     http.HandleFunc("/a", AbHandler)
     http.HandleFunc("/b", BitHandler)
     http.HandleFunc("/c", PidHandler)
+    http.HandleFunc("/d", SockHandler)
     http.ListenAndServe(":8080", nil)
 }
