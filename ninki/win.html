@@ -38,7 +38,7 @@ var g = {
 
         // test
         ren.test();
-        ren.data();
+        // ren.data();
 
         // anim loop
         window.setTimeout(g.start, 1000);
@@ -64,6 +64,7 @@ var g = {
         ren.bkgd();
         ren.test();
         ren.data();
+        /*
         console.log("shift: " + g.shift);
         var c0 = [];
         for (var i = 0; i < sce.c.c.length; i++) {
@@ -73,11 +74,12 @@ var g = {
         }
         console.log("order: " + g.shift % sce.c.c.length)
         console.log(c0);
+        */
         // generate buffer invader
         if (g.shift >= sce.c.c.length) {
             g.shift = 0;
         }
-        if (g.tick >= 16) {
+        if (g.tick >= (sce.c.c.length * 4)) {
             window.clearInterval(g.id);
             console.log("loop done");
         }
@@ -238,7 +240,10 @@ var ren = {
             var r0 = sce.c.r[i];
             var w0 = r0[0];
             var h0 = r0[1];
-            var d0 = bmp.a[i];
+            // shifted
+            var i0 = (i + g.shift) % sce.c.c.length;
+            console.log("i0: " + i0);
+            var d0 = bmp.a[i0];
             c0.con.fillStyle = rgba.css([0,0,0,1.0]);
             for (var j = 0; j < bmp.nt; j++) {
                 if (d0[j] == 0) {
