@@ -61,6 +61,7 @@ var g = {
         // instead: create invader buffer
         // generate new on tick
         // and swap into chain for render
+        bmp.gen();
         ren.bkgd();
         ren.test();
         ren.data();
@@ -181,6 +182,16 @@ var bmp = {
         } else {
             return 0;
         }
+    },
+    "gen": function() {
+        // generation step
+        // new invader enters from the right per tick
+        // position at index g.shift - 1
+        var i0 = g.shift - 1;
+        if (i0 < 0) {
+            i0 = sce.c.c.length - 1;
+        }
+        bmp.a[i0] = bmp.rand();
     },
     "inv": function() {
         // 7x7 mirror invader
