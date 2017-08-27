@@ -15,6 +15,7 @@ const (
     ZIN = "zin.html"
     INDEX = "xin.html"
     BITMAP = "win.html"
+    LOGO = "vin.html"
 )
 
 var (
@@ -83,6 +84,11 @@ func SockHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r)
 }
 
+func LogoHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r)
+    http.ServeFile(w,r,LOGO)
+}
+
 func main() {
     fmt.Printf("localhost:8080 zin web start: %s\n", time.Now().String())
     C = NewCache()
@@ -92,5 +98,6 @@ func main() {
     http.HandleFunc("/b", BitHandler)
     http.HandleFunc("/c", PidHandler)
     http.HandleFunc("/d", SockHandler)
+    http.HandleFunc("/e", LogoHandler)
     http.ListenAndServe(":8080", nil)
 }
