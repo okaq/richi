@@ -30,7 +30,7 @@ var g = {
         console.log("vin logo init...");
 
         // subsystems
-        g.subs = [dom,bmp];
+        g.subs = [dom,bmp,sce];
         g.subs.forEach(function(el){el.init();});
 
         // test
@@ -42,6 +42,42 @@ var g = {
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
     }
+}
+// scene
+var sce = {
+    "init": function() {
+        // dimensions
+        sce.b = {};
+        sce.b.w = 1920;
+        sce.b.h = 1080;
+        // bitmap
+        sce.b.bx = 32;
+        sce.b.by = 32;
+        sce.b.bt = (sce.b.bx * sce.b.by) >>> 0;
+        // pixel
+        sce.b.px = 32;
+        sce.b.py = 32;
+        // image
+        sce.b.iw = (sce.b.bx * sce.b.px) >>> 0;
+        sce.b.ih = (sce.b.by * sce.b.py) >>> 0;
+        // margin
+        sce.b.mx = ((sce.b.w - sce.b.iw) / 2) >>> 0;
+        sce.b.my = ((sce.b.h - sce.b.ih) / 2) >>> 0;
+
+        // data
+        sce.a = {};
+        sce.a["bkgd"] = {};
+        sce.a["logo"] = {};
+        sce.a["bkgd"].r = [sce.b.w,sce.b.h,0,0];
+        sce.a["logo"].r = [sce.b.iw,sce.b.ih,sce.b.mx,sce.b.my];
+        sce.a["bkgd"].c = dom.canvas(sce.a["bkgd"].r);
+        sce.a["logo"].c = dom.canvas(sce.a["logo"].r);
+        dom.add(sce.a["bkgd"].c);
+        dom.add(sce.a["logo"].c);
+
+        // output
+        console.log(sce);
+     }
 }
 // dom
 var dom = {
