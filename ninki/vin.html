@@ -30,8 +30,14 @@ var g = {
         console.log("vin logo init...");
 
         // subsystems
-        g.subs = [dom];
+        g.subs = [dom,bmp];
         g.subs.forEach(function(el){el.init();});
+
+        // test
+        console.log(bmp.a);
+        // binary bitmap json base64
+        // okaq golf man logo
+        // decode time: 5ms
 
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
@@ -109,6 +115,30 @@ var rgba = {
     "rmon": function() {
         var c0 = rgba.rb();
         return rgba.mono(c0);
+    }
+}
+// bitmap
+var bmp = {
+    "init": function() {
+        bmp.a = {};
+        // decode golf man logo
+        var b0 = base64DecToArr(golf["golf_001"]);
+        bmp.a["golf"] = bmp.exp(b0);
+    },
+    "exp": function(b0) {
+        // expansion of uint8array
+        // to string of bits
+        var r0 = [];
+        for (var i = 0; i < b0.length; i++) {
+            var b1 = b0[i];
+            var s0 = binStr(b1);
+            for (var j = 0; j < 8; j++) {
+                var s1 = s0.charAt(j);
+                var n0 = parseInt(s1, 10);
+                r0.push(n0);
+            }
+        }
+        return r0;
     }
 }
 // golf man
