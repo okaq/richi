@@ -96,6 +96,19 @@ var sce = {
         // image
         sce.d.iw = (sce.d.bx * sce.d.px) >>> 0;
         sce.d.ih = (sce.d.by * sce.d.py) >>> 0;
+        // margin
+        sce.d.mx = ((sce.d.w - sce.d.iw) / 2) >>> 0;
+        sce.d.my = ((sce.d.h - sce.d.ih) / 2) >>> 0;
+        // count
+        sce.d.n = (sce.d.w / sce.d.iw) >>> 0;
+
+        // line
+        sce.c = [];
+        for (var i = 0; i < sce.d.n; i++) {
+            var x0 = (i * sce.d.iw) >>> 0;
+            var y0 = sce.d.my;
+            var r0 = [sce.d.iw,sce.d.ih,x0,y0];
+        }
     }
 }
 // render
