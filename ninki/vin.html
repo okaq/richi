@@ -114,6 +114,11 @@ var sce = {
             sce.c[i].c = dom.canvas(sce.c[i].r);
             dom.add(sce.c[i].c);
         }
+
+        // walk animation
+        // one pixel in bmp = 16px on screen
+        // each tick regenerate the screen as it advances
+        // one fourth of an image width to page left
     }
 }
 // render
