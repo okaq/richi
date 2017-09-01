@@ -108,6 +108,10 @@ var sce = {
             var x0 = (i * sce.d.iw) >>> 0;
             var y0 = sce.d.my;
             var r0 = [sce.d.iw,sce.d.ih,x0,y0];
+            sce.c[i] = {};
+            sce.c[i].r = r0;
+            sce.c[i].c = dom.canvas(sce.c[i].r);
+            dom.add(sce.c[i].c);
         }
     }
 }
