@@ -38,7 +38,8 @@ var g = {
         // binary bitmap json base64
         // okaq golf man logo
         // decode time: 5ms
-        ren.logo();
+        // ren.logo();
+        ren.line();
 
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
@@ -89,7 +90,7 @@ var sce = {
         // bitmap
         sce.d.bx = 32;
         sce.d.by = 32;
-        sce.d.bt = (sce.b.bx * sce.b.by) >>> 0;
+        sce.d.bt = (sce.d.bx * sce.d.by) >>> 0;
         // pixel
         sce.d.px = 8;
         sce.d.py = 8;
@@ -131,6 +132,13 @@ var ren = {
     "logo": function() {
         ren.bkgd();
         ren.golf();
+    },
+    "line": function() {
+        for (var i = 0; i < sce.c.length; i++) {
+            var c0 = sce.c[i].c;
+            c0.con.fillStyle = rgba.rand();
+            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+        }
     }
 }
 // dom
