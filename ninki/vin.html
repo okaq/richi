@@ -142,6 +142,28 @@ var sce = {
         sce.e.n = (sce.e.w / sce.e.iw) >>> 0;
         console.log("canvas count: " + sce.e.n);
 
+        // logo
+        sce.e.a = [];
+        for (var i = 0; i < sce.e.n + 1; i++) {
+            sce.e.a[i] = {};
+            var r0 = [];
+            r0[0] = sce.e.iw;
+            r0[1] = sce.e.ih;
+            r0[2] = (sce.e.iw * i) >>> 0;
+            r0[3] = ((sce.e.h - sce.e.ih) / 2) >>> 0;
+            sce.e.a[i].r = r0;
+            sce.e.a[i].c = dom.canvas(sce.e.a[i].r);
+            dom.add(sce.e.a[i].c);
+        }
+        // auto page resize
+        // canvas #4 is onscreen
+        // new page width = 2048
+        
+        // sce.text();
+    },
+    "text": function() {
+        // glyph
+
         // test canvas animation update speed
         // css style position change with delta time
         // vs remove previous add new canvas
@@ -165,8 +187,8 @@ var ren = {
         ren.golf();
     },
     "line": function() {
-        for (var i = 0; i < sce.c.length; i++) {
-            var c0 = sce.c[i].c;
+        for (var i = 0; i < sce.e.a.length; i++) {
+            var c0 = sce.e.a[i].c;
             c0.con.fillStyle = rgba.rand();
             c0.con.fillRect(0,0,c0.can.width,c0.can.height);
         }
