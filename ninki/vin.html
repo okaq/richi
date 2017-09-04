@@ -123,9 +123,25 @@ var sce = {
     "init": function() {
         // also bold oxygen text
         // scrolls across page with "okaq"
+
+        // dimensions
         sce.e = {};
         sce.e.w = 1920;
         sce.e.h = 1080;
+        // bitmap
+        sce.e.bx = 32;
+        sce.e.by = 32;
+        sce.e.bt = (sce.e.bx * sce.e.by) >>> 0;
+        // pixel
+        sce.e.px = 16;
+        sce.e.py = 16;
+        // image
+        sce.e.iw = (sce.e.bx * sce.e.px) >>> 0;
+        sce.e.ih = (sce.e.by * sce.e.py) >>> 0;
+        // count
+        sce.e.n = (sce.e.w / sce.e.iw) >>> 0;
+        console.log("canvas count: " + sce.e.n);
+
         // test canvas animation update speed
         // css style position change with delta time
         // vs remove previous add new canvas
