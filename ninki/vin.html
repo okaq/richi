@@ -173,6 +173,22 @@ var sce = {
         // top margin = 284
         // total bmps = 4 * 64 = 256
         // margin remainder = 28
+
+        sce.e.b = [];
+        for (var i = 0; i < 8; i++) {
+            sce.e.b[i] = [];
+            // calc y-coord
+            var y0 = 0;
+            if (i < 4) {
+                y0 = (i * 64) >>> 0; // no margin
+            } else {
+                y0 = ((i * 64) + (284 + 512)) >>> 0;
+            }
+            // text blocks inline
+            for (var j = 0; j < 4; j++) {
+                
+            }
+        }
     }
 }
 // render
