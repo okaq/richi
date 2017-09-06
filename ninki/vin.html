@@ -160,7 +160,7 @@ var sce = {
         // new page width = 2048
         // css set propert overflow to "hidden"
 
-        // sce.text();
+        sce.text();
     },
     "text": function() {
         // glyph
@@ -186,7 +186,10 @@ var sce = {
             }
             // text blocks inline
             for (var j = 0; j < 4; j++) {
-                
+                var x0 = (j * 64) >>> 0;
+                var r0 = [64,64,x0,y0];
+                sce.e.b[i][j] = dom.canvas(r0);
+                dom.add(sce.b.e[i][j]);
             }
         }
     }
