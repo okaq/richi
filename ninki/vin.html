@@ -180,16 +180,16 @@ var sce = {
             // calc y-coord
             var y0 = 0;
             if (i < 4) {
-                y0 = (i * 64) >>> 0; // no margin
+                y0 = ((i * 64) + 14) >>> 0; // centered
             } else {
-                y0 = ((i * 64) + (284 + 512)) >>> 0;
+                y0 = (((i - 4) * 64) + (284 + 512 + 14)) >>> 0;
             }
             // text blocks inline
             for (var j = 0; j < 4; j++) {
                 var x0 = (j * 64) >>> 0;
                 var r0 = [64,64,x0,y0];
                 sce.e.b[i][j] = dom.canvas(r0);
-                dom.add(sce.b.e[i][j]);
+                dom.add(sce.e.b[i][j]);
             }
         }
     }
@@ -212,10 +212,20 @@ var ren = {
         ren.golf();
     },
     "line": function() {
+        // logo
         for (var i = 0; i < sce.e.a.length; i++) {
             var c0 = sce.e.a[i].c;
             c0.con.fillStyle = rgba.rand();
             c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+        }
+        // glyph
+        for (var i = 0; i < sce.e.b.length; i++) {
+            var c0 = sce.e.b[i];
+            for (var j = 0; j < c0.length; j++) {
+                var c1 = c0[j];
+                c1.con.fillStyle = rgba.rand();
+                c1.con.fillRect(0,0,c1.can.width,c1.can.height);
+            }
         }
     }
 }
