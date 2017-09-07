@@ -40,6 +40,7 @@ var g = {
         // decode time: 5ms
         // ren.logo();
         ren.line();
+        ren.fig();
 
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
@@ -227,6 +228,14 @@ var ren = {
                 c1.con.fillRect(0,0,c1.can.width,c1.can.height);
             }
         }
+    },
+    "fig": function() {
+        // no bmp data assigned to canvas
+        // logo
+
+    },
+    "bmp": function(c0, b0) {
+        // render bmp in canvas
     }
 }
 // dom
