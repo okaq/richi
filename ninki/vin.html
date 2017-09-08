@@ -232,10 +232,30 @@ var ren = {
     "fig": function() {
         // no bmp data assigned to canvas
         // logo
-
+        for (var i = 0; i < sce.e.a.length; i++) {
+            var c0 = sce.e.a[i].c;
+            var b0 = bmp.a["golf"];
+            ren.bmp(c0, b0);
+        }
+        // text
     },
     "bmp": function(c0, b0) {
         // render bmp in canvas
+        var b1 = (Math.sqrt(b0.length)) >>> 0;
+        console.log(b1);
+        var b2 = (c0.can.width / b1) >>> 0;
+        console.log(b2);
+        c0.con.fillStyle = rgba.rand();
+        for (var i = 0; i < b0.length; i++) {
+            if (b0[i] == 0) {
+                continue;
+            }
+            var x0 = i % b1;
+            var y0 = (i / b1) >>> 0;
+            var x1 = (x0 * b2) >>> 0;
+            var y1 = (y0 * b2) >>> 0;
+            c0.con.fillRect(x1,y1,b2,b2);
+        }
     }
 }
 // dom
