@@ -238,6 +238,27 @@ var ren = {
             ren.bmp(c0, b0);
         }
         // text
+        for (var i = 0; i < sce.e.b.length; i++) {
+            var c0 = sce.e.b[i];
+            for (var j = 0; j < c0.length; j++) {
+                var b0 = 0;
+                switch (j) {
+                    case 0:
+                        b0 = bmp.b["O"];
+                        break;
+                    case 1:
+                        b0 = bmp.b["K"];
+                        break;
+                    case 2:
+                        b0 = bmp.b["A"];
+                        break;
+                    case 3:
+                        b0 = bmp.b["Q"];
+                        break;
+                }
+                ren.bmp(c0[j], b0);
+            }
+        }
     },
     "bmp": function(c0, b0) {
         // render bmp in canvas
