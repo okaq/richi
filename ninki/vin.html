@@ -42,8 +42,24 @@ var g = {
         ren.line();
         ren.fig();
 
+        // render once
+        // only black pixels, white bkgd constant
+        // move canvases using style properties
+
+        // loop
+        g.tick = 0;
+        g.id = window.setInterval(g.frame, 1000);
+
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
+    },
+    "frame": function() {
+        console.log("tick count: " + g.tick);
+        if (g.tick >= 16) {
+            console.log("done anim.");
+            windoe.clearInterval(g.id);
+        }
+        g.tick = g.tick + 1;
     }
 }
 // scene
@@ -263,9 +279,9 @@ var ren = {
     "bmp": function(c0, b0) {
         // render bmp in canvas
         var b1 = (Math.sqrt(b0.length)) >>> 0;
-        console.log(b1);
+        // console.log(b1);
         var b2 = (c0.can.width / b1) >>> 0;
-        console.log(b2);
+        // console.log(b2);
         c0.con.fillStyle = rgba.rand();
         for (var i = 0; i < b0.length; i++) {
             if (b0[i] == 0) {
