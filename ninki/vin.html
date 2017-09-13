@@ -63,6 +63,9 @@ var g = {
             windoe.clearInterval(g.id);
         }
         g.tick = g.tick + 1;
+        // render
+        ren.line();
+        ren.fig();
     },
     "set": function() {
         // for each of 8 text blocks
@@ -224,11 +227,36 @@ var sce = {
     "bound": function() {
         // boundary condition initiator
         // sort of like a json config file
+        // bound struct
+        sce.f = {};
+        // even spacings array
+        // [begin,margin,end]
+
+        // logo
+        sce.f.a = [-20,20,2120];
+        // text
+        sce.f.b = [-100,100,2120];
     },
     "posit": function() {
         // reposition canvas elements
         // from the boundary data
         // using style proprties: "left"
+        // logo
+        for (var i = 0; i < sce.e.a.length; i++) {
+            var x0 = 0; // sce.f.a[0];
+            // x0 = x0 + (i * sce.f.a[1]);
+            x0 = x0 * (i * sce.e.a[i].r[0]);
+            sce.e.a[i].c.can.style.left = x0 + "px";
+        }
+        // text
+        for (var i = 0; i < sce.e.b.length; i++) {
+            for (var j = 0; j < sce.e.b[i].length; j++) {
+                var x0 = sce.f.b[0];
+                x0 = x0 + (i * sce.f.b[1]);
+                x0 = x0 * (i * sce.e.b[i][j].can.width);
+                sce.e.b[i][j].can.style.left = x0 + "px";
+            }
+        }
     }
 }
 // render
