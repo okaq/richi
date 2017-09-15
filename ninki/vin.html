@@ -66,6 +66,8 @@ var g = {
         // render
         ren.line();
         ren.fig();
+        // update
+        sce.adv();
     },
     "set": function() {
         // for each of 8 text blocks
@@ -256,6 +258,12 @@ var sce = {
                 x0 = x0 + (j * sce.e.b[i][j].can.width);
                 sce.e.b[i][j].can.style.left = x0 + "px";
             }
+        }
+    },
+    "adv": function() {
+        // advance all scene elements
+        for (var i = 0; i < sce.e.a.length; i++) {
+            
         }
     }
 }
