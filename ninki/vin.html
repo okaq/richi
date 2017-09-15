@@ -153,7 +153,7 @@ var sce = {
         // each tick regenerate the screen as it advances
         // one fourth of an image width to page left
     },
-    "init": function() {
+    "init4": function() {
         // also bold oxygen text
         // scrolls across page with "okaq"
 
@@ -263,8 +263,15 @@ var sce = {
     "adv": function() {
         // advance all scene elements
         for (var i = 0; i < sce.e.a.length; i++) {
-            
+
         }
+    },
+    "init": function() {
+        // each canvas object
+        // encapsulates its data
+        sce.g = {};
+        sce.g.w = 1920;
+        sce.g.h = 1080;
     }
 }
 // render
