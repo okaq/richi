@@ -30,7 +30,7 @@ var g = {
         console.log("vin logo init...");
 
         // subsystems
-        g.subs = [dom,bmp,sce];
+        g.subs = [dom,bmp,sce,txt];
         g.subs.forEach(function(el){el.init();});
 
         // test
@@ -41,6 +41,9 @@ var g = {
         // ren.logo();
         ren.line();
         ren.fig();
+        for (var i = 0; i < 16; i++) {
+            console.log(txt.quad());
+        }
 
         // render once
         // only black pixels, white bkgd constant
@@ -153,7 +156,7 @@ var sce = {
         // each tick regenerate the screen as it advances
         // one fourth of an image width to page left
     },
-    "init4": function() {
+    "init": function() {
         // also bold oxygen text
         // scrolls across page with "okaq"
 
@@ -266,12 +269,23 @@ var sce = {
 
         }
     },
-    "init": function() {
+    "init4": function() {
         // each canvas object
         // encapsulates its data
         sce.g = {};
         sce.g.w = 1920;
         sce.g.h = 1080;
+        // logo
+        sce.g.a = [];
+        for (var i = 0; i < 4; i++) {
+            var w0 = 512;
+            var h0 = 512;
+            var y0 = 704;
+            // x-pos in a cell of 2x width
+        }
+
+        // text
+        sce.g.b = [];
     }
 }
 // render
@@ -430,6 +444,24 @@ var rgba = {
     "rmon": function() {
         var c0 = rgba.rb();
         return rgba.mono(c0);
+    }
+}
+// text
+var txt = {
+    "init": function() {
+        txt.a = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        txt.b = txt.a.split("");
+        console.log(txt.b);
+    },
+    "quad": function() {
+        // 4-gram array with repitition
+        var r0 = [];
+        for (var i = 0; i < 4; i++) {
+            var f0 = (Math.random() * txt.b.length) >>> 0;
+            var s0 = txt.b[f0];
+            r0.push(s0);
+        }
+        return r0;
     }
 }
 // bitmap
