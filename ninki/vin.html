@@ -278,14 +278,32 @@ var sce = {
         // logo
         sce.g.a = [];
         for (var i = 0; i < 4; i++) {
+            sce.g.a[i] = {};
             var w0 = 512;
             var h0 = 512;
             var y0 = 704;
             // x-pos in a cell of 2x width
+            var x0 = (i * 1024) >>> 0;
+            var x1 = (Math.random() * 256) >>> 0;
+            var x2 = (x0 + x1) >>> 0;
+            sce.g.a[i].r = [512,512,x0,y0]
         }
 
         // text
         sce.g.b = [];
+        for (var i = 0; i < 4; i++) {
+            sce.g.b[i] = [];
+            var g0 = ["O","K","A","Q"];
+            if (i >= 1) {
+                g0 = txt.quad();
+            }
+            for (var j = 0; j < 4; j++) {
+                sce.g.b[i][j] = {};
+                var w0 = 64;
+                var h0 = 64;
+                // fixed y, x rand
+            }
+        }
     }
 }
 // render
