@@ -312,7 +312,13 @@ var sce = {
             }
             for (var j = 0; j < 4; j++) {
                 sce.g.b[i][j] = {};
-                var x0 = 0;
+                var x0 = (j * 480) >>> 0;
+                x0 = x0 + 208;
+                var r0 = [w0,h0,x0,y0];
+                sce.g.b[i][j].r = r0;
+                sce.g.b[i][j].c = dom.canvas(sce.g.b[i][j].r);
+                dom.add(sce.g.b[i][j].c);
+                sce.g.b[i][j].g = g0[j];
             }
         }
     }
