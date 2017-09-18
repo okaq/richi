@@ -30,7 +30,7 @@ var g = {
         console.log("vin logo init...");
 
         // subsystems
-        g.subs = [dom,bmp,sce,txt];
+        g.subs = [dom,bmp,txt,sce];
         g.subs.forEach(function(el){el.init();});
 
         // test
@@ -39,12 +39,14 @@ var g = {
         // okaq golf man logo
         // decode time: 5ms
         // ren.logo();
-        ren.line();
-        ren.fig();
+        // ren.line();
+        // ren.fig();
+        /*
         for (var i = 0; i < 16; i++) {
             console.log(txt.quad());
         }
-
+        */
+        
         // render once
         // only black pixels, white bkgd constant
         // move canvases using style properties
@@ -67,18 +69,20 @@ var g = {
         }
         g.tick = g.tick + 1;
         // render
-        ren.line();
-        ren.fig();
+        // ren.line();
+        // ren.fig();
         // update
-        sce.adv();
+        // sce.adv();
+        // test
+        ren.goal();
     },
     "set": function() {
         // for each of 8 text blocks
         // set random margin spacing
         // set initial condition and wrap boundaries
         // do same for running men
-        sce.bound();
-        sce.posit();
+        // sce.bound();
+        // sce.posit();
     }
 }
 // scene
@@ -156,7 +160,7 @@ var sce = {
         // each tick regenerate the screen as it advances
         // one fourth of an image width to page left
     },
-    "init": function() {
+    "init4": function() {
         // also bold oxygen text
         // scrolls across page with "okaq"
 
@@ -269,7 +273,7 @@ var sce = {
 
         }
     },
-    "init4": function() {
+    "init": function() {
         // each canvas object
         // encapsulates its data
         sce.g = {};
@@ -287,6 +291,8 @@ var sce = {
             var x1 = (Math.random() * 256) >>> 0;
             var x2 = (x0 + x1) >>> 0;
             sce.g.a[i].r = [512,512,x0,y0]
+            sce.g.a[i].c = dom.canvas(sce.g.a[i].r);
+            dom.add(sce.g.a[i].c);
         }
 
         // text
@@ -404,6 +410,22 @@ var ren = {
             var x1 = (x0 * b2) >>> 0;
             var y1 = (y0 * b2) >>> 0;
             c0.con.fillRect(x1,y1,b2,b2);
+        }
+    },
+    "goal": function() {
+        // logo
+        for (var i = 0; i < sce.g.a.length; i++) {
+            var c0 = sce.g.a[i].c;
+            c0.con.fillStyle = rgba.rand();
+            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+        }
+        // text
+        for (var i = 0; i < sce.g.b.length; i++) {
+            for (var j = 0; j < sce.g.b[i].length; j++) {
+                var c0 = sce.g.b[i][j].c;
+                c0.con.fillStyle = rgba.rand();
+                c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+            }
         }
     }
 }
