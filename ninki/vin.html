@@ -291,17 +291,28 @@ var sce = {
 
         // text
         sce.g.b = [];
-        for (var i = 0; i < 4; i++) {
+        for (var i = 0; i < 8; i++) {
             sce.g.b[i] = [];
             var g0 = ["O","K","A","Q"];
             if (i >= 1) {
                 g0 = txt.quad();
             }
+            var w0 = 64;
+            var h0 = 64;
+            var y0 = 0;
+            if (i < 4) {
+                // top
+                yo = (i * (64 + 7)) >>> 0;
+                y0 = y0 + 4;
+            } else {
+                // bottom
+                y0 = y0 + 796;
+                y0 = y0 + (((i - 4) * (64 + 7)) >>> 0);
+                y0 = y0 + 4;
+            }
             for (var j = 0; j < 4; j++) {
                 sce.g.b[i][j] = {};
-                var w0 = 64;
-                var h0 = 64;
-                // fixed y, x rand
+                var x0 = 0;
             }
         }
     }
