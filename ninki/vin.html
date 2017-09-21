@@ -46,7 +46,7 @@ var g = {
             console.log(txt.quad());
         }
         */
-        
+
         // render once
         // only black pixels, white bkgd constant
         // move canvases using style properties
@@ -285,12 +285,12 @@ var sce = {
             sce.g.a[i] = {};
             var w0 = 512;
             var h0 = 512;
-            var y0 = 704;
+            var y0 = 284;
             // x-pos in a cell of 2x width
             var x0 = (i * 1024) >>> 0;
             var x1 = (Math.random() * 256) >>> 0;
             var x2 = (x0 + x1) >>> 0;
-            sce.g.a[i].r = [512,512,x0,y0]
+            sce.g.a[i].r = [512,512,x2,y0]
             sce.g.a[i].c = dom.canvas(sce.g.a[i].r);
             dom.add(sce.g.a[i].c);
         }
@@ -308,8 +308,9 @@ var sce = {
             var y0 = 0;
             if (i < 4) {
                 // top
-                yo = (i * (64 + 7)) >>> 0;
+                y0 = y0 + ((i * (64 + 7)) >>> 0);
                 y0 = y0 + 4;
+                console.log("y0 = " + y0);
             } else {
                 // bottom
                 y0 = y0 + 796;
