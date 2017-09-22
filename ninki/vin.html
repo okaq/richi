@@ -350,6 +350,24 @@ var sce = {
                 // collisions will always occur at boundary
             }
         }
+    },
+    "rido": function() {
+        // assign bitmap
+        // logo
+        for (var i = 0; i < sce.g.a.length; i++) {
+            sce.g.a[i].b = bmp.a["golf"];
+        }
+        // text
+        for (var i = 0; i < sce.g.b.length; i++) {
+            var b0 = txt.quad();
+            if (i == 0) {
+                b0 = ["O","K","A","Q"];
+            }
+            for (var j = 0; j < 4; j++) {
+                var b1 = b0[j];
+                sce.g.b[i][j].b = bmp.a[b1];
+            }
+        }
     }
 }
 // render
