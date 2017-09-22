@@ -328,6 +328,20 @@ var sce = {
                 sce.g.b[i][j].g = g0[j];
             }
         }
+    },
+    "mote": function() {
+        // motion coordination
+        // start with each advancing in neg-x direction
+        // next pass, pick one mover at random
+        // and transfer momentum upon collision
+        // logo
+        for (var i = 0; i < sce.g.a.length; i++) {
+            // position
+            sce.g.a[i].p = sce.g.a[i].r[2];
+            // velocity, in pexels per frame
+            sce.g.a[i].v = -1;
+        }
+        // text
     }
 }
 // render
