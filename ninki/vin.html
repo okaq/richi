@@ -342,6 +342,14 @@ var sce = {
             sce.g.a[i].v = -1;
         }
         // text
+        for (var i = 0; i < sce.g.b.length; i++) {
+            for (var j = 0; j < sce.g.b[i].length; j++) {
+                sce.g.b[i][j].p = sce.g.b[i][j].r[2];
+                sce.g.b[i][j].v = -1;
+                // boundaries can be hard set
+                // collisions will always occur at boundary
+            }
+        }
     }
 }
 // render
