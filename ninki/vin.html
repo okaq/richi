@@ -476,7 +476,18 @@ var ren = {
         // render monochrome
         // logo
         for (var i = 0; i < sce.g.a.length; i++) {
-            
+            var c0 = sce.g.a[i].c;
+            c0.con.fillStyle = rgba.css([0,0,0,1.0]);
+            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+        }
+        // text
+        for (var i = 0; i < sce.g.b.length; i++) {
+            var c0 = sce.g.b[i];
+            for (var j = 0; j < 4; j++) {
+                var c1 = c0[j].c;
+                c1.con.fillStyle = rgba.css([0,0,0,1.0]);
+                c1.con.fillRect(0,0,c1.can.width,c1.can.height);
+            }
         }
     }
 }
