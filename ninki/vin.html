@@ -296,6 +296,7 @@ var sce = {
             sce.g.a[i].r = [512,512,x2,y0]
             sce.g.a[i].c = dom.canvas(sce.g.a[i].r);
             dom.add(sce.g.a[i].c);
+            sce.g.a[i].g = bmp.a["golf"];
         }
 
         // text
@@ -328,7 +329,7 @@ var sce = {
                 sce.g.b[i][j].r = r0;
                 sce.g.b[i][j].c = dom.canvas(sce.g.b[i][j].r);
                 dom.add(sce.g.b[i][j].c);
-                sce.g.b[i][j].g = g0[j];
+                sce.g.b[i][j].g = bmp.b[g0[j]];
             }
         }
     },
@@ -489,6 +490,20 @@ var ren = {
                 c1.con.fillRect(0,0,c1.can.width,c1.can.height);
             }
         }
+    }
+    "moba": function() {
+        // render bitmaps
+        // logo
+        for (var i = 0; i < sce.g.a.length; i++) {
+            var c0 = sce.g.a[i].c;
+            var b0 = sce.g.a[i].g;
+            ren.nopi(c0, b0);
+        }
+        // text
+    },
+    "nopi": function(c0, b0) {
+        // render bitmap in canvas
+        // set monochrome
     }
 }
 // dom
