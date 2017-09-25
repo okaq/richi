@@ -490,7 +490,7 @@ var ren = {
                 c1.con.fillRect(0,0,c1.can.width,c1.can.height);
             }
         }
-    }
+    },
     "moba": function() {
         // render bitmaps
         // logo
@@ -500,6 +500,14 @@ var ren = {
             ren.nopi(c0, b0);
         }
         // text
+        for (var i = 0; i < sce.g.b.length; i++) {
+            var c0 = sce.g.b[i];
+            for (var j = 0; j < c0.length; j++) {
+                var c1 = c0[j].c;
+                var b0 = c0[j].g;
+                ren.nopi(c1, b0);
+            }
+        }
     },
     "nopi": function(c0, b0) {
         // render bitmap in canvas
