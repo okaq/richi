@@ -76,6 +76,7 @@ var g = {
         // test
         // ren.goal();
         ren.kite();
+        ren.moba();
     },
     "set": function() {
         // for each of 8 text blocks
@@ -512,6 +513,22 @@ var ren = {
     "nopi": function(c0, b0) {
         // render bitmap in canvas
         // set monochrome
+        c0.con.fillStyle = rgba.css([255,255,255,1.0]);
+        // determine dimensions
+        var c1 = Math.sqrt(b0.length) >>> 0;
+        var c2 = (c0.can.width / c1) >>> 0;
+        for (var i = 0; i < b0.length; i++) {
+            if (b0[i] == 0) {
+                continue;
+            }
+            var x0 = i % c1;
+            var y0 = (i / c1) >>> 0;
+            var x1 = (x0 * c2) >>> 0;
+            var y1 = (y0 * c2) >>> 0;
+            c0.con.fillRect(x1,y1,c2,c2);
+        }
+        // logo is opposite bitmasked
+        // bkgd is 1, frgd is 0
     }
 }
 // dom
