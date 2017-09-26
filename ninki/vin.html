@@ -498,7 +498,8 @@ var ren = {
         for (var i = 0; i < sce.g.a.length; i++) {
             var c0 = sce.g.a[i].c;
             var b0 = sce.g.a[i].g;
-            ren.nopi(c0, b0);
+            // ren.nopi(c0, b0);
+            ren.pino(c0, b0, false);
         }
         // text
         for (var i = 0; i < sce.g.b.length; i++) {
@@ -529,6 +530,26 @@ var ren = {
         }
         // logo is opposite bitmasked
         // bkgd is 1, frgd is 0
+    },
+    "pino": function(c0, b0, f0) {
+        // render bitmap in canvas
+        // polarity flag parameter
+        // set monochrome
+        c0.con.fillStyle = rgba.css([255,255,255,1.0]);
+        // determine dimensions
+        var c1 = Math.sqrt(b0.length) >>> 0;
+        var c2 = (c0.can.width / c1) >>> 0;
+        var f1 = f0 ? 0 : 1;
+        for (var i = 0; i < b0.length; i++) {
+            if (b0[i] == f1) {
+                continue;
+            }
+            var x0 = i % c1;
+            var y0 = (i / c1) >>> 0;
+            var x1 = (x0 * c2) >>> 0;
+            var y1 = (y0 * c2) >>> 0;
+            c0.con.fillRect(x1,y1,c2,c2);
+        }
     }
 }
 // dom
