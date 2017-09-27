@@ -651,6 +651,27 @@ var txt = {
         // html file size after = 85 kB
         // word list legth = 5002
         console.log("wrd length: " + wrd.length);
+        var w0 = txt.pick(16);
+        console.log("rnd wrd: " + w0);
+    },
+    "pick": function(n0) {
+        // selection with replacement
+        var r0 = [];
+        for (var i = 0; i < wrd.length; i++) {
+            r0[i] = i;
+        }
+        var r1 = [];
+        for (var i = 0; i < n0; i++) {
+            var f0 = (Math.random() * r0.length) >>> 0;
+            r1.push(f0);
+            r0.splice(f0, 1);
+        }
+        var r2 = [];
+        for (var i = 0; i < n0; i++) {
+            var i0 = r1[i];
+            r2[i] = wrd[i0];
+        }
+        return r2;
     }
 }
 // bitmap
