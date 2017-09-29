@@ -392,7 +392,7 @@ var sce = {
             }
             for (var j = 0; j < 4; j++) {
                 var b2 = b1[j];
-                var b3 = bmp.a[b2];
+                var b3 = bmp.b[b2];
                 sce.g.b[i][j].b = b3;
             }
         }
@@ -520,7 +520,7 @@ var ren = {
         // logo
         for (var i = 0; i < sce.g.a.length; i++) {
             var c0 = sce.g.a[i].c;
-            var b0 = sce.g.a[i].g;
+            var b0 = sce.g.a[i].b;
             // ren.nopi(c0, b0);
             ren.pino(c0, b0, false);
         }
@@ -529,7 +529,7 @@ var ren = {
             var c0 = sce.g.b[i];
             for (var j = 0; j < c0.length; j++) {
                 var c1 = c0[j].c;
-                var b0 = c0[j].g;
+                var b0 = c0[j].b;
                 ren.nopi(c1, b0);
             }
         }
