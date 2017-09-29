@@ -86,7 +86,8 @@ var g = {
         // sce.bound();
         // sce.posit();
         sce.mote();
-        sce.rido();
+        // sce.rido();
+        sce.rido2();
     }
 }
 // scene
@@ -375,6 +376,26 @@ var sce = {
                 sce.g.b[i][j].b = bmp.a[b1];
             }
         }
+    },
+    "rido2": function() {
+        // assign bitmap
+        // logo
+        for (var i = 0; i < sce.g.a.length; i++) {
+            sce.g.a[i].b = bmp.a["golf"];
+        }
+        // text
+        var b0 = txt.pick(sce.g.b.length);
+        for (var i = 0; i < sce.g.b.length; i++) {
+            var b1 = b0[i];
+            if (i == 0) {
+                b1 = ["O","K","A","Q"];
+            }
+            for (var j = 0; j < 4; j++) {
+                var b2 = b1[j];
+                var b3 = bmp.a[b2];
+                sce.g.b[i][j].b = b3;
+            }
+        }
     }
 }
 // render
@@ -635,7 +656,7 @@ var txt = {
         txt.b = txt.a.split("");
         console.log(txt.b);
 
-        txt.words();
+        // txt.words();
     },
     "quad": function() {
         // 4-gram array with repitition
