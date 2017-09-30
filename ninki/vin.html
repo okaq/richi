@@ -73,6 +73,7 @@ var g = {
         // ren.fig();
         // update
         // sce.adv();
+        sce.adv2();
         // test
         // ren.goal();
         ren.kite();
@@ -396,6 +397,33 @@ var sce = {
                 sce.g.b[i][j].b = b3;
             }
         }
+    },
+    "adv2": function() {
+        // tick update
+        // logo
+        for (var i = 0; i < sce.g.a.length; i++) {
+            var c0 = sce.g.a[i].c;
+            console.log(c0.can.style.left);
+        }
+        // text
+        for (var i = 0; i < sce.g.b.length; i++) {
+            var c0 = sce.g.b[i];
+            for (var j = 0; j < c0.length; j++) {
+                var c1 = c0[j].c;
+                // console.log(c1.can.style.left);
+                var s0 = c1.can.style.left;
+                var p0 = s0.slice(0, s0.length - 2);
+                var p1 = parseInt(p0);
+                var p2 = p1 + 10;
+                var s1 = p2 + "px";
+                c1.can.style.left = s1;
+            }
+        }
+        // we can refactor style parse int and increment
+        // into its own helper method
+        // then detect collision
+        // clamp position
+        // update velocity direction
     }
 }
 // render
