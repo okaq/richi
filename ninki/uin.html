@@ -29,8 +29,73 @@ var g = {
         var t0 = window.performance.now();
         console.log("uin anim init...");
 
+        // subsystems
+        g.subs = [bmp];
+        g.subs.forEach(function(el){el.init();});
+
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
+    }
+}
+// bitmap
+var bmp = {
+    "init": function() {
+        // golf
+        bmp.a = {};
+        var b0 = base64DecToArr(golf["golf_001"]);
+        bmp.a["golf"] = bmp.exp(b0);
+
+        // noto
+        bmp.b = {};
+        for (var k0 in noto) {
+            var b0 = base64DecToArr(noto[k0]);
+            bmp.b[k0] = bmp.exp(b0);
+        }
+
+        // wrd
+        bmp.c = {};
+        for (var i = 0; i < wrd.length; i++) {
+            var b0 = wrd[i];
+            bmp.c[b0] = [];
+            var b1 = b0.split("");
+            // console.log(b1);
+            for (var j = 0; j < b1.length; j++) {
+                var b2 = b1[j];
+                var b3 = 0;
+                if (b2 in noto) {
+                    b3 = noto[b2];
+                } else {
+                    var d0 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                    var f0 = (Math.random() * d0.length) >>> 0;
+                    var d1 = d0[f0];
+                    b3 = noto[d1];
+                }
+                var b4 = base64DecToArr(b3);
+                bmp.c[b0][j] = bmp.exp(b3);
+            }
+            // decode all 20000 is redundant
+            // and requires almost 10s to process
+        }
+
+        // out
+        console.log(bmp.a);
+        console.log(bmp.b);
+        console.log(bmp.c);
+    },
+    "exp": function(b0) {
+        // expansion of uint8array
+        // to string of bits
+        var r0 = [];
+        for (var i = 0; i < b0.length; i++) {
+            var b1 = b0[i];
+            var s0 = binStr(b1);
+            for (var j = 0; j < 8; j++) {
+                var s1 = s0.charAt(j);
+                var n0 = parseInt(s1, 10);
+                r0.push(n0);
+            }
+        }
+        return r0;
     }
 }
 // golf man
