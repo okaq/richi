@@ -54,6 +54,7 @@ var bmp = {
 
         // wrd
         bmp.c = {};
+        /*
         for (var i = 0; i < wrd.length; i++) {
             var b0 = wrd[i];
             bmp.c[b0] = [];
@@ -73,9 +74,33 @@ var bmp = {
                 var b4 = base64DecToArr(b3);
                 bmp.c[b0][j] = bmp.exp(b3);
             }
-            // decode all 20000 is redundant
-            // and requires almost 10s to process
         }
+        // decode all 20000 is redundant
+        // and requires almost 10s to process
+        */
+        for (var i = 0; i < wrd.length; i++) {
+            var b0 = wrd[i];
+            // inspect verboten chars
+            var b1 = b0.split("");
+            // flag
+            var f0 = true;
+            for (var j = 0; j < b1.length; j++) {
+                var b2 = b1[j];
+                if (b2 in noto) {
+                    continue;
+                } else {
+                    f0 = false;
+                    break;
+                }
+            }
+            if (f0) {
+                bmp.c[b0] = b1;
+            } else {
+                continue;
+            }
+        }
+        // decode <100ms
+        // no non alphanumeric chars
 
         // out
         console.log(bmp.a);
