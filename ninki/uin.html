@@ -33,8 +33,15 @@ var g = {
         g.subs = [bmp,dom,sce];
         g.subs.forEach(function(el){el.init();});
 
+        // loop
+        window.setTimeout(g.start, 1000);
+
         // stats
         console.log("total render time: " + (window.performance.now() - t0) + "ms.");
+    },
+    "start": function() {
+        // may try window request animation frame
+        ren.bkgd();
     }
 }
 // scene
@@ -42,7 +49,19 @@ var sce = {
     "init": function() {
         // bkgd
         sce.a = {};
-        sce.a.r = [1920.1080,0,0];
+        sce.a.r = [1920,1080,0,0];
+        sce.a.c = dom.canvas(sce.a.r);
+        sce.a.b = null;
+        sce.a.d = rgba.rand();
+
+        dom.add(sce.a.c);
+    }
+}
+// render
+var ren = {
+    "bkgd": function() {
+        sce.a.c.con.fillStyle = sce.a.d;
+        sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
     }
 }
 // dom
