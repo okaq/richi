@@ -80,18 +80,23 @@ var sce = {
             sce.c[i] = [];
             var y0 = 0;
             if (i < 4) {
-                y0 = (i * 92) >>> 0;
+                y0 = (i * 71) >>> 0;
             } else {
-                y0 = (((i - 4) * 92) + 880) >>> 0;
+                y0 = (((i - 4) * 71) + 880) >>> 0;
             }
             var x0 = 0;
             var w0 = 64;
             var h0 = 64;
-            var m0 = 14;
+            var m0 = 7;
             var y1 = (y0 + m0) >>> 0;
             for (var j = 0; j < 4; j++) {
                 sce.c[i][j] = {};
                 sce.c[i][j].r = [w0,h0,x0,y1];
+                sce.c[i][j].c = dom.canvas(sce.c[i][j].r);
+                sce.c[i][j].b = null;
+                sce.c[i][j].d = rgba.rand();
+
+                dom.add(sce.c[i][j].c);
             }
         }
     }
