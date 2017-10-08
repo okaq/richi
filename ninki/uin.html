@@ -43,6 +43,7 @@ var g = {
         // may try window request animation frame
         ren.bkgd();
         ren.logo();
+        ren.text();
     }
 }
 // scene
@@ -112,6 +113,16 @@ var ren = {
             var c0 = sce.b[i].c;
             c0.con.fillStyle = sce.b[i].d;
             c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+        }
+    },
+    "text": function() {
+        for (var i = 0; i < sce.c.length; i++) {
+            var c0 = sce.c[i];
+            for (var j = 0; j < c0.length; j++) {
+                var c1 = c0[j];
+                c1.c.con.fillStyle = c1.d;
+                c1.c.con.fillRect(0,0,c1.c.can.width,c1.c.can.height);
+            }
         }
     }
 }
