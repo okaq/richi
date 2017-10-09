@@ -83,14 +83,15 @@ var sce = {
             if (i < 4) {
                 y0 = (i * 71) >>> 0;
             } else {
-                y0 = (((i - 4) * 71) + 880) >>> 0;
+                y0 = (((i - 4) * 71) + 796) >>> 0;
             }
-            var x0 = 0;
+            // var x0 = 0;
             var w0 = 64;
             var h0 = 64;
-            var m0 = 7;
+            var m0 = 4;
             var y1 = (y0 + m0) >>> 0;
             for (var j = 0; j < 4; j++) {
+                var x0 = ((j * 480) + 208) >>> 0;
                 sce.c[i][j] = {};
                 sce.c[i][j].r = [w0,h0,x0,y1];
                 sce.c[i][j].c = dom.canvas(sce.c[i][j].r);
@@ -198,6 +199,54 @@ var rgba = {
     "rmon": function() {
         var c0 = rgba.rb();
         return rgba.mono(c0);
+    }
+}
+// text
+var txt = {
+    "init": function() {
+        txt.a = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        txt.b = txt.a.split("");
+        console.log(txt.b);
+
+        // txt.words();
+    },
+    "quad": function() {
+        // 4-gram array with repitition
+        var r0 = [];
+        for (var i = 0; i < 4; i++) {
+            var f0 = (Math.random() * txt.b.length) >>> 0;
+            var s0 = txt.b[f0];
+            r0.push(s0);
+        }
+        return r0;
+    },
+    "words": function() {
+        // four letter word list added
+        // html file size before = 40kB
+        // html file size after = 85 kB
+        // word list legth = 5002
+        console.log("wrd length: " + wrd.length);
+        var w0 = txt.pick(16);
+        console.log("rnd wrd: " + w0);
+    },
+    "pick": function(n0) {
+        // selection with replacement
+        var r0 = [];
+        for (var i = 0; i < wrd.length; i++) {
+            r0[i] = i;
+        }
+        var r1 = [];
+        for (var i = 0; i < n0; i++) {
+            var f0 = (Math.random() * r0.length) >>> 0;
+            r1.push(f0);
+            r0.splice(f0, 1);
+        }
+        var r2 = [];
+        for (var i = 0; i < n0; i++) {
+            var i0 = r1[i];
+            r2[i] = wrd[i0];
+        }
+        return r2;
     }
 }
 // bitmap
