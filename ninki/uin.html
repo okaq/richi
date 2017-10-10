@@ -203,32 +203,6 @@ var rgba = {
 }
 // text
 var txt = {
-    "init": function() {
-        txt.a = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        txt.b = txt.a.split("");
-        console.log(txt.b);
-
-        // txt.words();
-    },
-    "quad": function() {
-        // 4-gram array with repitition
-        var r0 = [];
-        for (var i = 0; i < 4; i++) {
-            var f0 = (Math.random() * txt.b.length) >>> 0;
-            var s0 = txt.b[f0];
-            r0.push(s0);
-        }
-        return r0;
-    },
-    "words": function() {
-        // four letter word list added
-        // html file size before = 40kB
-        // html file size after = 85 kB
-        // word list legth = 5002
-        console.log("wrd length: " + wrd.length);
-        var w0 = txt.pick(16);
-        console.log("rnd wrd: " + w0);
-    },
     "pick": function(n0) {
         // selection with replacement
         var r0 = [];
