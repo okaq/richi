@@ -117,6 +117,8 @@ var sce = {
                 c0 = txt.pick(4);
             }
             console.log(c0);
+            var c1 = txt.segs(4);
+            console.log(c1);
         }
     }
 }
@@ -238,6 +240,17 @@ var txt = {
             r2[i] = wrd[i0];
         }
         return r2;
+    },
+    "segs": function(n0) {
+        // random pick
+        // return as char lists
+        var p0 = txt.pick(n0);
+        var p1 = [];
+        for (var i = 0; i < n0; i++) {
+            var p2 = p0[i];
+            p1[i] = p2.split("");
+        }
+        return p1;
     }
 }
 // bitmap
