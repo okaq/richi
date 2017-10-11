@@ -101,6 +101,23 @@ var sce = {
                 dom.add(sce.c[i][j].c);
             }
         }
+
+        sce.text();
+    },
+    "text": function() {
+        // generate words
+        var p0 = txt.pick(7);
+        var p1 = [];
+        p1[0] = ["O","K","A","Q"];
+        console.log(p0, p1);
+        // assign char to individual canvas
+        for (var i = 0; i < sce.c.length; i++) {
+            var c0 = ["O","K","A","Q"];
+            if (i >= 1) {
+                c0 = txt.pick(4);
+            }
+            console.log(c0);
+        }
     }
 }
 // render
