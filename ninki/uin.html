@@ -104,7 +104,7 @@ var sce = {
 
         sce.text();
     },
-    "text": function() {
+    "text2": function() {
         // generate words
         var p0 = txt.pick(7);
         var p1 = [];
@@ -119,6 +119,20 @@ var sce = {
             console.log(c0);
             var c1 = txt.segs(4);
             console.log(c1);
+        }
+    },
+    "text": function() {
+        // word gen
+        var p0 = txt.segs(7);
+        var p1 = [];
+        p1[0] = ["O","K","A","Q"];
+        // canvas assign
+        for (var i = 0; i < sce.c.length; i++) {
+            var c0 = sce.c[i];
+            for (var j = 0; j < 4; j++) {
+                // letter only key to bmp.b
+                sce.c[i][j].b = p1[i][j];
+            }
         }
     }
 }
