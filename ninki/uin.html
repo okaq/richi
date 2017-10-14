@@ -116,13 +116,16 @@ var sce = {
             // point defined as [x,y]
             var r0 = sce.b[i].r;
             sce.d[i].t = [r0[2],r0[3]];
+            // history
+            sce.d[i].v = [];
+            sce.d[i].v[0] = [r0[2],r0[3]];
         }
         // text
         for (var i = 4; i < 12; i++) {
             sce.d[i] = [];
             for (var j = 0; j < 4; j++) {
                 sce.d[i][j] = {};
-                var r0 = sce.c[i][j].r;
+                var r0 = sce.c[i-4][j].r;
                 sce.d[i][j].t = [r0[2],r0[3]];
             }
         }
@@ -149,6 +152,9 @@ var sce = {
         var p0 = txt.segs(7);
         var p1 = [];
         p1[0] = ["O","K","A","Q"];
+        for (var i = 1; i < sce.c.length; i++) {
+            p1[i] = p0[i-1];
+        }
         // canvas assign
         for (var i = 0; i < sce.c.length; i++) {
             var c0 = sce.c[i];
@@ -157,6 +163,7 @@ var sce = {
                 sce.c[i][j].b = p1[i][j];
             }
         }
+        // console.log(sce.c);
     }
 }
 // render
