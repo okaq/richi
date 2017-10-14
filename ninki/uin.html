@@ -109,6 +109,23 @@ var sce = {
     "mote": function() {
         // motion class
         sce.d = [];
+        // logo
+        for (var i = 0; i < 4; i++) {
+            sce.d[i] = {};
+            // time zero
+            // point defined as [x,y]
+            var r0 = sce.b[i].r;
+            sce.d[i].t = [r0[2],r0[3]];
+        }
+        // text
+        for (var i = 4; i < 12; i++) {
+            sce.d[i] = [];
+            for (var j = 0; j < 4; j++) {
+                sce.d[i][j] = {};
+                var r0 = sce.c[i][j].r;
+                sce.d[i][j].t = [r0[2],r0[3]];
+            }
+        }
     },
     "text2": function() {
         // generate words
