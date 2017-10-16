@@ -119,6 +119,10 @@ var sce = {
             // history
             sce.d[i].v = [];
             sce.d[i].v[0] = [r0[2],r0[3]];
+            // velocity
+            // describe its motion path
+            // all golf men move in single file
+            // with replacements at the edges
         }
         // text
         for (var i = 4; i < 12; i++) {
@@ -129,6 +133,8 @@ var sce = {
                 sce.d[i][j].t = [r0[2],r0[3]];
                 sce.d[i][j].v = [];
                 sce.d[i][j].v[0] = [r0[2],r0[3]];
+                // text elements collide with boundaries
+                // either the edges or adjacent elements
             }
         }
     },
