@@ -44,6 +44,23 @@ var g = {
         ren.bkgd();
         ren.logo();
         ren.text();
+
+        g.frame();
+    },
+    "frame": function() {
+        // start the anim
+        g.tick = 0;
+        g.id = window.setInterval(g.pool, 1000);
+    },
+    "pool": function() {
+        if (g.tick > 16) {
+            window.clearInterval(g.id);
+            console.log("done anim");
+        }
+        g.tick = g.tick + 1;
+
+        // move scene
+        // reneder updates
     }
 }
 // scene
