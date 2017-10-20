@@ -53,9 +53,15 @@ var g = {
         g.id = window.setInterval(g.pool, 1000);
     },
     "pool": function() {
-        if (g.tick > 16) {
+        if (g.tick > 4) {
             window.clearInterval(g.id);
             console.log("done anim");
+
+            // after four ticks begin the fps loop
+            g.tick = 0;
+            g.mark = window.performance.now();
+            window.setTimeout(g.fps, 1000);
+            return;
         }
         g.tick = g.tick + 1;
 
@@ -63,6 +69,10 @@ var g = {
         // reneder updates
     },
     "fps": function() {
+        g.tick = g.tick + 1;
+        // cancel condition
+    },
+    "fps2": function() {
         // request animation frame
         // g.wid = window.requestAnimationFrame(callback)
         // callback makes fresh entry into RAF
