@@ -60,6 +60,7 @@ var g = {
             // after four ticks begin the fps loop
             g.tick = 0;
             g.mark = window.performance.now();
+            g.dat = [];
             window.setTimeout(g.fps, 1000, g.mark);
             return;
         }
@@ -69,12 +70,14 @@ var g = {
         // render updates
     },
     "fps": function(ts) {
-        console.log("timestamp: " + ts);
-        console.log("tick count: " + g.tick);
+        // console.log("timestamp: " + ts);
+        // console.log("tick count: " + g.tick);
         g.tick = g.tick + 1;
+        g.dat.push(ts);
         // cancel condition
-        if (g.tick >= 2) {
-            // console.log("timestamp: " + ts);
+        if (g.tick >= 16) {
+            console.log("timestamp data");
+            console.log(g.dat);
             console.log("RAF done");
             window.cancelAnimationFrame(g.wid);
             return;
@@ -82,6 +85,9 @@ var g = {
         g.wid = window.requestAnimationFrame(g.fps);
 
         // time delta = 1000ms ?
+        // actual frame delta
+        // closer to 15ms per call
+        // thats expected 60fps
     },
     "fps2": function() {
         // request animation frame
