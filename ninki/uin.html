@@ -73,6 +73,15 @@ var g = {
         console.log("tick count: " + g.tick);
         g.tick = g.tick + 1;
         // cancel condition
+        if (g.tick >= 2) {
+            // console.log("timestamp: " + ts);
+            console.log("RAF done");
+            window.cancelAnimationFrame(g.wid);
+            return;
+        }
+        g.wid = window.requestAnimationFrame(g.fps);
+
+        // time delta = 1000ms ?
     },
     "fps2": function() {
         // request animation frame
