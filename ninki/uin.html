@@ -60,15 +60,17 @@ var g = {
             // after four ticks begin the fps loop
             g.tick = 0;
             g.mark = window.performance.now();
-            window.setTimeout(g.fps, 1000);
+            window.setTimeout(g.fps, 1000, g.mark);
             return;
         }
         g.tick = g.tick + 1;
 
         // move scene
-        // reneder updates
+        // render updates
     },
-    "fps": function() {
+    "fps": function(ts) {
+        console.log("timestamp: " + ts);
+        console.log("tick count: " + g.tick);
         g.tick = g.tick + 1;
         // cancel condition
     },
@@ -88,7 +90,6 @@ var g = {
         // try simple render and measure
         // a dedicated testing harness
         // is something to consider
-
     }
 }
 // scene
