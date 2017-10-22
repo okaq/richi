@@ -17,6 +17,7 @@ const (
     BITMAP = "win.html"
     LOGO = "vin.html"
     ANIM = "uin.html"
+    EYE = "tin.html"
 )
 
 var (
@@ -95,6 +96,11 @@ func AnimHandler(w http.ResponseWriter, r *http.Request) {
     http.ServeFile(w,r,ANIM)
 }
 
+func EyeHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r)
+    http.ServeFile(w,r,EYE)
+}
+
 func main() {
     fmt.Printf("localhost:8080 zin web start: %s\n", time.Now().String())
     C = NewCache()
@@ -106,5 +112,6 @@ func main() {
     http.HandleFunc("/d", SockHandler)
     http.HandleFunc("/e", LogoHandler)
     http.HandleFunc("/f", AnimHandler)
+    http.HandleFunc("/g", EyeHandler)
     http.ListenAndServe(":8080", nil)
 }
