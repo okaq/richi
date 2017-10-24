@@ -49,14 +49,24 @@ var g = {
 }
 // scene
 var sce = {
-    "inti": function() {
+    "init": function() {
         // bkgd
         sce.a = {};
         sce.a.r = [1920,1080,0,0];
         sce.a.c = dom.canvas(sce.a.r);
-        sce.a.b = rgba.rb();
-        
+        var rgba0 = rgba.rb();
+        sce.a.b = [rgba0,rgba0,rgba0,1.0];
+
         // eye
+        sce.b = {};
+        sce.b.d = [96,96]; // dimensions = [w,h]
+        sce.b.r = [];
+        sce.b.r[0] = sce.b.d[0];
+        sce.b.r[1] = sce.b.d[1];
+        sce.b.r[2] = ((sce.a.r[0] - sce.b.d[0]) / 2) >>> 0;
+        sce.b.r[3] = (((sce.a.r[1] / 2) - sce.b.d[1]) / 2) >>> 0;
+        sce.b.c = dom.canvas(sce.b.r);
+        sce.b.b = rgba.rand();
     }
 }
 // dom
