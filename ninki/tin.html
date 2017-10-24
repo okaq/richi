@@ -54,8 +54,7 @@ var sce = {
         sce.a = {};
         sce.a.r = [1920,1080,0,0];
         sce.a.c = dom.canvas(sce.a.r);
-        var rgba0 = rgba.rb();
-        sce.a.b = [rgba0,rgba0,rgba0,1.0];
+        sce.a.b = rgba.rmon();
 
         // eye
         sce.b = {};
@@ -66,7 +65,13 @@ var sce = {
         sce.b.r[2] = ((sce.a.r[0] - sce.b.d[0]) / 2) >>> 0;
         sce.b.r[3] = (((sce.a.r[1] / 2) - sce.b.d[1]) / 2) >>> 0;
         sce.b.c = dom.canvas(sce.b.r);
-        sce.b.b = rgba.rand();
+        sce.b.b = rgba.css([255,255,255,1.0]);
+
+        sce.attach();
+    },
+    "attach": function() {
+        dom.add(sce.a.c);
+        dom.add(sce.b.c);
     }
 }
 // dom
