@@ -81,11 +81,13 @@ var sce = {
 var ren = {
     "base": function() {
         // bkgd
-        sce.a.c.con.fillStyle = rgba.rand();
+        // sce.a.c.con.fillStyle = rgba.rand();
+        sce.a.c.con.fillStyle = sce.a.b;;
         sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
 
         // eye
-        sce.b.c.con.fillStyle = rgba.rand();
+        // sce.b.c.con.fillStyle = rgba.rand();
+        sce.b.c.con.fillStyle = sce.b.b;
         sce.b.c.con.fillRect(0,0,sce.b.c.can.width,sce.b.c.can.height);
     }
 }
