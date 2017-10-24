@@ -33,6 +33,9 @@ var g = {
         g.subs = [dom,sce];
         g.subs.forEach(function(el){el.init();});
 
+        // render
+        ren.base();
+
         // loop
         window.setTimeout(g.start, 1000);
 
@@ -72,6 +75,18 @@ var sce = {
     "attach": function() {
         dom.add(sce.a.c);
         dom.add(sce.b.c);
+    }
+}
+// render
+var ren = {
+    "base": function() {
+        // bkgd
+        sce.a.c.con.fillStyle = rgba.rand();
+        sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
+
+        // eye
+        sce.b.c.con.fillStyle = rgba.rand();
+        sce.b.c.con.fillRect(0,0,sce.b.c.can.width,sce.b.c.can.height);
     }
 }
 // dom
