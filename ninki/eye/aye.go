@@ -5,7 +5,7 @@ package main
 
 import (
     "fmt"
-//     "net/http"
+    "net/http"
     "time"
 )
 
@@ -14,7 +14,18 @@ const (
     EYE = "zye.html"
 )
 
+func EyeHandler(w http.ResponseWriter, r *http.Request) {
+    if DEBUG {
+        fmt.Println(r)
+    }
+    http.ServeFile(w,r,EYE)
+}
+
 func main() {
-    fmt.Println("okaq web eye live...")
-    fmt.Printf("localhost:8080 start time: %s\n", time.Now().String())
+    if DEBUG {
+        fmt.Println("okaq web eye live...")
+        fmt.Printf("localhost:8080 start time: %s\n", time.Now().String())
+    }
+    http.HandleFunc("/", EyeHandler)
+    http.ListenAndServe(":8080", nil)
 }
