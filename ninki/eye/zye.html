@@ -44,10 +44,13 @@ var g = {
     },
     "start": function() {
         console.log("fetch field of view");
+        // time every thing
         // render test
         bmp.gen();
+        ren.bmp();
         // network test
         xhr.pop();
+        // perf stats
     }
 }
 // bitmap
@@ -112,6 +115,10 @@ var ren = {
         // sce.b.c.con.fillStyle = rgba.rand();
         sce.b.c.con.fillStyle = sce.b.b;
         sce.b.c.con.fillRect(0,0,sce.b.c.can.width,sce.b.c.can.height);
+    },
+    "bmp": function() {
+        // clear canvas
+        sce.b.c.con.clearRect(0,0,sce.b.c.can.width,sce.b.c.can.height);
     }
 }
 // dom
