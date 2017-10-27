@@ -55,6 +55,16 @@ var bmp = {
     "gen": function() {
         // create eye from array
         // tests data, dom, and draw calls
+
+        // data
+        bmp.a = {};
+        bmp.a.w = sce.b.d[0];
+        bmp.a.h = sce.b.d[1];
+        bmp.a.t = (bmp.a.w * bmp.a.h) >>> 0;
+        bmp.a.d = [];
+        for (var i = 0; i < bmp.a.t; i++) {
+            bmp.a.d[i] = 240; // off-white
+        }
     }
 }
 // net
