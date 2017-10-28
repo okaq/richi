@@ -68,15 +68,29 @@ var time = {
         // begin with a data list
         time.a = [];
         // push now() unto position zero
+        var t0 = window.performance.now();
+        time.a.push(t0);
     },
     "stop": function() {
         // calc intervals
         // report as sequence
-        // with first entry equal to
+        // with last entry equal to
         // total time elapsed
+        var t0 = window.performance.now();
+        time.a.push(t0);
+        var r0 = [];
+        for (var i = 1; i < time.a.length; i++) {
+            var r1 = time.a[i] - time.a[i-1];
+            r0.push(r1);
+        }
+        // total
+        r0[time.a.length] = time.a[time.a.length-1] - time.a[0];
+        return r0;
     },
     "split": function() {
         // add to data list
+        var t0 = window.performance.now();
+        time.a.push(t0);
     }
 }
 // bitmap
