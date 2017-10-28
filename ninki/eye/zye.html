@@ -124,6 +124,14 @@ var bmp = {
 var xhr = {
     "pop": function() {
         // round trip post data
+        xhr.a = new XMLHttpRequest();
+        xhr.a.addEventListener("load", xhr.load);
+        xhr.b = ["http://localhost:8080/a"];
+        xhr.a.open("GET", xhr.b[0]);
+        xhr.a.send();
+    },
+    "load": function(e) {
+        console.log(e);
     }
 }
 // scene
