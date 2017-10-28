@@ -45,12 +45,18 @@ var g = {
     "start": function() {
         console.log("fetch field of view");
         // time every thing
+        time.start();
         // render test
         bmp.gen();
         ren.bmp();
+        // split
+        time.split();
         // network test
         xhr.pop();
         // perf stats
+        // stop time
+        time.stop();
+        console.log("total time in milliseconds: " + time.a[time.a.length-1]);
 
         // want to render bitmap blocks in a single block
         // or render as a "bitmap of canvases"
