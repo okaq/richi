@@ -114,6 +114,10 @@ var bmp = {
         for (var i = 0; i < bmp.a.t; i++) {
             bmp.a.d[i] = 240; // off-white
         }
+
+        // results in 1x1 pixel draw rect calls
+        // we can also stagger tests over NxN
+        // pixel blocks
     }
 }
 // net
@@ -165,6 +169,7 @@ var ren = {
     "bmp": function() {
         // clear canvas
         sce.b.c.con.clearRect(0,0,sce.b.c.can.width,sce.b.c.can.height);
+        // loop over bitmap data
     }
 }
 // dom
