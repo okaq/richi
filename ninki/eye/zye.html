@@ -52,7 +52,6 @@ var g = {
         xhr.pop();
         // perf stats
 
-        // do we, like ezekial
         // want to render bitmap blocks in a single block
         // or render as a "bitmap of canvases"
         // with each pixel in its own DOM element
@@ -61,6 +60,23 @@ var g = {
         // but if we need to do "particle effects"
         // per DOM element in CSS3
         // this technique provides flexibility
+    }
+}
+// time
+var time = {
+    "start": function() {
+        // begin with a data list
+        time.a = [];
+        // push now() unto position zero
+    },
+    "stop": function() {
+        // calc intervals
+        // report as sequence
+        // with first entry equal to
+        // total time elapsed
+    },
+    "split": function() {
+        // add to data list
     }
 }
 // bitmap
