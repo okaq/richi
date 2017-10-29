@@ -150,7 +150,28 @@ var xhr = {
         xhr.d.append("Content-Type","text/plain");
         xhr.d.append("Content-Length",xhr.e.length.toString());
         console.log(xhr.d.get("Content-Length"));
+        // init
+        xhr.f = {
+            "method": "POST",
+            "headers": xhr.d,
+            "body": xhr.e
+        }
         // request
+        xhr.g = new window.Request(xhr.c,xhr.f);
+        // handlers
+        xhr.h = function(response) {
+            // response json
+            console.log(response);
+            return reponse.json();
+        };
+        xhr.i = function(data) {
+            // store in cache
+            console.log(data);
+        }
+        // fetch
+        window.fetch(xhr.g)
+        .then(xhr.h)
+        .then(xhr.i)
         // response
         // window.fetch(xhr.c)
     }
