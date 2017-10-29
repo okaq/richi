@@ -6,6 +6,7 @@ package main
 import (
     "fmt"
     "net/http"
+    "sync"
     "time"
 )
 
@@ -13,6 +14,21 @@ const (
     DEBUG = true
     EYE = "zye.html"
 )
+
+var (
+    C Cache
+}
+
+type Cache struct {
+    Data map[string]string
+    *sync.Mutex
+)
+
+func NewCahce() *Cache {
+    C := Cache{}
+    C.Data = make(map[string]string)
+    return &C
+}
 
 func EyeHandler(w http.ResponseWriter, r *http.Request) {
     if DEBUG {
