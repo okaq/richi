@@ -53,6 +53,7 @@ var g = {
         time.split();
         // network test
         xhr.pop();
+        xhr.fop();
         // perf stats
         // stop time
         time.stop();
@@ -141,6 +142,17 @@ var xhr = {
         // use fetch api
         // send the processed data
         console.log(window.fetch);
+        // urls
+        xhr.c = ["http://localhost:8080/b"];
+        // headers
+        xhr.d = new window.Headers();
+        xhr.e = "hello eye";
+        xhr.d.append("Content-Type","text/plain");
+        xhr.d.append("Content-Length",xhr.e.length.toString());
+        console.log(xhr.d.get("Content-Length"));
+        // request
+        // response
+        // window.fetch(xhr.c)
     }
 }
 // scene
