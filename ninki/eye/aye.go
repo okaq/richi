@@ -5,6 +5,7 @@ package main
 
 import (
     "fmt"
+    "io/ioutil"
     "net/http"
     "sync"
     "time"
@@ -16,18 +17,18 @@ const (
 )
 
 var (
-    C Cache
-}
+    C *Cache
+)
 
 type Cache struct {
     Data map[string]string
     *sync.Mutex
-)
+}
 
-func NewCahce() *Cache {
-    C := Cache{}
-    C.Data = make(map[string]string)
-    return &C
+func NewCache() *Cache {
+    c := Cache{}
+    c.Data = make(map[string]string)
+    return &c
 }
 
 func EyeHandler(w http.ResponseWriter, r *http.Request) {
@@ -53,7 +54,16 @@ func DataHandler(w http.ResponseWriter, r *http.Request) {
     if DEBUG {
         fmt.Println(r)
     }
-    j0 := nil
+    b0, err := ioutil.ReadAll(r.Body)
+    if err != nil {
+        w.Write([]byte("data unread"))
+        return
+    }
+    s0 := string(b0)
+    if DEBUG {
+        fmt.Println(s0)
+    }
+    j0 := []byte("ok")
     w.Header().Set("Content-type", "application/json")
     w.Write(j0)
 }
@@ -63,6 +73,7 @@ func main() {
         fmt.Println("okaq web eye live...")
         fmt.Printf("localhost:8080 start time: %s\n", time.Now().String())
     }
+    C = NewCache()
     http.HandleFunc("/", EyeHandler)
     http.HandleFunc("/a", PidHandler)
     http.HandleFunc("/b", DataHandler)
