@@ -146,7 +146,9 @@ var xhr = {
         xhr.c = ["http://localhost:8080/b"];
         // headers
         xhr.d = new window.Headers();
-        xhr.e = "hello eye";
+        // xhr.e = "hello eye";
+        // client player id
+        xhr.e = (Math.random() * Nunmer.MAX_SAFE_INTEGER);
         xhr.d.append("Content-Type","text/plain");
         xhr.d.append("Content-Length",xhr.e.length.toString());
         console.log(xhr.d.get("Content-Length"));

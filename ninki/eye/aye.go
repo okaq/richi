@@ -63,6 +63,10 @@ func DataHandler(w http.ResponseWriter, r *http.Request) {
     if DEBUG {
         fmt.Println(s0)
     }
+    C.Data[s0] = "001"
+    if DEBUG {
+        fmt.Println(C)
+    }
     j0 := []byte(`{"id":0,"state":"zero"}`)
     w.Header().Set("Content-Type", "application/json")
     w.Write(j0)
