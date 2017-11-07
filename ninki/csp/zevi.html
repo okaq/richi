@@ -40,6 +40,8 @@ var g = {
         // subsystems
         g.subs = [dom,sce];
         g.subs.forEach(function(el){el.init()});
+
+        // render
     }
 }
 // scene
@@ -57,6 +59,23 @@ var sce = {
     },
     "polo": function() {
         // poloroid effect
+        sce.b. = {};
+        sce.b.r = [];
+        sce.b.c = [];
+        sce.b.b = [];
+        var w0 = 20;
+        var h0 = 20;
+        for (var i = 0; i < 48; i++) {
+            var r0 = [];
+            r0[2] = (1920 - (i * w0)) >>> 0;
+            r0[3] = (1080 - (i * h0)) >>> 0;
+            r0[0] = (1920 - (2 * i * w0)) >>> 0;
+            r0[1] = (1080 - (2 * i * h0)) >>> 0;
+            sce.b.r[i] = r0;
+            sce.b.c[i] = dom.canvas(sce.b.r[i]);
+            dom.add(sce.b.c[i]);
+            sce.b.b[i] = rgba.rand();
+        }
     }
 }
 // dom
