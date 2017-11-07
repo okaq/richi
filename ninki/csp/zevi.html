@@ -46,6 +46,17 @@ var g = {
 var sce = {
     "init": function() {
         console.log("the scene revealed");
+
+        sce.a = {};
+        sce.a.r = [1920,1080,0,0];
+        sce.a.c = dom.canvas(sce.a.r);
+        dom.add(sce.a.c);
+        sce.a.b = rgba.rand();
+
+        sce.polo();
+    },
+    "polo": function() {
+        // poloroid effect
     }
 }
 // dom
