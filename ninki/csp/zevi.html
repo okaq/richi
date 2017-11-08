@@ -42,9 +42,21 @@ var g = {
         g.subs.forEach(function(el){el.init()});
 
         // tick loop
+        g.tick = 0;
+        g.id = window.setInterval(g.frame, 1000);
 
         // render
         ren.ber();
+    },
+    "frame": function() {
+        console.log("tick count: " + g.tick);
+        if (g.tick >= 64) {
+            console.log("anim finish");
+            window.clearInterval(g.id);
+            return;
+        }
+        // shuffle
+        g.tick = g.tick + 1;
     }
 }
 // render
