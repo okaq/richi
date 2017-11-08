@@ -72,10 +72,25 @@ var bmp = {
         // bitmap generator service
         // data
         bmp.d = {};
-        bmp.w = 128;
-        bmp.h = 128;
+        bmp.d.w = 128;
+        bmp.d.h = 128;
         // changes to any property
         // trigger a refresh
+        bmp.cent();
+        bmp.bloc(16,16);
+    },
+    "cent": function() {
+        // center the position
+        // for the given sizes
+        bmp.d.x = ((1920 - bmp.d.w) / 2) >>> 0;
+        bmp.d.h = ((1080 - bmp.d.h) / 2) >>> 0;
+    },
+    "bloc": function(w0,h0) {
+        // size of the pixel blocks
+        bmp.d.bw = w0;
+        bmp.d.bh = h0;
+        bmp.d.nx = (bmp.d.w / bmp.d.bw) >>> 0;
+        bmp.d.ny = (bmp.d.h / bmp.d.bh) >>> 0;
     }
 }
 // render
