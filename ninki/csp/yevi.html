@@ -107,9 +107,20 @@ var bmp = {
     },
     "rand"; function() {
         // init to rand values
+        for (var i = 0; i < bmp.d.nt; i++) {
+            bmp.d.a[i] = rgba.rand();
+        }
     },
     "shuf": function() {
         // in place rearrange
+        for (var i = 0; i < bmp.d.nt; i++) {
+            var rgba0 = bmp.d.a[i];
+            var f0 = (bmp.d.nt - i) >>> 0;
+            var f1 = (Math.random() * f0) >>> 0;
+            var f2 = (i + f1) >>> 0;
+            bmp.d.a[i] = bmp.d.a[f2];
+            bmp.d.a[f2] = rgba0;
+        }
     }
 }
 // render
