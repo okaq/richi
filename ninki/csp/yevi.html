@@ -58,12 +58,24 @@ var g = {
 var net = {
     "init": function() {
         // player id and cache
+        // urls
+        net.a = ["http://localhost:8080/a",
+            "http://localhost:8080/b",
+            "http://localhost:8080/c"];
+        net.b = new MLHttpRequest();
+        console.log(net.b);
     }
 }
 // bitmap
 var bmp = {
     "init": function() {
         // bitmap generator service
+        // data
+        bmp.d = {};
+        bmp.w = 128;
+        bmp.h = 128;
+        // changes to any property
+        // trigger a refresh
     }
 }
 // render
