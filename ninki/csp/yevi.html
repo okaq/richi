@@ -78,6 +78,7 @@ var bmp = {
         // trigger a refresh
         bmp.cent();
         bmp.bloc(16,16);
+        bmp.wove();
     },
     "cent": function() {
         // center the position
@@ -91,6 +92,24 @@ var bmp = {
         bmp.d.bh = h0;
         bmp.d.nx = (bmp.d.w / bmp.d.bw) >>> 0;
         bmp.d.ny = (bmp.d.h / bmp.d.bh) >>> 0;
+        bmp.d.nt = (bmp.d.ny * bmp.d.nx) >>> 0;
+    },
+    "wove": function() {
+        // musubi, weave time
+        bmp.d.a = [];
+        bmp.fill(rgba.css[0,0,0,1.0]);
+    },
+    "fill": function(rgba0) {
+        // all data set to single value
+        for (var i = 0; i < bmp.d.nt; i++) {
+            bmp.d.a[i] = rgba0;
+        }
+    },
+    "rand"; function() {
+        // init to rand values
+    },
+    "shuf": function() {
+        // in place rearrange
     }
 }
 // render
