@@ -41,9 +41,16 @@ var g = {
         g.subs = [dom,sce,bmp,net];
         g.subs.forEach(function(el){el.init()});
 
+        // setup
+        g.fast();
+
         // tick loop
         g.tick = 0;
         g.id = window.setInterval(g.frame, 1000);
+    },
+    "fast": function() {
+        // add bitmap to scene
+        sce.bmp();
     },
     "frame": function() {
         console.log("tick count: " + g.tick);
@@ -136,6 +143,21 @@ var sce = {
         sce.a.c = dom.canvas(sce.a.r);
         dom.add(sce.a.c);
         sce.a.b = rgba.rand();
+    },
+    "bmp": function() {
+        // bitmap data in canvas
+        sce.b = [];
+        for (var i = 0; i < bmp.d.nt; i++) {
+            sce.b[i] = {};
+            sce.b[i].r = [];
+            sce.b[i].c = null;
+            // data held in bitmap data
+        }
+        // add to scene as discrete canvases
+        // or a single canvas segmented
+        // hold additional flag to signal renderer
+        // time performance for DOM manipulation
+        // add CSS3 particle effect animations
     }
 }
 // dom
