@@ -91,7 +91,7 @@ var bmp = {
         // center the position
         // for the given sizes
         bmp.d.x = ((1920 - bmp.d.w) / 2) >>> 0;
-        bmp.d.h = ((1080 - bmp.d.h) / 2) >>> 0;
+        bmp.d.y = ((1080 - bmp.d.h) / 2) >>> 0;
     },
     "bloc": function(w0,h0) {
         // size of the pixel blocks
@@ -149,15 +149,27 @@ var sce = {
         sce.b = [];
         for (var i = 0; i < bmp.d.nt; i++) {
             sce.b[i] = {};
-            sce.b[i].r = [];
-            sce.b[i].c = null;
+            var x0 = i % bmp.d.nx;
+            var y0 = (i / bmp.d.ny) >>> 0;
+            var x1 = (x0 * bmp.d.bw) >>> 0;
+            var y1 = (y0 * bmp.d.bh) >>> 0;
+            sce.b[i].r = [bmp.d.bw,bmp.d.bh,x1,y1];
+            sce.b[i].c = dom.canvas(sce.b[i].r);
             // data held in bitmap data
+            dom.add(sce.b[i].c)
         }
         // add to scene as discrete canvases
         // or a single canvas segmented
         // hold additional flag to signal renderer
         // time performance for DOM manipulation
         // add CSS3 particle effect animations
+    },
+    "bmp2": function() {
+        // contiguous canvas
+        sce.b = {};
+        sce.b.r = [bmp.d.w,bmp.d.h,bmp.d.x,bmp.d.y];
+        sce.b.c = dom.canvas(sce.b.r);
+        dom.add(sce.b.c)
     }
 }
 // dom
