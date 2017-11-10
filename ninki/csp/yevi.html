@@ -51,6 +51,7 @@ var g = {
     "fast": function() {
         // add bitmap to scene
         sce.bmp();
+        ren.all();
     },
     "frame": function() {
         console.log("tick count: " + g.tick);
@@ -69,7 +70,7 @@ var net = {
         net.a = ["http://localhost:8080/a",
             "http://localhost:8080/b",
             "http://localhost:8080/c"];
-        net.b = new MLHttpRequest();
+        net.b = new XMLHttpRequest();
         console.log(net.b);
     }
 }
@@ -112,7 +113,7 @@ var bmp = {
             bmp.d.a[i] = rgba0;
         }
     },
-    "rand"; function() {
+    "rand": function() {
         // init to rand values
         for (var i = 0; i < bmp.d.nt; i++) {
             bmp.d.a[i] = rgba.rand();
@@ -132,6 +133,14 @@ var bmp = {
 }
 // render
 var ren = {
+    "all": function() {
+        // get list from scene graph
+        for (var i = 0; i < sce.b.length; i++) {
+            var c0 = sce.b[i].c;
+            c0.con.fillStyle = bmp.d.a[i];
+            c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+        }
+    }
 }
 // scene
 var sce = {
@@ -153,7 +162,9 @@ var sce = {
             var y0 = (i / bmp.d.ny) >>> 0;
             var x1 = (x0 * bmp.d.bw) >>> 0;
             var y1 = (y0 * bmp.d.bh) >>> 0;
-            sce.b[i].r = [bmp.d.bw,bmp.d.bh,x1,y1];
+            var x2 = (x1 + bmp.d.x) >>> 0;
+            var y2 = (y1 + bmp.d.y) >>> 0;
+            sce.b[i].r = [bmp.d.bw,bmp.d.bh,x2,y2];
             sce.b[i].c = dom.canvas(sce.b[i].r);
             // data held in bitmap data
             dom.add(sce.b[i].c)

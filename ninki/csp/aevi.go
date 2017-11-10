@@ -12,7 +12,8 @@ import (
 )
 
 const (
-    INDEX = "zevi.html"
+    // INDEX = "zevi.html"
+    INDEX = "yevi.html"
 )
 
 func AeviHandler(w http.ResponseWriter, r *http.Request) {
