@@ -83,11 +83,18 @@ var bmp = {
     "init": function() {
         // rand bitmap service
         bmp.d = {};
-        bmp.e = [16,32,64,128,256,512];
+        bmp.e = [32,64,128,256,512];
         var f0 = (Math.random() * bmp.e.length) >>> 0;
         bmp.d.w = bmp.e[f0];
         bmp.d.h = bmp.d.w;
         // solve for block sizes
+        bmp.cent();
+        bmp.f = [2,4,8,16];
+        var f1 = (Math.random() * bmp.f.length) >>> 0;
+        bmp.d.bw = bmp.f[f1];
+        bmp.d.bh = bmp.d.bw;
+        bmp.bloc(bmp.d.bw,bmp.d.bh);
+        bmp.wove();
     },
     "init2": function() {
         // bitmap generator service
