@@ -66,6 +66,18 @@ var g = {
         // then we average over total time to add DOM elements
     }
 }
+// player
+var pid = {
+    "gen": function() {
+        // generate a player id
+        pid.a = {};
+        pid.a["number"] = (Math.random() * Number.MAX_SAFE_INTEGER) >>> 0;
+        pid.a["date"] = Date.now();
+        // timestamp on server
+        // diffed with browser time
+        // is a ballpark "lag" measurement
+    }
+}
 // xhr
 var net = {
     "init": function() {
@@ -78,7 +90,7 @@ var net = {
         console.log(net.b);
     }
 }
-//debug
+// debug
 var dbg = {
     "prof": function() {
         // access to web api
