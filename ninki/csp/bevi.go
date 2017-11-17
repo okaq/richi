@@ -15,6 +15,12 @@ const (
     INDEX = "xevi.html"
 )
 
+var (
+    // cache, atomic index, pid list
+    C int
+    P []string
+)
+
 
 func AeviHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r)
