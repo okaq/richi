@@ -21,14 +21,25 @@ var (
     P []string
 )
 
+func Cache() {
+    C = 0
+    P = make([]int, 100)
+}
 
 func AeviHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Println(r)
     http.ServeFile(w,r,INDEX)
 }
 
+func PidHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r)
+    // read json from request data
+}
+
 func main() {
     fmt.Printf("csp web serve start %s\n", time.Now().String())
+    Cache()
     http.HandleFunc("/", AeviHandler)
+    http.HandleFunc("/b", PidHandler)
     http.ListenAndServe(":8080", nil)
 }
