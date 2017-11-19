@@ -9,6 +9,7 @@ import (
     "fmt"
     "time"
     "net/http"
+    "sync"
 )
 
 const (
@@ -20,6 +21,18 @@ var (
     C int
     P []string
 )
+
+type Pids struct {
+    // counter
+    Count uint64
+    Id []string
+    sync.RWMutex
+}
+
+func NewPids *Pids {
+    p := new(Pids)
+    return &Pids
+}
 
 func Cache() {
     C = 0
