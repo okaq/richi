@@ -52,11 +52,21 @@ var net = {
 var sce = {
     "init": function() {
         // load screen
+        // big red dutch pattern
+        // begin with blocks size
+        sce.w = 1920;
+        sce.h = 1080;
+        sce.bw = 10;
+        sce.bh = 10;
+        // pane dimensions
+        sce.nx = 15;
+        sce.ny = (sce.h / sce.bh) >>> 0;
+        sce.pw = (sce.nx * sce.bw) >>> 0;
     }
 }
 // bitmap
 var bmp = {
-    "init": funciton() {
+    "init": function() {
         // pixel data
     }
 }
