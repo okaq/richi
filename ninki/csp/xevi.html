@@ -63,7 +63,26 @@ var sce = {
         sce.ny = (sce.h / sce.bh) >>> 0;
         sce.nt = (sce.nx * sce.ny) >> 0;
         sce.pw = (sce.nx * sce.bw) >>> 0;
-        console.log(sce);
+        // console.log(sce);
+
+        sce.big();
+    },
+    "big": function() {
+        // grid multi array
+        sce.a = {};
+        sce.a.r = [];
+        sce.a.c = [];
+        sce.a.b = [];
+        for (var y = 0; y < sce.ny; y++) {
+            sce.a.r[y] = [];
+            sce.a.c[y] = [];
+            sce.a.b[y] = [];
+            for (var x = 0; x < sce.nx; x++) {
+                var x0 = 0;
+                var y0 = 0;
+                sce.a.r[y][x] = [sce.bw,sce.bh,x0,y0];
+            }
+        }
     }
 }
 // bitmap
