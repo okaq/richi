@@ -20,6 +20,7 @@ var (
     // cache, atomic index, pid list
     C int
     P []string
+    Pid *Pids
 )
 
 type Pids struct {
@@ -29,14 +30,14 @@ type Pids struct {
     sync.RWMutex
 }
 
-func NewPids *Pids {
+func NewPids() *Pids {
     p := new(Pids)
-    return &Pids
+    return p
 }
 
 func Cache() {
     C = 0
-    P = make([]int, 100)
+    P = make([]string, 100)
 }
 
 func AeviHandler(w http.ResponseWriter, r *http.Request) {
@@ -52,6 +53,8 @@ func PidHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
     fmt.Printf("csp web serve start %s\n", time.Now().String())
     Cache()
+    Pid = NewPids()
+    fmt.Println(P, C, Pid)
     http.HandleFunc("/", AeviHandler)
     http.HandleFunc("/b", PidHandler)
     http.ListenAndServe(":8080", nil)

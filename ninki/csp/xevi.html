@@ -59,9 +59,11 @@ var sce = {
         sce.bw = 10;
         sce.bh = 10;
         // pane dimensions
-        sce.nx = 15;
+        sce.nx = 31; // (15x15 + 1)
         sce.ny = (sce.h / sce.bh) >>> 0;
+        sce.nt = (sce.nx * sce.ny) >> 0;
         sce.pw = (sce.nx * sce.bw) >>> 0;
+        console.log(sce);
     }
 }
 // bitmap
