@@ -40,6 +40,9 @@ var g = {
         // subsystems
         g.subs = [dom,sce,bmp,net];
         g.subs.forEach(function(el){el.init()});
+
+        // test
+        ren.mon();
     }
 }
 // xhr
@@ -92,6 +95,21 @@ var sce = {
 var bmp = {
     "init": function() {
         // pixel data
+    }
+}
+// render
+var ren = {
+    "mon": function() {
+        // the mono data
+        for (var y = 0; y < sce.ny; y++) {
+            for (var x = 0; x < sce.nx; x++) {
+                var c0 = sce.a.c[y][x];
+                c0.con.fillStyle = sce.a.b[y][x];
+                c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+            }
+        }
+        // a beautiful grid
+        // in 256 shades of grey
     }
 }
 // dom
