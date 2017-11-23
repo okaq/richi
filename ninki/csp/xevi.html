@@ -95,6 +95,18 @@ var sce = {
 var bmp = {
     "init": function() {
         // pixel data
+        bmp.a = {};
+        bmp.a.d = [];
+        for (var y = 0; y < sce.a.ny; y++) {
+            bmp.a.d[y] = [];
+            for (var x = 0; x < sce.a.nx; x++) {
+                bmp.a.d[y][x] = rgba.rb();
+                // assigned to random byte value
+            }
+        }
+    },
+    "mirror": function() {
+        // mirror image bits
     }
 }
 // render
