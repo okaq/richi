@@ -78,9 +78,12 @@ var sce = {
             sce.a.c[y] = [];
             sce.a.b[y] = [];
             for (var x = 0; x < sce.nx; x++) {
-                var x0 = 0;
-                var y0 = 0;
+                var x0 = (x * sce.bw) >>> 0;
+                var y0 = (y * sce.bh) >>> 0;
                 sce.a.r[y][x] = [sce.bw,sce.bh,x0,y0];
+                sce.a.c[y][x] = dom.canvas(sce.a.r[y][x]);
+                dom.add(sce.a.c[y][x]);
+                sce.a.b[y][x] = rgba.rmon();
             }
         }
     }
