@@ -104,6 +104,7 @@ var bmp = {
                 // assigned to random byte value
             }
         }
+        console.log(bmp);
     },
     "mirror": function() {
         // mirror image bits
@@ -122,6 +123,18 @@ var ren = {
         }
         // a beautiful grid
         // in 256 shades of grey
+    },
+    "bmp": function() {
+        // bitmap data
+        for (var y = 0; y < sce.ny; y++) {
+            for (var x = 0; x < sce.nx; x++) {
+                var c0 = sce.a.c[y][x];
+                var b0 = bmp.a.d[y][x];
+                var rgba0 = rgba.mono(b1);
+                c0.con.fillStyle = rgba0;
+                c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+            }
+        }
     }
 }
 // dom
