@@ -99,9 +99,9 @@ var bmp = {
         // pixel data
         bmp.a = {};
         bmp.a.d = [];
-        for (var y = 0; y < sce.a.ny; y++) {
+        for (var y = 0; y < sce.ny; y++) {
             bmp.a.d[y] = [];
-            for (var x = 0; x < sce.a.nx; x++) {
+            for (var x = 0; x < sce.nx; x++) {
                 bmp.a.d[y][x] = rgba.rb();
                 // assigned to random byte value
             }
@@ -132,7 +132,7 @@ var ren = {
             for (var x = 0; x < sce.nx; x++) {
                 var c0 = sce.a.c[y][x];
                 var b0 = bmp.a.d[y][x];
-                var rgba0 = rgba.mono(b1);
+                var rgba0 = rgba.mono(b0);
                 c0.con.fillStyle = rgba0;
                 c0.con.fillRect(0,0,c0.can.width,c0.can.height);
             }
