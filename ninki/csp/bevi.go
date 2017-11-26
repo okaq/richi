@@ -21,6 +21,8 @@ var (
     C int
     P []string
     Pid *Pids
+    // list of ordered peers
+    // event to handle conn loss
 )
 
 type Pids struct {
