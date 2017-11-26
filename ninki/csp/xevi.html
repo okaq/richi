@@ -45,6 +45,8 @@ var g = {
         // ren.mon();
         // data
         ren.bmp();
+        // mirror
+        bmp.mirror();
     }
 }
 // xhr
@@ -110,6 +112,16 @@ var bmp = {
     },
     "mirror": function() {
         // mirror image bits
+        bmp.a.e = [];
+        // midpoint
+        var m0 = (sce.nx / 2) >>> 0;
+        console.log(m0);
+        for (var y = 0; y < sce.ny; y++) {
+            bmp.a.e = [];
+            for (var x = 0; x < sce.nx; x++) {
+
+            }
+        }
     }
 }
 // render
