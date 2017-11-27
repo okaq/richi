@@ -115,11 +115,13 @@ var bmp = {
         bmp.a.e = [];
         // midpoint
         var m0 = (sce.nx / 2) >>> 0;
-        console.log(m0);
+        // console.log(m0);
         for (var y = 0; y < sce.ny; y++) {
             bmp.a.e = [];
-            for (var x = 0; x < sce.nx; x++) {
-
+            for (var x = m0 + 1; x < sce.nx; x++) {
+                var x0 = x - m0;
+                var x1 = m0 - x0;
+                bmp.a.e[y][x] = bmp.a.e[y][x1];
             }
         }
     }

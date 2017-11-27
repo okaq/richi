@@ -56,7 +56,7 @@ func main() {
     fmt.Printf("csp web serve start %s\n", time.Now().String())
     Cache()
     Pid = NewPids()
-    fmt.Println(P, C, Pid)
+    // fmt.Println(P, C, Pid)
     http.HandleFunc("/", AeviHandler)
     http.HandleFunc("/b", PidHandler)
     http.ListenAndServe(":8080", nil)
