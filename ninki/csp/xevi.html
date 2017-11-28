@@ -51,6 +51,18 @@ var g = {
         // logic
         bmp.logic();
         ren.mirror();
+
+        // state
+        g.tick = 0;
+        g.id = window.setInterval(g.frame, 1000);
+    },
+    "frame": function() {
+        console.log("tick count: " + g.tick);
+        g.tick = g.tick + 1;
+        if (g.tick >= 4) {
+            console.log("animation complete.");
+            window.clearInterval(g.id);
+        }
     }
 }
 // xhr
