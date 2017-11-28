@@ -48,6 +48,9 @@ var g = {
         // mirror
         bmp.mirror();
         ren.mirror();
+        // logic
+        bmp.logic();
+        ren.mirror();
     }
 }
 // xhr
@@ -127,6 +130,34 @@ var bmp = {
                 var x1 = m0 - x0;
                 bmp.a.e[y][x] = bmp.a.e[y][x1];
             }
+        }
+    },
+    "logic": function() {
+        // mirror image bits
+        // with logistic threshold
+        // mirror image bits
+        bmp.a.e = [];
+        // midpoint
+        var m0 = (sce.nx / 2) >>> 0;
+        // console.log(m0);
+        for (var y = 0; y < sce.ny; y++) {
+            bmp.a.e[y] = [];
+            for (var x = 0; x < m0; x++) {
+                var d0 = bmp.th(bmp.a.d[y][x]);
+                bmp.a.e[y][x] = d0;
+            }
+            for (var x = m0 + 1; x < sce.nx; x++) {
+                var x0 = x - m0;
+                var x1 = m0 - x0;
+                bmp.a.e[y][x] = bmp.a.e[y][x1];
+            }
+        }
+    },
+    "th": function(b0) {
+        if (b0 < 128) {
+            return 0;
+        } else {
+            return 1;
         }
     }
 }
