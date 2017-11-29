@@ -62,12 +62,30 @@ var g = {
         if (g.tick >= 4) {
             console.log("animation complete.");
             window.clearInterval(g.id);
+            return;
         }
+        g.pan();
         // states
         // 1. ordinary random pattern side bar
         // 2. mirrored 15x15 side bar
         // 3. random width pixel block strips, centered
         // 4. block widths obey random walk
+    },
+    "pan": function() {
+        switch (g.tick) {
+            case 0:
+                console.log("random sidebar");
+                break;
+            case 1:
+                console.log("mirror sidebar");
+                break;
+            case 2:
+                console.log("random center");
+                break;
+            case 3:
+                console.log("random walk center");
+                break;
+        }
     }
 }
 // xhr
