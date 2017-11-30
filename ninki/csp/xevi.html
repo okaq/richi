@@ -44,13 +44,13 @@ var g = {
         // test
         // ren.mon();
         // data
-        ren.bmp();
+        // ren.bmp();
         // mirror
-        bmp.mirror();
-        ren.mirror();
+        // bmp.mirror();
+        // ren.mirror();
         // logic
-        bmp.logic();
-        ren.mirror();
+        // bmp.logic();
+        // ren.mirror();
 
         // state
         g.tick = 0;
@@ -59,7 +59,7 @@ var g = {
     "frame": function() {
         console.log("tick count: " + g.tick);
         g.tick = g.tick + 1;
-        if (g.tick >= 4) {
+        if (g.tick > 4) {
             console.log("animation complete.");
             window.clearInterval(g.id);
             return;
@@ -73,17 +73,23 @@ var g = {
     },
     "pan": function() {
         switch (g.tick) {
-            case 0:
-                console.log("random sidebar");
-                break;
             case 1:
-                console.log("mirror sidebar");
+                console.log("random sidebar");
+                ren.mon();
                 break;
             case 2:
-                console.log("random center");
+                console.log("mirror sidebar");
+                ren.bmp();
                 break;
             case 3:
+                console.log("random center");
+                bmp.mirror();
+                ren.mirror();
+                break;
+            case 4:
                 console.log("random walk center");
+                bmp.logic();
+                ren.mirror();
                 break;
         }
     }
