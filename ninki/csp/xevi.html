@@ -74,20 +74,20 @@ var g = {
     "pan": function() {
         switch (g.tick) {
             case 1:
-                console.log("random sidebar");
+                console.log("random sidebar render call");
                 ren.mon();
                 break;
             case 2:
-                console.log("mirror sidebar");
+                console.log("random sidebar bitmap data");
                 ren.bmp();
                 break;
             case 3:
-                console.log("random center");
+                console.log("mirror sidebar bitmap data");
                 bmp.mirror();
                 ren.mirror();
                 break;
             case 4:
-                console.log("random walk center");
+                console.log("mirror sidebar monochrome");
                 bmp.logic();
                 ren.mirror();
                 break;
