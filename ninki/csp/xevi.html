@@ -128,6 +128,8 @@ var sce = {
         // console.log(sce);
 
         sce.big();
+        // pre allocate the entire center grid
+        sce.far();
     },
     "big": function() {
         // grid multi array
@@ -148,6 +150,13 @@ var sce = {
                 sce.a.b[y][x] = rgba.rmon();
             }
         }
+    },
+    "far": function() {
+        // full page grid
+        // 192 x 108 = 20736 cells
+        sce.nx2 = (sce.w / sce.bw) >>> 0;
+        sce.nt2 = (sce.n2 * sce.ny) >>> 0;
+        console.log(sce.nx2, sce.nt); 
     },
     "jump": function() {
         // evolution strategy
