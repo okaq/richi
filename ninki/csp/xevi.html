@@ -189,6 +189,20 @@ var sce = {
 
         // scene manager
         // accounts for jump history
+
+        // remove side bar
+        for (var y = 0; y < sce.ny; y++) {
+            for (var x = 0; x < sce.nx; x++) {
+                dom.remove(sce.a.c[y][x]);
+            }
+        }
+
+        // add full grid
+        for (var y = 0; y < sce.ny; y++) {
+            for (var x = 0; x < sce.nx; x++) {
+                dom.add(sce.b.c[y][x]);
+            }
+        }
     }
 }
 // bitmap
