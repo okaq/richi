@@ -156,7 +156,19 @@ var sce = {
         // 192 x 108 = 20736 cells
         sce.nx2 = (sce.w / sce.bw) >>> 0;
         sce.nt2 = (sce.n2 * sce.ny) >>> 0;
-        console.log(sce.nx2, sce.nt); 
+        console.log(sce.nx2, sce.nt);
+        sce.b = {};
+        sce.b.r = [];
+        sce.b.c = [];
+        sce.b.b = [];
+        for (var y = 0; y < sce.ny; y++) {
+            sce.b.r = [];
+            sce.b.c = [];
+            sce.b.b = [];
+            for (var x = 0; x < sce.nx2; x++) {
+
+            }
+        }
     },
     "jump": function() {
         // evolution strategy
