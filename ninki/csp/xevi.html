@@ -166,7 +166,12 @@ var sce = {
             sce.b.c = [];
             sce.b.b = [];
             for (var x = 0; x < sce.nx2; x++) {
-
+                var x0 = (x * sce.bw) >>> 0;
+                var y0 = (y * sce.bh) >>> 0;
+                sce.b.r[y][x] = [sce.bw,sce.bh,x0,y0];
+                sce.b.c[y][x] = dom.canvas(sce.b.r[y][x]);
+                // add remove during jump
+                sce.b.b[y][x] = rgba.rmon();
             }
         }
     },
