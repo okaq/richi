@@ -59,7 +59,7 @@ var g = {
     "frame": function() {
         console.log("tick count: " + g.tick);
         g.tick = g.tick + 1;
-        if (g.tick > 4) {
+        if (g.tick > 7) {
             console.log("animation complete.");
             window.clearInterval(g.id);
             return;
@@ -94,6 +94,8 @@ var g = {
             case 5:
                 console.log("center full screen mirror monochrome");
                 // scene, data, render
+                sce.jump();
+                ren.grid();
                 break;
             case 6:
                 console.log("center full walk mirror");
@@ -162,9 +164,9 @@ var sce = {
         sce.b.c = [];
         sce.b.b = [];
         for (var y = 0; y < sce.ny; y++) {
-            sce.b.r = [];
-            sce.b.c = [];
-            sce.b.b = [];
+            sce.b.r[y] = [];
+            sce.b.c[y] = [];
+            sce.b.b[y] = [];
             for (var x = 0; x < sce.nx2; x++) {
                 var x0 = (x * sce.bw) >>> 0;
                 var y0 = (y * sce.bh) >>> 0;
@@ -199,7 +201,7 @@ var sce = {
 
         // add full grid
         for (var y = 0; y < sce.ny; y++) {
-            for (var x = 0; x < sce.nx; x++) {
+            for (var x = 0; x < sce.nx2; x++) {
                 dom.add(sce.b.c[y][x]);
             }
         }
@@ -301,6 +303,15 @@ var ren = {
                 var b0 = bmp.a.e[y][x];
                 var rgba0 = rgba.mono(b0);
                 c0.con.fillStyle = rgba0;
+                c0.con.fillRect(0,0,c0.can.width,c0.can.height);
+            }
+        }
+    },
+    "grid": function() {
+        for (var y = 0; y < sce.ny; y++) {
+            for (var x = 0; x < sce.nx2; x++) {
+                var c0 = sce.b.c[y][x];
+                c0.con.fillStyle = sce.b.b[y][x];
                 c0.con.fillRect(0,0,c0.can.width,c0.can.height);
             }
         }
