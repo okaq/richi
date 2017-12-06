@@ -158,7 +158,7 @@ var sce = {
         // 192 x 108 = 20736 cells
         sce.nx2 = (sce.w / sce.bw) >>> 0;
         sce.nt2 = (sce.n2 * sce.ny) >>> 0;
-        console.log(sce.nx2, sce.nt);
+        // console.log(sce.nx2, sce.nt);
         sce.b = {};
         sce.b.r = [];
         sce.b.c = [];
@@ -203,6 +203,23 @@ var sce = {
         for (var y = 0; y < sce.ny; y++) {
             for (var x = 0; x < sce.nx2; x++) {
                 dom.add(sce.b.c[y][x]);
+            }
+        }
+    },
+    "tip": function() {
+        // a centered column
+        // of random widths
+        sce.c = {};
+        sce.c.r = [];
+        sce.c.c = [];
+        sce.c.b = [];
+        for (var y = 0; y < sce.ny; y++) {
+            // variable width
+            // but always odd count
+            // with center block at sce.w / 2
+            var nx = (Math.random() * sce.nx) >>> 0;
+            if (nx % 2 == 0) {
+                nx = nx - 1;
             }
         }
     }
