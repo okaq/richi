@@ -221,7 +221,21 @@ var sce = {
             if (nx % 2 == 0) {
                 nx = nx - 1;
             }
+            sce.c.r[y] = [];
+            sce.c.c[y] = [];
+            sce.c.b[y] = [];
+            // start x position
+            var x0 = ((sce.w - (nx * sce.bw)) / 2) >>> 0;
+            for (var x = 0; x < nx; x++) {
+                var y0 = (y * sce.bh) >>> 0;
+                var x1 = ((x * sce.bw) + x0) >>> 0;
+                sce.c.r[y][x] = [sce.bw,sce.bh,x1,y0];
+                sce.c.c[y][x] = dom.canvas(sce.c.r[y][x]);
+                sce.c.b[y][x] = rgba.rmon();
+            }
+
         }
+        // no margins for now
     }
 }
 // bitmap
