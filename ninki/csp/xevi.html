@@ -241,14 +241,24 @@ var sce = {
         // mirror bitmap grey
         for (var y = 0; y < sce.ny; y++) {
             var nx = sce.c.r[y].length;
-            for (var x = 0; x < nx; x++) {
-                
+            // midpoint
+            var nx2 = nx / 2;
+            for (var x = 0; x < nx2; x++) {
+                // opposal index
+                var x0 = nx - x - 1;
+                // threshold value
+                var b0 = sce.rope(sce.c.b[y][x]);
             }
         }
     },
-    "rope": function() {
+    "rope": function(b0) {
         // threshold bitmap values
         // to monochrome mapping
+        if (b0 <= 128) {
+            return 0;
+        } else {
+            return 255;
+        }
     }
 }
 // bitmap
