@@ -248,6 +248,10 @@ var sce = {
                 var x0 = nx - x - 1;
                 // threshold value
                 var b0 = sce.rope(sce.c.b[y][x]);
+                sce.c.b[y][x0] = b0;
+                sce.c.b[y][x] = b0;
+                // keep b data set
+                // and mirror into new sce.b.d
             }
         }
     },
