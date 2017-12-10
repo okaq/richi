@@ -13,7 +13,8 @@ import (
 )
 
 const (
-    INDEX = "xevi.html"
+    // INDEX = "xevi.html"
+    INDEX = "wevi.html"
 )
 
 var (
