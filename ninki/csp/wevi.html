@@ -38,8 +38,45 @@ var g = {
     "start": function() {
         // begin the game
         // subsystems
-        g.subs = [dom,sce,bmp,net];
+        g.subs = [dom,bmp,sce,net];
         g.subs.forEach(function(el){el.init()});
+    }
+}
+// xhr
+var net = {
+    "init": function() {
+        console.log("start conns");
+    }
+}
+// bitmap
+var bmp = {
+    "init": function() {
+        // data encode
+        bmp.w = 1920;
+        bmp.h = 1080;
+
+        // pixel block size
+        bmp.bw = 10;
+        bmp.bh = 10;
+
+        // margins
+        bmp.mw = 1;
+        bmp.mh = 1;
+        bmp.bmw = (bmp.bw + (2 * bmp.mw)) >>> 0;
+        bmp.bmh = (bmp.bh + (2 * bmp.mh)) >>> 0;
+
+        // max limits
+        bmp.ny = bmp.w / bmp.bmw;
+        bmp.nx = bmp.h / bmp.bmh;
+        bmp.nt = bmp.nx * bmp.ny;
+
+        console.log(bmp.ny, bmp.nx, bmp.nt);
+    }
+}
+// scene
+var sce = {
+    "init": function() {
+        // layout from data
     }
 }
 // dom
@@ -121,5 +158,3 @@ var rgba = {
     <body id="alpha">
     </body>
 </html>
-
-
