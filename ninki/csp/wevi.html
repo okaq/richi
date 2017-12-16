@@ -66,11 +66,15 @@ var bmp = {
         bmp.bmh = (bmp.bh + (2 * bmp.mh)) >>> 0;
 
         // max limits
-        bmp.ny = bmp.w / bmp.bmw;
-        bmp.nx = bmp.h / bmp.bmh;
+        bmp.nx = bmp.w / bmp.bmw;
+        bmp.ny = bmp.h / bmp.bmh;
         bmp.nt = bmp.nx * bmp.ny;
 
         console.log(bmp.ny, bmp.nx, bmp.nt);
+
+        // mirror limit half
+        bmp.hx = (bmp.nx - 2) / 2;
+        console.log(bmp.hx);
 
         // data
         bmp.d = {};
@@ -86,6 +90,16 @@ var bmp = {
         bmp.d.a.c = [];
         // bitmaps
         bmp.d.a.b = [];
+
+        // double loop
+        for (var y = 0; y < bmp.ny; y++) {
+            var y0 = (y * bmp.bmh) >>> 0;
+            var y1 = (y0 + bmp.mh) >>> 0;
+            // random widths
+            // set center as index zero
+            // only hold right hand side data
+            // left hand is mirrored about center
+        }
     },
     "dome": function() {
         // genrate random walk
