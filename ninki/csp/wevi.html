@@ -99,6 +99,23 @@ var bmp = {
             // set center as index zero
             // only hold right hand side data
             // left hand is mirrored about center
+            var nx = (Math.random() * bmp.hx) >>> 0;
+            // center point
+            var cx = (bmp.w / 2) >>> 0;
+            // half block width
+            var bmw2 = (bmp.bmw / 2) >>> 0;
+            // center block begin end
+            var cx0 = (cx - bmw2) >>> 0;
+            var cx1 = (cx + bmw2) >>> 0;
+            if (y == 0) {
+                console.log(nx,cx,bmw2,cx0,cx1);
+            }
+            // add cx as right margin
+            // to right hand blocks
+            for (var x = 0; x < nx; x++) {
+                var x0 = (x * bmp.bmw) >>> 0;
+                var x1 = (x0 + bmp.mw) >>> 0;
+            }
         }
     },
     "dome": function() {
