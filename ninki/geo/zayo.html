@@ -1,2 +1,56 @@
 <!DOCTYPE html>
-okaq geo simple solids
+<html lang="en">
+    <head id="zeta">
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <meta name="viewport" content="width=1920,height=1080,initial-scale=1" />
+        <meta name="source" content="https://github.com/okaq/richi" />
+        <meta name="author" content="AQ<aq@okaq.com>" />
+        <meta name="date" content="2017-12-22" />
+        <link rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAMElEQVR4nOzNQREAMAzDsN2uIMIfaUk0PxmANUles1+9AwAAAAAAAAAAgMM2AAD//x07AItj75fpAAAAAElFTkSuQmCC" />
+        <style type="text/css">
+            html,body{width:1920px;overflow:hidden;height:1080px;margin:0px;border:0px;padding:0px;background-color:rgba(0,0,0,0);}
+        </style>
+        <script type="text/javascript">
+            // ok
+            console.log("okaq gira richi ninki geo ok!");
+            // async load
+            (function() {
+                var a = {
+                    "load": function(e) {
+                        console.log(e);
+                        g.init();
+                    }
+                }
+                document.addEventListener("DOMContentLoaded", a.load, false);
+            })();
+// game
+var g = {
+    "init": function() {
+        var t0 = window.performance.now();
+        console.log("geom begin...");
+
+        // start
+        window.setTimeout(g.start, 1000);
+
+        // stats
+        console.log("total render time: " + (window.performance.now() - t0) + "ms.");
+    },
+    "start": function() {
+        // begin the game
+        // subsystems
+        g.subs = [pt];
+        g.subs.forEach(function(el){el.init()});
+    }
+}
+// point
+var pt = {
+    "init": function() {
+        // accumulator
+        pt.a = {};
+    }
+}
+</script>
+</head>
+<body id="alpha">
+</body>
+</html>
