@@ -47,6 +47,22 @@ var pt = {
     "init": function() {
         // accumulator
         pt.a = {};
+        // render order list
+        pt.a.d = [];
+    },
+    "field": function() {
+        // creates a simple grid of points
+        // and adds it to the render list
+        // a point is just an json object
+
+        // start
+        var p0 = {};
+        p0.x = 0;
+        p0.y = 0;
+        // end
+        var p1 = {};
+        p1.x = 1920;
+        p1.y = 1080;
     }
 }
 // dom
