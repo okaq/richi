@@ -38,8 +38,18 @@ var g = {
     "start": function() {
         // begin the game
         // subsystems
-        g.subs = [dom,pt];
+        g.subs = [dom,pt,net];
         g.subs.forEach(function(el){el.init()});
+    }
+}
+// xhr
+var net = {
+    "init": function() {
+        // urls
+        net.a = [];
+        net.a[0] = "http://localhost:8080/a";
+        net.a[1] = "http://localhost:8080/b";
+        console.log(net.a);
     }
 }
 // point
@@ -63,6 +73,10 @@ var pt = {
         var p1 = {};
         p1.x = 1920;
         p1.y = 1080;
+        // interval size
+        var p2 = {};
+        p2.x = 20;
+        p2.y = 20;
     }
 }
 // dom
