@@ -77,6 +77,20 @@ var pt = {
         var p2 = {};
         p2.x = 20;
         p2.y = 20;
+        // grid loop
+        var p3 = [];
+        var nx = (p1.x / p2.x) >>> 0;
+        var ny = (p1.y / p2.y) >>> 0;
+        var nt = (nx * ny) >>> 0;
+        for (var i = 0; i < nt; i++) {
+            var x0 = i % nx;
+            var y0 = (i / nx) >>> 0;
+            var p4 = {};
+            p4.x = x0;
+            p4.y = y0;
+            p3.push(p4);
+        }
+        pt.a.d.push(p3);
     }
 }
 // dom
