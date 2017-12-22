@@ -145,6 +145,21 @@ var pt = {
         p1.y = 1080;
         // subdivide space
         var p2 = pt.subs(p0, p1);
+        return p2;
+    },
+    "subs": function(p0, p1) {
+        // subdivide line
+        // fixed number of times
+        var p2 = [];
+        p2[0] = p0;
+        var p3 = pt.mids(p0,p1);
+        var p4 = pt.mids(p0,p3);
+        var p5 = pt.mids(p3,p1);
+        p2[1] = p4;
+        p2[2] = p3;
+        p2[3] = p5;
+        p2[4] = p1;
+        return p2;
     },
     "mids": function(p0, p1) {
         // return midpoint of a line
