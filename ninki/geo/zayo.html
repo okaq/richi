@@ -130,6 +130,30 @@ var pt = {
         p2.y = (Math.random() * h0) >>> 0;
 
         return p2;
+    },
+    "line": function() {
+        // return a monotonically
+        // increasing set of N random points
+        var n0 = 4;
+        // start
+        var p0 = {};
+        p0.x = 0;
+        p0.y = 0;
+        // end
+        var p1 = {};
+        p1.x = 1920;
+        p1.y = 1080;
+        // subdivide space
+        var p2 = pt.subs(p0, p1);
+    },
+    "mids": function(p0, p1) {
+        // return midpoint of a line
+        var x0 = ((p1.x - p0.x) / 2) >>> 0;
+        var y0 = ((p1.y - p0.y) / 2) >>> 0;
+        var p2 = {};
+        p2.x = x0;
+        p2.y = y0;
+        return p2;
     }
 }
 // dom
