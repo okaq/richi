@@ -12,7 +12,8 @@ import (
 )
 
 const (
-    INDEX = "zayo.html"
+    // INDEX = "zayo.html"
+    INDEX = "yayo.html"
 )
 
 func AayoHandler(w http.ResponseWriter, r *http.Request) {
