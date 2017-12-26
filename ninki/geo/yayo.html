@@ -38,8 +38,37 @@ var g = {
     "start": function() {
         // begin the game
         // subsystems
-        g.subs = [dom];
+        g.subs = [dom,reg,sce];
         g.subs.forEach(function(el){el.init()});
+    }
+}
+// regl
+var reg = {
+    "init": function() {
+        // async load script
+        reg.url = "https://npmcdn.com/regl/dist/regl.min.js";
+        reg.a = document.createElement("script");
+        reg.a.src = reg.url;
+        reg.a.type = "text/javascript";
+        reg.a.async = true;
+        reg.a.addEventListener("load", reg.load, false);
+        reg.b = document.getElementsByTagName("script");
+        reg.c = reg.b[0];
+        reg.d = reg.c.parentNode;
+        reg.d.insertBefore(reg.a, reg.c);
+        console.log(reg);
+    },
+    "load": function(e) {
+        console.log(e);
+        console.log(window); // use to inspect loaded javascript
+        reg.g = createREGL();
+        console.log(reg.g);
+    }
+}
+// scene
+var sce = {
+    "init": function() {
+        console.log("creating webgl canvas");
     }
 }
 // dom
@@ -121,5 +150,3 @@ var rgba = {
 <body id="alpha">
 </body>
 </html>
-
-https://npmcdn.com/regl/dist/regl.min.js
