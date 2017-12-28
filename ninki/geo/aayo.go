@@ -14,6 +14,7 @@ import (
 const (
     // INDEX = "zayo.html"
     INDEX = "yayo.html"
+    BIN = "node"
 )
 
 func AayoHandler(w http.ResponseWriter, r *http.Request) {
@@ -21,8 +22,16 @@ func AayoHandler(w http.ResponseWriter, r *http.Request) {
     http.ServeFile(w,r,INDEX)
 }
 
+func Bin() {
+    // static assets from build
+    pre := fmt.Sprintf("/%s/", BIN)
+    fs := http.FileServer(http.Dir(BIN))
+    http.Handle(pre, http.StripPrefix(pre,fs))
+}
+
 func main() {
     fmt.Printf("okaq geo web start\n%s\n", time.Now().String())
     http.HandleFunc("/", AayoHandler)
+    Bin()
     http.ListenAndServe(":8080", nil)
 }
