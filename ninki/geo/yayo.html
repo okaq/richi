@@ -71,6 +71,8 @@ var reg = {
     "create": function(gl) {
         reg.g = createREGL(gl);
         console.log(reg.g);
+
+        sce.test();
     }
 }
 // scene
@@ -84,6 +86,21 @@ var sce = {
         dom.add(sce.a.c);
 
         // reg.create(sce.a.c.con);
+    },
+    "test": function() {
+        // clear draw context
+        // to random color
+        var r0 = Math.random();
+        var g0 = Math.random();
+        var b0 = Math.random();
+        var a0 = Math.random();
+        var c0 = [r0,g0,b0,a0];
+
+        reg.g.clear({
+            color: c0,
+            depth: 1,
+            stencil: 0
+        })
     }
 }
 // dom
