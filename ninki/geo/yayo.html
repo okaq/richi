@@ -40,6 +40,9 @@ var g = {
         // subsystems
         g.subs = [dom,sce,reg];
         g.subs.forEach(function(el){el.init()});
+
+        // build the scene
+        sce.basic();
     }
 }
 // regl
@@ -101,6 +104,18 @@ var sce = {
             depth: 1,
             stencil: 0
         })
+    },
+    "basic": function() {
+        // minimum draw
+        sce.b = {};
+        // fragment shader
+        sce.b.frag = `
+            precision mediump float;
+            uniform vec4 color;
+            void main() {
+                gl_fragColor = color;
+            }
+        `;
     }
 }
 // dom
