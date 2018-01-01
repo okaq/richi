@@ -109,7 +109,9 @@ var sce = {
             stencil: 0
         })
         console.log(reg.g.limits);
-        reg.g.apply(sce.b);
+        console.log(typeof(reg.g));
+        reg.f = reg.g(sce.b);
+        reg.f();
     },
     "basic": function() {
         // minimum draw
@@ -119,14 +121,14 @@ var sce = {
             precision mediump float;
             uniform vec4 color;
             void main() {
-                gl_fragColor = color;
+                gl_FragColor = color;
             }
         `;
         sce.b.vert = `
             precision mediump float;
             attribute vec2 position;
             void main() {
-                gl_Position = vec4(position, 1, 0);
+                gl_Position = vec4(position, 0, 1);
             }
         `;
         sce.b.attributes = {};
