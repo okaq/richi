@@ -42,7 +42,8 @@ var g = {
         g.subs.forEach(function(el){el.init()});
 
         // build the scene
-        sce.basic();
+        // sce.basic();
+        // reg.g(sce.b)();
     }
 }
 // regl
@@ -69,7 +70,10 @@ var reg = {
 
         // create scene canvas
         // and pass in gl context
-        reg.create();
+        // reg.create();
+        sce.basic();
+        sce.gl();
+        reg.create(sce.b);
     },
     "create": function(gl) {
         reg.g = createREGL(gl);
@@ -104,6 +108,8 @@ var sce = {
             depth: 1,
             stencil: 0
         })
+        console.log(reg.g.limits);
+        reg.g.apply(sce.b);
     },
     "basic": function() {
         // minimum draw
@@ -128,6 +134,9 @@ var sce = {
         sce.b.uniforms = {};
         sce.b.uniforms.color = [1,0,0,1];
         sce.b.count = 3;
+    },
+    "gl": function() {
+        sce.b.gl = sce.a.c.con;
     }
 }
 // dom
