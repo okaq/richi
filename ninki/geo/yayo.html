@@ -116,6 +116,18 @@ var sce = {
                 gl_fragColor = color;
             }
         `;
+        sce.b.vert = `
+            precision mediump float;
+            attribute vec2 position;
+            void main() {
+                gl_Position = vec4(position, 1, 0);
+            }
+        `;
+        sce.b.attributes = {};
+        sce.b.attributes.position = [[-1,0],[0,-1],[1,1]];
+        sce.b.uniforms = {};
+        sce.b.uniforms.color = [1,0,0,1];
+        sce.b.count = 3;
     }
 }
 // dom
