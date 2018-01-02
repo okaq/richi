@@ -13,7 +13,8 @@ import (
 
 const (
     // INDEX = "zayo.html"
-    INDEX = "yayo.html"
+    // INDEX = "yayo.html"
+    INDEX = "xayo.html"
     BIN = "node"
 )
 
