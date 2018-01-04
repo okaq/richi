@@ -38,11 +38,24 @@ var g = {
         // subsystems
         g.subs = [dom,sce];
         g.subs.forEach(function(el){el.init()});
+
+        // render test
+        ren.test();
     },
     "bab": function() {
         // console.log(e);
         console.log(window.BABYLON);
 
+        // strategy: rather than tempt fate
+        // by instancing both 2D and 3D contexts
+        // for each individual canvas in the grid
+        // apply scene managment DOM manipulation
+
+        // two sets of canvases are created at init time
+        // one for 2D and one for webgl contexts
+        // then at the approriate time
+        // during the render loop
+        // then can be added or removed from the DOM tree
         g.start();
     }
 }
