@@ -36,12 +36,131 @@ var g = {
     "start": function() {
         // begin the game
         // subsystems
-        g.subs = [dom,pt,net];
+        g.subs = [dom,sce];
         g.subs.forEach(function(el){el.init()});
     },
     "bab": function() {
         // console.log(e);
         console.log(window.BABYLON);
+
+        g.start();
+    }
+}
+// scene
+var sce = {
+    "init": function() {
+        // bkgd
+        sce.a = {};
+        sce.a.r = [1920,1080,0,0];
+        sce.a.c = dom.canvas(sce.a.r);
+        sce.a.b = rgba.rand();
+        dom.add(sce.a.c);
+        sce.a.c.can.dataset.id = "bkgd";
+        // get into the habit of adding
+        // the canvas id name key
+        // and the db entry
+        // for its state
+        // as well as an event handler
+
+        // big square
+        sce.b = {};
+        sce.b.r = [1024,1024,448,28];
+        sce.b.c = dom.canvas(sce.b.r);
+        sce.b.b = rgba.rand();
+        dom.add(sce.b.c);
+        sce.b.c.can.dataset.id = "big";
+
+        // little squares
+        sce.c = {};
+        sce.c.r = [];
+        sce.c.c = [];
+        sce.c.b = [];
+        for (var i = 0; i < 16; i++) {
+            var x0 = i % 4;
+            var y0 = (i / 4) >>> 0;
+            var x1 = (x0 * 256) >>> 0;
+            var y1 = (y0 * 256) >>> 0;
+            var x2 = (x1 + 448) >>> 0;
+            var y2 = (y1 + 28) >>> 0;
+            sce.c.r[i] = [256,256,x,y];
+            sce.c.c[i] = dom.canvas(sce.c.r[i]);
+            sce.c.b[i] = rgba.rand();
+            sce.c.c.can.dataset.id = "lit_" + i;
+        }
+    }
+}
+// dom
+var dom = {
+    "init": function() {
+        dom.alpha = document.getElementById("alpha");
+        console.log(dom.alpha);
+    },
+    "canvas": function(r0) {
+        var c0 = {};
+        c0.can = document.createElement("canvas");
+        c0.con = c0.can.getContext("2d");
+        c0.can.width = r0[0];
+        c0.can.height = r0[1];
+        c0.can.style.position = "absolute";
+        c0.can.style.top = r0[3] + "px";
+        c0.can.style.left = r0[2] + "px";
+        return c0;
+    },
+    "webgl": function(r0) {
+        var c0 = {};
+        c0.can = document.createElement("canvas");
+        c0.con = c0.can.getContext("webgl");
+        c0.can.width = r0[0];
+        c0.can.height = r0[1];
+        c0.can.style.position = "absolute";
+        c0.can.style.top = r0[3] + "px";
+        c0.can.style.left = r0[2] + "px";
+        return c0;
+    },
+    "add": function(c0) {
+        dom.alpha.appendChild(c0.can);
+    },
+    "remove": function(c0) {
+        dom.alpha.removeChild(c0.can);
+    }
+}
+// colors
+var rgba = {
+    "rc": function() {
+        // return random rgba
+        var c0 = [
+            rgba.rb(),
+            rgba.rb(),
+            rgba.rb(),
+            1.0
+            ];
+        return c0;
+    },
+    "css": function(c0) {
+        // return css string
+        return "rgba(" + c0.join(",") + ")";
+    },
+    "rb": function() {
+        // random byte
+        return (Math.random() * 255) >>> 0;
+    },
+    "rba": function(size0) {
+        // random byte array length of input
+        var r0 = [];
+        for (var i = 0; i < size0; i++) {
+            r0.push(rgba.rb());
+        }
+        return r0;
+    },
+    "rand": function() {
+        return rgba.css(rgba.rc());
+    },
+    "mono": function(c0) {
+        return rgba.css([c0,c0,c0,1.0]);
+    },
+    "rmon": function() {
+        var c0 = rgba.rb();
+        return rgba.mono(c0);
     }
 }
         </script>
