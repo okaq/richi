@@ -19,6 +19,12 @@ define(function(require) {
     console.log(regl);
     var mat = require('./gl-matrix');
     console.log(mat);
+    var cam = require('./canvas-orbit-camera');
+    console.log(cam);
+    var fit = require('./canvas-fit');
+    console.log(fit);
+
+    console.log("dependencies loaded, ready to app commence");
 });
 
 
