@@ -1,8 +1,51 @@
 <!DOCTYPE html>
-ok okaq gira ninki geo go!
-<br />
-babylon js mesh load procedural tex and shaders
-<br />
-update from regl functional pipe and modules
-<br />
-static art asset and sprite generator
+<html lang="en">
+    <head id="zeta">
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <meta name="viewport" content="width=1920,height=1080,initial-scale=1" />
+        <meta name="source" content="https://github.com/okaq/richi" />
+        <meta name="author" content="AQ<aq@okaq.com>" />
+        <meta name="date" content="2018-01-06" />
+        <link rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAMElEQVR4nOzNQREAMAzDsN2uIMIfaUk0PxmANUles1+9AwAAAAAAAAAAgMM2AAD//x07AItj75fpAAAAAElFTkSuQmCC" />
+        <style type="text/css">
+            html,body{width:1920px;overflow:hidden;height:1080px;margin:0px;border:0px;padding:0px;background-color:rgba(0,0,0,0);}
+        </style>
+        <script async="true" onload="g.bab();" src="node/babylon.js"></script>
+        <script type="text/javascript">
+            // ok
+            console.log("okaq gira richi ninki geo ok!");
+            // async load
+            (function() {
+                var a = {
+                    "load": function(e) {
+                        console.log(e);
+                        g.init();
+                    }
+                }
+                document.addEventListener("DOMContentLoaded", a.load, false);
+            })();
+// game
+var g = {
+    "init": function() {
+        var t0 = window.performance.now();
+        console.log("sphere begin...");
+
+        // stats
+        console.log("total render time: " + (window.performance.now() - t0) + "ms.");
+    },
+    "start": function() {
+        // begin the game
+        // subsystems
+        g.subs = [dom,pt,net];
+        g.subs.forEach(function(el){el.init()});
+    },
+    "bab": function() {
+        // console.log(e);
+        console.log(window.BABYLON);
+    }
+}
+        </script>
+    </head>
+    <body id="alpha">
+    </body>
+</html>
