@@ -8,7 +8,7 @@
         <meta name="date" content="2018-01-06" />
         <link rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAMElEQVR4nOzNQREAMAzDsN2uIMIfaUk0PxmANUles1+9AwAAAAAAAAAAgMM2AAD//x07AItj75fpAAAAAElFTkSuQmCC" />
         <style type="text/css">
-            html,body{width:1920px;overflow:hidden;height:1080px;margin:0px;border:0px;padding:0px;background-color:rgba(0,0,0,0);}
+            html,body{width:1920px;overflow:auto;height:1080px;margin:0px;border:0px;padding:0px;background-color:rgba(0,0,0,0);}
         </style>
         <script async="true" onload="g.bab();" src="node/babylon.js"></script>
         <script type="text/javascript">
@@ -95,10 +95,30 @@ var sce = {
             var y1 = (y0 * 256) >>> 0;
             var x2 = (x1 + 448) >>> 0;
             var y2 = (y1 + 28) >>> 0;
-            sce.c.r[i] = [256,256,x,y];
+            sce.c.r[i] = [256,256,x2,y2];
             sce.c.c[i] = dom.canvas(sce.c.r[i]);
             sce.c.b[i] = rgba.rand();
-            sce.c.c.can.dataset.id = "lit_" + i;
+            dom.add(sce.c.c[i]);
+            sce.c.c[i].can.dataset.id = "lit_" + i;
+        }
+
+        // webgl squares
+        // add / remove canvas
+    }
+}
+// render
+var ren = {
+    "test": function() {
+        // bkgd
+        sce.a.c.con.fillStyle = sce.a.b;
+        sce.a.c.con.fillRect(0,0,sce.a.c.can.width,sce.a.c.can.height);
+        // large square
+        sce.b.c.con.fillStyle = sce.b.b;
+        sce.b.c.con.fillRect(0,0,sce.b.c.can.width,sce.b.c.can.height);
+        // small squares
+        for (var i = 0; i < 16; i++) {
+            sce.c.c[i].con.fillStyle = sce.c.b[i];
+            sce.c.c[i].con.fillRect(16,16,sce.c.c[i].can.width-32,sce.c.c[i].can.height-32);
         }
     }
 }
