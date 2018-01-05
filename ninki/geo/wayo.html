@@ -104,6 +104,26 @@ var sce = {
 
         // webgl squares
         // add / remove canvas
+    },
+    "sol": function() {
+        // init webgl
+        sce.d = {};
+        sce.d.r = [];
+        sce.d.c = [];
+        sce.d.b = [];
+        for (var i = 0; i < 16; i++) {
+            var x0 = i % 4;
+            var y0 = (i / 4) >>> 0;
+            var x1 = (x0 * 256) >>> 0;
+            var y1 = (y0 * 256) >>> 0;
+            var x2 = (x1 + 448) >>> 0;
+            var y2 = (y1 + 28) >>> 0;
+            sce.d.r[i] = [256,256,x2,y2];
+            sce.d.c[i] = dom.webgl(sce.d.r[i]);
+            sce.d.b[i] = rgba.rand();
+            // dom.add(sce.c.c[i]);
+            sce.d.c[i].can.dataset.id = "gl_" + i;
+        }
     }
 }
 // render
